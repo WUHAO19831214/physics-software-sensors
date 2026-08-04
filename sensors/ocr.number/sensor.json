@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "id": "ocr.number",
+  "name_zh": "数字 OCR 传感器",
+  "name_en": "Numeric OCR Sensor",
+  "category": "processor",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": ["frame-packet.screen-frame", "frame-packet.image-frame"],
+  "output_kinds": ["sensor-event.measurement"],
+  "capabilities": ["normalized-ocr-roi", "image-preprocessing", "tesseract-js", "numeric-parsing", "quality-metadata"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
+      "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
+      "paths": ["src/recognizers/TesseractRecognizer.ts", "src/types/physics.ts", "src/utils/ocrPreprocess.ts", "docs/OCR_VALIDATION.md"],
+      "notes": "Real Tesseract.js path with ROI preprocessing, numeric parsing, runtime metadata, and validation guidance."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+      "commit": "cb073e89d6d87129287030f1df08bd540504eb39",
+      "paths": ["src/recognizers/TesseractRecognizer.ts", "docs/OCR_AND_ROI.md", "docs/VALIDATION_REPORT.md"],
+      "notes": "Teacher-side use of numeric OCR; template-digit and cnn-onnx remain placeholders in the source."
+    }
+  ],
+  "evidence_level": "documented-prototype",
+  "license_review": "pending",
+  "known_boundaries": ["Current Tesseract whitelist covers digits, decimal point, and minus sign, not scientific notation.", "Mock output must never replace failed real OCR.", "Post-processing accuracy must be reported separately from raw OCR accuracy."],
+  "owners": ["WUHAO19831214"]
+}

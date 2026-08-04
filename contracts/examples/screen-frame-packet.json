@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "frame_id": "34fa86aa-cef6-4bd8-860c-4fcf3aa5ed42",
+  "run_id": "demo-run-20260804",
+  "source_sensor_id": "screen.capture",
+  "sequence": 17,
+  "observed_at": "2026-08-04T08:30:00.100Z",
+  "monotonic_ns": 193100000000,
+  "source_timestamp": 193.1,
+  "media": {
+    "kind": "screen-frame",
+    "media_type": "image/png",
+    "width": 1920,
+    "height": 1080,
+    "color_space": "RGBA",
+    "orientation": "0",
+    "mirrored": false
+  },
+  "artifact": {
+    "uri": "artifact://demo-run-20260804/screen/000017.png",
+    "media_type": "image/png",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "bytes": 245760
+  },
+  "quality": {
+    "dropped_since_last": 0,
+    "flags": []
+  },
+  "payload": {
+    "capture_api": "getDisplayMedia",
+    "user_authorized": true
+  }
+}

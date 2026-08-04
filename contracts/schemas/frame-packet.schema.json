@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WUHAO19831214/physics-software-sensors/contracts/schemas/frame-packet.schema.json",
+  "title": "Physics Software Sensor Frame Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "frame_id", "run_id", "source_sensor_id", "sequence", "observed_at", "monotonic_ns", "media", "artifact", "quality"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "frame_id": {"type": "string", "format": "uuid"},
+    "run_id": {"type": "string", "minLength": 1},
+    "source_sensor_id": {"type": "string", "minLength": 1},
+    "sequence": {"type": "integer", "minimum": 0},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "monotonic_ns": {"type": "integer", "minimum": 0},
+    "source_timestamp": {"type": ["number", "null"]},
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "media_type", "width", "height", "color_space", "orientation", "mirrored"],
+      "properties": {
+        "kind": {"enum": ["camera-frame", "screen-frame", "image-frame"]},
+        "media_type": {"type": "string", "minLength": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "color_space": {"enum": ["RGB", "BGR", "RGBA", "GRAY", "YUV", "unknown"]},
+        "orientation": {"enum": ["0", "90", "180", "270"]},
+        "mirrored": {"type": "boolean"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri", "media_type", "sha256"],
+      "properties": {
+        "uri": {"type": "string", "minLength": 1},
+        "media_type": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dropped_since_last", "flags"],
+      "properties": {
+        "dropped_since_last": {"type": "integer", "minimum": 0},
+        "flags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "payload": {"type": "object"}
+  }
+}

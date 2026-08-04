@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "id": "tracker.yolo",
+  "name_zh": "YOLO 追踪传感器",
+  "name_en": "YOLO Tracking Sensor",
+  "category": "processor",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame"],
+  "output_kinds": ["sensor-event.detection", "sensor-event.tracking"],
+  "capabilities": ["yolo-detection", "bytetrack", "class-filter", "track-id", "declared-fallback"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
+      "commit": "85740d686c67452a057540edb564d713e01ccc51",
+      "paths": ["src/detector.py", "src/camera_processor.py", "tests/test_detector.py", "tests/test_tracking.py"],
+      "notes": "Local Ultralytics YOLO with ByteTrack and OpenCV HOG fallback, covered by automated tests."
+    }
+  ],
+  "evidence_level": "source-tested",
+  "license_review": "pending",
+  "known_boundaries": ["Model weights are external artifacts and are not committed here.", "HOG fallback results are not YOLO results and must be flagged.", "Track IDs may be unavailable depending on backend."],
+  "owners": ["WUHAO19831214"]
+}

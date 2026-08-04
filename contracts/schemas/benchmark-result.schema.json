@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WUHAO19831214/physics-software-sensors/contracts/schemas/benchmark-result.schema.json",
+  "title": "Physics Software Sensor Benchmark Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "benchmark_id", "created_at", "sensor", "dataset", "environment", "protocol", "sample_counts", "metrics", "status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "benchmark_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "sensor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "commit"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "manifest_sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "environment": {"type": "object", "minProperties": 1},
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "name", "repetitions"],
+      "properties": {
+        "level": {"enum": ["L0", "L1", "L2", "L3"]},
+        "name": {"type": "string", "minLength": 1},
+        "repetitions": {"type": "integer", "minimum": 1}
+      }
+    },
+    "sample_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "ok", "degraded", "lost", "error"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "ok": {"type": "integer", "minimum": 0},
+        "degraded": {"type": "integer", "minimum": 0},
+        "lost": {"type": "integer", "minimum": 0},
+        "error": {"type": "integer", "minimum": 0}
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value", "unit"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "value": {"type": "number"},
+          "unit": {"type": "string", "minLength": 1},
+          "threshold": {"type": ["number", "null"]},
+          "passed": {"type": ["boolean", "null"]}
+        }
+      }
+    },
+    "status": {"enum": ["informational", "passed", "failed", "incomplete"]},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "id": "screen.capture",
+  "name_zh": "屏幕采集传感器",
+  "name_en": "Screen Capture Sensor",
+  "category": "source",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": [],
+  "output_kinds": ["frame-packet.screen-frame"],
+  "capabilities": ["browser-get-display-media", "normalized-roi", "stream-end-detection", "frame-timestamps"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
+      "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
+      "paths": ["src/screen/ScreenCapturePanel.tsx", "src/screen/screenCaptureRuntime.ts", "docs/SCREEN_CAPTURE_PIPELINE.md"],
+      "notes": "User-authorized browser screen/window capture feeding ROI processing."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+      "commit": "cb073e89d6d87129287030f1df08bd540504eb39",
+      "paths": ["src/screen/ScreenCapturePanel.tsx", "docs/SENSOR_INTEGRATION.md"],
+      "notes": "Teacher workflow confirms that screen OCR is a pixel bridge, not direct DIS SDK access."
+    }
+  ],
+  "evidence_level": "documented-prototype",
+  "license_review": "pending",
+  "known_boundaries": ["A user must choose a screen, window, or tab.", "Page reload requires permission again.", "The source exposes pixels, not internal application data."],
+  "owners": ["WUHAO19831214"]
+}

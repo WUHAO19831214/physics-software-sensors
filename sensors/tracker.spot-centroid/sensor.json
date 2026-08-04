@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "id": "tracker.spot-centroid",
+  "name_zh": "光斑重心识别传感器",
+  "name_en": "Spot Centroid Sensor",
+  "category": "processor",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame"],
+  "output_kinds": ["sensor-event.centroid", "sensor-event.tracking"],
+  "capabilities": ["red-color-threshold", "weighted-centroid", "lock-threshold", "pixel-trajectory"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+      "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+      "paths": ["app.js", "docs/DATA_DICTIONARY.md", "docs/VALIDATION_PROTOCOL.md"],
+      "notes": "Browser red-spot weighted centroid with a documented data dictionary and proposed validation protocol."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715",
+      "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619",
+      "paths": ["app.js", "docs/SIGNAL_PROCESSING.md", "docs/VALIDATION_REPORT.md"],
+      "notes": "Related weighted red centroid and peak-to-peak window aggregation with explicit physics and validation limits."
+    }
+  ],
+  "evidence_level": "documented-prototype",
+  "license_review": "pending",
+  "known_boundaries": ["The direct observation is an image-space light-spot centroid, not mechanical displacement.", "Peak-to-peak spot range is not single-sided amplitude.", "Formal metrology, repeatability, and uncertainty evidence is not yet present in the source repositories."],
+  "owners": ["WUHAO19831214"]
+}

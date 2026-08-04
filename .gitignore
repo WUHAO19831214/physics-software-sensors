@@ -1,0 +1,31 @@
+.DS_Store
+.idea/
+.vscode/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dist/
+build/
+coverage/
+
+# Runtime and research artifacts
+data/
+models/*.pt
+models/*.onnx
+*.mp4
+*.mov
+*.avi
+*.wav
+*.png
+*.jpg
+*.jpeg
+
+# Keep explicitly curated documentation assets if added later
+!docs/assets/**/*.png
+!docs/assets/**/*.jpg
+!benchmarks/datasets/**/README.md
+!benchmarks/datasets/**/dataset-card.md

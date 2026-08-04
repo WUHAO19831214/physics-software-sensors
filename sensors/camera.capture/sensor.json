@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "id": "camera.capture",
+  "name_zh": "摄像头采集传感器",
+  "name_en": "Camera Capture Sensor",
+  "category": "source",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": [],
+  "output_kinds": ["frame-packet.camera-frame"],
+  "capabilities": ["browser-get-user-media", "opencv-local-camera", "frame-timestamps", "device-status"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
+      "commit": "85740d686c67452a057540edb564d713e01ccc51",
+      "paths": ["src/browser_capture.py", "src/camera_devices.py", "src/local_capture.py"],
+      "notes": "Browser WebRTC and local OpenCV capture paths; source repository includes automated tests around device helpers and capture behavior."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+      "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+      "paths": ["app.js"],
+      "notes": "Browser getUserMedia capture used by the spot-tracking prototype."
+    }
+  ],
+  "evidence_level": "source-tested",
+  "license_review": "pending",
+  "known_boundaries": ["Requested FPS and resolution may differ from actual values.", "Browser capture requires user permission.", "Hardware timing is not proven by HTTP or unit tests."],
+  "owners": ["WUHAO19831214"]
+}

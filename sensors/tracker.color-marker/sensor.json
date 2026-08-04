@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "id": "tracker.color-marker",
+  "name_zh": "颜色标记追踪传感器",
+  "name_en": "Color Marker Tracking Sensor",
+  "category": "processor",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame"],
+  "output_kinds": ["sensor-event.tracking"],
+  "capabilities": ["hsv-mask", "morphology", "contour-ranking", "centroid-smoothing", "lost-state"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
+      "commit": "85740d686c67452a057540edb564d713e01ccc51",
+      "paths": ["src/tennis_ball_tracker.py", "tests/test_tennis_ball_tracker.py"],
+      "notes": "HSV marker tracker with contour area/circularity, temporal continuity, smoothing, lost state, and automated tests."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
+      "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
+      "paths": ["src/vision/ColorTrackingAnalyzer.ts", "src/vision/MarkerTrackingAnalyzer.ts"],
+      "notes": "Browser-side analyzer strategy implementations requiring separate replay validation."
+    }
+  ],
+  "evidence_level": "source-tested",
+  "license_review": "pending",
+  "known_boundaries": ["HSV thresholds are camera and lighting dependent.", "Confidence meanings differ by algorithm and require calibration.", "Tracking coordinates remain image-space unless an explicit calibration is applied."],
+  "owners": ["WUHAO19831214"]
+}

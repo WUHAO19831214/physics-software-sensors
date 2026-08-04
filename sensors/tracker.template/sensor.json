@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "id": "tracker.template",
+  "name_zh": "模板/单目标追踪传感器",
+  "name_en": "Template and Single-Object Tracking Sensor",
+  "category": "processor",
+  "maturity": "planned",
+  "implementation_status": "contract-only",
+  "version": "0.1.0",
+  "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame", "initialization-roi"],
+  "output_kinds": ["sensor-event.tracking"],
+  "capabilities": ["roi-initialization", "opencv-csrt", "opencv-kcf", "opencv-mil", "backend-fallback", "lost-state"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
+      "commit": "85740d686c67452a057540edb564d713e01ccc51",
+      "paths": ["src/object_template_tracker.py", "tests/test_object_template_tracker.py"],
+      "notes": "ROI-initialized OpenCV single-object tracking with CSRT to KCF to MIL fallback and tests."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
+      "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
+      "paths": ["src/vision/TemplateMatchingAnalyzer.ts"],
+      "notes": "Browser template-matching analyzer is a related but distinct algorithm family requiring its own benchmark profile."
+    }
+  ],
+  "evidence_level": "source-tested",
+  "license_review": "pending",
+  "known_boundaries": ["ROI-initialized object tracking is not identical to image template matching.", "Backend fallback changes behavior and performance.", "Loss and reinitialization must be explicit."],
+  "owners": ["WUHAO19831214"]
+}

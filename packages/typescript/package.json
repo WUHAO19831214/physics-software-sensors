@@ -1,0 +1,8 @@
+{
+  "name": "@physics-software-sensors/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Contract-only TypeScript skeleton for physics software sensors",
+  "exports": "./src/index.ts"
+}
