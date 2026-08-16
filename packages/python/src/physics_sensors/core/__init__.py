@@ -4,6 +4,7 @@ from .coordinates import NormalizedRect
 from .errors import InvalidConfigurationError, InvalidFrameError, SensorStateError
 from .events import FramePacket, SensorEvent, make_sensor_event
 from .frames import RuntimeFrame
+from .model_artifact import ModelArtifact
 from .sensor import (
     ConfigResult,
     HealthSnapshot,
@@ -24,6 +25,7 @@ __all__ = [
     "NormalizedRect",
     "ProcessorSensor",
     "RuntimeFrame",
+    "ModelArtifact",
     "SensorContext",
     "SensorDescriptor",
     "SensorEvent",

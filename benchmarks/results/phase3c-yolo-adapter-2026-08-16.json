@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-16",
+  "evidence_level": "deterministic-adapter-replay",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-26.3.1-arm64-arm-64bit",
+    "numpy": "2.5.2",
+    "input_size": [
+      360,
+      260
+    ]
+  },
+  "fixture": "tests/fixtures/yolo_tracker/source-golden.json",
+  "single_target_mapping": {
+    "iterations": 500,
+    "median_ms": 0.099937,
+    "p95_ms": 0.123583,
+    "peak_tracemalloc_bytes": 94588,
+    "serialized_detection_count": 1
+  },
+  "multi_target_serialization": {
+    "iterations": 500,
+    "median_ms": 0.11035400000000001,
+    "p95_ms": 0.130291,
+    "peak_tracemalloc_bytes": 90643,
+    "serialized_detection_count": 2
+  },
+  "class_filter": {
+    "passed": 3,
+    "total": 3
+  },
+  "tracking_state": {
+    "passed": 10,
+    "total": 10,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "lost",
+      "ok"
+    ],
+    "track_ids": [
+      [
+        7
+      ],
+      [
+        7
+      ],
+      [
+        7,
+        12
+      ],
+      [],
+      [
+        7
+      ]
+    ]
+  },
+  "real_inference": {
+    "executed": false,
+    "reason": "No maintainer-approved local model artifact was supplied; online download is prohibited.",
+    "model": "not measured",
+    "model_sha256": "not measured",
+    "device": "not measured",
+    "input_size": "not measured",
+    "latency_ms": "not measured",
+    "fps": "not measured",
+    "memory": "not measured",
+    "detection_count": "not measured",
+    "accuracy": "not measured; no labelled evaluation set"
+  }
+}

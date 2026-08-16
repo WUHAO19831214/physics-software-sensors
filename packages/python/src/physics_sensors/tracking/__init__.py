@@ -17,6 +17,17 @@ from .template import (
     scale_bbox_to_frame,
     validate_bbox,
 )
+from .yolo import (
+    CentroidAssociator,
+    ClassFilter,
+    DetectorBackend,
+    DetectorFrameResult,
+    OpenCVHogDetectorBackend,
+    RecordedDetectorBackend,
+    YoloDetection,
+    YoloDetectorBackend,
+    YoloTrackerSensor,
+)
 
 __all__ = [
     "ColorMarkerConfig",
@@ -35,4 +46,13 @@ __all__ = [
     "create_opencv_tracker",
     "scale_bbox_to_frame",
     "validate_bbox",
+    "CentroidAssociator",
+    "ClassFilter",
+    "DetectorBackend",
+    "DetectorFrameResult",
+    "OpenCVHogDetectorBackend",
+    "RecordedDetectorBackend",
+    "YoloDetection",
+    "YoloDetectorBackend",
+    "YoloTrackerSensor",
 ]

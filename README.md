@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前完成 **Phase 3B：Classical Trackers experimental adapters**。Camera/Screen 统一 FramePacket 来源层继续保持；现在新增光斑重心和 ROI 单目标 tracker，使六项传感器可在原实验项目之外独立回放。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
+本仓库当前完成 **Phase 3C：YOLO Tracker experimental adapter**。七项传感器都已有可独立调用的 adapter；YOLO 新增离线 recorded backend、显式 ModelArtifact、multi-target event、ByteTrack/fallback 边界和许可证审查。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -18,7 +18,7 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | Color Marker Tracker | 用 HSV/轮廓连续追踪颜色标记 | experimental | [Page](sensors/tracker.color-marker/README.md) | [Python](examples/python-color-marker/README.md) | [golden](sensors/tracker.color-marker/benchmarks/README.md) |
 | Spot Centroid Tracker | 输出图像中红色光斑的亮度加权重心 | experimental | [Page](sensors/tracker.spot-centroid/README.md) | [Python](examples/spot-centroid/README.md) | [golden](sensors/tracker.spot-centroid/benchmarks/README.md) |
 | Template / Single-object Tracker | 初始化 ROI 后用 CSRT/KCF/MIL 追踪单个目标 | experimental | [Page](sensors/tracker.template/README.md) | [Python](examples/python-template-tracker/README.md) | [replay](sensors/tracker.template/benchmarks/README.md) |
-| YOLO Tracker | 用显式模型 artifact 检测并追踪目标 | contract-only | [Page](sensors/tracker.yolo/README.md) | [pending](sensors/tracker.yolo/examples/README.md) | [plan](sensors/tracker.yolo/benchmarks/README.md) |
+| YOLO Tracker | 用显式模型 artifact 检测并追踪多个目标 | experimental | [Page](sensors/tracker.yolo/README.md) | [recorded Python](examples/python-yolo-tracker/README.md) | [adapter replay](sensors/tracker.yolo/benchmarks/README.md) |
 
 完整语言/来源对照见 [软件传感器目录](docs/sensor-catalog.md)。页面完整不等于算法已验证；状态以 manifest 和页面成熟度为准。
 
@@ -44,6 +44,13 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | Camera FramePacket → red weighted centroid pixel / lost | initialization ROI + Camera FramePacket → bbox / backend / lost |
 
 两图都由本仓库 adapter 实际运行产生，输入明确为 synthetic。Spot 输出不是机械位移或振幅；Template profile 是 ROI-initialized OpenCV tracker，不是静态 template matching。
+
+| YOLO detector/tracker replay |
+| --- |
+| [![Recorded YOLO detector adapter replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.md) |
+| Camera FramePacket → recorded detections/track IDs/fallback → multi-target SensorEvent |
+
+YOLO 图来自固定来源执行输出的 recorded replay，不是真实模型推理。Phase 3C 没有提交/下载权重，也没有声称模型 accuracy 或真实 ByteTrack 性能。
 
 ## 核心原则
 
@@ -111,7 +118,14 @@ npm --prefix packages/typescript test
 - 不承诺硬实时、硬件同步或计量精度；
 - 不提交摄像头原始视频、屏幕录制、个人图像、模型权重或未脱敏数据；
 - 不把屏幕 OCR 表述成对实验设备 SDK 或内部数据的直接读取；
-- 不把 `0.4.0` 实验性 source/adapter 描述为稳定、计量验证或真实设备兼容；YOLO 仍为 contract-only。
+- 不把 `0.5.0` 实验性 source/adapter 描述为稳定、计量验证、真实设备兼容或模型准确率证据。
+
+### Agent development handoff
+
+Latest development handoff:
+
+- [.agent-handoff/latest.md](.agent-handoff/latest.md)
+- [.agent-handoff/latest.json](.agent-handoff/latest.json)
 
 ## 许可
 

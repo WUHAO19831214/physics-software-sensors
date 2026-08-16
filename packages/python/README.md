@@ -4,8 +4,10 @@
 
 ```bash
 python -m pip install -e 'packages/python[color-marker,camera-opencv,classical-trackers]'
+# Only for an explicitly reviewed local YOLO artifact:
+python -m pip install -e 'packages/python[yolo-runtime]'
 ```
 
-当前 `0.4.0` 提供 `physics_sensors.capture.CameraSource`、`ImageSequenceCameraBackend`、可选 `OpenCVCameraBackend`，以及 `ColorMarkerSensor`、`SpotCentroidSensor` 和 `TemplateTrackerSensor`。三个 OpenCV extra 统一选择 `opencv-contrib-python-headless`，避免同一环境同时安装相互冲突的 regular/contrib wheel，并为 CSRT/KCF/MIL 提供完整 factory；core 与 recorded camera backend 仍可独立 import。Phase 1 的 `physics_software_sensors` import 暂作兼容 re-export。
+当前 `0.5.0` 提供 `physics_sensors.capture.CameraSource`、`ImageSequenceCameraBackend`、可选 `OpenCVCameraBackend`，以及 Color/Spot/Template/YOLO 四个 tracking sensor。`YoloTrackerSensor` 默认可通过 `RecordedDetectorBackend` 完全离线使用；真实 `YoloDetectorBackend` 需要显式本地 `ModelArtifact`，会校验 SHA，不自动下载权重。OpenCV extras 统一选择 `opencv-contrib-python-headless`；core 与 recorded backends 仍可独立 import。Phase 1 的 `physics_software_sensors` import 暂作兼容 re-export。
 
 所有序列化输出仍必须满足根目录 JSON Schema。实验性适配器不等于真实设备精度已验证。

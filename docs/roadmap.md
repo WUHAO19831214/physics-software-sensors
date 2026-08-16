@@ -75,10 +75,18 @@ Phase 2 仍只选择两个实现试点：
 
 退出标准（本轮达到 experimental）：两个 manifest 为 `incubating/adapter-present/replay-benchmarked`；不把 pixel 说成物理位移，不伪造 confidence，不修改来源仓库或 FramePacket `1.0.0`。
 
-## Phase 3C — 模型型处理器（只规划）
+## Phase 3C — YOLO Tracker（本轮 experimental）
 
-- `tracker.yolo`；
-- 模型 artifact、权重许可证和 inference backend 与 library package 解耦。
+- [x] `tracker.yolo` 独立 Python adapter 和 multi-target SensorEvent；
+- [x] `ModelArtifact` 与 library/runtime/weight 解耦，本地 SHA 验证且不自动下载；
+- [x] `RecordedDetectorBackend`、可选 `YoloDetectorBackend` 与 person-only OpenCV HOG fallback；
+- [x] detection/tracking/confidence 语义、all/ID/name class filter 和 actual backend 显式化；
+- [x] 来源执行型 golden、ID lifecycle/fallback tests、CameraSource composition、offline example/assets 与 adapter benchmark；
+- [x] runtime/weight/ByteTrack/HOG 专项许可证审查；不提交模型权重；
+- [ ] 经维护者批准的本地 artifact 真实 inference smoke、标注数据集和模型/追踪性能；
+- [ ] 来源许可确认、真实摄像头 L2 和可回退下游试点。
+
+退出标准（本轮达到 experimental）：manifest 为 `incubating/adapter-present/replay-benchmarked`，catalog 达到 7/7 adapters；真实 inference 未执行时必须明确原因和全部 `not measured` 字段，不把 detector score 当物理 uncertainty。
 
 ## Phase 3D — Cross-sensor benchmark（只规划）
 

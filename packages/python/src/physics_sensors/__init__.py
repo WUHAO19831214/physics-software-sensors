@@ -4,6 +4,7 @@ from .core import (
     ConfigResult,
     HealthSnapshot,
     LifecycleState,
+    ModelArtifact,
     ProcessorSensor,
     RuntimeFrame,
     SensorContext,
@@ -15,6 +16,7 @@ __all__ = [
     "ConfigResult",
     "HealthSnapshot",
     "LifecycleState",
+    "ModelArtifact",
     "ProcessorSensor",
     "RuntimeFrame",
     "SensorContext",
@@ -22,4 +24,4 @@ __all__ = [
     "SourceSensor",
 ]
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

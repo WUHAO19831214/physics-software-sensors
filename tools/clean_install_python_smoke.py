@@ -9,7 +9,13 @@ import numpy as np
 
 from physics_sensors.core import SensorContext
 from physics_sensors.capture import BackendFrame, CameraSource, ImageSequenceCameraBackend
-from physics_sensors.tracking import ColorMarkerSensor, SpotCentroidSensor, TemplateTrackerSensor
+from physics_sensors.tracking import (
+    ColorMarkerSensor,
+    RecordedDetectorBackend,
+    SpotCentroidSensor,
+    TemplateTrackerSensor,
+    YoloTrackerSensor,
+)
 
 
 async def main() -> None:
@@ -64,12 +70,32 @@ async def main() -> None:
     assert template.initialize_target(captured, (40, 55, 65, 60))
     template_event = template.process_frame(next_frame)
     await template.stop()
+
+    yolo = YoloTrackerSensor(RecordedDetectorBackend([{
+        "requested_backend": "recorded-detector",
+        "actual_backend": "recorded-detector",
+        "attempted_backends": ["recorded-detector"],
+        "tracking_mode": "recorded-tracks",
+        "detections": [{
+            "track_id": 7,
+            "tracking_id_available": True,
+            "class_id": 0,
+            "class_name": "person",
+            "bbox": {"x": 40, "y": 20, "width": 65, "height": 95},
+            "detector_confidence": 0.91,
+        }],
+    }]))
+    await yolo.start(context)
+    yolo_event = yolo.process_frame(captured)
+    await yolo.stop()
     await camera.stop()
 
     assert color_event["status"] == "ok" and color_event["sensor"]["id"] == "tracker.color-marker"
     assert spot_event["status"] == "ok" and spot_event["sensor"]["id"] == "tracker.spot-centroid"
     assert template_event["status"] == "ok" and template_event["sensor"]["id"] == "tracker.template"
-    print("PASS clean wheel CameraSource -> ColorMarker/SpotCentroid/TemplateTracker compositions")
+    assert yolo_event["status"] == "ok" and yolo_event["sensor"]["id"] == "tracker.yolo"
+    assert yolo_event["payload"]["detections"][0]["track_id"] == 7
+    print("PASS clean wheel CameraSource -> ColorMarker/SpotCentroid/TemplateTracker/YoloTracker compositions")
 
 
 if __name__ == "__main__":

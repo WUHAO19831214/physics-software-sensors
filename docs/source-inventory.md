@@ -95,4 +95,12 @@
 - `tracker.template`：从稳定版 `src/object_template_tracker.py::ObjectTemplateTracker` 抽取 ROI validation、`CSRT→KCF→MIL`、lost/reinitialize；实验桥静态 template matching 仍是不同、未抽取 profile；
 - 两项都有来源执行型 golden、synthetic replay、CameraSource composition 和 explicit null confidence；
 - FramePacket Schema 仍为 `1.0.0`，统一 ProcessorSensor interface 未改；
-- 五个来源仓库仍在表中 SHA 且 clean，没有任何修改；`tracker.yolo` 未开始。
+- 五个来源仓库仍在表中 SHA 且 clean，没有任何修改。
+
+## 9. Phase 3C YOLO Tracker 抽取状态（2026-08-16）
+
+- `tracker.yolo`：从稳定版 `src/detector.py::Detector` 和 `src/camera_processor.py::CentroidTracker` 抽离 detection/ByteTrack 调用、multi-target projection、HOG fallback 和 centroid lifecycle；
+- 新增显式 `ModelArtifact`，不扫描来源项目、不自动下载、不提交权重；
+- 来源执行型 golden 固定 zero/single/move/two/lost/reappear/missing-ID 和 centroid reset；recorded replay、fake runtime seam 与实际 HOG blank-frame smoke 全部离线；
+- 真实 Ultralytics inference 未执行，因为没有经维护者批准的本地 artifact 且当前环境未安装 runtime；模型/追踪 accuracy 均未测量；
+- FramePacket Schema 仍为 `1.0.0`，SensorEvent 主 Schema 未改；五个来源仓库继续停留在表中 SHA 且 clean。
