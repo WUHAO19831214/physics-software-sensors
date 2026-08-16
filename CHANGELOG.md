@@ -8,6 +8,9 @@
 - 完整建设 `tracker.color-marker` 与 `ocr.number` 公开页面；
 - 增加实验性 Python `physics_sensors` core、ColorMarkerTracker/Sensor 和来源 golden-master 对照；
 - 增加实验性 TypeScript NumberOCRSensor、来源兼容 parser 和 recorded-result replay；
+- 完成 Phase 2D：Color Marker standalone visualization 与实际生成的 synthetic demo assets；
+- 增加 RGBA ROI/preprocess、真实 Tesseract.js backend、synthetic pixel integration 与 OCR demo assets；
+- 增加 package clean-install 门禁和 repository/source/adapter/fixture 许可证边界文档；
 - 两个试点进入 `incubating/adapter-present`，其余五项仍为 contract-only；
 - 未修改来源仓库，未复制授权不明图片，未声称真实设备或计量验证。
 

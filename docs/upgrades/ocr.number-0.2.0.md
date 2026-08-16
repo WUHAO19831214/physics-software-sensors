@@ -4,7 +4,7 @@
 
 - 负责人：WUHAO19831214；
 - 日期：2026-08-16；
-- 变更类型：parser/recognizer seam/recorded replay 首次适配；
+- 变更类型：parser/recognizer seam/recorded replay + real-pixel Tesseract.js 首次适配；
 - 目标成熟度：incubating / experimental；
 - 契约版本：SensorEvent `1.0.0`（未改变）。
 
@@ -20,14 +20,16 @@
 
 - 来源 parser 行为进入独立 Node 可测试 utility；
 - 新增 injected `NumberRecognizer` 和 `RecordedNumberRecognizer`；
+- 新增 pure RGBA ROI/preprocess 与 `TesseractJsRecognizer`，worker 由实例管理并在 stop 时释放；
 - 新增 `NumberOCRSensor`，输出 rawText、normalizedText、parsed measurement、confidence、duration、warning/error；
 - parse/recognizer failure 使用明确 error SensorEvent，measurements 为空；
-- 真实 Tesseract.js、Canvas ROI/preprocess、React UI 和物理过滤本轮未迁移。
+- React UI、screen permission、业务 store 和物理过滤仍未迁移。
 
 ## 验证证据
 
-- 7 个 TypeScript/Node 测试：parser、成功、warning、parse failure、recognizer failure、missing replay、invalid ROI；
+- 13 个 TypeScript/Node 测试：原 7 项、descriptor、RGBA crop/preprocess/validation、真实 Tesseract synthetic pixels、controlled engine failure；
 - fixture：`ocr-number-recorded-result-fixture@0.1.0`；
+- pixel fixture：`ocr-number-synthetic-pixels`，数字 3/3 exact numeric match；
 - 失败测试明确证明不会产生 mock/stale value；
 - 报告：[`benchmarks/results/phase2-adapter-verification-2026-08-16.md`](../../benchmarks/results/phase2-adapter-verification-2026-08-16.md)。
 
@@ -35,7 +37,7 @@
 
 - 没有修改来源 React/浏览器应用；
 - 新 package 暂为单一 `@physics-software-sensors/core`；
-- recorded replay API 是实验性边界，真实 Tesseract backend 可能增加可选依赖，但不能改变失败语义。
+- recorded replay 与真实 Tesseract backend 共用 `NumberRecognizer`；失败语义保持一致。
 
 ## 回退
 
@@ -46,7 +48,6 @@
 ## 未完成门禁
 
 - [ ] source 许可证明确
-- [ ] 脱敏 recorded image frames
-- [ ] Canvas/preprocess/Tesseract.js backend
-- [ ] exact match、numeric error、failure rate 和真实 latency
+- [ ] 脱敏真实设备 recorded image frames
+- [ ] 真实设备 exact match、numeric error、failure rate 和 latency distribution
 - [ ] 浏览器与下游试点

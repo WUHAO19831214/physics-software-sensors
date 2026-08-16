@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前处于 **Phase 2：公开传感器目录与首批实验性适配器**。现有来源仓库仍是运行载体和事实来源；新库通过可追溯 adapter 渐进抽取，不要求来源项目立即接入，也不替换其 UI 或实验流程。
+本仓库当前完成 **Phase 2D：首批试点完成与可视化演示**。现有来源仓库仍是历史实现与实际使用场景的事实来源；新库通过可追溯 adapter 渐进抽取，不要求来源项目立即接入，也不替换其 UI 或实验流程。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -14,13 +14,22 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | --- | --- | --- | --- | --- | --- |
 | Camera Capture | 产生带时间和媒体元数据的摄像头帧 | contract-only | [Page](sensors/camera.capture/README.md) | [pending](sensors/camera.capture/examples/README.md) | [plan](sensors/camera.capture/benchmarks/README.md) |
 | Screen Capture | 经用户授权采集屏幕/窗口像素帧 | contract-only | [Page](sensors/screen.capture/README.md) | [pending](sensors/screen.capture/examples/README.md) | [plan](sensors/screen.capture/benchmarks/README.md) |
-| Number OCR | 从屏幕 ROI 保留 OCR 原文并解析数字 | experimental | [Page](sensors/ocr.number/README.md) | [replay](sensors/ocr.number/examples/README.md) | [status](sensors/ocr.number/benchmarks/README.md) |
-| Color Marker Tracker | 用 HSV/轮廓连续追踪颜色标记 | experimental | [Page](sensors/tracker.color-marker/README.md) | [Python](sensors/tracker.color-marker/examples/README.md) | [golden](sensors/tracker.color-marker/benchmarks/README.md) |
+| Number OCR | 从屏幕 ROI 保留 OCR 原文并解析数字 | experimental | [Page](sensors/ocr.number/README.md) | [pixel OCR](examples/web-number-ocr/README.md) | [status](sensors/ocr.number/benchmarks/README.md) |
+| Color Marker Tracker | 用 HSV/轮廓连续追踪颜色标记 | experimental | [Page](sensors/tracker.color-marker/README.md) | [Python](examples/python-color-marker/README.md) | [golden](sensors/tracker.color-marker/benchmarks/README.md) |
 | Spot Centroid Tracker | 输出图像中光斑的颜色加权重心 | contract-only | [Page](sensors/tracker.spot-centroid/README.md) | [pending](sensors/tracker.spot-centroid/examples/README.md) | [plan](sensors/tracker.spot-centroid/benchmarks/README.md) |
 | Template Tracker | 初始化 ROI 后追踪单个实验物体 | contract-only | [Page](sensors/tracker.template/README.md) | [pending](sensors/tracker.template/examples/README.md) | [plan](sensors/tracker.template/benchmarks/README.md) |
 | YOLO Tracker | 用显式模型 artifact 检测并追踪目标 | contract-only | [Page](sensors/tracker.yolo/README.md) | [pending](sensors/tracker.yolo/examples/README.md) | [plan](sensors/tracker.yolo/benchmarks/README.md) |
 
 完整语言/来源对照见 [软件传感器目录](docs/sensor-catalog.md)。页面完整不等于算法已验证；状态以 manifest 和页面成熟度为准。
+
+## Working demonstrations
+
+| Color Marker Tracker | Number OCR |
+| --- | --- |
+| [![Synthetic color marker standalone result](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.md) | [![Synthetic screen pixel OCR result](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.md) |
+| BGR frame → HSV/contour → position/lost SensorEvent | RGBA screen frame → ROI/preprocess → Tesseract.js → numeric SensorEvent |
+
+两张图均由本仓库 standalone example 实际运行生成，输入明确为 synthetic，不是来源项目截图、真实设备数据或实验精度证据。
 
 ## 核心原则
 
@@ -35,6 +44,7 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 - [总体架构](docs/architecture.md)
 - [软件传感器目录](docs/sensor-catalog.md)
 - [来源图片与演示资产盘点](docs/asset-inventory.md)
+- [许可证与来源边界](docs/licensing-and-provenance.md)
 - [统一传感器接口](docs/sensor-interface.md)
 - [统一数据格式](docs/data-format.md)
 - [基准测试方案](docs/benchmarking.md)

@@ -33,6 +33,7 @@
 - 来源对照：固定 source checkout 与新 tracker 同进程、同帧、同配置；
 - 结果：4/4 全字段匹配，浮点绝对误差 ≤ `1e-6`；
 - fixture：`color-marker-synthetic-golden@0.1.0`；
+- standalone demo：`ok → lost → ok`，生成实际 mask、SensorEvent 和 annotated assets；
 - 报告：[`benchmarks/results/phase2-adapter-verification-2026-08-16.md`](../../benchmarks/results/phase2-adapter-verification-2026-08-16.md)。
 
 ## 兼容与迁移

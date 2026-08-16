@@ -1,0 +1,53 @@
+{
+  "synthetic": true,
+  "roi": {
+    "x": 0.33,
+    "y": 0.39,
+    "width": 0.34,
+    "height": 0.31
+  },
+  "cases": [
+    {
+      "id": "positive",
+      "file": "positive.png",
+      "displayText": "+1.25",
+      "expectedValue": 1.25,
+      "expectedOutcome": "success"
+    },
+    {
+      "id": "negative",
+      "file": "negative.png",
+      "displayText": "-2.33",
+      "expectedValue": -2.33,
+      "expectedOutcome": "success"
+    },
+    {
+      "id": "zero",
+      "file": "zero.png",
+      "displayText": "0.00",
+      "expectedValue": 0.0,
+      "expectedOutcome": "success"
+    },
+    {
+      "id": "blank",
+      "file": "blank.png",
+      "displayText": "",
+      "expectedValue": null,
+      "expectedOutcome": "parse-failure"
+    },
+    {
+      "id": "alphabetic",
+      "file": "alphabetic.png",
+      "displayText": "READY",
+      "expectedValue": null,
+      "expectedOutcome": "parse-failure"
+    },
+    {
+      "id": "engine-failure",
+      "file": "engine-failure.png",
+      "displayText": "9.99",
+      "expectedValue": null,
+      "expectedOutcome": "recognition-failure"
+    }
+  ]
+}

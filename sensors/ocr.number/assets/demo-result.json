@@ -1,0 +1,87 @@
+{
+  "fixture": {
+    "id": "negative",
+    "file": "negative.png",
+    "displayText": "-2.33",
+    "expectedValue": -2.33,
+    "expectedOutcome": "success"
+  },
+  "event": {
+    "schema_version": "1.0.0",
+    "event_id": "9c9041eb-5bcd-4dfa-9bed-cf27bf95ec45",
+    "run_id": "number-ocr-standalone-demo",
+    "sensor": {
+      "id": "ocr.number",
+      "instance_id": "number-ocr-demo-01",
+      "version": "0.2.0",
+      "category": "processor"
+    },
+    "sequence": 1,
+    "time": {
+      "observed_at": "2026-08-16T10:00:01.000Z",
+      "emitted_at": "2026-08-16T07:48:13.348Z",
+      "source_timestamp": 1,
+      "monotonic_ns": 2001000000,
+      "clock": {
+        "domain": "recorded-frame",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "ok",
+    "quality": {
+      "confidence": 0.13,
+      "latency_ms": 65,
+      "flags": [],
+      "dropped_since_last": 0
+    },
+    "measurements": [
+      {
+        "name": "recognized_value",
+        "value": -2.33,
+        "value_type": "number",
+        "unit": "1",
+        "role": "derived",
+        "uncertainty": null
+      }
+    ],
+    "parent_event_ids": [
+      "40000000-0000-4000-8000-000000000001"
+    ],
+    "payload": {
+      "roi_id": "display-value",
+      "roi": {
+        "x": 0.33,
+        "y": 0.39,
+        "width": 0.34,
+        "height": 0.31
+      },
+      "name": "display value",
+      "symbol": "x",
+      "raw_text": "-2.33",
+      "normalized_text": "-2.33",
+      "confidence": 0.13,
+      "duration_ms": 65,
+      "warning": null,
+      "recognition_error": null,
+      "recognizer": "tesseract.js",
+      "recognizer_details": {
+        "language": "eng",
+        "psm_mode": "SINGLE_WORD",
+        "preprocess_mode": "auto",
+        "pixel_roi": {
+          "x": 264,
+          "y": 117,
+          "width": 272,
+          "height": 93
+        }
+      }
+    }
+  },
+  "pixelRoi": {
+    "x": 264,
+    "y": 117,
+    "width": 272,
+    "height": 93
+  }
+}

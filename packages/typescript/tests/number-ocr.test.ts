@@ -56,6 +56,14 @@ async function runningSensor(): Promise<NumberOCRSensor> {
   return sensor;
 }
 
+test('descriptor exposes both replay and real-pixel OCR capabilities', () => {
+  const sensor = new NumberOCRSensor(new RecordedNumberRecognizer(fixture.records));
+  const descriptor = sensor.describe();
+  assert.equal(descriptor.evidenceLevel, 'replay-benchmarked');
+  assert.ok(descriptor.capabilities.includes('tesseract-js'));
+  assert.ok(descriptor.capabilities.includes('recorded-result-replay'));
+});
+
 test('parser matches source-recorded behavior', () => {
   for (const item of fixture.parserCases) {
     assert.equal(normalizeOcrText(item.rawText), item.normalizedText);

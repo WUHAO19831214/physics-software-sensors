@@ -17,6 +17,17 @@
 - `TennisBallTracker` 泛化命名为 `ColorMarkerTracker`，默认配置和 source-native 输出键保持兼容；
 - `ColorMarkerSensor` 新增生命周期、FramePacket runtime 绑定、SensorEvent 映射、健康计数和耗时记录。
 
+## 来源到新实现映射
+
+| Source file/function | New file/symbol | Extraction |
+| --- | --- | --- |
+| `src/tennis_ball_tracker.py::make_tennis_mask` | `packages/python/src/physics_sensors/tracking/color_marker.py::make_color_mask` | 行为保持、泛化命名 |
+| `find_ball_candidates` | 同文件 `find_color_candidates` | 保留 contour geometry/source keys |
+| `choose_best_candidate` | 同文件 `choose_best_candidate` | 保留首次与连续帧排序公式 |
+| `estimate_hsv_range_from_roi` | 同文件同名函数 | 保留 median/margin/clamp 行为 |
+| `TennisBallTracker.update` | `ColorMarkerTracker.update` | 保留 tracking/lost/smoothing；类型化结果 |
+| 无统一接口 | `ColorMarkerSensor.process_frame/process` | 新增 FramePacket/SensorEvent adapter，不改变算法输出 |
+
 ## 算法与行为差异
 
 | 项目 | 来源 | 新实现 | 原因 |
@@ -44,4 +55,4 @@
 
 固定 source commit 没有 LICENSE/COPYING/NOTICE，GitHub license metadata 为 `NOASSERTION`。本轮由仓库维护者明确要求进行抽取，但 `license_review` 仍保持 `pending`，在 stable 发布前应给来源仓库补充明确许可证或书面归属记录。
 
-来源 commit 没有可复用演示图片，因此没有复制图片。详见 [asset inventory](../../docs/asset-inventory.md)。
+来源 commit 没有可复用演示图片，因此没有复制来源图片。Phase 2D 的 demo 由 `examples/python-color-marker/run.py` 创建 synthetic BGR 帧、调用真实 adapter，再根据 `payload.source_raw`、实际 HSV mask 和事件状态生成。生成资产及 SHA-256 见 [assets/README.md](assets/README.md)；这不是来源项目或真实实验截图。

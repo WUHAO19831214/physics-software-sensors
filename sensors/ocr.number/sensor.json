@@ -9,23 +9,23 @@
   "version": "0.2.0",
   "input_kinds": ["frame-packet.screen-frame", "frame-packet.image-frame"],
   "output_kinds": ["sensor-event.measurement"],
-  "capabilities": ["normalized-ocr-roi", "image-preprocessing", "tesseract-js", "numeric-parsing", "quality-metadata", "recorded-result-replay"],
+  "capabilities": ["rgba-pixel-input", "normalized-ocr-roi", "image-preprocessing", "tesseract-js", "numeric-parsing", "quality-metadata", "recorded-result-replay"],
   "source_references": [
     {
       "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
       "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
-      "paths": ["src/recognizers/TesseractRecognizer.ts", "src/types/physics.ts", "src/utils/ocrPreprocess.ts", "docs/OCR_VALIDATION.md"],
+      "paths": ["src/recognizers/TesseractRecognizer.ts", "src/types/physics.ts", "src/utils/extractNumber.ts", "src/utils/imagePreprocess.ts", "src/utils/ocrPreprocess.ts", "docs/OCR_VALIDATION.md"],
       "notes": "Real Tesseract.js path with ROI preprocessing, numeric parsing, runtime metadata, and validation guidance."
     },
     {
       "repository": "https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan",
       "commit": "cb073e89d6d87129287030f1df08bd540504eb39",
-      "paths": ["src/recognizers/TesseractRecognizer.ts", "docs/OCR_AND_ROI.md", "docs/VALIDATION_REPORT.md"],
+      "paths": ["src/recognizers/TesseractRecognizer.ts", "src/utils/extractNumber.ts", "src/utils/imagePreprocess.ts", "src/utils/ocrPreprocess.ts", "docs/OCR_AND_ROI.md", "docs/VALIDATION_REPORT.md"],
       "notes": "Teacher-side use of numeric OCR; template-digit and cnn-onnx remain placeholders in the source."
     }
   ],
-  "evidence_level": "documented-prototype",
+  "evidence_level": "replay-benchmarked",
   "license_review": "pending",
-  "known_boundaries": ["Current Tesseract whitelist covers digits, decimal point, and minus sign, not scientific notation.", "Character normalization can turn letters such as O/o into digits, so rawText and physical-range checks remain necessary.", "Mock output must never replace failed real OCR.", "Post-processing accuracy must be reported separately from raw OCR accuracy."],
+  "known_boundaries": ["Default Tesseract whitelist covers digits, decimal point, and minus sign; plus can be configured, but scientific notation is unsupported.", "Current pixel evidence is synthetic and does not validate a real device display or browser compatibility matrix.", "Character normalization can turn letters such as O/o into digits, so rawText and physical-range checks remain necessary.", "Mock output must never replace failed real OCR.", "Post-processing accuracy must be reported separately from raw OCR accuracy."],
   "owners": ["WUHAO19831214"]
 }

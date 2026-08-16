@@ -76,6 +76,7 @@
 ## 6. Phase 2 抽取状态（2026-08-16）
 
 - `tracker.color-marker`：Python 行为保持抽取和 SensorEvent adapter 已进入 incubating；来源同帧合成对照见 [`SOURCE.md`](../sensors/tracker.color-marker/SOURCE.md)；
-- `ocr.number`：TypeScript parser、recognizer seam 和 recorded-result replay 已进入 incubating；真实 Tesseract/ImageData 尚未迁移，见 [`SOURCE.md`](../sensors/ocr.number/SOURCE.md)；
-- 五个来源仓库在固定 commit 没有可用演示截图，且许可证 metadata 均为 `NOASSERTION`；详见 [资产盘点](asset-inventory.md)；
+- `ocr.number`：TypeScript parser、recognizer seam、recorded replay、纯 RGBA ROI/preprocess 和真实 Tesseract.js backend 已进入 incubating，见 [`SOURCE.md`](../sensors/ocr.number/SOURCE.md)；
+- 两个 standalone examples 已用明确标记的 synthetic input 生成当前 adapter demo；它们不是来源项目截图或真实实验验证；
+- 五个来源仓库在固定 commit 没有可用演示截图，且许可证 metadata 均为 `NOASSERTION`；详见 [资产盘点](asset-inventory.md)和[许可证边界](licensing-and-provenance.md)；
 - 本轮没有修改任何来源仓库。

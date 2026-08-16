@@ -54,9 +54,9 @@
 来源盘点 → 契约测试 → 薄适配器 → 回放对照 → 硬件验证 → 下游试点 → 稳定发布
 ```
 
-- 第一阶段：只做本仓库当前内容；
-- 第二阶段：优先抽取无 UI 依赖、已有测试的 Python 能力；
-- 第三阶段：建立浏览器 TypeScript 适配器与录制回放数据集；
+- 第一阶段：契约、Schema、文档和类型骨架；
+- 第二阶段：Python Color Marker 与 TypeScript Number OCR 两个可安装、可演示试点；
+- 第三阶段：先实现 camera/screen FramePacket 来源层，再迁移其余 processor；
 - 第四阶段：下游仓库按版本依赖接入，保留原路径作为回退；
 - 第五阶段：只有完成对照和回退演练后，才考虑删除下游重复实现。
 
@@ -76,10 +76,10 @@ physics_sensors.tracking.color_marker
 
 @physics-software-sensors/core
         ↑
-ocr/number + injected NumberRecognizer
+ocr/number + RecordedNumberRecognizer / TesseractJsRecognizer
 ```
 
-公共 core 不依赖实验 UI。Sensor Page 允许单独理解一个传感器，但实现可以显式依赖公共 core；“单独查看”不等于鼓励复制单文件。
+公共 core 不依赖实验 UI。序列化 FramePacket 只保存 artifact 引用；进程内 adapter 通过 `RuntimeFrame` / `RuntimeFramePacket.pixels` 绑定实际 pixels，避免把大二进制塞入 JSON。Sensor Page 允许单独理解一个传感器，但实现可以显式依赖公共 core；“单独查看”不等于鼓励复制单文件。
 
 计划支持三种分发方式：
 

@@ -11,4 +11,4 @@ async for event in sensor.process(RuntimeFrame(metadata=packet, pixels=frame)):
 await sensor.stop()
 ```
 
-调用方仍需构造有效 `FramePacket` metadata，并提供 BGR `uint8` NumPy 帧。后续 `examples/python-color-marker/` 将加入小型摄像头/文件示例；本轮不新建大型实验应用。
+调用方仍需构造有效 `FramePacket` metadata，并提供 BGR `uint8` NumPy 帧。可运行、会生成 actual mask/event/annotated images 的入口见 [`examples/python-color-marker/run.py`](../../../examples/python-color-marker/run.py)。该示例是 synthetic fixture，不是大型实验应用。

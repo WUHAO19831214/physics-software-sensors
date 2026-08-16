@@ -8,6 +8,8 @@
 - 大型帧、音视频、模型和调试图：外部文件/对象，事件内保存 URI、媒体类型、字节数和 SHA-256；
 - 契约版本：`schema_version` 使用 SemVer。
 
+语言运行时可以把实际 pixel buffer 与 FramePacket metadata 临时绑定，但该 buffer 不是 JSON 字段；持久化、跨进程或跨语言传输仍使用 artifact URI/hash。
+
 ## 2. `SensorEvent` 信封
 
 | 字段 | 必需 | 说明 |

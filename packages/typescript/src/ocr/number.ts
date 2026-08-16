@@ -16,15 +16,11 @@ import type {
   SensorContext,
   SensorDescriptor,
 } from '../core/types.js';
+import { validateNormalizedRect, type NormalizedRect } from '../core/pixels.js';
 
 const DECIMAL_NUMBER = /[+-]?(?:(?:\d+\.\d*)|(?:\d*\.\d+)|(?:\d+))/g;
 
-export interface Rect {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
+export type Rect = NormalizedRect;
 
 export interface OcrRecognitionResult {
   method: string;
@@ -33,6 +29,7 @@ export interface OcrRecognitionResult {
   durationMs: number;
   warning?: string;
   error?: string;
+  details?: JsonObject;
 }
 
 export interface RecognizeRequest {
@@ -45,6 +42,7 @@ export interface NumberRecognizer {
   readonly id: string;
   readonly replay: boolean;
   recognize(input: RecognizeRequest): Promise<OcrRecognitionResult>;
+  close?(): Promise<void>;
 }
 
 export interface RecordedRecognition {
@@ -116,15 +114,6 @@ export class RecordedNumberRecognizer implements NumberRecognizer {
   }
 }
 
-function validateRect(roi: Rect): void {
-  const values = [roi.x, roi.y, roi.width, roi.height];
-  if (!values.every((value) => Number.isFinite(value))) throw new Error('ROI values must be finite');
-  if (roi.width <= 0 || roi.height <= 0) throw new Error('ROI width and height must be positive');
-  if (roi.x < 0 || roi.y < 0 || roi.x + roi.width > 1 || roi.y + roi.height > 1) {
-    throw new Error('normalized ROI must stay within [0, 1]');
-  }
-}
-
 function validateFrame(frame: RuntimeFramePacket): void {
   if (!frame.frameId || !frame.runId || !frame.observedAt) throw new Error('FramePacket identity/time is incomplete');
   if (!Number.isInteger(frame.sequence) || frame.sequence < 0) throw new Error('FramePacket sequence is invalid');
@@ -159,6 +148,7 @@ function recognitionPayload(config: NumberOCRConfig, recognition: OcrRecognition
     warning: recognition.warning ?? null,
     recognition_error: recognition.error ?? null,
     recognizer: recognition.method,
+    recognizer_details: recognition.details ?? null,
   };
 }
 
@@ -214,9 +204,17 @@ export class NumberOCRSensor implements ProcessorSensor {
       category: 'processor',
       inputKinds: ['frame-packet.screen-frame', 'frame-packet.image-frame'],
       outputKinds: ['sensor-event.measurement'],
-      capabilities: ['normalized-ocr-roi', 'numeric-parsing', 'quality-metadata', 'recorded-result-replay'],
+      capabilities: [
+        'rgba-pixel-input',
+        'normalized-ocr-roi',
+        'image-preprocessing',
+        'tesseract-js',
+        'numeric-parsing',
+        'quality-metadata',
+        'recorded-result-replay',
+      ],
       configSchemaVersion: '1.0.0',
-      evidenceLevel: 'documented-prototype',
+      evidenceLevel: 'replay-benchmarked',
     };
   }
 
@@ -229,7 +227,7 @@ export class NumberOCRSensor implements ProcessorSensor {
       throw new Error('roi must be an object with x, y, width, and height');
     }
     const roi = config.roi as unknown as Rect;
-    validateRect(roi);
+    validateNormalizedRect(roi);
     const roiId = String(config.roiId ?? '');
     if (!roiId) throw new Error('roiId is required');
     this.config = {
@@ -355,6 +353,7 @@ export class NumberOCRSensor implements ProcessorSensor {
   async stop(): Promise<void> {
     if (this.state === 'stopped') return;
     this.state = 'stopping';
+    await this.recognizer.close?.();
     this.context = null;
     this.state = 'stopped';
   }
