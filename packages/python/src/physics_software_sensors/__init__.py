@@ -1,4 +1,4 @@
-"""Contract-only Python skeleton for physics software sensors."""
+"""Compatibility namespace; prefer ``physics_sensors``."""
 
 from .contracts import (
     ConfigResult,
@@ -22,4 +22,4 @@ __all__ = [
     "SourceSensor",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

@@ -1,5 +1,7 @@
 # 传感器目录
 
-每个子目录只有一个 `sensor.json` 清单。第一阶段全部为 `maturity: planned` 与 `implementation_status: contract-only`，这表示本仓库还没有迁入算法。
+每个子目录同时提供三层入口：面向人的 `README.md`、来源追溯 `SOURCE.md`、机器可读 `sensor.json`。`assets/`、`examples/` 和 `benchmarks/` 分别保存获准发布的真实演示、最小调用说明和验证计划/结果。
 
-清单中的 `evidence_level` 描述**来源实现**已有的最高证据，不代表本仓库适配器的成熟度。`license_review` 在实际迁移代码前必须从 `pending` 变为 `approved`。
+仓库级对照表见 [`docs/sensor-catalog.md`](../docs/sensor-catalog.md)。
+
+清单中的 `evidence_level` 描述来源/适配器已有的最高证据；它不等于真实设备精度。`license_review` 未完成时不得把传感器提升为 stable，也不得复制来源仓库中授权不明的图片或模型。

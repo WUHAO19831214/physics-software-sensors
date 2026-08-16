@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "event_id": "40000000-0000-4000-8000-000000000001",
+  "run_id": "color-marker-golden",
+  "sensor": {
+    "id": "tracker.color-marker",
+    "instance_id": "color-marker-01",
+    "version": "0.2.0",
+    "category": "processor"
+  },
+  "sequence": 0,
+  "time": {
+    "observed_at": "2026-08-16T08:00:00.000Z",
+    "emitted_at": "2026-08-16T08:00:00.001Z",
+    "source_timestamp": 0,
+    "monotonic_ns": 1000000,
+    "clock": {
+      "domain": "camera-source",
+      "sync_status": "unknown",
+      "uncertainty_ms": null
+    }
+  },
+  "status": "ok",
+  "quality": {
+    "confidence": 0.9022822264673569,
+    "latency_ms": 0.18,
+    "flags": [],
+    "dropped_since_last": 0
+  },
+  "measurements": [
+    {"name": "center_x", "value": 60.0, "value_type": "number", "unit": "px", "role": "filtered", "uncertainty": null},
+    {"name": "center_y", "value": 60.0, "value_type": "number", "unit": "px", "role": "filtered", "uncertainty": null},
+    {"name": "bbox_width", "value": 28.000200271606445, "value_type": "number", "unit": "px", "role": "derived", "uncertainty": null},
+    {"name": "bbox_height", "value": 28.000200271606445, "value_type": "number", "unit": "px", "role": "derived", "uncertainty": null},
+    {"name": "marker_radius", "value": 14.000100135803223, "value_type": "number", "unit": "px", "role": "raw", "uncertainty": null},
+    {"name": "marker_area", "value": 572.0, "value_type": "number", "unit": "px2", "role": "raw", "uncertainty": null},
+    {"name": "marker_circularity", "value": 0.9022822264673569, "value_type": "number", "unit": "1", "role": "derived", "uncertainty": null}
+  ],
+  "coordinate_frame": {
+    "id": "20000000-0000-4000-8000-000000000000:image-pixel",
+    "space": "image-pixel",
+    "origin": "top-left",
+    "x_direction": "right",
+    "y_direction": "down",
+    "unit": "px",
+    "width": 160,
+    "height": 120,
+    "calibration_id": null
+  },
+  "parent_event_ids": ["20000000-0000-4000-8000-000000000000"],
+  "payload": {
+    "algorithm": "hsv-contour-marker",
+    "algorithm_version": "source-85740d6",
+    "source_raw": {
+      "ok": true,
+      "center_x": 60.0,
+      "center_y": 60.0,
+      "tracking_status": "tracking",
+      "marker_area": 572.0,
+      "marker_circularity": 0.9022822264673569
+    }
+  }
+}

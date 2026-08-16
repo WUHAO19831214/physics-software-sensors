@@ -1,0 +1,120 @@
+{
+  "source_repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
+  "source_commit": "85740d686c67452a057540edb564d713e01ccc51",
+  "source_file": "src/tennis_ball_tracker.py",
+  "generated_with": "OpenCV 4.14.0.94 and NumPy 2.5.2 on deterministic synthetic BGR frames",
+  "config": {
+    "hsv_lower": [20, 100, 100],
+    "hsv_upper": [40, 255, 255],
+    "min_area": 100,
+    "max_area": 2000,
+    "min_circularity": 0.6,
+    "smoothing": 0.5
+  },
+  "cases": [
+    {
+      "name": "first",
+      "frame": {"center": [60, 60], "radius": 14},
+      "source_result": {
+        "ok": true,
+        "bbox_x1": 45.99989986419678,
+        "bbox_y1": 45.99989986419678,
+        "bbox_x2": 74.00010013580322,
+        "bbox_y2": 74.00010013580322,
+        "bbox_width": 28.000200271606445,
+        "bbox_height": 28.000200271606445,
+        "center_x": 60.0,
+        "center_y": 60.0,
+        "confidence": 0.9022822264673569,
+        "class_name": "tennis_ball_marker",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_status": "tracking",
+        "tracking_mode": "tennis_ball_color",
+        "marker_radius": 14.000100135803223,
+        "marker_area": 572.0,
+        "marker_circularity": 0.9022822264673569,
+        "lost_frame_count": 0,
+        "error": ""
+      }
+    },
+    {
+      "name": "second",
+      "frame": {"center": [80, 60], "radius": 14},
+      "source_result": {
+        "ok": true,
+        "bbox_x1": 55.99989986419678,
+        "bbox_y1": 45.99989986419678,
+        "bbox_x2": 84.00010013580322,
+        "bbox_y2": 74.00010013580322,
+        "bbox_width": 28.000200271606445,
+        "bbox_height": 28.000200271606445,
+        "center_x": 70.0,
+        "center_y": 60.0,
+        "confidence": 0.9022822264673569,
+        "class_name": "tennis_ball_marker",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_status": "tracking",
+        "tracking_mode": "tennis_ball_color",
+        "marker_radius": 14.000100135803223,
+        "marker_area": 572.0,
+        "marker_circularity": 0.9022822264673569,
+        "lost_frame_count": 0,
+        "error": ""
+      }
+    },
+    {
+      "name": "lost",
+      "frame": {"center": null, "radius": 14},
+      "source_result": {
+        "ok": false,
+        "bbox_x1": null,
+        "bbox_y1": null,
+        "bbox_x2": null,
+        "bbox_y2": null,
+        "bbox_width": null,
+        "bbox_height": null,
+        "center_x": null,
+        "center_y": null,
+        "confidence": null,
+        "class_name": "tennis_ball_marker",
+        "track_id": 1,
+        "status": "lost",
+        "tracking_status": "lost",
+        "tracking_mode": "tennis_ball_color",
+        "marker_radius": null,
+        "marker_area": null,
+        "marker_circularity": null,
+        "lost_frame_count": 1,
+        "error": ""
+      }
+    },
+    {
+      "name": "reacquired",
+      "frame": {"center": [82, 62], "radius": 14},
+      "source_result": {
+        "ok": true,
+        "bbox_x1": 61.99989986419678,
+        "bbox_y1": 46.99989986419678,
+        "bbox_x2": 90.00010013580322,
+        "bbox_y2": 75.00010013580322,
+        "bbox_width": 28.000200271606445,
+        "bbox_height": 28.000200271606445,
+        "center_x": 76.0,
+        "center_y": 61.0,
+        "confidence": 0.9022822264673569,
+        "class_name": "tennis_ball_marker",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_status": "tracking",
+        "tracking_mode": "tennis_ball_color",
+        "marker_radius": 14.000100135803223,
+        "marker_area": 572.0,
+        "marker_circularity": 0.9022822264673569,
+        "lost_frame_count": 0,
+        "error": ""
+      }
+    }
+  ]
+}

@@ -1,8 +1,33 @@
 {
-  "name": "@physics-software-sensors/contracts",
-  "version": "0.1.0",
+  "name": "@physics-software-sensors/core",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Contract-only TypeScript skeleton for physics software sensors",
-  "exports": "./src/index.ts"
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": { "node": ">=18" },
+  "description": "Experimental TypeScript adapters and contracts for physics software sensors",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "files": ["dist/src", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "test:tesseract": "npm run build && node --test dist/tests/tesseract-integration.test.js"
+  },
+  "dependencies": {
+    "pngjs": "^7.0.0",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/pngjs": "^6.0.5",
+    "typescript": "^5.9.0"
+  }
 }

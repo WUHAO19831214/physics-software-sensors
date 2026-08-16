@@ -11,6 +11,8 @@ node_modules/
 dist/
 build/
 coverage/
+examples/*/output/*
+!examples/*/output/README.md
 
 # Runtime and research artifacts
 data/
@@ -27,5 +29,11 @@ models/*.onnx
 # Keep explicitly curated documentation assets if added later
 !docs/assets/**/*.png
 !docs/assets/**/*.jpg
+!sensors/*/assets/**/*.png
+!sensors/*/assets/**/*.jpg
+!sensors/*/assets/**/*.jpeg
+!sensors/*/assets/**/*.gif
+!sensors/*/assets/**/*.webp
+!examples/*/sample/**/*.png
 !benchmarks/datasets/**/README.md
 !benchmarks/datasets/**/dataset-card.md

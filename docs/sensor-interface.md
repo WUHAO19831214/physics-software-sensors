@@ -88,7 +88,16 @@ created → configured → running → stopping → stopped
 
 ## 6. 语言骨架
 
-- Python：[`packages/python/src/physics_software_sensors/contracts.py`](../packages/python/src/physics_software_sensors/contracts.py)
-- TypeScript：[`packages/typescript/src/index.ts`](../packages/typescript/src/index.ts)
+- Python：[`packages/python/src/physics_sensors/core/`](../packages/python/src/physics_sensors/core/)
+- TypeScript：[`packages/typescript/src/core/`](../packages/typescript/src/core/)
 
-语言骨架用于说明签名，并不构成可运行的传感器实现。机器可读约束以 [`contracts/schemas/`](../contracts/schemas/) 为准。
+Phase 1 的 Python `physics_software_sensors` 名称只保留兼容 re-export；新代码使用 `physics_sensors`。语言接口与实验性实现都必须服从 [`contracts/schemas/`](../contracts/schemas/)，不能单独改变公开语义。
+
+## 7. Runtime pixels binding
+
+FramePacket JSON 继续只记录 `artifact.uri`、尺寸、颜色空间和哈希。算法在同一进程消费像素时：
+
+- Python 使用 `RuntimeFrame(metadata=<valid FramePacket>, pixels=<BGR array>)`；
+- TypeScript 使用带可选 runtime-only `pixels: RgbaImage` 的 `RuntimeFramePacket`；
+- `pixels` 不属于可序列化契约，不应出现在 SensorEvent 或持久化 FramePacket；
+- adapter 必须验证 pixel dimensions 与 `media.width/height` 一致。

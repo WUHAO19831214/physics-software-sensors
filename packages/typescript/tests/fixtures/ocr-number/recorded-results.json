@@ -1,0 +1,40 @@
+{
+  "source": {
+    "repositories": [
+      "WUHAO19831214/physics-experiment-bridge-mvp@8bba87df6475cae1e595fc925551db8bea83fb68",
+      "WUHAO19831214/ampere-force-visualizer-teacher-yanan@cb073e89d6d87129287030f1df08bd540504eb39"
+    ],
+    "parserFile": "src/utils/extractNumber.ts",
+    "recognizerFile": "src/recognizers/TesseractRecognizer.ts",
+    "note": "Synthetic recorded-result fixture for deterministic adapter tests; it is not an OCR accuracy dataset or screenshot."
+  },
+  "roi": {"x": 0.36, "y": 0.535, "width": 0.28, "height": 0.05},
+  "parserCases": [
+    {"rawText": "-2.33", "normalizedText": "-2.33", "sourceValue": -2.33},
+    {"rawText": "O.5 N", "normalizedText": "0.5", "sourceValue": 0.5},
+    {"rawText": "l2，8", "normalizedText": "12.8", "sourceValue": 12.8},
+    {"rawText": "no reading", "normalizedText": "0", "sourceValue": 0}
+  ],
+  "records": [
+    {
+      "frameId": "10000000-0000-4000-8000-000000000001",
+      "roiId": "force-y",
+      "result": {"method": "tesseract", "rawText": "-2.33", "confidence": 0.94, "durationMs": 42}
+    },
+    {
+      "frameId": "10000000-0000-4000-8000-000000000002",
+      "roiId": "force-y",
+      "result": {"method": "tesseract", "rawText": "O.5 N", "confidence": 0.72, "durationMs": 55, "warning": "low contrast"}
+    },
+    {
+      "frameId": "10000000-0000-4000-8000-000000000003",
+      "roiId": "force-y",
+      "result": {"method": "tesseract", "rawText": "----", "confidence": 0.31, "durationMs": 38, "warning": "未能从 rawText 中提取普通小数"}
+    },
+    {
+      "frameId": "10000000-0000-4000-8000-000000000004",
+      "roiId": "force-y",
+      "result": {"method": "tesseract", "rawText": "", "confidence": 0, "durationMs": 9, "warning": "worker failed", "error": "worker failed"}
+    }
+  ]
+}

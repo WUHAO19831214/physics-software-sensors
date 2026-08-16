@@ -4,9 +4,9 @@
   "name_zh": "颜色标记追踪传感器",
   "name_en": "Color Marker Tracking Sensor",
   "category": "processor",
-  "maturity": "planned",
-  "implementation_status": "contract-only",
-  "version": "0.1.0",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.2.0",
   "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame"],
   "output_kinds": ["sensor-event.tracking"],
   "capabilities": ["hsv-mask", "morphology", "contour-ranking", "centroid-smoothing", "lost-state"],
@@ -24,7 +24,7 @@
       "notes": "Browser-side analyzer strategy implementations requiring separate replay validation."
     }
   ],
-  "evidence_level": "source-tested",
+  "evidence_level": "replay-benchmarked",
   "license_review": "pending",
   "known_boundaries": ["HSV thresholds are camera and lighting dependent.", "Confidence meanings differ by algorithm and require calibration.", "Tracking coordinates remain image-space unless an explicit calibration is applied."],
   "owners": ["WUHAO19831214"]

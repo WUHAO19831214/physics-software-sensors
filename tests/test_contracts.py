@@ -40,6 +40,18 @@ def test_contract_example(example: str, schema_name: str) -> None:
     jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(instance)
 
 
+@pytest.mark.parametrize(
+    "example_path",
+    [
+        ROOT / "sensors" / "tracker.color-marker" / "examples" / "tracking-event.json",
+        ROOT / "sensors" / "ocr.number" / "examples" / "recorded-success-event.json",
+    ],
+)
+def test_sensor_page_event_example(example_path: Path) -> None:
+    schema = load(SCHEMAS / "sensor-event.schema.json")
+    jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(load(example_path))
+
+
 def test_benchmark_counts_add_up() -> None:
     result = load(ROOT / "contracts" / "examples" / "benchmark-result.json")
     counts = result["sample_counts"]

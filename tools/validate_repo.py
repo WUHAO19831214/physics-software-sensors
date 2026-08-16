@@ -21,6 +21,22 @@ EXPECTED_SENSOR_IDS = {
     "tracker.template",
     "tracker.spot-centroid",
 }
+EXPECTED_IMPLEMENTATION_STATUS = {
+    "ocr.number": ("incubating", "adapter-present", "0.2.0"),
+    "tracker.color-marker": ("incubating", "adapter-present", "0.2.0"),
+}
+SENSOR_PAGE_FILES = (
+    "README.md",
+    "SOURCE.md",
+    "CHANGELOG.md",
+    "assets/README.md",
+    "examples/README.md",
+    "benchmarks/README.md",
+)
+PILOT_DEMO_ASSETS = {
+    "tracker.color-marker": ("overview.png", "processing.png", "lost-reacquire.png"),
+    "ocr.number": ("overview.png", "processing.png", "demo-result.json"),
+}
 
 
 def load_json(path: Path) -> dict:
@@ -31,14 +47,21 @@ def load_json(path: Path) -> dict:
     return value
 
 
+def skip_generated(path: Path) -> bool:
+    return any(part in {".git", ".venv", "node_modules"} for part in path.parts) or (
+        "examples" in path.parts and "output" in path.parts
+    )
+
+
 def check_json() -> list[str]:
     errors: list[str] = []
     for path in sorted(ROOT.rglob("*.json")):
-        if any(part in {".git", ".venv", "node_modules"} for part in path.parts):
+        if skip_generated(path):
             continue
         try:
-            load_json(path)
-        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            with path.open(encoding="utf-8") as handle:
+                json.load(handle)
+        except (OSError, json.JSONDecodeError) as exc:
             errors.append(str(exc))
     return errors
 
@@ -52,10 +75,16 @@ def check_manifests() -> list[str]:
         found.add(str(sensor_id))
         if sensor_id != path.parent.name:
             errors.append(f"{path.relative_to(ROOT)}: id must match directory name")
-        if manifest.get("maturity") != "planned":
-            errors.append(f"{path.relative_to(ROOT)}: Phase 1 maturity must be planned")
-        if manifest.get("implementation_status") != "contract-only":
-            errors.append(f"{path.relative_to(ROOT)}: Phase 1 status must be contract-only")
+        expected = EXPECTED_IMPLEMENTATION_STATUS.get(str(sensor_id), ("planned", "contract-only", "0.1.0"))
+        actual = (manifest.get("maturity"), manifest.get("implementation_status"), manifest.get("version"))
+        if actual != expected:
+            errors.append(f"{path.relative_to(ROOT)}: expected maturity/status/version {expected}, found {actual}")
+        for relative in SENSOR_PAGE_FILES:
+            if not (path.parent / relative).is_file():
+                errors.append(f"{path.parent.relative_to(ROOT)}: missing Sensor Page file {relative}")
+        for asset in PILOT_DEMO_ASSETS.get(str(sensor_id), ()):
+            if not (path.parent / "assets" / asset).is_file():
+                errors.append(f"{path.parent.relative_to(ROOT)}: missing reviewed demo asset {asset}")
         for source in manifest.get("source_references", []):
             if not HEX40.fullmatch(str(source.get("commit", ""))):
                 errors.append(f"{path.relative_to(ROOT)}: source commit must be a full SHA")
@@ -69,7 +98,7 @@ def check_manifests() -> list[str]:
 def check_markdown_links() -> list[str]:
     errors: list[str] = []
     for path in sorted(ROOT.rglob("*.md")):
-        if any(part in {".git", ".venv", "node_modules"} for part in path.parts):
+        if skip_generated(path):
             continue
         text = path.read_text(encoding="utf-8")
         for raw_target in MARKDOWN_LINK.findall(text):
@@ -96,9 +125,9 @@ def main() -> int:
     json_count = sum(
         1
         for path in ROOT.rglob("*.json")
-        if not any(part in {".git", ".venv", "node_modules"} for part in path.parts)
+        if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 7 sensor manifests, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 7 Sensor Pages/manifests, pilot demos, and local Markdown links")
     return 0
 
 

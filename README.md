@@ -2,21 +2,34 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前处于 **Phase 1：文档与契约骨架**。它不会复制、重构或替换现有项目的实现；现有仓库仍是当前功能的运行载体和事实来源。本阶段只建立后续迁移所需的边界、数据契约、测试基线和升级记录方式。
+本仓库当前完成 **Phase 2D：首批试点完成与可视化演示**。现有来源仓库仍是历史实现与实际使用场景的事实来源；新库通过可追溯 adapter 渐进抽取，不要求来源项目立即接入，也不替换其 UI 或实验流程。
 
-## 首批传感器范围
+```text
+Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
+```
 
-| 传感器 ID | 能力 | 第一阶段状态 |
-| --- | --- | --- |
-| `camera.capture` | 浏览器或本机摄像头帧采集 | 契约骨架 |
-| `screen.capture` | 经用户授权的屏幕/窗口帧采集 | 契约骨架 |
-| `ocr.number` | ROI 数字 OCR 与解析 | 契约骨架 |
-| `tracker.color-marker` | HSV/颜色标记追踪 | 契约骨架 |
-| `tracker.yolo` | YOLO 检测与多目标追踪 | 契约骨架 |
-| `tracker.template` | 初始化 ROI 后的模板/单目标追踪 | 契约骨架 |
-| `tracker.spot-centroid` | 光斑颜色加权重心识别 | 契约骨架 |
+## Sensor Catalog
 
-“契约骨架”不等于新仓库已经实现算法。每项能力的来源、证据等级和已知边界见 [已有项目盘点](docs/source-inventory.md)。
+| Sensor | 一句话说明 | 状态 | Docs | Example | Benchmark |
+| --- | --- | --- | --- | --- | --- |
+| Camera Capture | 产生带时间和媒体元数据的摄像头帧 | contract-only | [Page](sensors/camera.capture/README.md) | [pending](sensors/camera.capture/examples/README.md) | [plan](sensors/camera.capture/benchmarks/README.md) |
+| Screen Capture | 经用户授权采集屏幕/窗口像素帧 | contract-only | [Page](sensors/screen.capture/README.md) | [pending](sensors/screen.capture/examples/README.md) | [plan](sensors/screen.capture/benchmarks/README.md) |
+| Number OCR | 从屏幕 ROI 保留 OCR 原文并解析数字 | experimental | [Page](sensors/ocr.number/README.md) | [pixel OCR](examples/web-number-ocr/README.md) | [status](sensors/ocr.number/benchmarks/README.md) |
+| Color Marker Tracker | 用 HSV/轮廓连续追踪颜色标记 | experimental | [Page](sensors/tracker.color-marker/README.md) | [Python](examples/python-color-marker/README.md) | [golden](sensors/tracker.color-marker/benchmarks/README.md) |
+| Spot Centroid Tracker | 输出图像中光斑的颜色加权重心 | contract-only | [Page](sensors/tracker.spot-centroid/README.md) | [pending](sensors/tracker.spot-centroid/examples/README.md) | [plan](sensors/tracker.spot-centroid/benchmarks/README.md) |
+| Template Tracker | 初始化 ROI 后追踪单个实验物体 | contract-only | [Page](sensors/tracker.template/README.md) | [pending](sensors/tracker.template/examples/README.md) | [plan](sensors/tracker.template/benchmarks/README.md) |
+| YOLO Tracker | 用显式模型 artifact 检测并追踪目标 | contract-only | [Page](sensors/tracker.yolo/README.md) | [pending](sensors/tracker.yolo/examples/README.md) | [plan](sensors/tracker.yolo/benchmarks/README.md) |
+
+完整语言/来源对照见 [软件传感器目录](docs/sensor-catalog.md)。页面完整不等于算法已验证；状态以 manifest 和页面成熟度为准。
+
+## Working demonstrations
+
+| Color Marker Tracker | Number OCR |
+| --- | --- |
+| [![Synthetic color marker standalone result](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.md) | [![Synthetic screen pixel OCR result](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.md) |
+| BGR frame → HSV/contour → position/lost SensorEvent | RGBA screen frame → ROI/preprocess → Tesseract.js → numeric SensorEvent |
+
+两张图均由本仓库 standalone example 实际运行生成，输入明确为 synthetic，不是来源项目截图、真实设备数据或实验精度证据。
 
 ## 核心原则
 
@@ -29,6 +42,9 @@
 ## 快速导航
 
 - [总体架构](docs/architecture.md)
+- [软件传感器目录](docs/sensor-catalog.md)
+- [来源图片与演示资产盘点](docs/asset-inventory.md)
+- [许可证与来源边界](docs/licensing-and-provenance.md)
 - [统一传感器接口](docs/sensor-interface.md)
 - [统一数据格式](docs/data-format.md)
 - [基准测试方案](docs/benchmarking.md)
@@ -44,10 +60,11 @@ physics-software-sensors/
 ├── contracts/                  # JSON Schema 与有效示例
 │   ├── examples/
 │   └── schemas/
-├── sensors/                    # 每类传感器的机器可读清单
+├── sensors/                    # Sensor Page、来源、清单、资产、示例与 benchmark
 ├── packages/
-│   ├── python/                 # Python Protocol 类型骨架
-│   └── typescript/             # TypeScript 接口类型骨架
+│   ├── python/                 # physics-software-sensors / physics_sensors
+│   └── typescript/             # @physics-software-sensors/core
+├── examples/                   # 脱离原实验项目的最小示例
 ├── benchmarks/                 # 数据集、协议与结果的边界
 ├── docs/                       # 架构、接口、数据、盘点与路线图
 ├── templates/                  # 升级、基准和数据集记录模板
@@ -57,28 +74,30 @@ physics-software-sensors/
 
 ## 本地校验
 
-仅检查 JSON、清单、来源锚点与文档链接，不运行任何传感器算法：
+安装实验性 Python 颜色追踪与测试依赖：
 
 ```bash
-python3 tools/validate_repo.py
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e 'packages/python[color-marker,dev]'
 ```
 
-完整 JSON Schema 校验需要开发依赖：
+运行仓库校验、Python 测试和 TypeScript OCR 回放测试：
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[dev]'
+python tools/validate_repo.py
 pytest
+npm --prefix packages/typescript install
+npm --prefix packages/typescript test
 ```
 
 ## 当前非目标
 
-- 不从现有仓库复制算法实现；
+- 不整体搬运现有实验应用、UI 或业务 store；
 - 不承诺硬实时、硬件同步或计量精度；
 - 不提交摄像头原始视频、屏幕录制、个人图像、模型权重或未脱敏数据；
 - 不把屏幕 OCR 表述成对实验设备 SDK 或内部数据的直接读取；
-- 不发布可安装的稳定算法包。
+- 不把 `0.2.0` 实验性 adapter 描述为稳定、计量验证或真实设备兼容。
 
 ## 许可
 
