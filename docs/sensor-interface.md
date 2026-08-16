@@ -88,7 +88,7 @@ created → configured → running → stopping → stopped
 
 ## 6. 语言骨架
 
-- Python：[`packages/python/src/physics_software_sensors/contracts.py`](../packages/python/src/physics_software_sensors/contracts.py)
-- TypeScript：[`packages/typescript/src/index.ts`](../packages/typescript/src/index.ts)
+- Python：[`packages/python/src/physics_sensors/core/`](../packages/python/src/physics_sensors/core/)
+- TypeScript：[`packages/typescript/src/core/`](../packages/typescript/src/core/)
 
-语言骨架用于说明签名，并不构成可运行的传感器实现。机器可读约束以 [`contracts/schemas/`](../contracts/schemas/) 为准。
+Phase 1 的 Python `physics_software_sensors` 名称只保留兼容 re-export；新代码使用 `physics_sensors`。语言接口与实验性实现都必须服从 [`contracts/schemas/`](../contracts/schemas/)，不能单独改变公开语义。

@@ -1,29 +1,4 @@
-[build-system]
-requires = ["setuptools>=69"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "physics-software-sensors-contracts"
-version = "0.1.0"
-description = "Contract skeleton for reusable physics experiment software sensors"
-readme = "README.md"
-requires-python = ">=3.11"
-license = { text = "MIT" }
-authors = [{ name = "WUHAO19831214" }]
-dependencies = []
-
-[project.optional-dependencies]
-dev = [
-  "jsonschema>=4.23,<5",
-  "pytest>=8,<9",
-]
-
-[tool.setuptools]
-package-dir = {"" = "packages/python/src"}
-
-[tool.setuptools.packages.find]
-where = ["packages/python/src"]
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+pythonpath = ["packages/python/src"]

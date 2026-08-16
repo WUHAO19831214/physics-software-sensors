@@ -72,3 +72,10 @@
 3. 以预录帧回放方式适配浏览器 OCR、屏幕采集和光斑重心；
 4. 对同一输入运行“来源实现 vs 新适配器”黄金主测试，要求输出在既定容差内一致；
 5. 再选择一个下游仓库进行可回退接入，不同时迁移五个项目。
+
+## 6. Phase 2 抽取状态（2026-08-16）
+
+- `tracker.color-marker`：Python 行为保持抽取和 SensorEvent adapter 已进入 incubating；来源同帧合成对照见 [`SOURCE.md`](../sensors/tracker.color-marker/SOURCE.md)；
+- `ocr.number`：TypeScript parser、recognizer seam 和 recorded-result replay 已进入 incubating；真实 Tesseract/ImageData 尚未迁移，见 [`SOURCE.md`](../sensors/ocr.number/SOURCE.md)；
+- 五个来源仓库在固定 commit 没有可用演示截图，且许可证 metadata 均为 `NOASSERTION`；详见 [资产盘点](asset-inventory.md)；
+- 本轮没有修改任何来源仓库。

@@ -4,12 +4,12 @@
   "name_zh": "数字 OCR 传感器",
   "name_en": "Numeric OCR Sensor",
   "category": "processor",
-  "maturity": "planned",
-  "implementation_status": "contract-only",
-  "version": "0.1.0",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.2.0",
   "input_kinds": ["frame-packet.screen-frame", "frame-packet.image-frame"],
   "output_kinds": ["sensor-event.measurement"],
-  "capabilities": ["normalized-ocr-roi", "image-preprocessing", "tesseract-js", "numeric-parsing", "quality-metadata"],
+  "capabilities": ["normalized-ocr-roi", "image-preprocessing", "tesseract-js", "numeric-parsing", "quality-metadata", "recorded-result-replay"],
   "source_references": [
     {
       "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
@@ -26,6 +26,6 @@
   ],
   "evidence_level": "documented-prototype",
   "license_review": "pending",
-  "known_boundaries": ["Current Tesseract whitelist covers digits, decimal point, and minus sign, not scientific notation.", "Mock output must never replace failed real OCR.", "Post-processing accuracy must be reported separately from raw OCR accuracy."],
+  "known_boundaries": ["Current Tesseract whitelist covers digits, decimal point, and minus sign, not scientific notation.", "Character normalization can turn letters such as O/o into digits, so rawText and physical-range checks remain necessary.", "Mock output must never replace failed real OCR.", "Post-processing accuracy must be reported separately from raw OCR accuracy."],
   "owners": ["WUHAO19831214"]
 }

@@ -21,6 +21,18 @@ EXPECTED_SENSOR_IDS = {
     "tracker.template",
     "tracker.spot-centroid",
 }
+EXPECTED_IMPLEMENTATION_STATUS = {
+    "ocr.number": ("incubating", "adapter-present", "0.2.0"),
+    "tracker.color-marker": ("incubating", "adapter-present", "0.2.0"),
+}
+SENSOR_PAGE_FILES = (
+    "README.md",
+    "SOURCE.md",
+    "CHANGELOG.md",
+    "assets/README.md",
+    "examples/README.md",
+    "benchmarks/README.md",
+)
 
 
 def load_json(path: Path) -> dict:
@@ -52,10 +64,13 @@ def check_manifests() -> list[str]:
         found.add(str(sensor_id))
         if sensor_id != path.parent.name:
             errors.append(f"{path.relative_to(ROOT)}: id must match directory name")
-        if manifest.get("maturity") != "planned":
-            errors.append(f"{path.relative_to(ROOT)}: Phase 1 maturity must be planned")
-        if manifest.get("implementation_status") != "contract-only":
-            errors.append(f"{path.relative_to(ROOT)}: Phase 1 status must be contract-only")
+        expected = EXPECTED_IMPLEMENTATION_STATUS.get(str(sensor_id), ("planned", "contract-only", "0.1.0"))
+        actual = (manifest.get("maturity"), manifest.get("implementation_status"), manifest.get("version"))
+        if actual != expected:
+            errors.append(f"{path.relative_to(ROOT)}: expected maturity/status/version {expected}, found {actual}")
+        for relative in SENSOR_PAGE_FILES:
+            if not (path.parent / relative).is_file():
+                errors.append(f"{path.parent.relative_to(ROOT)}: missing Sensor Page file {relative}")
         for source in manifest.get("source_references", []):
             if not HEX40.fullmatch(str(source.get("commit", ""))):
                 errors.append(f"{path.relative_to(ROOT)}: source commit must be a full SHA")
@@ -98,7 +113,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not any(part in {".git", ".venv", "node_modules"} for part in path.parts)
     )
-    print(f"OK: validated {json_count} JSON files, 7 sensor manifests, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 7 Sensor Pages/manifests, and local Markdown links")
     return 0
 
 

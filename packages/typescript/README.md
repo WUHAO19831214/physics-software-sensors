@@ -1,5 +1,11 @@
-# TypeScript 契约骨架
+# TypeScript package
 
-本目录只定义浏览器/Node 适配器应遵守的接口，不包含 React 组件、Tesseract worker、Canvas 算法或媒体流实现。
+Phase 2 保持一个 monorepo 内 package：`@physics-software-sensors/core`。当前 `0.2.0` 包含公共生命周期类型、Number OCR parser、统一事件 adapter 和确定性的 recorded-result replay recognizer。
 
-JSON 序列化必须继续满足根目录的 JSON Schema；TypeScript 类型不能单独改变公开语义。
+```bash
+cd packages/typescript
+npm install
+npm test
+```
+
+真实 Tesseract.js、Canvas/ImageData 预处理和屏幕 UI 尚未迁移；recorded replay 不应被描述为真实 OCR。JSON 输出仍以根目录 Schema 为准。

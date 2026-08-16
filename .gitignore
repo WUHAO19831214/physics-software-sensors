@@ -27,5 +27,10 @@ models/*.onnx
 # Keep explicitly curated documentation assets if added later
 !docs/assets/**/*.png
 !docs/assets/**/*.jpg
+!sensors/*/assets/**/*.png
+!sensors/*/assets/**/*.jpg
+!sensors/*/assets/**/*.jpeg
+!sensors/*/assets/**/*.gif
+!sensors/*/assets/**/*.webp
 !benchmarks/datasets/**/README.md
 !benchmarks/datasets/**/dataset-card.md

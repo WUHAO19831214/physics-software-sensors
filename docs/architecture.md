@@ -66,3 +66,23 @@
 - **事件信封稳定、payload 可扩展**：通用字段使用语义化版本控制；算法特有调试值放在 `payload`。
 - **适配器不改算法**：首次迁移只对齐接口和输出，算法优化另开升级记录。
 - **离线可复现优先**：基准必须支持录制回放；真实硬件测试作为额外层次，不替代离线回归。
+
+## 7. 软件包与单独查看
+
+```text
+physics_sensors.core
+        ↑
+physics_sensors.tracking.color_marker
+
+@physics-software-sensors/core
+        ↑
+ocr/number + injected NumberRecognizer
+```
+
+公共 core 不依赖实验 UI。Sensor Page 允许单独理解一个传感器，但实现可以显式依赖公共 core；“单独查看”不等于鼓励复制单文件。
+
+计划支持三种分发方式：
+
+1. stable 阶段通过 `pip install physics-software-sensors` 或 npm 安装；
+2. 稳定版本生成带校验值与变更记录的 GitHub Release；
+3. 任何阶段都可直接进入 `sensors/<sensor-id>/` 阅读用途、来源、限制、示例与 benchmark。

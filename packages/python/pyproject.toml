@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "physics-software-sensors"
+version = "0.2.0"
+description = "Reusable software sensors for physics experiments"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "WUHAO19831214" }]
+dependencies = []
+
+[project.optional-dependencies]
+color-marker = [
+  "numpy>=1.26,<3",
+  "opencv-python-headless>=4.9,<5",
+]
+dev = [
+  "jsonschema>=4.23,<5",
+  "pytest>=8,<9",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -21,6 +21,7 @@
 ```bash
 python3 tools/validate_repo.py
 pytest
+npm --prefix packages/typescript test
 ```
 
 算法或适配器变更还应附上：
