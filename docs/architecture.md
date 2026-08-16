@@ -72,11 +72,13 @@
 ```text
 physics_sensors.core
         ↑
+physics_sensors.capture.camera
+        ↑
 physics_sensors.tracking.color_marker
 
 @physics-software-sensors/core
         ↑
-ocr/number + RecordedNumberRecognizer / TesseractJsRecognizer
+capture/screen → ocr/number + RecordedNumberRecognizer / TesseractJsRecognizer
 ```
 
 公共 core 不依赖实验 UI。序列化 FramePacket 只保存 artifact 引用；进程内 adapter 通过 `RuntimeFrame` / `RuntimeFramePacket.pixels` 绑定实际 pixels，避免把大二进制塞入 JSON。Sensor Page 允许单独理解一个传感器，但实现可以显式依赖公共 core；“单独查看”不等于鼓励复制单文件。

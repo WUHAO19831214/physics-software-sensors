@@ -10,6 +10,8 @@
 
 语言运行时可以把实际 pixel buffer 与 FramePacket metadata 临时绑定，但该 buffer 不是 JSON 字段；持久化、跨进程或跨语言传输仍使用 artifact URI/hash。
 
+Capture source 把实现特有信息放在 `payload.capture`，不新增必需 Schema 字段。`requested`、backend `nominal` 与逐帧 `measured` rate 必须分开；单帧或时间戳不足时 measured 值为 `null`，不得用请求值代填。
+
 ## 2. `SensorEvent` 信封
 
 | 字段 | 必需 | 说明 |

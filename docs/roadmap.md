@@ -51,12 +51,18 @@ Phase 2 仍只选择两个实现试点：
 - [x] repository/source/adapter/fixture 许可证边界说明；
 - [ ] 真实摄像头和真实设备屏幕 recorded datasets，留待后续 L2。
 
-## Phase 3A — FramePacket 来源层（只规划）
+## Phase 3A — Capture Layer（本轮 experimental）
 
-- `camera.capture`；
-- `screen.capture`。
+- [x] Python backend-neutral `CameraSource`、deterministic image-sequence backend 与可选 OpenCV backend；
+- [x] TypeScript `ScreenCaptureSource`、用户授权 browser driver 与 recorded backend；
+- [x] camera/screen 共用 FramePacket Schema `1.0.0`，不重设计 Phase 1 契约；
+- [x] requested/nominal/measured rate、wall/monotonic/source time 和 dropped frames 分开记录；
+- [x] Camera、Screen、Screen→真实 OCR 三个独立 example；
+- [x] replay、browser permission/error、composition、contract 与 clean-install tests；
+- [ ] 真实 camera 与 browser 人工 smoke 报告、设备/OS/browser 矩阵；
+- [ ] L2 CPU、内存、capture latency、长时间稳定性与断流恢复基准。
 
-Camera/Screen 是 FramePacket 来源层，应先于其余 processor 实现。
+退出标准（本轮达到 experimental）：两个 manifest 为 `incubating/adapter-present`，L0/L1 自动证据通过，来源仓库不变；真实设备证据仍是后续门禁，不把 replay 当成 hardware validation。
 
 ## Phase 3B — 轻量视觉处理器（只规划）
 

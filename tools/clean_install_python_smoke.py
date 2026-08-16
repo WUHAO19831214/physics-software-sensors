@@ -8,6 +8,7 @@ import cv2
 import numpy as np
 
 from physics_sensors.core import RuntimeFrame, SensorContext
+from physics_sensors.capture import BackendFrame, CameraSource, ImageSequenceCameraBackend
 from physics_sensors.tracking import ColorMarkerSensor
 
 
@@ -40,13 +41,30 @@ async def main() -> None:
         },
         "quality": {"dropped_since_last": 0, "flags": ["synthetic-fixture"]},
     }
+    camera = CameraSource(
+        ImageSequenceCameraBackend([
+            BackendFrame(
+                pixels=pixels,
+                width=140,
+                height=100,
+                color_space="BGR",
+                media_type="application/x-raw-bgr",
+                observed_at="2026-08-16T12:00:00.000Z",
+                monotonic_ns=1,
+                quality_flags=("synthetic-fixture",),
+            )
+        ])
+    )
+    await camera.start(SensorContext.minimal("clean-wheel-smoke"))
+    captured = await anext(camera.read())
+    await camera.stop()
     sensor = ColorMarkerSensor()
     await sensor.start(SensorContext.minimal("clean-wheel-smoke"))
-    event = sensor.process_frame(RuntimeFrame(metadata=metadata, pixels=pixels))
+    event = sensor.process_frame(captured)
     await sensor.stop()
     assert event["status"] == "ok"
     assert event["sensor"]["id"] == "tracker.color-marker"
-    print("PASS clean wheel import and ColorMarkerSensor processing")
+    print("PASS clean wheel CameraSource import, FramePacket delivery, and ColorMarkerSensor processing")
 
 
 if __name__ == "__main__":

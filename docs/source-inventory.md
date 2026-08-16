@@ -80,3 +80,11 @@
 - 两个 standalone examples 已用明确标记的 synthetic input 生成当前 adapter demo；它们不是来源项目截图或真实实验验证；
 - 五个来源仓库在固定 commit 没有可用演示截图，且许可证 metadata 均为 `NOASSERTION`；详见 [资产盘点](asset-inventory.md)和[许可证边界](licensing-and-provenance.md)；
 - 本轮没有修改任何来源仓库。
+
+## 7. Phase 3A Capture 抽取状态（2026-08-16）
+
+- `camera.capture`：从五仓 camera path 中抽离 Python backend/read/time/release 边界，加入 OpenCV 与 deterministic image-sequence backend；检测、追踪、同步与 UI 未迁入；
+- `screen.capture`：从实验桥/教师端 `startCapture/stopCapture` 抽离 TypeScript permission/video/canvas/stop 边界，OCR、ROI、过滤与 store 留在下游；
+- 两项均使用 FramePacket Schema `1.0.0`；requested、nominal、measured rate 不混写；
+- replay 结果和真实 Tesseract composition 已自动验证，但未运行真实 camera/browser smoke；
+- 五个来源仓库仍停留在表中完整 commit 且 clean，没有任何修改。

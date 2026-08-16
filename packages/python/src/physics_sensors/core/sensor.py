@@ -8,6 +8,7 @@ from enum import StrEnum
 from typing import Any, Protocol, runtime_checkable
 
 from .events import FramePacket, SensorEvent
+from .frames import RuntimeFrame
 
 
 JsonObject = Mapping[str, Any]
@@ -81,7 +82,7 @@ class SensorLifecycle(Protocol):
 
 @runtime_checkable
 class SourceSensor(SensorLifecycle, Protocol):
-    def read(self) -> AsyncIterator[FramePacket | SensorEvent]: ...
+    def read(self) -> AsyncIterator[RuntimeFrame | FramePacket | SensorEvent]: ...
 
 
 @runtime_checkable

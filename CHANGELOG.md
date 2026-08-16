@@ -2,6 +2,15 @@
 
 本项目遵循 SemVer；传感器实现、契约和模型资产分别记录版本。
 
+## 0.3.0 — 2026-08-16
+
+- Phase 3A 建立统一 capture source 层，FramePacket Schema 保持 `1.0.0` 不变；
+- Python 增加 backend-neutral `CameraSource`、image-sequence replay 与可选 OpenCV backend；
+- TypeScript 增加 user-authorized browser `ScreenCaptureSource`、recorded replay 与 serializer；
+- 增加 Camera、Screen 和 Screen→真实 Tesseract OCR 三个独立 example；
+- requested/nominal/measured rate、权限拒绝、stream ended 与 dropped frame 显式化；
+- 两个 manifest 提升为 `incubating/adapter-present/replay-benchmarked`，不声称硬件/浏览器验证。
+
 ## 0.2.0 — 2026-08-16
 
 - 建立七个统一 Sensor Page 目录、仓库级 catalog、SOURCE/asset 模板和来源资产盘点；

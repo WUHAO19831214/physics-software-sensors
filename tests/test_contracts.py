@@ -52,6 +52,12 @@ def test_sensor_page_event_example(example_path: Path) -> None:
     jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(load(example_path))
 
 
+def test_screen_capture_replay_output_is_a_frame_packet() -> None:
+    schema = load(SCHEMAS / "frame-packet.schema.json")
+    instance = load(ROOT / "sensors" / "screen.capture" / "assets" / "replay-frame-packet.json")
+    jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(instance)
+
+
 def test_benchmark_counts_add_up() -> None:
     result = load(ROOT / "contracts" / "examples" / "benchmark-result.json")
     counts = result["sample_counts"]

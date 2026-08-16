@@ -57,9 +57,15 @@ export interface RuntimeFramePacket {
     height: number;
     mediaType: string;
     colorSpace: string;
+    orientation?: '0' | '90' | '180' | '270';
+    mirrored?: boolean;
   };
   artifactUri: string;
+  artifactSha256?: string;
+  artifactBytes?: number | null;
   droppedSinceLast?: number;
+  qualityFlags?: string[];
+  payload?: JsonObject;
   /** Runtime-only RGBA pixels; omitted from the serializable FramePacket JSON. */
   pixels?: RgbaImage;
 }
@@ -73,7 +79,7 @@ export interface SensorLifecycle {
 }
 
 export interface SourceSensor extends SensorLifecycle {
-  read(): AsyncIterable<JsonObject>;
+  read(): AsyncIterable<JsonObject | RuntimeFramePacket>;
 }
 
 export interface ProcessorSensor extends SensorLifecycle {
