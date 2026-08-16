@@ -1,3 +1,3 @@
-# Template Tracker 示例
+# Template / Single-object Tracker 示例
 
-Phase 3 pending。目标示例只展示初始化、若干 update 和显式 lost。
+可运行的 OpenCV contrib standalone 与 CameraSource composition 位于 [`examples/python-template-tracker`](../../../examples/python-template-tracker/README.md)。输入是 synthetic ROI sequence，输出实际 backend、bbox/center 和 lost SensorEvent。

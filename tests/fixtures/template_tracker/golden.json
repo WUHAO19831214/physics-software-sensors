@@ -1,0 +1,245 @@
+{
+  "fixture_version": "1.0.0",
+  "generated_by": "tools/generate_template_tracker_golden.py",
+  "source": {
+    "repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable",
+    "commit": "85740d686c67452a057540edb564d713e01ccc51",
+    "file": "src/object_template_tracker.py",
+    "class": "ObjectTemplateTracker"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "opencv": "4.14.0",
+    "platform": "macOS-26.3.1-arm64-arm-64bit"
+  },
+  "script": {
+    "frame_shape": [
+      120,
+      180,
+      3
+    ],
+    "initialization_roi": [
+      10.2,
+      20.4,
+      40.1,
+      30.3
+    ],
+    "fallback_order": [
+      "CSRT",
+      "KCF",
+      "MIL"
+    ],
+    "factory_calls": [
+      "CSRT",
+      "KCF",
+      "MIL",
+      "CSRT",
+      "CSRT",
+      "KCF",
+      "MIL"
+    ]
+  },
+  "assertions": {
+    "initialized": true,
+    "reinitialized": true,
+    "unavailable_initialized": false
+  },
+  "cases": [
+    {
+      "label": "initialize-fallback",
+      "result": {
+        "ok": true,
+        "bbox_x1": 10.0,
+        "bbox_y1": 20.0,
+        "bbox_x2": 50.0,
+        "bbox_y2": 50.0,
+        "bbox_width": 40.0,
+        "bbox_height": 30.0,
+        "center_x": 30.0,
+        "center_y": 35.0,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "tracking",
+        "error": ""
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": "MIL",
+      "initialized": true,
+      "lost_frame_count": 0,
+      "consecutive_lost_frames": 0,
+      "total_frame_count": 0,
+      "tracked_frame_count": 0
+    },
+    {
+      "label": "move",
+      "result": {
+        "ok": true,
+        "bbox_x1": 12.0,
+        "bbox_y1": 22.0,
+        "bbox_x2": 52.0,
+        "bbox_y2": 52.0,
+        "bbox_width": 40.0,
+        "bbox_height": 30.0,
+        "center_x": 32.0,
+        "center_y": 37.0,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "tracking",
+        "error": ""
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": "MIL",
+      "initialized": true,
+      "lost_frame_count": 0,
+      "consecutive_lost_frames": 0,
+      "total_frame_count": 1,
+      "tracked_frame_count": 1
+    },
+    {
+      "label": "disappear",
+      "result": {
+        "ok": false,
+        "bbox_x1": null,
+        "bbox_y1": null,
+        "bbox_x2": null,
+        "bbox_y2": null,
+        "bbox_width": null,
+        "bbox_height": null,
+        "center_x": null,
+        "center_y": null,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "lost",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "lost",
+        "error": ""
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": "MIL",
+      "initialized": true,
+      "lost_frame_count": 1,
+      "consecutive_lost_frames": 1,
+      "total_frame_count": 2,
+      "tracked_frame_count": 1
+    },
+    {
+      "label": "tracker-failure",
+      "result": {
+        "ok": false,
+        "bbox_x1": null,
+        "bbox_y1": null,
+        "bbox_x2": null,
+        "bbox_y2": null,
+        "bbox_width": null,
+        "bbox_height": null,
+        "center_x": null,
+        "center_y": null,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "lost",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "lost",
+        "error": "scripted update failure"
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": "MIL",
+      "initialized": true,
+      "lost_frame_count": 2,
+      "consecutive_lost_frames": 2,
+      "total_frame_count": 3,
+      "tracked_frame_count": 1
+    },
+    {
+      "label": "reinitialize",
+      "result": {
+        "ok": true,
+        "bbox_x1": 30.0,
+        "bbox_y1": 40.0,
+        "bbox_x2": 54.0,
+        "bbox_y2": 58.0,
+        "bbox_width": 24.0,
+        "bbox_height": 18.0,
+        "center_x": 42.0,
+        "center_y": 49.0,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "tracking",
+        "error": ""
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": "CSRT",
+      "initialized": true,
+      "lost_frame_count": 0,
+      "consecutive_lost_frames": 0,
+      "total_frame_count": 0,
+      "tracked_frame_count": 0
+    },
+    {
+      "label": "post-reinitialize-move",
+      "result": {
+        "ok": true,
+        "bbox_x1": 31.0,
+        "bbox_y1": 41.0,
+        "bbox_x2": 55.0,
+        "bbox_y2": 59.0,
+        "bbox_width": 24.0,
+        "bbox_height": 18.0,
+        "center_x": 43.0,
+        "center_y": 50.0,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "tracking",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "tracking",
+        "error": ""
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": "CSRT",
+      "initialized": true,
+      "lost_frame_count": 0,
+      "consecutive_lost_frames": 0,
+      "total_frame_count": 1,
+      "tracked_frame_count": 1
+    },
+    {
+      "label": "all-backends-unavailable",
+      "result": {
+        "ok": false,
+        "bbox_x1": null,
+        "bbox_y1": null,
+        "bbox_x2": null,
+        "bbox_y2": null,
+        "bbox_width": null,
+        "bbox_height": null,
+        "center_x": null,
+        "center_y": null,
+        "confidence": null,
+        "class_name": "custom_object",
+        "track_id": 1,
+        "status": "lost",
+        "tracking_mode": "custom_object_template",
+        "tracking_status": "lost",
+        "error": "CSRT: CSRT unavailable；KCF: KCF unavailable；MIL: MIL unavailable"
+      },
+      "requested_backend": "CSRT",
+      "actual_backend": null,
+      "initialized": false,
+      "lost_frame_count": 0,
+      "consecutive_lost_frames": 0,
+      "total_frame_count": 0,
+      "tracked_frame_count": 0
+    }
+  ]
+}

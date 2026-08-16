@@ -64,10 +64,16 @@ Phase 2 仍只选择两个实现试点：
 
 退出标准（本轮达到 experimental）：两个 manifest 为 `incubating/adapter-present`，L0/L1 自动证据通过，来源仓库不变；真实设备证据仍是后续门禁，不把 replay 当成 hardware validation。
 
-## Phase 3B — 轻量视觉处理器（只规划）
+## Phase 3B — Classical Trackers（本轮 experimental）
 
-- `tracker.spot-centroid`；
-- `tracker.template`。
+- [x] `tracker.spot-centroid`：来源兼容 red weighted centroid、confidence null、六帧来源 golden；
+- [x] `tracker.template`：ROI-initialized CSRT→KCF→MIL、实际 backend/fallback、lost/reinitialize；
+- [x] 两项均直接消费 CameraSource RuntimeFrame，并输出 Schema-valid SensorEvent；
+- [x] standalone synthetic assets、来源执行型 comparison、clean-install 与微基准；
+- [ ] 真实摄像头/实验目标 L2 数据、CPU/memory、长期运行和跨平台矩阵；
+- [ ] 来源许可确认和可回退下游试点。
+
+退出标准（本轮达到 experimental）：两个 manifest 为 `incubating/adapter-present/replay-benchmarked`；不把 pixel 说成物理位移，不伪造 confidence，不修改来源仓库或 FramePacket `1.0.0`。
 
 ## Phase 3C — 模型型处理器（只规划）
 

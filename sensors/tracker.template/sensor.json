@@ -4,12 +4,12 @@
   "name_zh": "模板/单目标追踪传感器",
   "name_en": "Template and Single-Object Tracking Sensor",
   "category": "processor",
-  "maturity": "planned",
-  "implementation_status": "contract-only",
-  "version": "0.1.0",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.4.0",
   "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame", "initialization-roi"],
   "output_kinds": ["sensor-event.tracking"],
-  "capabilities": ["roi-initialization", "opencv-csrt", "opencv-kcf", "opencv-mil", "backend-fallback", "lost-state"],
+  "capabilities": ["roi-initialized-single-object", "opencv-csrt", "opencv-kcf", "opencv-mil", "backend-fallback", "reinitialize", "lost-state"],
   "source_references": [
     {
       "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
@@ -24,8 +24,8 @@
       "notes": "Browser template-matching analyzer is a related but distinct algorithm family requiring its own benchmark profile."
     }
   ],
-  "evidence_level": "source-tested",
+  "evidence_level": "replay-benchmarked",
   "license_review": "pending",
-  "known_boundaries": ["ROI-initialized object tracking is not identical to image template matching.", "Backend fallback changes behavior and performance.", "Loss and reinitialization must be explicit."],
+  "known_boundaries": ["The implemented profile is ROI-initialized OpenCV single-object tracking, not static image template matching.", "Initialization ROI and optional template asset provenance are different concepts.", "Backend fallback changes behavior and performance; OpenCV supplies no calibrated confidence score.", "Image-space bbox and center are not physical displacement without calibration."],
   "owners": ["WUHAO19831214"]
 }

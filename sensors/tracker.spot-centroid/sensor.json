@@ -4,12 +4,12 @@
   "name_zh": "光斑重心识别传感器",
   "name_en": "Spot Centroid Sensor",
   "category": "processor",
-  "maturity": "planned",
-  "implementation_status": "contract-only",
-  "version": "0.1.0",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.4.0",
   "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame"],
   "output_kinds": ["sensor-event.centroid", "sensor-event.tracking"],
-  "capabilities": ["red-color-threshold", "weighted-centroid", "lock-threshold", "pixel-trajectory"],
+  "capabilities": ["source-compatible-red-threshold", "brightness-weighted-centroid", "normalized-roi", "lost-state", "overexposure-warning", "roi-edge-warning"],
   "source_references": [
     {
       "repository": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
@@ -24,8 +24,8 @@
       "notes": "Related weighted red centroid and peak-to-peak window aggregation with explicit physics and validation limits."
     }
   ],
-  "evidence_level": "documented-prototype",
+  "evidence_level": "replay-benchmarked",
   "license_review": "pending",
-  "known_boundaries": ["The direct observation is an image-space light-spot centroid, not mechanical displacement.", "Peak-to-peak spot range is not single-sided amplitude.", "Formal metrology, repeatability, and uncertainty evidence is not yet present in the source repositories."],
+  "known_boundaries": ["The direct observation is an image-space light-spot centroid in pixels, not mechanical displacement or amplitude.", "Version 0.4.0 intentionally supports the source red-channel profile only.", "Synthetic replay and source compatibility do not establish real-experiment metrology, repeatability, or uncertainty."],
   "owners": ["WUHAO19831214"]
 }

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "physics-software-sensors"
-version = "0.3.0"
+version = "0.4.0"
 description = "Reusable software sensors for physics experiments"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -15,11 +15,15 @@ dependencies = []
 [project.optional-dependencies]
 color-marker = [
   "numpy>=1.26,<3",
-  "opencv-python-headless>=4.9,<5",
+  "opencv-contrib-python-headless>=4.9,<5",
 ]
 camera-opencv = [
   "numpy>=1.26,<3",
-  "opencv-python-headless>=4.9,<5",
+  "opencv-contrib-python-headless>=4.9,<5",
+]
+classical-trackers = [
+  "numpy>=1.26,<3",
+  "opencv-contrib-python-headless>=4.9,<5",
 ]
 dev = [
   "jsonschema>=4.23,<5",

@@ -7,6 +7,16 @@ from .color_marker import (
     ColorMarkerTracker,
     estimate_hsv_range_from_roi,
 )
+from .spot_centroid import SpotCentroidConfig, SpotCentroidResult, SpotCentroidSensor, SpotCentroidTracker
+from .template import (
+    TRACKER_FALLBACK_ORDER,
+    TemplateTracker,
+    TemplateTrackerResult,
+    TemplateTrackerSensor,
+    create_opencv_tracker,
+    scale_bbox_to_frame,
+    validate_bbox,
+)
 
 __all__ = [
     "ColorMarkerConfig",
@@ -14,4 +24,15 @@ __all__ = [
     "ColorMarkerSensor",
     "ColorMarkerTracker",
     "estimate_hsv_range_from_roi",
+    "SpotCentroidConfig",
+    "SpotCentroidResult",
+    "SpotCentroidSensor",
+    "SpotCentroidTracker",
+    "TRACKER_FALLBACK_ORDER",
+    "TemplateTracker",
+    "TemplateTrackerResult",
+    "TemplateTrackerSensor",
+    "create_opencv_tracker",
+    "scale_bbox_to_frame",
+    "validate_bbox",
 ]

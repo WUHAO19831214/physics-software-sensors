@@ -1,0 +1,57 @@
+{
+  "synthetic": true,
+  "color_order": "PNG/RGBA",
+  "cases": [
+    {
+      "id": "bright",
+      "file": "bright.png",
+      "center": [
+        80,
+        60
+      ],
+      "radius": 10
+    },
+    {
+      "id": "horizontal",
+      "file": "horizontal.png",
+      "center": [
+        112,
+        60
+      ],
+      "radius": 10
+    },
+    {
+      "id": "vertical",
+      "file": "vertical.png",
+      "center": [
+        80,
+        88
+      ],
+      "radius": 10
+    },
+    {
+      "id": "dim",
+      "file": "dim.png",
+      "center": [
+        80,
+        60
+      ],
+      "radius": 10
+    },
+    {
+      "id": "blank",
+      "file": "blank.png",
+      "center": null,
+      "radius": 0
+    },
+    {
+      "id": "roi-edge",
+      "file": "roi-edge.png",
+      "center": [
+        12,
+        60
+      ],
+      "radius": 10
+    }
+  ]
+}

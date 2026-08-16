@@ -65,3 +65,12 @@ planned → incubating → candidate → stable → deprecated → retired
 ## 7. 回退
 
 每次 candidate/stable 升级必须写明：上一可用版本、配置/数据是否可逆、模型资产如何恢复、下游 feature flag 和回退验证结果。不能回退的数据迁移属于破坏性变化。
+
+## 当前升级记录
+
+- [tracker.color-marker 0.2.0](upgrades/tracker.color-marker-0.2.0.md)
+- [ocr.number 0.2.0](upgrades/ocr.number-0.2.0.md)
+- [camera.capture 0.3.0](upgrades/camera.capture-0.3.0.md)
+- [screen.capture 0.3.0](upgrades/screen.capture-0.3.0.md)
+- [tracker.spot-centroid 0.4.0](upgrades/tracker.spot-centroid-0.4.0.md)
+- [tracker.template 0.4.0](upgrades/tracker.template-0.4.0.md)
