@@ -9,7 +9,7 @@
 | `sensor-manifest.schema.json` | `sensors/*/sensor.json` 能力与来源清单 |
 | `benchmark-result.schema.json` | 基准运行摘要 |
 
-当前 Schema 版本均从 `1.0.0` 开始，仓库/类型包本身仍为 `0.1.0` 骨架。Schema 使用 JSON Schema Draft 2020-12。
+当前 Schema 版本均从 `1.0.0` 开始并保持不变；实现包按独立 SemVer 演进（Python 当前 `0.4.0`，TypeScript 当前 `0.3.0`）。Schema 使用 JSON Schema Draft 2020-12。
 
 ## 兼容性
 

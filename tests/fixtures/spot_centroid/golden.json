@@ -1,0 +1,76 @@
+{
+  "generated_by": "exact-source-js-harness",
+  "source_commits": [
+    "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+    "c3f58175a09ff29cacdfb976a5055758c4eff619"
+  ],
+  "tolerance_px": 1e-9,
+  "cases": [
+    {
+      "id": "bright",
+      "file": "bright.png",
+      "source_result": {
+        "locked": true,
+        "x": 80,
+        "y": 60,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325
+      }
+    },
+    {
+      "id": "horizontal",
+      "file": "horizontal.png",
+      "source_result": {
+        "locked": true,
+        "x": 112,
+        "y": 60,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325
+      }
+    },
+    {
+      "id": "vertical",
+      "file": "vertical.png",
+      "source_result": {
+        "locked": true,
+        "x": 80,
+        "y": 88,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325
+      }
+    },
+    {
+      "id": "dim",
+      "file": "dim.png",
+      "source_result": {
+        "locked": true,
+        "x": 80,
+        "y": 60,
+        "radius": 14.142135623730951,
+        "weight_sum": 38040
+      }
+    },
+    {
+      "id": "blank",
+      "file": "blank.png",
+      "source_result": {
+        "locked": false,
+        "x": null,
+        "y": null,
+        "radius": null,
+        "weight_sum": 0
+      }
+    },
+    {
+      "id": "roi-edge",
+      "file": "roi-edge.png",
+      "source_result": {
+        "locked": true,
+        "x": 12,
+        "y": 60,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325
+      }
+    }
+  ]
+}

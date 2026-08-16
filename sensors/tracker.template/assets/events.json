@@ -1,0 +1,475 @@
+{
+  "synthetic": true,
+  "roi": [
+    60,
+    90,
+    70,
+    60
+  ],
+  "opencv": "4.14.0",
+  "python": "3.12.13",
+  "platform": "macOS-26.3.1-arm64-arm-64bit",
+  "events": [
+    {
+      "schema_version": "1.0.0",
+      "event_id": "2db34e7b-c046-4745-84ef-e290c9f988cf",
+      "run_id": "camera-to-template-tracker-demo",
+      "sensor": {
+        "id": "tracker.template",
+        "instance_id": "template-tracker-01",
+        "version": "0.4.0",
+        "category": "processor"
+      },
+      "sequence": 0,
+      "time": {
+        "observed_at": "2026-08-16T18:00:00.050Z",
+        "emitted_at": "2026-08-16T12:14:32.327Z",
+        "source_timestamp": 0.05,
+        "monotonic_ns": 10050000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 7.705583004280925,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "center_x",
+          "value": 105.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "center_y",
+          "value": 120.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_x",
+          "value": 70.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_y",
+          "value": 90.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_width",
+          "value": 70.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_height",
+          "value": 60.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "fc81140d-0cfd-4d71-8c28-0a62c406cbb5:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 240,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "1f40d99b-022f-42b5-bf23-a5efb4c4f3f3",
+        "fc81140d-0cfd-4d71-8c28-0a62c406cbb5"
+      ],
+      "payload": {
+        "profile": "opencv-roi-single-object-tracker",
+        "requested_backend": "CSRT",
+        "tracker_backend": "CSRT",
+        "attempted_backends": [
+          "CSRT"
+        ],
+        "fallback_used": false,
+        "tracking_status": "tracking",
+        "lost_frame_count": 0,
+        "consecutive_lost_frames": 0,
+        "template_asset_uri": null,
+        "source_projection": {
+          "ok": true,
+          "bbox_x1": 70.0,
+          "bbox_y1": 90.0,
+          "bbox_x2": 140.0,
+          "bbox_y2": 150.0,
+          "bbox_width": 70.0,
+          "bbox_height": 60.0,
+          "center_x": 105.0,
+          "center_y": 120.0,
+          "confidence": null,
+          "class_name": "custom_object",
+          "track_id": 1,
+          "status": "tracking",
+          "tracking_mode": "custom_object_template",
+          "tracking_status": "tracking",
+          "error": ""
+        },
+        "confidence_available": false
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "da3c0cd5-f33d-4faa-804b-1372a020d3af",
+      "run_id": "camera-to-template-tracker-demo",
+      "sensor": {
+        "id": "tracker.template",
+        "instance_id": "template-tracker-01",
+        "version": "0.4.0",
+        "category": "processor"
+      },
+      "sequence": 1,
+      "time": {
+        "observed_at": "2026-08-16T18:00:00.100Z",
+        "emitted_at": "2026-08-16T12:14:32.335Z",
+        "source_timestamp": 0.1,
+        "monotonic_ns": 10100000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 7.772874989314005,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "center_x",
+          "value": 120.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "center_y",
+          "value": 120.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_x",
+          "value": 85.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_y",
+          "value": 90.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_width",
+          "value": 70.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_height",
+          "value": 60.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "a0e0ebf3-110f-4af7-9a34-c26e73afe893:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 240,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "1f40d99b-022f-42b5-bf23-a5efb4c4f3f3",
+        "a0e0ebf3-110f-4af7-9a34-c26e73afe893"
+      ],
+      "payload": {
+        "profile": "opencv-roi-single-object-tracker",
+        "requested_backend": "CSRT",
+        "tracker_backend": "CSRT",
+        "attempted_backends": [
+          "CSRT"
+        ],
+        "fallback_used": false,
+        "tracking_status": "tracking",
+        "lost_frame_count": 0,
+        "consecutive_lost_frames": 0,
+        "template_asset_uri": null,
+        "source_projection": {
+          "ok": true,
+          "bbox_x1": 85.0,
+          "bbox_y1": 90.0,
+          "bbox_x2": 155.0,
+          "bbox_y2": 150.0,
+          "bbox_width": 70.0,
+          "bbox_height": 60.0,
+          "center_x": 120.0,
+          "center_y": 120.0,
+          "confidence": null,
+          "class_name": "custom_object",
+          "track_id": 1,
+          "status": "tracking",
+          "tracking_mode": "custom_object_template",
+          "tracking_status": "tracking",
+          "error": ""
+        },
+        "confidence_available": false
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "7dc85223-a126-4049-84bb-3d5f340b4ff2",
+      "run_id": "camera-to-template-tracker-demo",
+      "sensor": {
+        "id": "tracker.template",
+        "instance_id": "template-tracker-01",
+        "version": "0.4.0",
+        "category": "processor"
+      },
+      "sequence": 2,
+      "time": {
+        "observed_at": "2026-08-16T18:00:00.150Z",
+        "emitted_at": "2026-08-16T12:14:32.342Z",
+        "source_timestamp": 0.15,
+        "monotonic_ns": 10150000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 6.947332993149757,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "center_x",
+          "value": 136.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "center_y",
+          "value": 120.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_x",
+          "value": 101.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_y",
+          "value": 90.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_width",
+          "value": 70.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "bbox_height",
+          "value": 60.0,
+          "value_type": "number",
+          "unit": "px",
+          "role": "raw",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "70d0d613-a73d-4aa4-a661-2c19e295b08a:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 240,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "1f40d99b-022f-42b5-bf23-a5efb4c4f3f3",
+        "70d0d613-a73d-4aa4-a661-2c19e295b08a"
+      ],
+      "payload": {
+        "profile": "opencv-roi-single-object-tracker",
+        "requested_backend": "CSRT",
+        "tracker_backend": "CSRT",
+        "attempted_backends": [
+          "CSRT"
+        ],
+        "fallback_used": false,
+        "tracking_status": "tracking",
+        "lost_frame_count": 0,
+        "consecutive_lost_frames": 0,
+        "template_asset_uri": null,
+        "source_projection": {
+          "ok": true,
+          "bbox_x1": 101.0,
+          "bbox_y1": 90.0,
+          "bbox_x2": 171.0,
+          "bbox_y2": 150.0,
+          "bbox_width": 70.0,
+          "bbox_height": 60.0,
+          "center_x": 136.0,
+          "center_y": 120.0,
+          "confidence": null,
+          "class_name": "custom_object",
+          "track_id": 1,
+          "status": "tracking",
+          "tracking_mode": "custom_object_template",
+          "tracking_status": "tracking",
+          "error": ""
+        },
+        "confidence_available": false
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "8bd000f7-1edf-4dc8-afcc-e1bc5021e739",
+      "run_id": "camera-to-template-tracker-demo",
+      "sensor": {
+        "id": "tracker.template",
+        "instance_id": "template-tracker-01",
+        "version": "0.4.0",
+        "category": "processor"
+      },
+      "sequence": 3,
+      "time": {
+        "observed_at": "2026-08-16T18:00:00.200Z",
+        "emitted_at": "2026-08-16T12:14:32.344Z",
+        "source_timestamp": 0.2,
+        "monotonic_ns": 10200000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "lost",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 1.715708989650011,
+        "flags": [
+          "target-lost"
+        ],
+        "dropped_since_last": 0
+      },
+      "measurements": [],
+      "coordinate_frame": {
+        "id": "ce0812c7-8adb-4330-b830-a78cffdd623d:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 240,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "1f40d99b-022f-42b5-bf23-a5efb4c4f3f3",
+        "ce0812c7-8adb-4330-b830-a78cffdd623d"
+      ],
+      "payload": {
+        "profile": "opencv-roi-single-object-tracker",
+        "requested_backend": "CSRT",
+        "tracker_backend": "CSRT",
+        "attempted_backends": [
+          "CSRT"
+        ],
+        "fallback_used": false,
+        "tracking_status": "lost",
+        "lost_frame_count": 1,
+        "consecutive_lost_frames": 1,
+        "template_asset_uri": null,
+        "source_projection": {
+          "ok": false,
+          "bbox_x1": null,
+          "bbox_y1": null,
+          "bbox_x2": null,
+          "bbox_y2": null,
+          "bbox_width": null,
+          "bbox_height": null,
+          "center_x": null,
+          "center_y": null,
+          "confidence": null,
+          "class_name": "custom_object",
+          "track_id": 1,
+          "status": "lost",
+          "tracking_mode": "custom_object_template",
+          "tracking_status": "lost",
+          "error": ""
+        },
+        "confidence_available": false
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前进入 **Phase 3A：统一 FramePacket 来源层**。Phase 2 的颜色追踪与数字 OCR 保持不变；现在新增独立 Camera/Screen source，使 processor 不再关心像素来自摄像头还是授权屏幕。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
+本仓库当前完成 **Phase 3B：Classical Trackers experimental adapters**。Camera/Screen 统一 FramePacket 来源层继续保持；现在新增光斑重心和 ROI 单目标 tracker，使六项传感器可在原实验项目之外独立回放。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -16,8 +16,8 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | Screen Capture | 经用户授权采集屏幕/窗口像素帧 | experimental | [Page](sensors/screen.capture/README.md) | [Web/replay](examples/web-screen-capture/README.md) | [replay](sensors/screen.capture/benchmarks/README.md) |
 | Number OCR | 从屏幕 ROI 保留 OCR 原文并解析数字 | experimental | [Page](sensors/ocr.number/README.md) | [pixel OCR](examples/web-number-ocr/README.md) | [status](sensors/ocr.number/benchmarks/README.md) |
 | Color Marker Tracker | 用 HSV/轮廓连续追踪颜色标记 | experimental | [Page](sensors/tracker.color-marker/README.md) | [Python](examples/python-color-marker/README.md) | [golden](sensors/tracker.color-marker/benchmarks/README.md) |
-| Spot Centroid Tracker | 输出图像中光斑的颜色加权重心 | contract-only | [Page](sensors/tracker.spot-centroid/README.md) | [pending](sensors/tracker.spot-centroid/examples/README.md) | [plan](sensors/tracker.spot-centroid/benchmarks/README.md) |
-| Template Tracker | 初始化 ROI 后追踪单个实验物体 | contract-only | [Page](sensors/tracker.template/README.md) | [pending](sensors/tracker.template/examples/README.md) | [plan](sensors/tracker.template/benchmarks/README.md) |
+| Spot Centroid Tracker | 输出图像中红色光斑的亮度加权重心 | experimental | [Page](sensors/tracker.spot-centroid/README.md) | [Python](examples/spot-centroid/README.md) | [golden](sensors/tracker.spot-centroid/benchmarks/README.md) |
+| Template / Single-object Tracker | 初始化 ROI 后用 CSRT/KCF/MIL 追踪单个目标 | experimental | [Page](sensors/tracker.template/README.md) | [Python](examples/python-template-tracker/README.md) | [replay](sensors/tracker.template/benchmarks/README.md) |
 | YOLO Tracker | 用显式模型 artifact 检测并追踪目标 | contract-only | [Page](sensors/tracker.yolo/README.md) | [pending](sensors/tracker.yolo/examples/README.md) | [plan](sensors/tracker.yolo/benchmarks/README.md) |
 
 完整语言/来源对照见 [软件传感器目录](docs/sensor-catalog.md)。页面完整不等于算法已验证；状态以 manifest 和页面成熟度为准。
@@ -37,6 +37,13 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | Image sequence/OpenCV backend → RuntimeFrame | user-authorized browser/recorded backend → RuntimeFramePacket |
 
 两项 capture demo 是 deterministic replay 证据；真实相机与浏览器人工 smoke/兼容矩阵尚未完成。
+
+| Spot centroid | Template / single-object tracker |
+| --- | --- |
+| [![Synthetic spot centroid output](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.md) | [![Synthetic ROI tracker replay](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.md) |
+| Camera FramePacket → red weighted centroid pixel / lost | initialization ROI + Camera FramePacket → bbox / backend / lost |
+
+两图都由本仓库 adapter 实际运行产生，输入明确为 synthetic。Spot 输出不是机械位移或振幅；Template profile 是 ROI-initialized OpenCV tracker，不是静态 template matching。
 
 ## 核心原则
 
@@ -86,7 +93,7 @@ physics-software-sensors/
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e 'packages/python[color-marker,camera-opencv,dev]'
+python -m pip install -e 'packages/python[color-marker,camera-opencv,classical-trackers,dev]'
 ```
 
 运行仓库校验、Python 测试和 TypeScript OCR 回放测试：
@@ -104,7 +111,7 @@ npm --prefix packages/typescript test
 - 不承诺硬实时、硬件同步或计量精度；
 - 不提交摄像头原始视频、屏幕录制、个人图像、模型权重或未脱敏数据；
 - 不把屏幕 OCR 表述成对实验设备 SDK 或内部数据的直接读取；
-- 不把 `0.3.0` 实验性 source/adapter 描述为稳定、计量验证或真实设备兼容。
+- 不把 `0.4.0` 实验性 source/adapter 描述为稳定、计量验证或真实设备兼容；YOLO 仍为 contract-only。
 
 ## 许可
 

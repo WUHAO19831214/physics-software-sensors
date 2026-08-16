@@ -26,6 +26,8 @@ EXPECTED_IMPLEMENTATION_STATUS = {
     "screen.capture": ("incubating", "adapter-present", "0.3.0"),
     "ocr.number": ("incubating", "adapter-present", "0.2.0"),
     "tracker.color-marker": ("incubating", "adapter-present", "0.2.0"),
+    "tracker.spot-centroid": ("incubating", "adapter-present", "0.4.0"),
+    "tracker.template": ("incubating", "adapter-present", "0.4.0"),
 }
 SENSOR_PAGE_FILES = (
     "README.md",
@@ -40,6 +42,8 @@ PILOT_DEMO_ASSETS = {
     "screen.capture": ("captured-screen-frame.png", "frame-packet-metadata.png", "permission-boundary.png"),
     "tracker.color-marker": ("overview.png", "processing.png", "lost-reacquire.png"),
     "ocr.number": ("overview.png", "processing.png", "demo-result.json"),
+    "tracker.spot-centroid": ("overview.png", "processing.png", "movement.png"),
+    "tracker.template": ("overview.png", "initialization.png", "tracking.png", "lost.png"),
 }
 
 

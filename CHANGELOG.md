@@ -2,6 +2,14 @@
 
 本项目遵循 SemVer；传感器实现、契约和模型资产分别记录版本。
 
+## 0.4.0 — 2026-08-16
+
+- Phase 3B 新增 Python `SpotCentroidSensor` 与 `TemplateTrackerSensor`，直接消费 Phase 3A RuntimeFrame；
+- 光斑重心保持固定来源 red threshold/brightness weighting，明确只输出 image centroid pixel；
+- 单目标 tracker 保留 CSRT→KCF→MIL fallback，并区分 initialization ROI 与 template asset；
+- 增加两个来源执行型 golden、CameraSource composition、synthetic standalone assets 和 microbenchmark；
+- catalog 达到 6/7 experimental，YOLO 仍为 contract-only；FramePacket Schema 保持 `1.0.0`。
+
 ## 0.3.0 — 2026-08-16
 
 - Phase 3A 建立统一 capture source 层，FramePacket Schema 保持 `1.0.0` 不变；

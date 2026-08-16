@@ -1,0 +1,47 @@
+{
+  "benchmark_version": "phase3b-1.0.0",
+  "date": "2026-08-16",
+  "evidence_level": "synthetic/replay; not real-experiment accuracy",
+  "environment": {
+    "python": "3.12.13",
+    "opencv": "4.14.0",
+    "numpy": "2.5.2",
+    "platform": "macOS-26.3.1-arm64-arm-64bit"
+  },
+  "repetitions": 200,
+  "spot_centroid": {
+    "fixture_cases": 6,
+    "detection_lost_matches": 6,
+    "max_centroid_error_px": 0.0,
+    "source_tolerance_px": 1e-09,
+    "timing": {
+      "median_ms": 0.7933749999999999,
+      "p95_ms": 0.875334,
+      "throughput_fps_from_median": 1260.4380022057667
+    }
+  },
+  "template_tracker": {
+    "source_scripted_cases": 7,
+    "source_stable_fields_present": true,
+    "source_numeric_tolerance_px": 1e-09,
+    "initialized": true,
+    "requested_backend": "CSRT",
+    "selected_backend": "CSRT",
+    "fallback_used": false,
+    "tracking_statuses": [
+      "tracking",
+      "tracking",
+      "tracking",
+      "lost"
+    ],
+    "synthetic_tracking_successes": 3,
+    "synthetic_lost_correct": true,
+    "max_synthetic_center_error_px": 1.0,
+    "sequence_update_median_ms": 7.4719999999999995,
+    "timing_same_frame_replay": {
+      "median_ms": 7.7215205000000005,
+      "p95_ms": 9.577209,
+      "throughput_fps_from_median": 129.50817135044838
+    }
+  }
+}

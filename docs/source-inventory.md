@@ -88,3 +88,11 @@
 - 两项均使用 FramePacket Schema `1.0.0`；requested、nominal、measured rate 不混写；
 - replay 结果和真实 Tesseract composition 已自动验证，但未运行真实 camera/browser smoke；
 - 五个来源仓库仍停留在表中完整 commit 且 clean，没有任何修改。
+
+## 8. Phase 3B Classical Tracker 抽取状态（2026-08-16）
+
+- `tracker.spot-centroid`：从光斑和受迫振动两个固定 `app.js::rgbToHsv/trackRedSpot` 抽取 red threshold、brightness weighting、locked 和 centroid；`getAmplitudeFrom`、校准与扫频业务不进入 sensor；
+- `tracker.template`：从稳定版 `src/object_template_tracker.py::ObjectTemplateTracker` 抽取 ROI validation、`CSRT→KCF→MIL`、lost/reinitialize；实验桥静态 template matching 仍是不同、未抽取 profile；
+- 两项都有来源执行型 golden、synthetic replay、CameraSource composition 和 explicit null confidence；
+- FramePacket Schema 仍为 `1.0.0`，统一 ProcessorSensor interface 未改；
+- 五个来源仓库仍在表中 SHA 且 clean，没有任何修改；`tracker.yolo` 未开始。

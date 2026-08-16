@@ -1,0 +1,781 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "event_id": "99b25cfe-b5be-4030-8b53-dda747c31dd4",
+    "run_id": "camera-to-spot-centroid-demo",
+    "sensor": {
+      "id": "tracker.spot-centroid",
+      "instance_id": "spot-centroid-01",
+      "version": "0.4.0",
+      "category": "processor"
+    },
+    "sequence": 0,
+    "time": {
+      "observed_at": "2026-08-16T17:00:00.000Z",
+      "emitted_at": "2026-08-16T12:14:52.594Z",
+      "source_timestamp": 0.0,
+      "monotonic_ns": 9000000000,
+      "clock": {
+        "domain": "camera-source",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "ok",
+    "quality": {
+      "confidence": null,
+      "latency_ms": 2.747250022366643,
+      "flags": [],
+      "dropped_since_last": 0
+    },
+    "measurements": [
+      {
+        "name": "centroid_x",
+        "value": 80.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "centroid_y",
+        "value": 60.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_area",
+        "value": 317.0,
+        "value_type": "number",
+        "unit": "px2",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_intensity_sum",
+        "value": 71325.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "peak_intensity",
+        "value": 245.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_width",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_height",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      }
+    ],
+    "coordinate_frame": {
+      "id": "55796234-e6b0-4bbf-ad0d-f9b47f0af1de:image-pixel",
+      "space": "image-pixel",
+      "origin": "top-left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "unit": "px",
+      "width": 160,
+      "height": 120,
+      "calibration_id": null
+    },
+    "parent_event_ids": [
+      "55796234-e6b0-4bbf-ad0d-f9b47f0af1de"
+    ],
+    "payload": {
+      "algorithm": "source-red-weighted-centroid",
+      "algorithm_source_commits": [
+        "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+        "c3f58175a09ff29cacdfb976a5055758c4eff619"
+      ],
+      "config": {
+        "roi": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "color_channel": "red",
+        "hue_low_max": 18.0,
+        "hue_high_min": 340.0,
+        "saturation_min": 0.38,
+        "value_min": 0.35,
+        "channel_min": 135,
+        "channel_green_delta_min": 35,
+        "channel_blue_delta_min": 20,
+        "brightness_weighting": true,
+        "minimum_candidate_pixels": 1,
+        "lost_weight_threshold": 900.0,
+        "overexposure_value": 0.98,
+        "overexposure_fraction": 0.25
+      },
+      "source_projection": {
+        "locked": true,
+        "x": 80.0,
+        "y": 60.0,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325.0
+      },
+      "candidate_pixels": 317,
+      "overexposed_fraction": 0.0
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "event_id": "52307e60-d50d-4639-b9de-3187ef23312c",
+    "run_id": "camera-to-spot-centroid-demo",
+    "sensor": {
+      "id": "tracker.spot-centroid",
+      "instance_id": "spot-centroid-01",
+      "version": "0.4.0",
+      "category": "processor"
+    },
+    "sequence": 1,
+    "time": {
+      "observed_at": "2026-08-16T17:00:00.050Z",
+      "emitted_at": "2026-08-16T12:14:52.597Z",
+      "source_timestamp": 0.05,
+      "monotonic_ns": 9050000000,
+      "clock": {
+        "domain": "camera-source",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "ok",
+    "quality": {
+      "confidence": null,
+      "latency_ms": 0.9473329992033541,
+      "flags": [],
+      "dropped_since_last": 0
+    },
+    "measurements": [
+      {
+        "name": "centroid_x",
+        "value": 112.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "centroid_y",
+        "value": 60.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_area",
+        "value": 317.0,
+        "value_type": "number",
+        "unit": "px2",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_intensity_sum",
+        "value": 71325.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "peak_intensity",
+        "value": 245.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_width",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_height",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      }
+    ],
+    "coordinate_frame": {
+      "id": "4e201313-d4dc-4637-9ad5-e69e1ee6129f:image-pixel",
+      "space": "image-pixel",
+      "origin": "top-left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "unit": "px",
+      "width": 160,
+      "height": 120,
+      "calibration_id": null
+    },
+    "parent_event_ids": [
+      "4e201313-d4dc-4637-9ad5-e69e1ee6129f"
+    ],
+    "payload": {
+      "algorithm": "source-red-weighted-centroid",
+      "algorithm_source_commits": [
+        "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+        "c3f58175a09ff29cacdfb976a5055758c4eff619"
+      ],
+      "config": {
+        "roi": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "color_channel": "red",
+        "hue_low_max": 18.0,
+        "hue_high_min": 340.0,
+        "saturation_min": 0.38,
+        "value_min": 0.35,
+        "channel_min": 135,
+        "channel_green_delta_min": 35,
+        "channel_blue_delta_min": 20,
+        "brightness_weighting": true,
+        "minimum_candidate_pixels": 1,
+        "lost_weight_threshold": 900.0,
+        "overexposure_value": 0.98,
+        "overexposure_fraction": 0.25
+      },
+      "source_projection": {
+        "locked": true,
+        "x": 112.0,
+        "y": 60.0,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325.0
+      },
+      "candidate_pixels": 317,
+      "overexposed_fraction": 0.0
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "event_id": "69e2db04-fc61-46da-a2ed-34d9127ba9ee",
+    "run_id": "camera-to-spot-centroid-demo",
+    "sensor": {
+      "id": "tracker.spot-centroid",
+      "instance_id": "spot-centroid-01",
+      "version": "0.4.0",
+      "category": "processor"
+    },
+    "sequence": 2,
+    "time": {
+      "observed_at": "2026-08-16T17:00:00.100Z",
+      "emitted_at": "2026-08-16T12:14:52.598Z",
+      "source_timestamp": 0.1,
+      "monotonic_ns": 9100000000,
+      "clock": {
+        "domain": "camera-source",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "ok",
+    "quality": {
+      "confidence": null,
+      "latency_ms": 0.80975002492778,
+      "flags": [],
+      "dropped_since_last": 0
+    },
+    "measurements": [
+      {
+        "name": "centroid_x",
+        "value": 80.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "centroid_y",
+        "value": 88.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_area",
+        "value": 317.0,
+        "value_type": "number",
+        "unit": "px2",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_intensity_sum",
+        "value": 71325.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "peak_intensity",
+        "value": 245.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_width",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_height",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      }
+    ],
+    "coordinate_frame": {
+      "id": "c3ec5955-402b-45d4-956c-b3d236b29b35:image-pixel",
+      "space": "image-pixel",
+      "origin": "top-left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "unit": "px",
+      "width": 160,
+      "height": 120,
+      "calibration_id": null
+    },
+    "parent_event_ids": [
+      "c3ec5955-402b-45d4-956c-b3d236b29b35"
+    ],
+    "payload": {
+      "algorithm": "source-red-weighted-centroid",
+      "algorithm_source_commits": [
+        "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+        "c3f58175a09ff29cacdfb976a5055758c4eff619"
+      ],
+      "config": {
+        "roi": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "color_channel": "red",
+        "hue_low_max": 18.0,
+        "hue_high_min": 340.0,
+        "saturation_min": 0.38,
+        "value_min": 0.35,
+        "channel_min": 135,
+        "channel_green_delta_min": 35,
+        "channel_blue_delta_min": 20,
+        "brightness_weighting": true,
+        "minimum_candidate_pixels": 1,
+        "lost_weight_threshold": 900.0,
+        "overexposure_value": 0.98,
+        "overexposure_fraction": 0.25
+      },
+      "source_projection": {
+        "locked": true,
+        "x": 80.0,
+        "y": 88.0,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325.0
+      },
+      "candidate_pixels": 317,
+      "overexposed_fraction": 0.0
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "event_id": "b47a07ff-639d-4e44-8f39-ad5c07f174cd",
+    "run_id": "camera-to-spot-centroid-demo",
+    "sensor": {
+      "id": "tracker.spot-centroid",
+      "instance_id": "spot-centroid-01",
+      "version": "0.4.0",
+      "category": "processor"
+    },
+    "sequence": 3,
+    "time": {
+      "observed_at": "2026-08-16T17:00:00.150Z",
+      "emitted_at": "2026-08-16T12:14:52.599Z",
+      "source_timestamp": 0.15,
+      "monotonic_ns": 9150000000,
+      "clock": {
+        "domain": "camera-source",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "ok",
+    "quality": {
+      "confidence": null,
+      "latency_ms": 0.8425839769188315,
+      "flags": [],
+      "dropped_since_last": 0
+    },
+    "measurements": [
+      {
+        "name": "centroid_x",
+        "value": 80.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "centroid_y",
+        "value": 60.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_area",
+        "value": 317.0,
+        "value_type": "number",
+        "unit": "px2",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_intensity_sum",
+        "value": 38040.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "peak_intensity",
+        "value": 155.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_width",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_height",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      }
+    ],
+    "coordinate_frame": {
+      "id": "e4fa84dc-f4bc-4525-be80-d8fbe747d6ed:image-pixel",
+      "space": "image-pixel",
+      "origin": "top-left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "unit": "px",
+      "width": 160,
+      "height": 120,
+      "calibration_id": null
+    },
+    "parent_event_ids": [
+      "e4fa84dc-f4bc-4525-be80-d8fbe747d6ed"
+    ],
+    "payload": {
+      "algorithm": "source-red-weighted-centroid",
+      "algorithm_source_commits": [
+        "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+        "c3f58175a09ff29cacdfb976a5055758c4eff619"
+      ],
+      "config": {
+        "roi": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "color_channel": "red",
+        "hue_low_max": 18.0,
+        "hue_high_min": 340.0,
+        "saturation_min": 0.38,
+        "value_min": 0.35,
+        "channel_min": 135,
+        "channel_green_delta_min": 35,
+        "channel_blue_delta_min": 20,
+        "brightness_weighting": true,
+        "minimum_candidate_pixels": 1,
+        "lost_weight_threshold": 900.0,
+        "overexposure_value": 0.98,
+        "overexposure_fraction": 0.25
+      },
+      "source_projection": {
+        "locked": true,
+        "x": 80.0,
+        "y": 60.0,
+        "radius": 14.142135623730951,
+        "weight_sum": 38040.0
+      },
+      "candidate_pixels": 317,
+      "overexposed_fraction": 0.0
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "event_id": "01748c96-c71d-4b88-8306-fc93be98eb9c",
+    "run_id": "camera-to-spot-centroid-demo",
+    "sensor": {
+      "id": "tracker.spot-centroid",
+      "instance_id": "spot-centroid-01",
+      "version": "0.4.0",
+      "category": "processor"
+    },
+    "sequence": 4,
+    "time": {
+      "observed_at": "2026-08-16T17:00:00.200Z",
+      "emitted_at": "2026-08-16T12:14:52.600Z",
+      "source_timestamp": 0.2,
+      "monotonic_ns": 9200000000,
+      "clock": {
+        "domain": "camera-source",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "lost",
+    "quality": {
+      "confidence": null,
+      "latency_ms": 0.7963330135680735,
+      "flags": [
+        "spot-lost"
+      ],
+      "dropped_since_last": 0
+    },
+    "measurements": [],
+    "coordinate_frame": {
+      "id": "32c5d09d-d1ce-482e-8129-d8276c073bd4:image-pixel",
+      "space": "image-pixel",
+      "origin": "top-left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "unit": "px",
+      "width": 160,
+      "height": 120,
+      "calibration_id": null
+    },
+    "parent_event_ids": [
+      "32c5d09d-d1ce-482e-8129-d8276c073bd4"
+    ],
+    "payload": {
+      "algorithm": "source-red-weighted-centroid",
+      "algorithm_source_commits": [
+        "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+        "c3f58175a09ff29cacdfb976a5055758c4eff619"
+      ],
+      "config": {
+        "roi": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "color_channel": "red",
+        "hue_low_max": 18.0,
+        "hue_high_min": 340.0,
+        "saturation_min": 0.38,
+        "value_min": 0.35,
+        "channel_min": 135,
+        "channel_green_delta_min": 35,
+        "channel_blue_delta_min": 20,
+        "brightness_weighting": true,
+        "minimum_candidate_pixels": 1,
+        "lost_weight_threshold": 900.0,
+        "overexposure_value": 0.98,
+        "overexposure_fraction": 0.25
+      },
+      "source_projection": {
+        "locked": false,
+        "x": null,
+        "y": null,
+        "radius": null,
+        "weight_sum": 0.0
+      },
+      "candidate_pixels": 0,
+      "overexposed_fraction": 0.0
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "event_id": "6127f95a-3b37-4131-900a-eda7c3bf7e29",
+    "run_id": "camera-to-spot-centroid-demo",
+    "sensor": {
+      "id": "tracker.spot-centroid",
+      "instance_id": "spot-centroid-01",
+      "version": "0.4.0",
+      "category": "processor"
+    },
+    "sequence": 5,
+    "time": {
+      "observed_at": "2026-08-16T17:00:00.250Z",
+      "emitted_at": "2026-08-16T12:14:52.600Z",
+      "source_timestamp": 0.25,
+      "monotonic_ns": 9250000000,
+      "clock": {
+        "domain": "camera-source",
+        "sync_status": "unknown",
+        "uncertainty_ms": null
+      }
+    },
+    "status": "ok",
+    "quality": {
+      "confidence": null,
+      "latency_ms": 0.7962080126162618,
+      "flags": [],
+      "dropped_since_last": 0
+    },
+    "measurements": [
+      {
+        "name": "centroid_x",
+        "value": 12.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "centroid_y",
+        "value": 60.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_area",
+        "value": 317.0,
+        "value_type": "number",
+        "unit": "px2",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "spot_intensity_sum",
+        "value": 71325.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "peak_intensity",
+        "value": 245.0,
+        "value_type": "number",
+        "unit": "1",
+        "role": "raw",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_width",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      },
+      {
+        "name": "bbox_height",
+        "value": 21.0,
+        "value_type": "number",
+        "unit": "px",
+        "role": "derived",
+        "uncertainty": null
+      }
+    ],
+    "coordinate_frame": {
+      "id": "b177b7bb-6bb1-4805-99cc-9ac343466608:image-pixel",
+      "space": "image-pixel",
+      "origin": "top-left",
+      "x_direction": "right",
+      "y_direction": "down",
+      "unit": "px",
+      "width": 160,
+      "height": 120,
+      "calibration_id": null
+    },
+    "parent_event_ids": [
+      "b177b7bb-6bb1-4805-99cc-9ac343466608"
+    ],
+    "payload": {
+      "algorithm": "source-red-weighted-centroid",
+      "algorithm_source_commits": [
+        "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+        "c3f58175a09ff29cacdfb976a5055758c4eff619"
+      ],
+      "config": {
+        "roi": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 1.0,
+          "height": 1.0
+        },
+        "color_channel": "red",
+        "hue_low_max": 18.0,
+        "hue_high_min": 340.0,
+        "saturation_min": 0.38,
+        "value_min": 0.35,
+        "channel_min": 135,
+        "channel_green_delta_min": 35,
+        "channel_blue_delta_min": 20,
+        "brightness_weighting": true,
+        "minimum_candidate_pixels": 1,
+        "lost_weight_threshold": 900.0,
+        "overexposure_value": 0.98,
+        "overexposure_fraction": 0.25
+      },
+      "source_projection": {
+        "locked": true,
+        "x": 12.0,
+        "y": 60.0,
+        "radius": 14.142135623730951,
+        "weight_sum": 71325.0
+      },
+      "candidate_pixels": 317,
+      "overexposed_fraction": 0.0
+    }
+  }
+]
