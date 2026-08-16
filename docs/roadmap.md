@@ -88,11 +88,17 @@ Phase 2 仍只选择两个实现试点：
 
 退出标准（本轮达到 experimental）：manifest 为 `incubating/adapter-present/replay-benchmarked`，catalog 达到 7/7 adapters；真实 inference 未执行时必须明确原因和全部 `not measured` 字段，不把 detector score 当物理 uncertainty。
 
-## Phase 3D — Cross-sensor benchmark（只规划）
+## Phase 3D — Cross-sensor validation & release readiness（本轮）
 
-- 跨语言事件一致性测试；
-- real/replay/synthetic dataset matrix；
-- 真实设备兼容矩阵与 L2 基准。
+- [x] 统一 E0–E5 证据等级、七传感器验证矩阵与 benchmark registry；
+- [x] Camera→四 tracker、Screen→OCR 五条有意义组合路径的机器清单与执行测试；
+- [x] package/runtime/device compatibility、真实世界缺口和 maturity gates；
+- [x] Python wheel、npm tgz 与七个单传感器文档 bundle 的不发布 dry-run 工具；
+- [x] package dependency/license boundary audit 和最小离线 CI 模板；当前 OAuth 缺少 `workflow` scope，尚未启用；
+- [ ] 真实 camera/browser/device/YOLO artifact 的 E4 数据；
+- [ ] 任一来源项目的 pinned、可回退 E5 灰度接入（属于 Phase 4）。
+
+退出边界：Phase 3D 只提高证据透明度和发布准备度，不提升七个 sensor 的 experimental 成熟度，不发布 package/Release，不修改来源仓库。
 
 ## Phase 4 — 下游灰度接入
 

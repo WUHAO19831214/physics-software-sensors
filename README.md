@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前完成 **Phase 3C：YOLO Tracker experimental adapter**。七项传感器都已有可独立调用的 adapter；YOLO 新增离线 recorded backend、显式 ModelArtifact、multi-target event、ByteTrack/fallback 边界和许可证审查。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
+本仓库当前进入 **Phase 3D：跨传感器验证与发布准备**。七项传感器已有独立 adapter，并统一记录 E0–E5 证据、组合路径、benchmark、兼容性和真实世界缺口。它们仍全部是 **experimental**；来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -21,6 +21,20 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | YOLO Tracker | 用显式模型 artifact 检测并追踪多个目标 | experimental | [Page](sensors/tracker.yolo/README.md) | [recorded Python](examples/python-yolo-tracker/README.md) | [adapter replay](sensors/tracker.yolo/benchmarks/README.md) |
 
 完整语言/来源对照见 [软件传感器目录](docs/sensor-catalog.md)。页面完整不等于算法已验证；状态以 manifest 和页面成熟度为准。
+
+## Choose a Sensor
+
+| 用途 | 选择 | 成熟度 / 证据 | Docs / Example |
+| --- | --- | --- | --- |
+| Capture：摄像头或录制序列统一帧 | `camera.capture` | experimental / E1 replay | [Docs](sensors/camera.capture/README.md) / [Example](examples/python-camera-capture/README.md) |
+| Capture：用户授权的屏幕/窗口像素 | `screen.capture` | experimental / E1 replay | [Docs](sensors/screen.capture/README.md) / [Example](examples/web-screen-capture/README.md) |
+| Read software values：屏幕 ROI 数字 | `ocr.number` | experimental / E3 real OCR, synthetic pixels | [Docs](sensors/ocr.number/README.md) / [Example](examples/web-number-ocr/README.md) |
+| Track visible targets：颜色球/标记 | `tracker.color-marker` | experimental / E2 source replay | [Docs](sensors/tracker.color-marker/README.md) / [Example](examples/python-color-marker/README.md) |
+| Track visible targets：初始化 ROI 单目标 | `tracker.template` | experimental / E3 real OpenCV, synthetic target | [Docs](sensors/tracker.template/README.md) / [Example](examples/python-template-tracker/README.md) |
+| Track visible targets：本地模型多目标 | `tracker.yolo` | experimental / E2; inference pending | [Docs](sensors/tracker.yolo/README.md) / [Example](examples/python-yolo-tracker/README.md) |
+| Track optical spots：亮斑重心 | `tracker.spot-centroid` | experimental / E2 source replay | [Docs](sensors/tracker.spot-centroid/README.md) / [Example](examples/spot-centroid/README.md) |
+
+像素位置、OCR 读数和检测置信度都不是自动得到的物理量或计量不确定度。选择后请同时查看 [证据等级](docs/evidence-levels.md)、[验证矩阵](docs/validation-matrix.md) 和对应限制。
 
 ## Working demonstrations
 
@@ -69,6 +83,12 @@ YOLO 图来自固定来源执行输出的 recorded replay，不是真实模型�
 - [统一传感器接口](docs/sensor-interface.md)
 - [统一数据格式](docs/data-format.md)
 - [基准测试方案](docs/benchmarking.md)
+- [七传感器 benchmark 汇总](docs/benchmark-summary.md)
+- [兼容性矩阵](docs/compatibility-matrix.md)
+- [真实世界验证缺口](docs/real-world-validation-gaps.md)
+- [成熟度门禁](docs/maturity-gates.md)
+- [依赖与许可证审计](docs/package-dependency-audit.md)
+- [Release / sensor bundle dry run](docs/release-readiness.md)
 - [版本与升级流程](docs/versioning-and-upgrades.md)
 - [第一阶段路线图](docs/roadmap.md)
 - [机器可读契约](contracts/README.md)
@@ -103,7 +123,7 @@ source .venv/bin/activate
 python -m pip install -e 'packages/python[color-marker,camera-opencv,classical-trackers,dev]'
 ```
 
-运行仓库校验、Python 测试和 TypeScript OCR 回放测试：
+运行仓库校验、Python 测试和完整 TypeScript OCR 测试：
 
 ```bash
 python tools/validate_repo.py
@@ -111,6 +131,8 @@ pytest
 npm --prefix packages/typescript install
 npm --prefix packages/typescript test
 ```
+
+最小 CI 模板位于 [`templates/github-actions-ci.yml`](templates/github-actions-ci.yml)，使用 `npm --prefix packages/typescript run test:offline` 避免下载 Tesseract 语言数据。当前 OAuth 缺少 `workflow` scope，因此模板尚未安装到 `.github/workflows/`；真实 Tesseract integration 由可审计的本地完整测试单独报告。
 
 ## 当前非目标
 

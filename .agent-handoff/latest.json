@@ -1,104 +1,38 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
-  "phase": "3C",
-  "phase_name": "YOLO Tracker",
-  "status": "READY_FOR_REVIEW",
+  "phase": "3D",
+  "phase_name": "Cross-sensor validation and release readiness",
+  "status": "IN_PROGRESS",
   "git": {
     "base_branch": "main",
-    "working_branch": "agent/phase3c-yolo-tracker",
-    "base_sha": "9d48904b86c4e2ec218faf2fd18968abbfa7f0b6",
-    "head_sha": "6f4380f8a925f324c64cbd73fa45805f78dfe048",
-    "head_relation": "parent-of-handoff-commit",
-    "working_tree_clean": true
+    "working_branch": "agent/phase3d-cross-sensor-validation",
+    "base_sha": "ad1220d6166e43dc68a0bd0477728600de880c54",
+    "tested_sha": "ad1220d6166e43dc68a0bd0477728600de880c54",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/phase3d-cross-sensor-validation"},
+    "handoff_commit_sha": {"resolution": "containing-commit"},
+    "working_tree_clean": false
   },
-  "pull_request": {
-    "number": 4,
-    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/4",
-    "draft": true,
-    "state": "OPEN",
-    "mergeable": true
-  },
-  "previous_phase": {
-    "pr": 3,
-    "merge_sha": "9d48904b86c4e2ec218faf2fd18968abbfa7f0b6"
-  },
+  "pull_request": {"number": null, "url": null, "draft": true, "state": "NOT_CREATED", "mergeable": null},
+  "previous_phase": {"pr": 4, "merge_sha": "ad1220d6166e43dc68a0bd0477728600de880c54"},
   "tests": {
-    "repository_validation": {"passed": true, "json_files": 35, "sensor_pages": 7},
-    "python": {"passed": 65, "failed": 0, "yolo_passed": 16},
-    "typescript": {"passed": 18, "failed": 0},
-    "golden": {
-      "passed": true,
-      "source_detector_cases": 3,
-      "source_tracking_cases": 6,
-      "source_centroid_cases": 6,
-      "recorded_frames": 7
-    },
-    "composition": {
-      "passed": 5,
-      "failed": 0,
-      "paths": ["Camera->Color", "Camera->Spot", "Camera->Template", "Camera->YOLO", "Screen->OCR"]
-    },
-    "clean_install_python": true,
-    "clean_install_python_package": "physics-software-sensors==0.5.0",
-    "clean_install_python_wheel_sha256": "5d39adf4cf025b0ca1ad2bff8fab27167733a5b94b26f784a06ebd06dbc536bc",
-    "clean_install_typescript": true,
-    "clean_install_typescript_package": "@physics-software-sensors/core@0.3.0",
-    "clean_install_typescript_tgz_shasum": "4a17c45df20da82876e381a10c7b79ba94989e91",
-    "installed_wheel_recorded_example_events": 7
+    "repository_validation": {"passed": false, "json_files": 0, "sensor_pages": 7},
+    "python": {"passed": 4, "failed": 0, "scope": "new cross-sensor composition tests only"},
+    "typescript": {"passed": 0, "failed": 0},
+    "composition": {"passed": 5, "failed": 0, "paths": ["Camera->Color", "Camera->Spot", "Camera->Template", "Camera->YOLO", "Screen->OCR"]},
+    "release_dry_run": false,
+    "sensor_bundle_dry_run": false,
+    "clean_install_python": false,
+    "clean_install_typescript": false
   },
-  "benchmarks": {
-    "deterministic_adapter": {
-      "iterations_per_serialization_case": 500,
-      "single_target_median_ms": 0.099937,
-      "single_target_p95_ms": 0.123583,
-      "multi_target_median_ms": 0.110354,
-      "multi_target_p95_ms": 0.130291,
-      "class_filter_passed": 3,
-      "class_filter_total": 3,
-      "tracking_state_passed": 10,
-      "tracking_state_total": 10
-    },
-    "real_inference": {
-      "executed": false,
-      "reason": "No maintainer-approved local model artifact was supplied; Ultralytics was not installed; online download is prohibited.",
-      "model": "not measured",
-      "model_sha256": "not measured",
-      "device": "not measured",
-      "input_size": "not measured",
-      "latency_ms": "not measured",
-      "fps": "not measured",
-      "memory": "not measured",
-      "accuracy": "not measured"
-    }
-  },
-  "public_apis": [
-    "physics_sensors.core.ModelArtifact",
-    "physics_sensors.tracking.ClassFilter",
-    "physics_sensors.tracking.YoloDetection",
-    "physics_sensors.tracking.DetectorFrameResult",
-    "physics_sensors.tracking.DetectorBackend",
-    "physics_sensors.tracking.RecordedDetectorBackend",
-    "physics_sensors.tracking.OpenCVHogDetectorBackend",
-    "physics_sensors.tracking.YoloDetectorBackend",
-    "physics_sensors.tracking.CentroidAssociator",
-    "physics_sensors.tracking.YoloTrackerSensor"
-  ],
-  "demo_assets": [
-    "sensors/tracker.yolo/assets/overview.png",
-    "sensors/tracker.yolo/assets/multi-target.png",
-    "sensors/tracker.yolo/assets/tracking.png",
-    "sensors/tracker.yolo/assets/fallback.png",
-    "sensors/tracker.yolo/assets/events.json"
-  ],
-  "licensing": {
-    "repository": "MIT",
-    "source": "pending; fixed source repository has no detected license file and GitHub metadata is NOASSERTION",
-    "runtime": "Ultralytics source dependency range >=8.2,<9; runtime not installed in Phase 3C; published runtime metadata declares AGPL-3.0 with an Enterprise route",
-    "model_weight": "artifact-specific review pending",
-    "weight_redistribution": "not approved; no weight committed, bundled, downloaded, or redistributed",
-    "hog": "OpenCV 4.x Apache-2.0; person-only fallback",
-    "review": "docs/yolo-model-and-license-review.md"
+  "evidence_levels": {
+    "camera.capture": "E1",
+    "screen.capture": "E1",
+    "ocr.number": "E3",
+    "tracker.color-marker": "E2",
+    "tracker.spot-centroid": "E2",
+    "tracker.template": "E3",
+    "tracker.yolo": "E2"
   },
   "sensors": {
     "camera.capture": {"maturity": "experimental", "implementation_version": "0.3.0"},
@@ -116,7 +50,7 @@
     {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "clean"},
     {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "clean"}
   ],
-  "contracts": {"sensor_event": "1.0.0", "frame_packet": "1.0.0", "sensor_implementation": "0.5.0"},
+  "contracts": {"sensor_event": "1.0.0", "frame_packet": "1.0.0"},
   "blockers": [],
-  "recommended_next_phase": "After independent review, plan Phase 3D cross-sensor benchmark; do not start it from this handoff."
+  "recommended_next_action": "Complete Phase 3D validation and open a Draft PR; do not merge or start Phase 4."
 }

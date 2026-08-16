@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install tested adapters without YOLO runtime
+        run: python -m pip install -e 'packages/python[color-marker,camera-opencv,classical-trackers,dev]'
+      - name: Validate repository
+        run: python tools/validate_repo.py
+      - name: Run Python tests
+        run: python -m pytest -q
+      - name: Build wheel without dependencies
+        run: python -m pip wheel packages/python --no-deps --wheel-dir /tmp/physics-sensors-wheel
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: packages/typescript/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci --prefix packages/typescript
+      - name: Run offline TypeScript suite
+        run: npm --prefix packages/typescript run test:offline
+      - name: Build local npm tarball
+        run: npm pack --prefix packages/typescript --pack-destination /tmp
+
+# Installation location when an authorized maintainer enables it:
+# .github/workflows/ci.yml
+# This template intentionally excludes the optional Ultralytics runtime/model and
+# real Tesseract worker test so a clean runner does not download those artifacts.

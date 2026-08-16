@@ -4,16 +4,27 @@
 
 软件传感器是“产生带语义、时间、质量和来源信息的观测事件”的独立组件。它可以是采集源，也可以是处理已有帧的分析器，但不负责实验 UI、业务状态管理、绘图或论文结论。
 
-```text
-设备/软件界面
-    │
-    ▼
-采集源传感器 ── FramePacket ──► 分析传感器 ── SensorEvent ──► 实验应用
- camera.capture                   OCR / tracking               store / CSV / UI
- screen.capture
-    │                                  │
-    └──────── HealthSnapshot ──────────┴────► 监控与基准记录
+```mermaid
+flowchart LR
+    Camera["Camera / image sequence"] --> CameraSource["camera.capture"]
+    Display["Screen / window / recorded RGBA"] --> ScreenSource["screen.capture"]
+    CameraSource -->|FramePacket + runtime pixels| Color["tracker.color-marker"]
+    CameraSource -->|FramePacket + runtime pixels| Spot["tracker.spot-centroid"]
+    CameraSource -->|FramePacket + runtime pixels| Template["tracker.template"]
+    CameraSource -->|FramePacket + runtime pixels| Yolo["tracker.yolo"]
+    ScreenSource -->|FramePacket + ROI pixels| OCR["ocr.number"]
+    Color --> Events["SensorEvent"]
+    Spot --> Events
+    Template --> Events
+    Yolo --> Events
+    OCR --> Events
+    Events --> Experiment["Physics experiment application"]
+    CameraSource -. HealthSnapshot .-> Evidence["Validation / benchmark evidence"]
+    ScreenSource -. HealthSnapshot .-> Evidence
+    Events -. metrics .-> Evidence
 ```
+
+这五条组合路径由 [`tests/composition/matrix.json`](../tests/composition/matrix.json) 明确声明并测试。没有物理意义的交叉组合不为了“覆盖率”而构造。
 
 ## 2. 分层
 
@@ -66,6 +77,7 @@
 - **事件信封稳定、payload 可扩展**：通用字段使用语义化版本控制；算法特有调试值放在 `payload`。
 - **适配器不改算法**：首次迁移只对齐接口和输出，算法优化另开升级记录。
 - **离线可复现优先**：基准必须支持录制回放；真实硬件测试作为额外层次，不替代离线回归。
+- **证据与成熟度分离**：E0–E5 描述实际运行层次；experimental/validated/stable 由独立门禁决定。
 
 ## 7. 软件包与单独查看
 

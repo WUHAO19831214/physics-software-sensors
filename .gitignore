@@ -9,6 +9,7 @@ __pycache__/
 .ruff_cache/
 node_modules/
 dist/
+sensor-bundles/
 build/
 coverage/
 examples/*/output/*

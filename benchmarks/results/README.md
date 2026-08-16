@@ -11,5 +11,7 @@
 
 当前结果：
 
+- [七传感器机器可读索引](index.json)；人类可读汇总见 [benchmark summary](../../docs/benchmark-summary.md)。
+
 - [Phase 3B classical trackers synthetic/replay](phase3b-classical-trackers-2026-08-16.md)（[machine-readable JSON](phase3b-classical-trackers-2026-08-16.json)）。
 - [Phase 3C YOLO deterministic adapter replay](phase3c-yolo-adapter-2026-08-16.md)（[machine-readable JSON](phase3c-yolo-adapter-2026-08-16.json)）。
