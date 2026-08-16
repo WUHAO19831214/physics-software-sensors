@@ -1,3 +1,10 @@
-# Camera Capture 演示资产
+# Camera Capture assets
 
-**demo asset pending**。来源固定 commit 没有已提交截图；后续只接受真实设备运行截图及完整来源/隐私记录。
+所有资产由 [`examples/python-camera-capture/run.py`](../../../examples/python-camera-capture/run.py) 的实际 `CameraSource` replay 生成：
+
+- `captured-frame.png`：明确标注的 synthetic camera frame；
+- `frame-packet-metadata.png`：实际输出元数据可视化；
+- `backend-information.png`：requested / nominal / measured 值边界；
+- `replay-frame-packets.json`：三帧完整 FramePacket metadata。
+
+它们不是来源项目截图、真实摄像头证据或物理测量精度证据。

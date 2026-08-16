@@ -1,0 +1,177 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "frame_id": "fb85e376-3577-4306-81e3-8b46d1a0bc22",
+    "run_id": "camera-capture-standalone-demo",
+    "source_sensor_id": "camera.capture",
+    "sequence": 0,
+    "observed_at": "2026-08-16T13:00:00.000Z",
+    "monotonic_ns": 4000000000,
+    "source_timestamp": 0.0,
+    "media": {
+      "kind": "camera-frame",
+      "media_type": "image/png",
+      "width": 640,
+      "height": 360,
+      "color_space": "BGR",
+      "orientation": "0",
+      "mirrored": false
+    },
+    "artifact": {
+      "uri": "recorded://camera-demo/0.png",
+      "media_type": "image/png",
+      "sha256": "f82ad8efab6ad15ca5899b681690110f55751d043cef537e39a3d3a55531a83e",
+      "bytes": 691200
+    },
+    "quality": {
+      "dropped_since_last": 0,
+      "flags": [
+        "synthetic-fixture",
+        "recorded-replay"
+      ]
+    },
+    "payload": {
+      "capture": {
+        "backend": "image-sequence",
+        "instance_id": "camera-source-01",
+        "device": {
+          "backend": "image-sequence",
+          "device": "synthetic-camera-sequence",
+          "actual_width": 640,
+          "actual_height": 360,
+          "nominal_fps": 20,
+          "deterministic_replay": true
+        },
+        "requested": {
+          "width": 1280,
+          "height": 720,
+          "fps": 30.0
+        },
+        "actual": {
+          "width": 640,
+          "height": 360,
+          "nominal_fps": 20,
+          "measured_fps": null
+        },
+        "frame": {}
+      }
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "frame_id": "1aa20b16-a476-4688-9abd-3945e63d72cf",
+    "run_id": "camera-capture-standalone-demo",
+    "source_sensor_id": "camera.capture",
+    "sequence": 1,
+    "observed_at": "2026-08-16T13:00:00.050Z",
+    "monotonic_ns": 4050000000,
+    "source_timestamp": 0.05,
+    "media": {
+      "kind": "camera-frame",
+      "media_type": "image/png",
+      "width": 640,
+      "height": 360,
+      "color_space": "BGR",
+      "orientation": "0",
+      "mirrored": false
+    },
+    "artifact": {
+      "uri": "recorded://camera-demo/1.png",
+      "media_type": "image/png",
+      "sha256": "af5b54bd716e4d7e3d6bb4fe0feaadc4a6edaeb4715b028bd9afd62289a147de",
+      "bytes": 691200
+    },
+    "quality": {
+      "dropped_since_last": 0,
+      "flags": [
+        "synthetic-fixture",
+        "recorded-replay"
+      ]
+    },
+    "payload": {
+      "capture": {
+        "backend": "image-sequence",
+        "instance_id": "camera-source-01",
+        "device": {
+          "backend": "image-sequence",
+          "device": "synthetic-camera-sequence",
+          "actual_width": 640,
+          "actual_height": 360,
+          "nominal_fps": 20,
+          "deterministic_replay": true
+        },
+        "requested": {
+          "width": 1280,
+          "height": 720,
+          "fps": 30.0
+        },
+        "actual": {
+          "width": 640,
+          "height": 360,
+          "nominal_fps": 20,
+          "measured_fps": 20.0
+        },
+        "frame": {}
+      }
+    }
+  },
+  {
+    "schema_version": "1.0.0",
+    "frame_id": "7e479889-d0a8-452c-8d75-2fd755672724",
+    "run_id": "camera-capture-standalone-demo",
+    "source_sensor_id": "camera.capture",
+    "sequence": 2,
+    "observed_at": "2026-08-16T13:00:00.100Z",
+    "monotonic_ns": 4100000000,
+    "source_timestamp": 0.1,
+    "media": {
+      "kind": "camera-frame",
+      "media_type": "image/png",
+      "width": 640,
+      "height": 360,
+      "color_space": "BGR",
+      "orientation": "0",
+      "mirrored": false
+    },
+    "artifact": {
+      "uri": "recorded://camera-demo/2.png",
+      "media_type": "image/png",
+      "sha256": "2838a8ae34ac5f71d4554e3976daca72afd3ad05dc4577565ef298c178ac53d5",
+      "bytes": 691200
+    },
+    "quality": {
+      "dropped_since_last": 1,
+      "flags": [
+        "synthetic-fixture",
+        "recorded-replay",
+        "frame-dropped"
+      ]
+    },
+    "payload": {
+      "capture": {
+        "backend": "image-sequence",
+        "instance_id": "camera-source-01",
+        "device": {
+          "backend": "image-sequence",
+          "device": "synthetic-camera-sequence",
+          "actual_width": 640,
+          "actual_height": 360,
+          "nominal_fps": 20,
+          "deterministic_replay": true
+        },
+        "requested": {
+          "width": 1280,
+          "height": 720,
+          "fps": 30.0
+        },
+        "actual": {
+          "width": 640,
+          "height": 360,
+          "nominal_fps": 20,
+          "measured_fps": 20.0
+        },
+        "frame": {}
+      }
+    }
+  }
+]

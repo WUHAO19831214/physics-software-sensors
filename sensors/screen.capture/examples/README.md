@@ -1,3 +1,6 @@
-# Screen Capture 示例
+# Screen Capture examples
 
-Phase 3 pending。目标是只展示授权、少量 FramePacket 和停止行为的小页面。
+- [Recorded replay + minimal browser permission page](../../../examples/web-screen-capture/README.md)
+- [ScreenCaptureSource → NumberOCRSensor](../../../examples/web-screen-to-ocr/README.md)
+
+自动 replay 与人工 browser smoke 是不同证据等级。

@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前完成 **Phase 2D：首批试点完成与可视化演示**。现有来源仓库仍是历史实现与实际使用场景的事实来源；新库通过可追溯 adapter 渐进抽取，不要求来源项目立即接入，也不替换其 UI 或实验流程。
+本仓库当前进入 **Phase 3A：统一 FramePacket 来源层**。Phase 2 的颜色追踪与数字 OCR 保持不变；现在新增独立 Camera/Screen source，使 processor 不再关心像素来自摄像头还是授权屏幕。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -12,8 +12,8 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 
 | Sensor | 一句话说明 | 状态 | Docs | Example | Benchmark |
 | --- | --- | --- | --- | --- | --- |
-| Camera Capture | 产生带时间和媒体元数据的摄像头帧 | contract-only | [Page](sensors/camera.capture/README.md) | [pending](sensors/camera.capture/examples/README.md) | [plan](sensors/camera.capture/benchmarks/README.md) |
-| Screen Capture | 经用户授权采集屏幕/窗口像素帧 | contract-only | [Page](sensors/screen.capture/README.md) | [pending](sensors/screen.capture/examples/README.md) | [plan](sensors/screen.capture/benchmarks/README.md) |
+| Camera Capture | 产生带时间、后端与丢帧元数据的摄像头帧 | experimental | [Page](sensors/camera.capture/README.md) | [Python](examples/python-camera-capture/README.md) | [replay](sensors/camera.capture/benchmarks/README.md) |
+| Screen Capture | 经用户授权采集屏幕/窗口像素帧 | experimental | [Page](sensors/screen.capture/README.md) | [Web/replay](examples/web-screen-capture/README.md) | [replay](sensors/screen.capture/benchmarks/README.md) |
 | Number OCR | 从屏幕 ROI 保留 OCR 原文并解析数字 | experimental | [Page](sensors/ocr.number/README.md) | [pixel OCR](examples/web-number-ocr/README.md) | [status](sensors/ocr.number/benchmarks/README.md) |
 | Color Marker Tracker | 用 HSV/轮廓连续追踪颜色标记 | experimental | [Page](sensors/tracker.color-marker/README.md) | [Python](examples/python-color-marker/README.md) | [golden](sensors/tracker.color-marker/benchmarks/README.md) |
 | Spot Centroid Tracker | 输出图像中光斑的颜色加权重心 | contract-only | [Page](sensors/tracker.spot-centroid/README.md) | [pending](sensors/tracker.spot-centroid/examples/README.md) | [plan](sensors/tracker.spot-centroid/benchmarks/README.md) |
@@ -30,6 +30,13 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | BGR frame → HSV/contour → position/lost SensorEvent | RGBA screen frame → ROI/preprocess → Tesseract.js → numeric SensorEvent |
 
 两张图均由本仓库 standalone example 实际运行生成，输入明确为 synthetic，不是来源项目截图、真实设备数据或实验精度证据。
+
+| Camera source | Screen source |
+| --- | --- |
+| [![Synthetic camera source output](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.md) | [![Synthetic recorded screen source output](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.md) |
+| Image sequence/OpenCV backend → RuntimeFrame | user-authorized browser/recorded backend → RuntimeFramePacket |
+
+两项 capture demo 是 deterministic replay 证据；真实相机与浏览器人工 smoke/兼容矩阵尚未完成。
 
 ## 核心原则
 
@@ -74,12 +81,12 @@ physics-software-sensors/
 
 ## 本地校验
 
-安装实验性 Python 颜色追踪与测试依赖：
+安装实验性 Python camera、颜色追踪与测试依赖：
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e 'packages/python[color-marker,dev]'
+python -m pip install -e 'packages/python[color-marker,camera-opencv,dev]'
 ```
 
 运行仓库校验、Python 测试和 TypeScript OCR 回放测试：
@@ -97,7 +104,7 @@ npm --prefix packages/typescript test
 - 不承诺硬实时、硬件同步或计量精度；
 - 不提交摄像头原始视频、屏幕录制、个人图像、模型权重或未脱敏数据；
 - 不把屏幕 OCR 表述成对实验设备 SDK 或内部数据的直接读取；
-- 不把 `0.2.0` 实验性 adapter 描述为稳定、计量验证或真实设备兼容。
+- 不把 `0.3.0` 实验性 source/adapter 描述为稳定、计量验证或真实设备兼容。
 
 ## 许可
 

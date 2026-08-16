@@ -4,8 +4,8 @@
 
 | Sensor | 中文名称 | 类型 | 主要来源 | 状态 | Demo | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [`camera.capture`](../sensors/camera.capture/README.md) | 摄像头采集 | source | 声音—视觉稳定版、光斑追踪系统 | contract-only | pending | planned | planned |
-| [`screen.capture`](../sensors/screen.capture/README.md) | 屏幕/窗口采集 | source | 多源实验桥、安培力教师端 | contract-only | pending | planned | planned |
+| [`camera.capture`](../sensors/camera.capture/README.md) | 摄像头采集 | source | 声音—视觉稳定版等五仓 | experimental | [synthetic replay](../sensors/camera.capture/assets/captured-frame.png) | CameraSource + OpenCV/replay | browser contract planned |
+| [`screen.capture`](../sensors/screen.capture/README.md) | 屏幕/窗口采集 | source | 多源实验桥、安培力教师端 | experimental | [synthetic replay](../sensors/screen.capture/assets/captured-screen-frame.png) | planned | browser + replay source |
 | [`ocr.number`](../sensors/ocr.number/README.md) | 数字 OCR | processor | 多源实验桥、安培力教师端 | experimental | [synthetic pixel demo](../sensors/ocr.number/assets/overview.png) | planned | Tesseract/replay adapter |
 | [`tracker.color-marker`](../sensors/tracker.color-marker/README.md) | 颜色标记追踪 | processor | 声音—视觉稳定版、多源实验桥 | experimental | [synthetic standalone demo](../sensors/tracker.color-marker/assets/overview.png) | adapter | planned |
 | [`tracker.spot-centroid`](../sensors/tracker.spot-centroid/README.md) | 光斑重心识别 | processor | 光斑追踪系统、受迫振动系统 | contract-only | pending | planned | planned |

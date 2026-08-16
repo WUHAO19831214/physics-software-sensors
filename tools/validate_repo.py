@@ -22,6 +22,8 @@ EXPECTED_SENSOR_IDS = {
     "tracker.spot-centroid",
 }
 EXPECTED_IMPLEMENTATION_STATUS = {
+    "camera.capture": ("incubating", "adapter-present", "0.3.0"),
+    "screen.capture": ("incubating", "adapter-present", "0.3.0"),
     "ocr.number": ("incubating", "adapter-present", "0.2.0"),
     "tracker.color-marker": ("incubating", "adapter-present", "0.2.0"),
 }
@@ -34,6 +36,8 @@ SENSOR_PAGE_FILES = (
     "benchmarks/README.md",
 )
 PILOT_DEMO_ASSETS = {
+    "camera.capture": ("captured-frame.png", "frame-packet-metadata.png", "backend-information.png"),
+    "screen.capture": ("captured-screen-frame.png", "frame-packet-metadata.png", "permission-boundary.png"),
     "tracker.color-marker": ("overview.png", "processing.png", "lost-reacquire.png"),
     "ocr.number": ("overview.png", "processing.png", "demo-result.json"),
 }

@@ -33,6 +33,8 @@ created → configured → running → stopping → stopped
 
 获取资源并进入 `running`。浏览器屏幕捕获必须由用户动作触发权限；不得声称可静默读取桌面。模型加载失败时应返回明确错误或声明过的降级后端。
 
+Phase 3A 的 `ScreenCaptureSource.start()` 就是浏览器权限边界；构造、`describe()` 与 `configure()` 不触发 chooser。Camera/Screen source 只产生 FramePacket，不能内嵌 OCR、检测、滤波或物理单位解释。
+
 ### `read` / `process`
 
 - SourceSensor 使用 `read()` 主动产生事件；

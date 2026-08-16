@@ -8,6 +8,8 @@ import { PNG } from 'pngjs';
 
 import {
   NumberOCRSensor,
+  RecordedScreenBackend,
+  ScreenCaptureSource,
   TesseractJsRecognizer,
   type RgbaImage,
   type RuntimeFramePacket,
@@ -92,4 +94,33 @@ test('Tesseract.js encoder failure becomes an explicit OCR failure event', async
   assert.equal(event.status, 'error');
   assert.deepEqual(event.measurements, []);
   assert.equal((event.error as Record<string, unknown>).code, 'OCR_RECOGNITION_FAILED');
+});
+
+test('ScreenCaptureSource pixels compose with real Tesseract.js OCR', async () => {
+  const image = pixels('negative.png');
+  const source = new ScreenCaptureSource(
+    new RecordedScreenBackend([{
+      pixels: image,
+      observedAt: '2026-08-16T11:30:00.000Z',
+      monotonicNs: 3_500_000_000,
+      artifactUri: 'recorded://screen-to-real-ocr/negative.png',
+    }]),
+  );
+  await source.start({ runId: 'screen-to-real-ocr' });
+  const captured = await source.readOne();
+  assert.ok(captured);
+  const recognizer = new TesseractJsRecognizer({
+    psmMode: 'SINGLE_WORD',
+    whitelist: '0123456789.+-',
+    workerOptions: { cachePath: path.join(os.tmpdir(), 'physics-software-sensors-tesseract-cache') },
+  });
+  const ocr = new NumberOCRSensor(recognizer);
+  ocr.configure({ roiId: 'display-value', roi: MANIFEST.roi, unit: '1' });
+  await ocr.start({ runId: 'screen-to-real-ocr' });
+  const event = await ocr.processFrame(captured);
+  await ocr.stop();
+  await source.stop();
+  assert.equal(event.status, 'ok');
+  assert.equal((event.measurements as Array<Record<string, unknown>>)[0]?.value, -2.33);
+  assert.deepEqual(event.parent_event_ids, [captured.frameId]);
 });

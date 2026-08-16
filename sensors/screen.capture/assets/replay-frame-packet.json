@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "frame_id": "83000000-0000-4000-8000-000000000001",
+  "run_id": "screen-capture-standalone-demo",
+  "source_sensor_id": "screen.capture",
+  "sequence": 0,
+  "observed_at": "2026-08-16T13:30:00.000Z",
+  "monotonic_ns": 5000000000,
+  "source_timestamp": 12.5,
+  "media": {
+    "kind": "screen-frame",
+    "media_type": "application/x-raw-rgba",
+    "width": 800,
+    "height": 300,
+    "color_space": "RGBA",
+    "orientation": "0",
+    "mirrored": false
+  },
+  "artifact": {
+    "uri": "recorded://screen-capture-demo/recorded-screen.png",
+    "media_type": "application/x-raw-rgba",
+    "sha256": "f7c8fb6119bce457042a4617b8a175c0fc488ecea0729e89a0c810752ef65985",
+    "bytes": 960000
+  },
+  "quality": {
+    "dropped_since_last": 0,
+    "flags": [
+      "synthetic-fixture",
+      "recorded-replay"
+    ]
+  },
+  "payload": {
+    "capture": {
+      "backend": "recorded-screen",
+      "instance_id": "screen-demo-01",
+      "user_authorized": false,
+      "requested": {
+        "sampling_interval_ms": 500
+      },
+      "actual": {
+        "measured_interval_ms": null,
+        "measured_rate_hz": null,
+        "width": 800,
+        "height": 300
+      },
+      "backend_info": {
+        "backend": "recorded-screen",
+        "source_name": "recorded-screen-sequence",
+        "user_authorized": false,
+        "deterministic_replay": true,
+        "actual_width": 800,
+        "actual_height": 300,
+        "nominal_fps": null
+      },
+      "frame": {
+        "source_kind": "synthetic-recorded-screen"
+      }
+    }
+  }
+}

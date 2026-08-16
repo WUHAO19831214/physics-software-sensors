@@ -20,7 +20,7 @@
 
 ## C. 本仓库中新写的 adapter
 
-- `physics_sensors.core`、`ColorMarkerSensor`、TypeScript pixel runtime、`NumberOCRSensor` 的统一事件适配层是在本仓库中新写；
+- `physics_sensors.core`、`CameraSource`、`ColorMarkerSensor`、TypeScript pixel runtime、`ScreenCaptureSource`、`NumberOCRSensor` 的统一适配层是在本仓库中新写；
 - 新写部分随本仓库 MIT License 分发；
 - 文件头、Sensor Page 和 SOURCE.md 仍保留历史算法来源，以免“新写 adapter”被误解为没有上游影响。
 
@@ -28,6 +28,7 @@
 
 - Color Marker 的 HSV/morphology/contour/smoothing 行为锚定 `tennis_ball_tracker.py`；
 - OCR parser、ROI rounding、nearest-neighbor scaling、阈值和 Tesseract worker 参数锚定两个 OCR 来源仓库；
+- Camera/Screen source 的设备/权限/视频/停止边界锚定五个来源仓库；capture 不复制 UI、检测或 OCR 业务；
 - 这些实现不是无来源的全新算法。即使代码为重新组织或重写，也必须继续保留 commit/file/function 追溯；
 - 在来源许可证澄清前，`license_review` 保持 `pending`，不得把传感器提升为 stable 或声称来源代码已被普遍授权再分发。
 
@@ -35,6 +36,7 @@
 
 - Color Marker PNG 由 `examples/python-color-marker/run.py` 生成，并由真实 `ColorMarkerSensor` 输出驱动标注；
 - OCR PNG 输入由 `examples/web-number-ocr/generate_samples.py` 生成，demo 图由真实 Tesseract.js 结果和 pixel stages 组合；
+- Camera 与 Screen PNG 由 Phase 3A standalone replay 生成，分别来自实际 `CameraSource` / `ScreenCaptureSource` output；
 - 它们都是 synthetic test fixtures，不是来源项目截图、真实设备画面或实验精度证据；
 - 图片不包含个人信息、学校标识、第三方 UI 或模型权重；
 - 生成脚本和审定后的资产随本仓库 MIT License 分发。

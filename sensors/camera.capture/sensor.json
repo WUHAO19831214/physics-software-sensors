@@ -4,17 +4,17 @@
   "name_zh": "摄像头采集传感器",
   "name_en": "Camera Capture Sensor",
   "category": "source",
-  "maturity": "planned",
-  "implementation_status": "contract-only",
-  "version": "0.1.0",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.3.0",
   "input_kinds": [],
   "output_kinds": ["frame-packet.camera-frame"],
-  "capabilities": ["browser-get-user-media", "opencv-local-camera", "frame-timestamps", "device-status"],
+  "capabilities": ["backend-neutral-source", "opencv-local-camera", "image-sequence-replay", "frame-timestamps", "requested-vs-measured-fps", "device-status"],
   "source_references": [
     {
       "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
       "commit": "85740d686c67452a057540edb564d713e01ccc51",
-      "paths": ["src/browser_capture.py", "src/camera_devices.py", "src/local_capture.py"],
+      "paths": ["src/browser_capture.py", "src/camera_devices.py", "src/local_capture.py", "src/camera_processor.py"],
       "notes": "Browser WebRTC and local OpenCV capture paths; source repository includes automated tests around device helpers and capture behavior."
     },
     {
@@ -22,10 +22,28 @@
       "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
       "paths": ["app.js"],
       "notes": "Browser getUserMedia capture used by the spot-tracking prototype."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715",
+      "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619",
+      "paths": ["app.js", "README.md"],
+      "notes": "Browser getUserMedia, device selection, canvas extraction, and stop behavior used by the forced-vibration prototype."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/physics-experiment-bridge-mvp",
+      "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
+      "paths": ["src/camera/CameraCapturePanel.tsx", "src/utils/cameraUtils.ts"],
+      "notes": "Browser camera panel confirms the same permission, video, canvas, and sampling boundary in a TypeScript application."
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+      "commit": "cb073e89d6d87129287030f1df08bd540504eb39",
+      "paths": ["src/camera/CameraCapturePanel.tsx", "src/utils/cameraUtils.ts"],
+      "notes": "Teacher application camera path confirms that capture must remain separate from vision analyzers and classroom state."
     }
   ],
-  "evidence_level": "source-tested",
+  "evidence_level": "replay-benchmarked",
   "license_review": "pending",
-  "known_boundaries": ["Requested FPS and resolution may differ from actual values.", "Browser capture requires user permission.", "Hardware timing is not proven by HTTP or unit tests."],
+  "known_boundaries": ["Requested FPS and resolution are recorded separately from backend nominal and measured values.", "The current package implements Python OpenCV and deterministic image-sequence backends; browser camera remains a cross-language backend contract.", "No automated test or synthetic asset proves real camera compatibility or timing accuracy."],
   "owners": ["WUHAO19831214"]
 }

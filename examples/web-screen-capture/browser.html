@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>ScreenCaptureSource smoke</title></head>
+  <body>
+    <h1>ScreenCaptureSource 浏览器人工 smoke</h1>
+    <p>只有点击按钮后才请求屏幕/窗口/标签页权限。此页面不执行 OCR。</p>
+    <button id="start">选择屏幕/窗口/标签页</button>
+    <button id="stop" disabled>停止</button>
+    <pre id="status">尚未请求权限</pre>
+    <canvas id="preview"></canvas>
+    <script type="module" src="./browser.mjs"></script>
+  </body>
+</html>
