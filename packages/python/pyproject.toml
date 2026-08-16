@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "physics-software-sensors"
-version = "0.4.0"
+version = "0.5.0"
 description = "Reusable software sensors for physics experiments"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -24,6 +24,12 @@ camera-opencv = [
 classical-trackers = [
   "numpy>=1.26,<3",
   "opencv-contrib-python-headless>=4.9,<5",
+]
+yolo-runtime = [
+  "numpy>=1.26,<3",
+  "opencv-contrib-python-headless>=4.9,<5",
+  "ultralytics>=8.2,<9",
+  "lap>=0.5.12,<1",
 ]
 dev = [
   "jsonschema>=4.23,<5",

@@ -1,0 +1,775 @@
+{
+  "evidence": "Recorded detector replay / Synthetic fixture",
+  "backend_argument": "recorded",
+  "events": [
+    {
+      "schema_version": "1.0.0",
+      "event_id": "b644561d-3be5-4c7b-ba96-66aeab75fdfe",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 0,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.000Z",
+        "emitted_at": "2026-08-16T13:19:40.887Z",
+        "source_timestamp": 0.0,
+        "monotonic_ns": 12000000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "lost",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.013459008187055588,
+        "flags": [
+          "no-target"
+        ],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 0.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 0.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "3648cf08-a094-4a28-ad57-3b30e2222a62:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "3648cf08-a094-4a28-ad57-3b30e2222a62"
+      ],
+      "payload": {
+        "detections": [],
+        "detection_count": 0,
+        "tracking_enabled": true,
+        "tracking_mode": "detection-only",
+        "requested_backend": "ultralytics-yolo-detect",
+        "actual_backend": "ultralytics-yolo-detect",
+        "attempted_backends": [
+          "ultralytics-yolo-detect"
+        ],
+        "fallback_used": false,
+        "fallback_reason": "",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "e16cdd78-4f07-48f2-8569-100904af2c0b",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 1,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.050Z",
+        "emitted_at": "2026-08-16T13:19:40.887Z",
+        "source_timestamp": 0.05,
+        "monotonic_ns": 12050000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.016250007320195436,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 1.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 1.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "5442b34e-da4d-48b6-b568-fb713850098d:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "5442b34e-da4d-48b6-b568-fb713850098d"
+      ],
+      "payload": {
+        "detections": [
+          {
+            "track_id": 7,
+            "tracking_id_available": true,
+            "class_id": 0,
+            "class_name": "person",
+            "bbox": {
+              "x": 10.0,
+              "y": 20.0,
+              "width": 100.0,
+              "height": 200.0
+            },
+            "center": {
+              "x": 60.0,
+              "y": 120.0
+            },
+            "detector_confidence": 0.91
+          }
+        ],
+        "detection_count": 1,
+        "tracking_enabled": true,
+        "tracking_mode": "bytetrack",
+        "requested_backend": "ultralytics-yolo-bytetrack",
+        "actual_backend": "ultralytics-yolo-bytetrack",
+        "attempted_backends": [
+          "ultralytics-yolo-bytetrack"
+        ],
+        "fallback_used": false,
+        "fallback_reason": "",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "db59857f-4e24-4661-b635-bc01a45ce9a1",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 2,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.100Z",
+        "emitted_at": "2026-08-16T13:19:40.888Z",
+        "source_timestamp": 0.1,
+        "monotonic_ns": 12100000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.01041698851622641,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 1.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 1.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "6bc101a3-54fb-4372-81bd-f9033e92d24a:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "6bc101a3-54fb-4372-81bd-f9033e92d24a"
+      ],
+      "payload": {
+        "detections": [
+          {
+            "track_id": 7,
+            "tracking_id_available": true,
+            "class_id": 0,
+            "class_name": "person",
+            "bbox": {
+              "x": 20.0,
+              "y": 20.0,
+              "width": 100.0,
+              "height": 200.0
+            },
+            "center": {
+              "x": 70.0,
+              "y": 120.0
+            },
+            "detector_confidence": 0.9
+          }
+        ],
+        "detection_count": 1,
+        "tracking_enabled": true,
+        "tracking_mode": "bytetrack",
+        "requested_backend": "ultralytics-yolo-bytetrack",
+        "actual_backend": "ultralytics-yolo-bytetrack",
+        "attempted_backends": [
+          "ultralytics-yolo-bytetrack"
+        ],
+        "fallback_used": false,
+        "fallback_reason": "",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "0531fdc1-ca62-4e7b-82a8-dc5b9207c9d4",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 3,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.150Z",
+        "emitted_at": "2026-08-16T13:19:40.888Z",
+        "source_timestamp": 0.15,
+        "monotonic_ns": 12150000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.011333002476021647,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 2.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 2.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "0dac2b14-a5ea-4148-afdb-a9d0433d52d2:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "0dac2b14-a5ea-4148-afdb-a9d0433d52d2"
+      ],
+      "payload": {
+        "detections": [
+          {
+            "track_id": 7,
+            "tracking_id_available": true,
+            "class_id": 0,
+            "class_name": "person",
+            "bbox": {
+              "x": 30.0,
+              "y": 20.0,
+              "width": 100.0,
+              "height": 200.0
+            },
+            "center": {
+              "x": 80.0,
+              "y": 120.0
+            },
+            "detector_confidence": 0.89
+          },
+          {
+            "track_id": 12,
+            "tracking_id_available": true,
+            "class_id": 1,
+            "class_name": "sports ball",
+            "bbox": {
+              "x": 220.0,
+              "y": 100.0,
+              "width": 50.0,
+              "height": 50.0
+            },
+            "center": {
+              "x": 245.0,
+              "y": 125.0
+            },
+            "detector_confidence": 0.82
+          }
+        ],
+        "detection_count": 2,
+        "tracking_enabled": true,
+        "tracking_mode": "bytetrack",
+        "requested_backend": "ultralytics-yolo-bytetrack",
+        "actual_backend": "ultralytics-yolo-bytetrack",
+        "attempted_backends": [
+          "ultralytics-yolo-bytetrack"
+        ],
+        "fallback_used": false,
+        "fallback_reason": "",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "9e35278f-0a07-4f5c-b85b-fee1fc035560",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 4,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.200Z",
+        "emitted_at": "2026-08-16T13:19:40.889Z",
+        "source_timestamp": 0.2,
+        "monotonic_ns": 12200000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "lost",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.008540984708815813,
+        "flags": [
+          "no-target"
+        ],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 0.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 0.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "8cbe4a72-05a1-4622-98a8-27a2eedd9b9d:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "8cbe4a72-05a1-4622-98a8-27a2eedd9b9d"
+      ],
+      "payload": {
+        "detections": [],
+        "detection_count": 0,
+        "tracking_enabled": true,
+        "tracking_mode": "bytetrack",
+        "requested_backend": "ultralytics-yolo-bytetrack",
+        "actual_backend": "ultralytics-yolo-bytetrack",
+        "attempted_backends": [
+          "ultralytics-yolo-bytetrack"
+        ],
+        "fallback_used": false,
+        "fallback_reason": "",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "96f78e1f-7db6-44ba-a89d-0e6b47d94083",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 5,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.250Z",
+        "emitted_at": "2026-08-16T13:19:40.889Z",
+        "source_timestamp": 0.25,
+        "monotonic_ns": 12250000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "ok",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.007125025149434805,
+        "flags": [],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 1.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 1.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "9ce18968-f685-4fa3-8d20-4633f35ab778:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "9ce18968-f685-4fa3-8d20-4633f35ab778"
+      ],
+      "payload": {
+        "detections": [
+          {
+            "track_id": 7,
+            "tracking_id_available": true,
+            "class_id": 0,
+            "class_name": "person",
+            "bbox": {
+              "x": 36.0,
+              "y": 20.0,
+              "width": 100.0,
+              "height": 200.0
+            },
+            "center": {
+              "x": 86.0,
+              "y": 120.0
+            },
+            "detector_confidence": 0.88
+          }
+        ],
+        "detection_count": 1,
+        "tracking_enabled": true,
+        "tracking_mode": "bytetrack",
+        "requested_backend": "ultralytics-yolo-bytetrack",
+        "actual_backend": "ultralytics-yolo-bytetrack",
+        "attempted_backends": [
+          "ultralytics-yolo-bytetrack"
+        ],
+        "fallback_used": false,
+        "fallback_reason": "",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "event_id": "1717fc88-e439-4f40-b43c-c5eae76e66f4",
+      "run_id": "camera-to-yolo-demo",
+      "sensor": {
+        "id": "tracker.yolo",
+        "instance_id": "yolo-tracker-01",
+        "version": "0.5.0",
+        "category": "processor"
+      },
+      "sequence": 6,
+      "time": {
+        "observed_at": "2026-08-16T20:00:00.300Z",
+        "emitted_at": "2026-08-16T13:19:40.889Z",
+        "source_timestamp": 0.3,
+        "monotonic_ns": 12300000000,
+        "clock": {
+          "domain": "camera-source",
+          "sync_status": "unknown",
+          "uncertainty_ms": null
+        }
+      },
+      "status": "lost",
+      "quality": {
+        "confidence": null,
+        "latency_ms": 0.006332993507385254,
+        "flags": [
+          "no-target",
+          "detector-backend-fallback"
+        ],
+        "dropped_since_last": 0
+      },
+      "measurements": [
+        {
+          "name": "detection_count",
+          "value": 0.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "raw",
+          "uncertainty": null
+        },
+        {
+          "name": "tracked_count",
+          "value": 0.0,
+          "value_type": "number",
+          "unit": "1",
+          "role": "derived",
+          "uncertainty": null
+        }
+      ],
+      "coordinate_frame": {
+        "id": "b1c9fa65-b592-4900-8c95-bb375b307da4:image-pixel",
+        "space": "image-pixel",
+        "origin": "top-left",
+        "x_direction": "right",
+        "y_direction": "down",
+        "unit": "px",
+        "width": 360,
+        "height": 260,
+        "calibration_id": null
+      },
+      "parent_event_ids": [
+        "b1c9fa65-b592-4900-8c95-bb375b307da4"
+      ],
+      "payload": {
+        "detections": [],
+        "detection_count": 0,
+        "tracking_enabled": true,
+        "tracking_mode": "centroid",
+        "requested_backend": "ultralytics-yolo-bytetrack",
+        "actual_backend": "opencv-hog",
+        "attempted_backends": [
+          "ultralytics-yolo-bytetrack",
+          "opencv-hog"
+        ],
+        "fallback_used": true,
+        "fallback_reason": "recorded source-equivalent missing local weight",
+        "warning": "",
+        "class_filter": {
+          "mode": "all",
+          "values": []
+        },
+        "confidence_semantics": "per-detection detector score; not tracking confidence, uncertainty, or physical accuracy",
+        "runtime_version": "fixture-1.0.0",
+        "model_artifact": {
+          "model_id": "source-recorded-yolo-fixture-v1",
+          "model_family": "recorded-detector-fixture",
+          "uri": "recorded://tests/fixtures/yolo_tracker/source-golden.json",
+          "sha256": "641e0311c66f5c4508e6bc5990f071ec36627236e63efad18858e1a1bdbf0abd",
+          "runtime": "physics_sensors.recorded",
+          "runtime_version": "1.0.0",
+          "class_names": [
+            "person",
+            "sports ball"
+          ],
+          "license_state": "repository-generated-mit"
+        },
+        "source_commit": "85740d686c67452a057540edb564d713e01ccc51"
+      }
+    }
+  ]
+}

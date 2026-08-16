@@ -2,6 +2,15 @@
 
 本项目遵循 SemVer；传感器实现、契约和模型资产分别记录版本。
 
+## 0.5.0 — 2026-08-16
+
+- Phase 3C 新增 Python `YoloTrackerSensor`、`ModelArtifact`、recorded/Yolo/HOG backends 和 multi-target SensorEvent；
+- 保留来源 predict/ByteTrack/HOG/centroid 边界，并显式记录 requested/actual/attempted backend、native ID 和 fallback；
+- 增加来源执行型 golden、zero/single/multiple/lost/reappear/class-filter tests、CameraSource composition 和 deterministic adapter benchmark；
+- 新增 offline standalone example 与明确标注的 recorded replay assets；
+- 完成 runtime/weight/ByteTrack/HOG 许可证审查，不提交权重、不自动下载，真实 inference 明确为未执行；
+- catalog 达到 7/7 experimental adapters；FramePacket `1.0.0` 与 SensorEvent 主 Schema 保持不变。
+
 ## 0.4.0 — 2026-08-16
 
 - Phase 3B 新增 Python `SpotCentroidSensor` 与 `TemplateTrackerSensor`，直接消费 Phase 3A RuntimeFrame；

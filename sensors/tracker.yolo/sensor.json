@@ -1,25 +1,32 @@
 {
   "schema_version": "1.0.0",
   "id": "tracker.yolo",
-  "name_zh": "YOLO 追踪传感器",
-  "name_en": "YOLO Tracking Sensor",
+  "name_zh": "YOLO 检测与追踪传感器",
+  "name_en": "YOLO Detection and Tracking Sensor",
   "category": "processor",
-  "maturity": "planned",
-  "implementation_status": "contract-only",
-  "version": "0.1.0",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.5.0",
   "input_kinds": ["frame-packet.camera-frame", "frame-packet.image-frame"],
   "output_kinds": ["sensor-event.detection", "sensor-event.tracking"],
-  "capabilities": ["yolo-detection", "bytetrack", "class-filter", "track-id", "declared-fallback"],
+  "capabilities": ["multi-target", "model-artifact", "recorded-backend", "yolo-detection", "bytetrack", "class-filter-all-ids-names", "track-id", "opencv-hog-person-fallback", "centroid-association"],
   "source_references": [
     {
       "repository": "https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable",
       "commit": "85740d686c67452a057540edb564d713e01ccc51",
-      "paths": ["src/detector.py", "src/camera_processor.py", "tests/test_detector.py", "tests/test_tracking.py"],
-      "notes": "Local Ultralytics YOLO with ByteTrack and OpenCV HOG fallback, covered by automated tests."
+      "paths": ["src/detector.py", "src/camera_processor.py", "requirements.txt", "config.yaml", "scripts/setup_yolo.sh", "models/README.md", "tests/test_detector.py", "tests/test_tracking.py"],
+      "notes": "File- and commit-pinned source for local Ultralytics predict/ByteTrack calls, centroid association, person-only OpenCV HOG fallback, model setup boundaries and existing tests."
     }
   ],
-  "evidence_level": "source-tested",
+  "evidence_level": "replay-benchmarked",
   "license_review": "pending",
-  "known_boundaries": ["Model weights are external artifacts and are not committed here.", "HOG fallback results are not YOLO results and must be flagged.", "Track IDs may be unavailable depending on backend."],
+  "known_boundaries": [
+    "Real Ultralytics inference was not executed because no maintainer-approved local model artifact was supplied and online download is prohibited.",
+    "No model weight is committed or redistributed.",
+    "Recorded replay is source-compatibility evidence, not model accuracy or real ByteTrack validation.",
+    "HOG is person-only and is not capability-equivalent to YOLO.",
+    "Detector confidence is not tracking confidence, physical uncertainty, or experiment accuracy.",
+    "Image-pixel centers require independent calibration before physical interpretation."
+  ],
   "owners": ["WUHAO19831214"]
 }

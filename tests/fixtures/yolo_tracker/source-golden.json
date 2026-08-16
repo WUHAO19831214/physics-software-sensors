@@ -1,0 +1,623 @@
+{
+  "fixture_version": "1.0.0",
+  "generated_by": "tools/generate_yolo_source_golden.py",
+  "source": {
+    "repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable",
+    "commit": "85740d686c67452a057540edb564d713e01ccc51",
+    "files": [
+      "src/detector.py",
+      "src/camera_processor.py"
+    ],
+    "symbols": [
+      "Detector.detect",
+      "Detector.track",
+      "CentroidTracker.update",
+      "CentroidTracker.reset"
+    ]
+  },
+  "environment": {
+    "python": "3.12.13",
+    "opencv": "4.14.0",
+    "platform": "macOS-26.3.1-arm64-arm-64bit"
+  },
+  "source_detector_cases": [
+    {
+      "label": "zero-target",
+      "detections": []
+    },
+    {
+      "label": "single-target",
+      "detections": [
+        {
+          "x1": 10,
+          "y1": 20,
+          "x2": 110,
+          "y2": 220,
+          "confidence": 0.91,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": null,
+          "tracking_id_available": true,
+          "center": [
+            60.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 10,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        }
+      ]
+    },
+    {
+      "label": "multi-target",
+      "detections": [
+        {
+          "x1": 10,
+          "y1": 20,
+          "x2": 110,
+          "y2": 220,
+          "confidence": 0.91,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": null,
+          "tracking_id_available": true,
+          "center": [
+            60.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 10,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        },
+        {
+          "x1": 220,
+          "y1": 100,
+          "x2": 270,
+          "y2": 150,
+          "confidence": 0.82,
+          "class_id": 1,
+          "class_name": "sports ball",
+          "track_id": null,
+          "tracking_id_available": true,
+          "center": [
+            245.0,
+            125.0
+          ],
+          "bbox": {
+            "x": 220,
+            "y": 100,
+            "width": 50,
+            "height": 50
+          }
+        }
+      ]
+    }
+  ],
+  "source_tracking_cases": [
+    {
+      "label": "single-track",
+      "detections": [
+        {
+          "x1": 10,
+          "y1": 20,
+          "x2": 110,
+          "y2": 220,
+          "confidence": 0.91,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": 7,
+          "tracking_id_available": true,
+          "center": [
+            60.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 10,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        }
+      ],
+      "tracking_warning": ""
+    },
+    {
+      "label": "move",
+      "detections": [
+        {
+          "x1": 20,
+          "y1": 20,
+          "x2": 120,
+          "y2": 220,
+          "confidence": 0.9,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": 7,
+          "tracking_id_available": true,
+          "center": [
+            70.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 20,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        }
+      ],
+      "tracking_warning": ""
+    },
+    {
+      "label": "two-tracks",
+      "detections": [
+        {
+          "x1": 30,
+          "y1": 20,
+          "x2": 130,
+          "y2": 220,
+          "confidence": 0.89,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": 7,
+          "tracking_id_available": true,
+          "center": [
+            80.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 30,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        },
+        {
+          "x1": 220,
+          "y1": 100,
+          "x2": 270,
+          "y2": 150,
+          "confidence": 0.82,
+          "class_id": 1,
+          "class_name": "sports ball",
+          "track_id": 12,
+          "tracking_id_available": true,
+          "center": [
+            245.0,
+            125.0
+          ],
+          "bbox": {
+            "x": 220,
+            "y": 100,
+            "width": 50,
+            "height": 50
+          }
+        }
+      ],
+      "tracking_warning": ""
+    },
+    {
+      "label": "lost",
+      "detections": [],
+      "tracking_warning": ""
+    },
+    {
+      "label": "reappear",
+      "detections": [
+        {
+          "x1": 36,
+          "y1": 20,
+          "x2": 136,
+          "y2": 220,
+          "confidence": 0.88,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": 7,
+          "tracking_id_available": true,
+          "center": [
+            86.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 36,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        }
+      ],
+      "tracking_warning": ""
+    },
+    {
+      "label": "missing-native-id",
+      "detections": [
+        {
+          "x1": 40,
+          "y1": 20,
+          "x2": 140,
+          "y2": 220,
+          "confidence": 0.87,
+          "class_id": 0,
+          "class_name": "person",
+          "track_id": 1,
+          "tracking_id_available": false,
+          "center": [
+            90.0,
+            120.0
+          ],
+          "bbox": {
+            "x": 40,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          }
+        }
+      ],
+      "tracking_warning": "ByteTrack 未返回部分 track_id，已临时使用当前帧检测序号"
+    }
+  ],
+  "source_centroid_cases": [
+    {
+      "label": "single",
+      "tracks": [
+        {
+          "track_id": 1,
+          "x1": 10,
+          "y1": 20,
+          "x2": 110,
+          "y2": 220,
+          "confidence": 0.91,
+          "first_seen": 0.0,
+          "last_seen": 0.0,
+          "hits": 1,
+          "missed": 0,
+          "class_name": "person",
+          "tracking_id_available": true,
+          "center_x": 60.0,
+          "center_y": 120.0,
+          "bbox_width": 100.0,
+          "bbox_height": 200.0,
+          "duration_sec": 0.0
+        }
+      ]
+    },
+    {
+      "label": "move",
+      "tracks": [
+        {
+          "track_id": 1,
+          "x1": 20,
+          "y1": 20,
+          "x2": 120,
+          "y2": 220,
+          "confidence": 0.9,
+          "first_seen": 0.0,
+          "last_seen": 1.0,
+          "hits": 2,
+          "missed": 0,
+          "class_name": "person",
+          "tracking_id_available": true,
+          "center_x": 70.0,
+          "center_y": 120.0,
+          "bbox_width": 100.0,
+          "bbox_height": 200.0,
+          "duration_sec": 1.0
+        }
+      ]
+    },
+    {
+      "label": "double",
+      "tracks": [
+        {
+          "track_id": 1,
+          "x1": 30,
+          "y1": 20,
+          "x2": 130,
+          "y2": 220,
+          "confidence": 0.89,
+          "first_seen": 0.0,
+          "last_seen": 2.0,
+          "hits": 3,
+          "missed": 0,
+          "class_name": "person",
+          "tracking_id_available": true,
+          "center_x": 80.0,
+          "center_y": 120.0,
+          "bbox_width": 100.0,
+          "bbox_height": 200.0,
+          "duration_sec": 2.0
+        },
+        {
+          "track_id": 2,
+          "x1": 220,
+          "y1": 100,
+          "x2": 270,
+          "y2": 150,
+          "confidence": 0.82,
+          "first_seen": 2.0,
+          "last_seen": 2.0,
+          "hits": 1,
+          "missed": 0,
+          "class_name": "sports ball",
+          "tracking_id_available": true,
+          "center_x": 245.0,
+          "center_y": 125.0,
+          "bbox_width": 50.0,
+          "bbox_height": 50.0,
+          "duration_sec": 0.0
+        }
+      ]
+    },
+    {
+      "label": "lost",
+      "tracks": []
+    },
+    {
+      "label": "reappear",
+      "tracks": [
+        {
+          "track_id": 1,
+          "x1": 36,
+          "y1": 20,
+          "x2": 136,
+          "y2": 220,
+          "confidence": 0.88,
+          "first_seen": 0.0,
+          "last_seen": 4.0,
+          "hits": 4,
+          "missed": 0,
+          "class_name": "person",
+          "tracking_id_available": true,
+          "center_x": 86.0,
+          "center_y": 120.0,
+          "bbox_width": 100.0,
+          "bbox_height": 200.0,
+          "duration_sec": 4.0
+        }
+      ]
+    },
+    {
+      "label": "after-reset",
+      "tracks": [
+        {
+          "track_id": 1,
+          "x1": 10,
+          "y1": 20,
+          "x2": 110,
+          "y2": 220,
+          "confidence": 0.91,
+          "first_seen": 10.0,
+          "last_seen": 10.0,
+          "hits": 1,
+          "missed": 0,
+          "class_name": "person",
+          "tracking_id_available": true,
+          "center_x": 60.0,
+          "center_y": 120.0,
+          "bbox_width": 100.0,
+          "bbox_height": 200.0,
+          "duration_sec": 0.0
+        }
+      ]
+    }
+  ],
+  "recorded_frames": [
+    {
+      "label": "zero-target",
+      "requested_backend": "ultralytics-yolo-detect",
+      "actual_backend": "ultralytics-yolo-detect",
+      "attempted_backends": [
+        "ultralytics-yolo-detect"
+      ],
+      "tracking_mode": "detection-only",
+      "fallback_used": false,
+      "detections": []
+    },
+    {
+      "label": "single-track",
+      "requested_backend": "ultralytics-yolo-bytetrack",
+      "actual_backend": "ultralytics-yolo-bytetrack",
+      "attempted_backends": [
+        "ultralytics-yolo-bytetrack"
+      ],
+      "tracking_mode": "bytetrack",
+      "fallback_used": false,
+      "detections": [
+        {
+          "track_id": 7,
+          "tracking_id_available": true,
+          "class_id": 0,
+          "class_name": "person",
+          "bbox": {
+            "x": 10,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          },
+          "detector_confidence": 0.91
+        }
+      ]
+    },
+    {
+      "label": "move",
+      "requested_backend": "ultralytics-yolo-bytetrack",
+      "actual_backend": "ultralytics-yolo-bytetrack",
+      "attempted_backends": [
+        "ultralytics-yolo-bytetrack"
+      ],
+      "tracking_mode": "bytetrack",
+      "fallback_used": false,
+      "detections": [
+        {
+          "track_id": 7,
+          "tracking_id_available": true,
+          "class_id": 0,
+          "class_name": "person",
+          "bbox": {
+            "x": 20,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          },
+          "detector_confidence": 0.9
+        }
+      ]
+    },
+    {
+      "label": "two-tracks",
+      "requested_backend": "ultralytics-yolo-bytetrack",
+      "actual_backend": "ultralytics-yolo-bytetrack",
+      "attempted_backends": [
+        "ultralytics-yolo-bytetrack"
+      ],
+      "tracking_mode": "bytetrack",
+      "fallback_used": false,
+      "detections": [
+        {
+          "track_id": 7,
+          "tracking_id_available": true,
+          "class_id": 0,
+          "class_name": "person",
+          "bbox": {
+            "x": 30,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          },
+          "detector_confidence": 0.89
+        },
+        {
+          "track_id": 12,
+          "tracking_id_available": true,
+          "class_id": 1,
+          "class_name": "sports ball",
+          "bbox": {
+            "x": 220,
+            "y": 100,
+            "width": 50,
+            "height": 50
+          },
+          "detector_confidence": 0.82
+        }
+      ]
+    },
+    {
+      "label": "lost",
+      "requested_backend": "ultralytics-yolo-bytetrack",
+      "actual_backend": "ultralytics-yolo-bytetrack",
+      "attempted_backends": [
+        "ultralytics-yolo-bytetrack"
+      ],
+      "tracking_mode": "bytetrack",
+      "fallback_used": false,
+      "detections": []
+    },
+    {
+      "label": "reappear",
+      "requested_backend": "ultralytics-yolo-bytetrack",
+      "actual_backend": "ultralytics-yolo-bytetrack",
+      "attempted_backends": [
+        "ultralytics-yolo-bytetrack"
+      ],
+      "tracking_mode": "bytetrack",
+      "fallback_used": false,
+      "detections": [
+        {
+          "track_id": 7,
+          "tracking_id_available": true,
+          "class_id": 0,
+          "class_name": "person",
+          "bbox": {
+            "x": 36,
+            "y": 20,
+            "width": 100,
+            "height": 200
+          },
+          "detector_confidence": 0.88
+        }
+      ]
+    },
+    {
+      "label": "hog-fallback",
+      "requested_backend": "ultralytics-yolo-bytetrack",
+      "actual_backend": "opencv-hog",
+      "attempted_backends": [
+        "ultralytics-yolo-bytetrack",
+        "opencv-hog"
+      ],
+      "tracking_mode": "centroid",
+      "fallback_used": true,
+      "fallback_reason": "recorded source-equivalent missing local weight",
+      "detections": []
+    }
+  ],
+  "source_call_arguments": {
+    "predict": [
+      {
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      }
+    ],
+    "track": [
+      {
+        "persist": true,
+        "tracker": "bytetrack.yaml",
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "persist": true,
+        "tracker": "bytetrack.yaml",
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "persist": true,
+        "tracker": "bytetrack.yaml",
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "persist": true,
+        "tracker": "bytetrack.yaml",
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "persist": true,
+        "tracker": "bytetrack.yaml",
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      },
+      {
+        "persist": true,
+        "tracker": "bytetrack.yaml",
+        "classes": null,
+        "conf": 0.25,
+        "verbose": false
+      }
+    ]
+  }
+}

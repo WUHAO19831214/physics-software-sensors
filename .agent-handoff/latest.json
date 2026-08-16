@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "repository": "WUHAO19831214/physics-software-sensors",
+  "phase": "3C",
+  "phase_name": "YOLO Tracker",
+  "status": "IN_PROGRESS",
+  "git": {
+    "base_branch": "main",
+    "working_branch": "agent/phase3c-yolo-tracker",
+    "base_sha": "9d48904b86c4e2ec218faf2fd18968abbfa7f0b6",
+    "head_sha": "9d48904b86c4e2ec218faf2fd18968abbfa7f0b6",
+    "head_relation": "current",
+    "working_tree_clean": false
+  },
+  "pull_request": {
+    "number": null,
+    "url": "",
+    "draft": true,
+    "mergeable": null
+  },
+  "previous_phase": {
+    "pr": 3,
+    "merge_sha": "9d48904b86c4e2ec218faf2fd18968abbfa7f0b6"
+  },
+  "tests": {
+    "repository_validation": {"passed": false, "json_files": 0, "sensor_pages": 7},
+    "python": {"passed": 0, "failed": 0},
+    "typescript": {"passed": 0, "failed": 0},
+    "golden": {"passed": 0, "failed": 0},
+    "composition": {"passed": 0, "failed": 0},
+    "clean_install_python": false,
+    "clean_install_typescript": false
+  },
+  "sensors": {
+    "camera.capture": {"maturity": "experimental", "implementation_version": "0.3.0"},
+    "screen.capture": {"maturity": "experimental", "implementation_version": "0.3.0"},
+    "ocr.number": {"maturity": "experimental", "implementation_version": "0.2.0"},
+    "tracker.color-marker": {"maturity": "experimental", "implementation_version": "0.2.0"},
+    "tracker.spot-centroid": {"maturity": "experimental", "implementation_version": "0.4.0"},
+    "tracker.template": {"maturity": "experimental", "implementation_version": "0.4.0"},
+    "tracker.yolo": {"maturity": "experimental", "implementation_version": "0.5.0"}
+  },
+  "source_repositories": [
+    {"repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable", "commit": "85740d686c67452a057540edb564d713e01ccc51", "state": "clean"},
+    {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "state": "clean"},
+    {"repository": "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715", "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619", "state": "clean"},
+    {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "clean"},
+    {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "clean"}
+  ],
+  "contracts": {"sensor_event": "1.0.0", "frame_packet": "1.0.0", "sensor_implementation": "0.5.0"},
+  "blockers": [],
+  "recommended_next_phase": "After independent review, plan Phase 3D cross-sensor benchmark only; do not start it from this handoff."
+}

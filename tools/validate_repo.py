@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -21,6 +22,13 @@ EXPECTED_SENSOR_IDS = {
     "tracker.template",
     "tracker.spot-centroid",
 }
+EXPECTED_SOURCE_REPOSITORIES = {
+    "WUHAO19831214/audio-visual-soundfield-tracker-stable",
+    "WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+    "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715",
+    "WUHAO19831214/physics-experiment-bridge-mvp",
+    "WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+}
 EXPECTED_IMPLEMENTATION_STATUS = {
     "camera.capture": ("incubating", "adapter-present", "0.3.0"),
     "screen.capture": ("incubating", "adapter-present", "0.3.0"),
@@ -28,6 +36,7 @@ EXPECTED_IMPLEMENTATION_STATUS = {
     "tracker.color-marker": ("incubating", "adapter-present", "0.2.0"),
     "tracker.spot-centroid": ("incubating", "adapter-present", "0.4.0"),
     "tracker.template": ("incubating", "adapter-present", "0.4.0"),
+    "tracker.yolo": ("incubating", "adapter-present", "0.5.0"),
 }
 SENSOR_PAGE_FILES = (
     "README.md",
@@ -44,6 +53,7 @@ PILOT_DEMO_ASSETS = {
     "ocr.number": ("overview.png", "processing.png", "demo-result.json"),
     "tracker.spot-centroid": ("overview.png", "processing.png", "movement.png"),
     "tracker.template": ("overview.png", "initialization.png", "tracking.png", "lost.png"),
+    "tracker.yolo": ("overview.png", "multi-target.png", "tracking.png", "fallback.png", "events.json"),
 }
 
 
@@ -124,8 +134,91 @@ def check_markdown_links() -> list[str]:
     return errors
 
 
+def git(*args: str) -> str:
+    return subprocess.run(
+        ("git", *args), cwd=ROOT, check=True, text=True, capture_output=True
+    ).stdout.strip()
+
+
+def check_handoff() -> list[str]:
+    errors: list[str] = []
+    path = ROOT / ".agent-handoff/latest.json"
+    try:
+        handoff = load_json(path)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        return [f"invalid agent handoff: {exc}"]
+    if not handoff.get("schema_version"):
+        errors.append(".agent-handoff/latest.json: schema_version is required")
+    if handoff.get("repository") != "WUHAO19831214/physics-software-sensors":
+        errors.append(".agent-handoff/latest.json: repository mismatch")
+    if handoff.get("status") not in {"IN_PROGRESS", "BLOCKED", "READY_FOR_REVIEW", "MERGED"}:
+        errors.append(".agent-handoff/latest.json: invalid status")
+    git_value = handoff.get("git", {})
+    if not isinstance(git_value, dict):
+        return errors + [".agent-handoff/latest.json: git must be an object"]
+    actual_head = git("rev-parse", "HEAD")
+    actual_branch = git("branch", "--show-current")
+    if git_value.get("working_branch") != actual_branch:
+        errors.append(f".agent-handoff/latest.json: branch does not match {actual_branch}")
+    relation = git_value.get("head_relation", "current")
+    recorded_head = git_value.get("head_sha")
+    if relation == "current":
+        if recorded_head != actual_head:
+            errors.append(".agent-handoff/latest.json: head_sha does not match current HEAD")
+    elif relation == "parent-of-handoff-commit":
+        parent = git("rev-parse", "HEAD^")
+        changed = set(git("diff", "--name-only", "HEAD^", "HEAD").splitlines())
+        allowed = {".agent-handoff/latest.md", ".agent-handoff/latest.json"}
+        if recorded_head != parent:
+            errors.append(".agent-handoff/latest.json: head_sha does not match handoff commit parent")
+        if not changed or not changed <= allowed:
+            errors.append(".agent-handoff/latest.json: parent relation requires a handoff-only tip commit")
+    else:
+        errors.append(".agent-handoff/latest.json: invalid head_relation")
+    porcelain = git("status", "--porcelain")
+    actual_clean = porcelain == ""
+    if git_value.get("working_tree_clean") is not actual_clean:
+        errors.append(".agent-handoff/latest.json: working_tree_clean does not match git status")
+    sensors = handoff.get("sensors", {})
+    if not isinstance(sensors, dict) or set(sensors) != EXPECTED_SENSOR_IDS:
+        errors.append(".agent-handoff/latest.json: sensors must contain exactly the seven known IDs")
+    pull_request = handoff.get("pull_request", {})
+    if not isinstance(pull_request, dict):
+        errors.append(".agent-handoff/latest.json: pull_request must be an object")
+    else:
+        number = pull_request.get("number")
+        url = pull_request.get("url")
+        if number is not None:
+            expected_url = f"https://github.com/WUHAO19831214/physics-software-sensors/pull/{number}"
+            if url != expected_url:
+                errors.append(".agent-handoff/latest.json: PR URL does not match repository and number")
+        elif url:
+            errors.append(".agent-handoff/latest.json: PR URL must be empty when number is null")
+    tests = handoff.get("tests", {})
+    if not isinstance(tests, dict):
+        errors.append(".agent-handoff/latest.json: tests must be an object")
+    else:
+        def walk_numbers(value: object, location: str) -> None:
+            if isinstance(value, dict):
+                for key, child in value.items():
+                    walk_numbers(child, f"{location}.{key}")
+            elif isinstance(value, (int, float)) and not isinstance(value, bool) and value < 0:
+                errors.append(f".agent-handoff/latest.json: negative test number at {location}")
+        walk_numbers(tests, "tests")
+    source_repositories = handoff.get("source_repositories", [])
+    if not isinstance(source_repositories, list):
+        errors.append(".agent-handoff/latest.json: source_repositories must be an array")
+    else:
+        actual_repositories = {
+            item.get("repository") for item in source_repositories if isinstance(item, dict)
+        }
+        if not EXPECTED_SOURCE_REPOSITORIES <= actual_repositories:
+            errors.append(".agent-handoff/latest.json: five fixed source repositories are required")
+    return errors
+
+
 def main() -> int:
-    errors = check_json() + check_manifests() + check_markdown_links()
+    errors = check_json() + check_manifests() + check_markdown_links() + check_handoff()
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)

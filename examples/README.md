@@ -8,4 +8,5 @@ Example 只证明传感器离开原实验应用后能够独立调用，不重建
 - [`web-screen-capture`](web-screen-capture/README.md)：recorded replay 与最小 `getDisplayMedia` 页面；
 - [`web-screen-to-ocr`](web-screen-to-ocr/README.md)：统一 Screen FramePacket 直接进入真实 Tesseract OCR；
 - [`spot-centroid`](spot-centroid/README.md)：CameraSource → red weighted centroid → image-pixel SensorEvent；
-- [`python-template-tracker`](python-template-tracker/README.md)：CameraSource + initialization ROI → real OpenCV tracker → bbox/lost SensorEvent。
+- [`python-template-tracker`](python-template-tracker/README.md)：CameraSource + initialization ROI → real OpenCV tracker → bbox/lost SensorEvent；
+- [`python-yolo-tracker`](python-yolo-tracker/README.md)：默认 offline recorded multi-target/ID/fallback replay；真实模式只接受显式本地模型。

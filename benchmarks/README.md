@@ -11,4 +11,4 @@ benchmarks/
 
 新增数据集前复制 `templates/DATASET_CARD.md`；新增结果前复制 `templates/BENCHMARK_REPORT.md`，并确保机器摘要满足 `benchmark-result.schema.json`。
 
-当前记录：[`Phase 2 adapter verification`](results/phase2-adapter-verification-2026-08-16.md) · [`Phase 2D demonstration`](results/phase2d-demonstration-2026-08-16.md)。
+当前记录：[`Phase 2 adapter verification`](results/phase2-adapter-verification-2026-08-16.md) · [`Phase 2D demonstration`](results/phase2d-demonstration-2026-08-16.md) · [`Phase 3A capture`](results/phase3a-capture-replay-2026-08-16.md) · [`Phase 3B classical trackers`](results/phase3b-classical-trackers-2026-08-16.md) · [`Phase 3C YOLO adapter`](results/phase3c-yolo-adapter-2026-08-16.md)。

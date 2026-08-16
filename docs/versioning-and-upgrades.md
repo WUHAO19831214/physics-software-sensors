@@ -74,3 +74,4 @@ planned → incubating → candidate → stable → deprecated → retired
 - [screen.capture 0.3.0](upgrades/screen.capture-0.3.0.md)
 - [tracker.spot-centroid 0.4.0](upgrades/tracker.spot-centroid-0.4.0.md)
 - [tracker.template 0.4.0](upgrades/tracker.template-0.4.0.md)
+- [tracker.yolo 0.5.0](upgrades/tracker.yolo-0.5.0.md)

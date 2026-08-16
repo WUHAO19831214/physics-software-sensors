@@ -20,7 +20,7 @@
 
 ## C. 本仓库中新写的 adapter
 
-- `physics_sensors.core`、`CameraSource`、`ColorMarkerSensor`、`SpotCentroidSensor`、`TemplateTrackerSensor`、TypeScript pixel runtime、`ScreenCaptureSource`、`NumberOCRSensor` 的统一适配层是在本仓库中新写；
+- `physics_sensors.core`、`ModelArtifact`、`CameraSource`、`ColorMarkerSensor`、`SpotCentroidSensor`、`TemplateTrackerSensor`、`YoloTrackerSensor`、TypeScript pixel runtime、`ScreenCaptureSource`、`NumberOCRSensor` 的统一适配层是在本仓库中新写；
 - 新写部分随本仓库 MIT License 分发；
 - 文件头、Sensor Page 和 SOURCE.md 仍保留历史算法来源，以免“新写 adapter”被误解为没有上游影响。
 
@@ -31,6 +31,7 @@
 - Camera/Screen source 的设备/权限/视频/停止边界锚定五个来源仓库；capture 不复制 UI、检测或 OCR 业务；
 - Spot Centroid 的 red threshold、brightness weighting、locked threshold 和 centroid 行为锚定光斑/受迫振动两个 `app.js`；物理派生分析没有迁入 sensor；
 - Template Tracker 的 ROI validation、CSRT→KCF→MIL、lost/reinitialize 行为锚定稳定版 `object_template_tracker.py`；browser 静态 template matching 没有迁入本 profile；
+- YOLO Tracker 的 predict/track 参数、box/ID projection、HOG fallback 和 centroid lifecycle 锚定稳定版 `detector.py` / `camera_processor.py`；模型权重与 runtime 不进入 library artifact；
 - 这些实现不是无来源的全新算法。即使代码为重新组织或重写，也必须继续保留 commit/file/function 追溯；
 - 在来源许可证澄清前，`license_review` 保持 `pending`，不得把传感器提升为 stable 或声称来源代码已被普遍授权再分发。
 
@@ -40,6 +41,7 @@
 - OCR PNG 输入由 `examples/web-number-ocr/generate_samples.py` 生成，demo 图由真实 Tesseract.js 结果和 pixel stages 组合；
 - Camera 与 Screen PNG 由 Phase 3A standalone replay 生成，分别来自实际 `CameraSource` / `ScreenCaptureSource` output；
 - Spot 与 Template PNG 由 Phase 3B standalone replay 生成，分别来自实际 `SpotCentroidSensor` 和 OpenCV contrib `TemplateTrackerSensor` output；
+- YOLO PNG/JSON 由 Phase 3C standalone recorded replay 生成，来自 fixed source-executed numeric fixture 和实际 adapter output，不含真实模型或人物图像；
 - 它们都是 synthetic test fixtures，不是来源项目截图、真实设备画面或实验精度证据；
 - 图片不包含个人信息、学校标识、第三方 UI 或模型权重；
 - 生成脚本和审定后的资产随本仓库 MIT License 分发。
@@ -52,6 +54,9 @@
 | `pngjs` | `7.0.0` | MIT | npm 依赖，用于 Node PNG 编解码 |
 | Tesseract `eng` traineddata | 运行时获取/缓存 | 以下载来源许可为准 | 不提交到仓库或 npm tarball |
 | OpenCV / NumPy | 由 Python extra 安装 | 以上游包元数据为准 | 不 vendoring |
+| Ultralytics YOLO | 未安装；source range `>=8.2,<9` | AGPL-3.0 / Enterprise 路径，须按实际用途复核 | optional extra；不 vendoring、不默认安装、不自动下载 |
+| YOLO model weights | 未提供 | 必须逐 artifact 确认 | 不提交、不打包、不重新分发 |
+| ByteTrack / HOG | runtime tracker config / OpenCV 4.x | 分别核对 Ultralytics integration、original ByteTrack MIT、OpenCV Apache-2.0 | 只声明运行时依赖；见 [专项审查](yolo-model-and-license-review.md) |
 
 ## 给维护者的明确建议
 
