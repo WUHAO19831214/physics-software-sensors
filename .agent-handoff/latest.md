@@ -10,6 +10,7 @@
 - Release: [Physics Software Sensors v0.6.0 — Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0), public pre-release
 - Post-release documentation update: `89e0e845ae04fdeec094af9f47900b4ec987e049`
 - Current planning branch: `agent/phase4b-i18n-sensor-intake`
+- Phase 4B Draft PR: [#7](https://github.com/WUHAO19831214/physics-software-sensors/pull/7)
 
 ## Release positioning
 
@@ -43,4 +44,4 @@ No sensor has E4 real-device or E5 downstream evidence. No YOLO weights are bund
 
 ## Next phase boundary
 
-Phase 4A is complete. Phase 4B currently contains only [`docs/phase4b-plan.md`](../docs/phase4b-plan.md): a planning skeleton for English / Simplified Chinese / Japanese documentation and a long-term new-Sensor intake workflow. Do not begin large translation work or add an eighth sensor until the next task defines and reviews the implementation requirements.
+Phase 4A is complete. Draft PR #7 currently contains only [`docs/phase4b-plan.md`](../docs/phase4b-plan.md) and handoff metadata: a planning skeleton for English / Simplified Chinese / Japanese documentation and a long-term new-Sensor intake workflow. Do not begin large translation work or add an eighth sensor until the next task defines and reviews the implementation requirements.
