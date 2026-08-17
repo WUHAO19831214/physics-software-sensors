@@ -2,6 +2,13 @@
 
 本项目遵循 SemVer；传感器实现、契约和模型资产分别记录版本。
 
+## 0.6.0 — Experimental release candidate
+
+- 增加 GitHub-only experimental distribution：Python wheel、TypeScript tgz、七个 Sensor Bundle、release manifest 与 SHA256SUMS；
+- 增加下载/安装、第三方依赖边界、Release Notes、Checklist 和可重复性验证；
+- Repository release version 与 Python/TypeScript/Sensor/Contract version 明确分离；
+- 不发布 PyPI/npm registry，不包含 YOLO 权重，不提升任何 Sensor maturity。
+
 ## 0.5.0 — 2026-08-16
 
 - Phase 3C 新增 Python `YoloTrackerSensor`、`ModelArtifact`、recorded/Yolo/HOG backends 和 multi-target SensorEvent；

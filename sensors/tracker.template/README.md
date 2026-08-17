@@ -115,3 +115,11 @@ await sensor.stop()
 ## Benchmark 与 Provenance
 
 [本传感器 benchmark](benchmarks/README.md) · [Phase 3B 结果](../../benchmarks/results/phase3b-classical-trackers-2026-08-16.md) · [SOURCE.md](SOURCE.md) · [sensor.json](sensor.json)
+
+## Distribution
+
+- Maturity/evidence: `experimental / E3` (actual OpenCV contrib runtime on synthetic targets).
+- Implementation: `physics_sensors.tracking.TemplateTrackerSensor` in Python package `0.5.0` with `classical-trackers` extra.
+- Proposed bundle: `tracker.template-0.4.0.zip`; requires the wheel and does not copy core.
+- Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
+- Minimal runnable example: [python-template-tracker](../../examples/python-template-tracker/README.md).

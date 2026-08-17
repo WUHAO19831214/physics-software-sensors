@@ -21,7 +21,7 @@ CONFIG = {
     "tracker.color-marker": {"language": "python", "entrypoint": "physics_sensors.tracking.ColorMarkerSensor", "example": "examples/python-color-marker", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors[color-marker]==0.5.0"},
     "tracker.spot-centroid": {"language": "python", "entrypoint": "physics_sensors.tracking.SpotCentroidSensor", "example": "examples/spot-centroid", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors[classical-trackers]==0.5.0"},
     "tracker.template": {"language": "python", "entrypoint": "physics_sensors.tracking.TemplateTrackerSensor", "example": "examples/python-template-tracker", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors[classical-trackers]==0.5.0"},
-    "tracker.yolo": {"language": "python", "entrypoint": "physics_sensors.tracking.YoloTrackerSensor", "example": "examples/python-yolo-tracker", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors==0.5.0 (recorded); physics-software-sensors[yolo-runtime]==0.5.0 only with reviewed local artifact"},
+    "tracker.yolo": {"language": "python", "entrypoint": "physics_sensors.tracking.YoloTrackerSensor", "example": "examples/python-yolo-tracker", "requires": ["physics-software-sensors[yolo-recorded]==0.5.0"], "install": "physics-software-sensors[yolo-recorded]==0.5.0 (recorded); physics-software-sensors[yolo-runtime]==0.5.0 only with reviewed local artifact"},
 }
 
 

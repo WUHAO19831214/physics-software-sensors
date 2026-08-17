@@ -111,3 +111,11 @@ await source.stop()
 ## Provenance
 
 [SOURCE.md](SOURCE.md) · [sensor.json](sensor.json) · [CHANGELOG.md](CHANGELOG.md)
+
+## Distribution
+
+- Maturity/evidence: `experimental / E1`.
+- Implementation: `physics_sensors.capture.CameraSource` in Python package `0.5.0`.
+- Proposed bundle: `camera.capture-0.3.0.zip` (documentation/example bundle; package core is not copied).
+- Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
+- Minimal runnable example: [python-camera-capture](../../examples/python-camera-capture/README.md).

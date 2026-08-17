@@ -155,3 +155,12 @@ await sensor.stop()
 ## Benchmark 与 Provenance
 
 [本传感器 benchmark](benchmarks/README.md) · [Phase 3C 结果](../../benchmarks/results/phase3c-yolo-adapter-2026-08-16.md) · [SOURCE.md](SOURCE.md) · [sensor.json](sensor.json) · [license review](../../docs/yolo-model-and-license-review.md)
+
+## Distribution
+
+- Maturity/evidence: `experimental / E2`; real Ultralytics inference is not part of current evidence.
+- Implementation: `physics_sensors.tracking.YoloTrackerSensor` in Python package `0.5.0`.
+- Proposed bundle: `tracker.yolo-0.5.0.zip`; offline replay requires `yolo-recorded`, while real inference separately requires `yolo-runtime` and an approved local `ModelArtifact`.
+- No `.pt`, `.onnx`, `.engine` or third-party weight is distributed or automatically downloaded.
+- Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
+- Minimal runnable example: [python-yolo-tracker](../../examples/python-yolo-tracker/README.md).

@@ -1,95 +1,38 @@
 {
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
-  "phase": "3D",
-  "phase_name": "Cross-sensor validation and release readiness",
-  "status": "READY_FOR_REVIEW",
+  "phase": "4A",
+  "phase_name": "Experimental Public Distribution",
+  "status": "IN_PROGRESS",
   "git": {
     "base_branch": "main",
-    "working_branch": "agent/phase3d-cross-sensor-validation",
-    "base_sha": "ad1220d6166e43dc68a0bd0477728600de880c54",
-    "tested_sha": "1417662c520f97a02d788c538023cab9c6d53be9",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/phase3d-cross-sensor-validation"},
+    "working_branch": "agent/phase4a-experimental-release",
+    "base_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb",
+    "tested_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/phase4a-experimental-release"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
-    "working_tree_clean": true
+    "working_tree_clean": false
   },
-  "pull_request": {
-    "number": 5,
-    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/5",
-    "draft": true,
-    "state": "OPEN",
-    "mergeable": true
+  "pull_request": {"number": null, "url": null, "draft": true, "state": "NOT_CREATED", "mergeable": null},
+  "previous_phase": {"pr": 5, "merge_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb"},
+  "release": {
+    "repository_version": "v0.6.0",
+    "title": "Physics Software Sensors v0.6.0 — Experimental",
+    "python_package_version": "0.5.0",
+    "typescript_package_version": "0.3.0",
+    "tag_created": false,
+    "github_release_created": false,
+    "registry_publication": false
   },
-  "previous_phase": {"pr": 4, "merge_sha": "ad1220d6166e43dc68a0bd0477728600de880c54"},
-  "tests": {
-    "repository_validation": {"passed": true, "json_files": 38, "sensor_pages": 7},
-    "python": {"passed": 72, "failed": 0, "composition_passed": 4},
-    "typescript": {"full_passed": 18, "offline_passed": 15, "failed": 0},
-    "composition": {"passed": 5, "failed": 0, "paths": ["Camera->Color", "Camera->Spot", "Camera->Template", "Camera->YOLO", "Screen->OCR"]},
-    "clean_install_python": true,
-    "clean_install_typescript": true,
-    "source_repository_audit": {"fixed_commits_clean": 5, "failed": 0}
-  },
-  "evidence_levels": {
-    "camera.capture": "E1",
-    "screen.capture": "E1",
-    "ocr.number": "E3",
-    "tracker.color-marker": "E2",
-    "tracker.spot-centroid": "E2",
-    "tracker.template": "E3",
-    "tracker.yolo": "E2"
-  },
-  "validation": {
-    "matrix": "docs/validation-matrix.md",
-    "benchmark_registry": "benchmarks/results/index.json",
-    "benchmark_summary": "docs/benchmark-summary.md",
-    "compatibility_matrix": "docs/compatibility-matrix.md",
-    "real_world_gaps": "docs/real-world-validation-gaps.md",
-    "maturity_gates": "docs/maturity-gates.md",
-    "composition_matrix": "tests/composition/matrix.json"
-  },
-  "release_dry_run": {
-    "status": "passed-not-published",
-    "git_sha": "1417662c520f97a02d788c538023cab9c6d53be9",
-    "environment": {"platform": "macOS 26.3.1 arm64", "python": "3.12.13", "node": "24.13.0", "npm": "11.6.2"},
-    "artifacts": [
-      {"filename": "physics_software_sensors-0.5.0-py3-none-any.whl", "sha256": "f87163a10afd41a480f656d8062f01310621edc6bad6887562f6d43634657141", "bytes": 36578},
-      {"filename": "physics-software-sensors-core-0.3.0.tgz", "sha256": "34cc6597c4f33f8a616958a6771dd4222d87e174ef876534e663dc1f4a7c5d35", "bytes": 13472}
-    ],
-    "published": false
-  },
-  "sensor_bundle_dry_run": {
-    "status": "passed-not-published",
-    "git_sha": "1417662c520f97a02d788c538023cab9c6d53be9",
-    "bundle_count": 7,
-    "package_core_copied": false,
-    "manifest_per_bundle": true,
-    "sha256": {
-      "camera.capture": "91f28dc0f6b8eb5e761bcccb1a0f529df4a2a57c3188f0b8479636a0e48e588c",
-      "screen.capture": "364acf4ffda8b685fd4bbb31328c732d635f73d97d3ab7fced555add1ffe8a35",
-      "ocr.number": "dffe1c3df0dc608c0dfef5226f6d92399bb1a7a303462212336cd7bd35464b1b",
-      "tracker.color-marker": "7ffeee38a7c7f9c9fc65109057438cc38a5892d5a258e8490be9a2c70fb91c2f",
-      "tracker.spot-centroid": "250a02b246433d257f32684e85ac8a253542da177636dd09c98b7abc240dbd20",
-      "tracker.template": "b0b0d1c4bbb2604bc2f1836b5aeecea38f0354d3604b044c876b1d24fb4b9b8c",
-      "tracker.yolo": "da1e1b1f5c677b3c059a86a103b61ca87c9d1ac5c244152ab9ff3a77eb20d105"
-    }
-  },
-  "ci": {
-    "enabled": false,
-    "checks_run": 0,
-    "template": "templates/github-actions-ci.yml",
-    "reason": "GitHub rejected creation of .github/workflows/ci.yml because the current OAuth App token lacks workflow scope; no permission bypass was attempted.",
-    "template_scope": ["repository validation", "Python tests", "offline TypeScript tests", "wheel build", "npm pack", "no model download"]
-  },
-  "dependency_audit": {"document": "docs/package-dependency-audit.md", "yolo_weight_bundled": false, "runtime_download_performed": false},
+  "tests": {"repository_validation": false, "python_passed": 0, "typescript_offline_passed": 0, "typescript_full_passed": 0, "composition_passed": 0, "clean_room": false, "reproducibility": false},
   "sensors": {
-    "camera.capture": {"maturity": "experimental", "implementation_version": "0.3.0"},
-    "screen.capture": {"maturity": "experimental", "implementation_version": "0.3.0"},
-    "ocr.number": {"maturity": "experimental", "implementation_version": "0.2.0"},
-    "tracker.color-marker": {"maturity": "experimental", "implementation_version": "0.2.0"},
-    "tracker.spot-centroid": {"maturity": "experimental", "implementation_version": "0.4.0"},
-    "tracker.template": {"maturity": "experimental", "implementation_version": "0.4.0"},
-    "tracker.yolo": {"maturity": "experimental", "implementation_version": "0.5.0"}
+    "camera.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
+    "screen.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
+    "ocr.number": {"maturity": "experimental", "evidence": "E3", "implementation_version": "0.2.0"},
+    "tracker.color-marker": {"maturity": "experimental", "evidence": "E2", "implementation_version": "0.2.0"},
+    "tracker.spot-centroid": {"maturity": "experimental", "evidence": "E2", "implementation_version": "0.4.0"},
+    "tracker.template": {"maturity": "experimental", "evidence": "E3", "implementation_version": "0.4.0"},
+    "tracker.yolo": {"maturity": "experimental", "evidence": "E2", "implementation_version": "0.5.0"}
   },
   "source_repositories": [
     {"repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable", "commit": "85740d686c67452a057540edb564d713e01ccc51", "state": "clean"},
@@ -100,6 +43,5 @@
   ],
   "contracts": {"sensor_event": "1.0.0", "frame_packet": "1.0.0"},
   "blockers": [],
-  "known_constraints": ["CI activation requires an authorized maintainer credential with workflow scope.", "No sensor has E4 real-device or E5 downstream evidence."],
-  "recommended_phase_4": "After independent review and an explicit merge decision, choose one low-risk source project for a pinned, feature-flagged, reversible downstream comparison. Do not start Phase 4 from this handoff."
+  "recommended_next_action": "Prepare and review the Phase 4A release candidate; do not create a tag or GitHub Release."
 }
