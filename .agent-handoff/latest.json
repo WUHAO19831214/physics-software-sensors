@@ -3,83 +3,78 @@
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "4A",
   "phase_name": "Experimental Public Distribution",
-  "status": "READY_FOR_REVIEW",
+  "status": "RELEASED",
   "git": {
     "base_branch": "main",
-    "working_branch": "agent/phase4a-experimental-release",
+    "working_branch": "main",
     "base_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb",
-    "tested_sha": "14cebeaa25cc1493ae421bb344f251d8a6af06fd",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/phase4a-experimental-release"},
+    "tested_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
   "pull_request": {
     "number": 6,
     "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/6",
-    "draft": true,
-    "state": "OPEN",
-    "mergeable": true
+    "draft": false,
+    "state": "MERGED",
+    "mergeable": true,
+    "merge_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62"
   },
   "previous_phase": {"pr": 5, "merge_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb"},
   "release": {
     "repository_version": "v0.6.0",
     "title": "Physics Software Sensors v0.6.0 — Experimental",
-    "artifact_source_sha": "1dda09eb54883e94689e27472f97e03aeab59c91",
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0",
+    "release_id": "RE_kwDOTtMHYs4WJHbP",
+    "artifact_source_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
+    "tag": "v0.6.0",
+    "tag_target": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
+    "annotated_tag_object": "c067c6c0e8196a284d6cba618a9fac5923bce8f7",
+    "maturity": "experimental-pre-stable",
     "python_package_version": "0.5.0",
     "typescript_package_version": "0.3.0",
     "contract_versions": {"sensor_event": "1.0.0", "frame_packet": "1.0.0"},
     "manifest": "release/release-manifest.json",
     "checksums": "release/SHA256SUMS",
     "notes": "release/RELEASE_NOTES.md",
-    "proposed_tag": "v0.6.0",
-    "tag_created": false,
-    "github_release_created": false,
+    "github_release_created": true,
+    "github_prerelease": true,
+    "attachment_count": 11,
     "pypi_published": false,
     "npm_registry_published": false
   },
   "artifacts": [
-    {"filename": "physics_software_sensors-0.5.0-py3-none-any.whl", "type": "python-wheel", "sha256": "6fd6d903d392bd2f672d892b04a3234e9e998e5b0deea75b252dabdc9751dcef", "bytes": 36702},
+    {"filename": "physics_software_sensors-0.5.0-py3-none-any.whl", "type": "python-wheel", "sha256": "191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9", "bytes": 36702},
     {"filename": "physics-software-sensors-core-0.3.0.tgz", "type": "typescript-tgz", "sha256": "704e0f21ea5bdf02156af1cfdc0b8fce6605996f3ecb4dbe8fbb6b25f0b70d3a", "bytes": 13561},
-    {"filename": "camera.capture-0.3.0.zip", "sensor_id": "camera.capture", "evidence": "E1", "sha256": "dbb0c59458764c3007989ae6033a2dc8d8f046a36e4d6109b990a618207730a9", "bytes": 173496},
-    {"filename": "screen.capture-0.3.0.zip", "sensor_id": "screen.capture", "evidence": "E1", "sha256": "f3decb0c5c7a398430bfc25e7ba128e5eb6839d860a73b6e61cda3228f9c7326", "bytes": 201631},
-    {"filename": "ocr.number-0.2.0.zip", "sensor_id": "ocr.number", "evidence": "E3", "sha256": "b3f2734bdf72742a4856bc2807a610332171d604b89352dabc034be94e282bed", "bytes": 151902},
-    {"filename": "tracker.color-marker-0.2.0.zip", "sensor_id": "tracker.color-marker", "evidence": "E2", "sha256": "8a450c764d90fab9243f5b9a5b87364be61bd4755fd018f02e27212f578f063e", "bytes": 122791},
-    {"filename": "tracker.spot-centroid-0.4.0.zip", "sensor_id": "tracker.spot-centroid", "evidence": "E2", "sha256": "f228c3e478f1abbb29076dd81ba8987b876f448f5b00e84bee485a524dc6bb73", "bytes": 150181},
-    {"filename": "tracker.template-0.4.0.zip", "sensor_id": "tracker.template", "evidence": "E3", "sha256": "7284e2e72878daa044a1b41313447620e913083a93ad3b7b66af377821a538aa", "bytes": 76253},
-    {"filename": "tracker.yolo-0.5.0.zip", "sensor_id": "tracker.yolo", "evidence": "E2", "sha256": "165559183f1602508e70dd911ca3ae020c839d9f8cca58050599c010d4497d93", "bytes": 89998}
+    {"filename": "camera.capture-0.3.0.zip", "sensor_id": "camera.capture", "evidence": "E1", "sha256": "46cd480b1095997af30ba36ddbfb3fee4c0fc265cf7f99e2aab9f432edcdd0ec", "bytes": 173494},
+    {"filename": "screen.capture-0.3.0.zip", "sensor_id": "screen.capture", "evidence": "E1", "sha256": "5fc5149c7adee9091997ecd12c5e33a4b89c992f265fce16cd07fff5d3734fb2", "bytes": 201630},
+    {"filename": "ocr.number-0.2.0.zip", "sensor_id": "ocr.number", "evidence": "E3", "sha256": "59fe9af0722f93209a726ae8613442891422f164154b0f292e90947f7cc1fb74", "bytes": 151900},
+    {"filename": "tracker.color-marker-0.2.0.zip", "sensor_id": "tracker.color-marker", "evidence": "E2", "sha256": "f26a80f7438fac61e314afc26f46f6f732870a8e9cb7d69c333d8a1fc32e16b2", "bytes": 122790},
+    {"filename": "tracker.spot-centroid-0.4.0.zip", "sensor_id": "tracker.spot-centroid", "evidence": "E2", "sha256": "9070310345f48fd19cff13a651d6d17c7d62b4dbadc2a31a3088450358f498a3", "bytes": 150179},
+    {"filename": "tracker.template-0.4.0.zip", "sensor_id": "tracker.template", "evidence": "E3", "sha256": "9cc2c43dddc5f13dc644b109fe8a5340773d69fde4fb377b275d78ecdce00ba3", "bytes": 76253},
+    {"filename": "tracker.yolo-0.5.0.zip", "sensor_id": "tracker.yolo", "evidence": "E2", "sha256": "f6f2f15698907656cfea9b8dbfa54e67a6830b09bfb96beeb18c6da619583a41", "bytes": 89997},
+    {"filename": "release-manifest.json", "type": "release-manifest", "sha256": "36c4e5a2cde0d00d5d365d0fe4768483fceb38486bdfa51bdd785b7e9680f826", "bytes": 4246},
+    {"filename": "SHA256SUMS", "type": "checksums", "sha256": "7e5330c39c4825ff7ea6909e706a6583dae710cfba8f9ff0076844089ae89c1e", "bytes": 954}
   ],
   "tests": {
     "repository_validation": {"passed": true, "json_files": 39, "sensor_pages": 7},
     "python": {"passed": 75, "failed": 0},
     "typescript": {"offline_passed": 15, "full_passed": 18, "failed": 0},
     "composition": {"passed": 5, "failed": 0},
-    "clean_room_python": {"passed": true, "paths": ["Camera->Color", "Camera->Spot", "Camera->Template", "Camera->YOLO-recorded"]},
-    "clean_room_typescript": {"passed": true, "path": "Screen->real Tesseract OCR", "expected_value": "-2.33"},
-    "bundle_structure": {"passed": 7, "failed": 0, "package_core_copies": 0},
-    "reproducibility": {"independent_builds": 2, "files_compared": 11, "byte_identical": 11, "different": 0},
+    "final_reproducibility": {"independent_builds": 2, "files_compared": 11, "byte_identical": 11, "different": 0},
+    "post_download": {"attachments_verified": 11, "manifest_artifacts_verified": 9, "local_build_byte_matches": 11},
+    "downloaded_python_consumer": {"passed": 2, "paths": ["Camera->Spot", "Camera->YOLO-recorded"]},
+    "downloaded_typescript_consumer": {"passed": 1, "path": "Screen->real Tesseract OCR", "expected_value": "-2.33"},
+    "downloaded_bundle_structure": {"passed": 7, "failed": 0, "package_core_copies": 0},
     "tracked_or_packaged_model_artifacts": 0,
     "source_repository_audit": {"fixed_commits_clean": 5, "failed": 0}
   },
-  "distribution_docs": {
-    "download": "docs/downloading-sensors.md",
-    "installation": "docs/installation.md",
-    "third_party_notices": "THIRD_PARTY_NOTICES.md",
-    "reproducibility": "release/REPRODUCIBILITY.md",
-    "checklist": "release/RELEASE_CHECKLIST.md",
-    "sensor_distribution_sections": 7
-  },
-  "licensing": {
-    "repository": "MIT",
-    "historical_sources": "pending/NOASSERTION where documented; not reassigned MIT",
-    "ultralytics": "optional yolo-runtime only; not installed or bundled in RC; upstream terms require downstream review",
-    "model_artifacts": "not distributed; artifact-specific review required"
-  },
-  "yolo": {"weight_files": 0, "automatic_download": false, "default_public_demo_backend": "RecordedDetectorBackend", "real_inference": "not measured"},
   "ci": {
     "enabled": false,
     "checks_run": 0,
     "template": "templates/github-actions-ci.yml",
-    "reason": "Maintainer OAuth credential lacks workflow scope; GitHub Actions workflow cannot be enabled without new authorization."
+    "reason": "Maintainer OAuth credential lacks workflow scope; release validation uses fixed-SHA local, reproducibility and clean-room evidence."
   },
   "sensors": {
     "camera.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
@@ -103,5 +98,5 @@
     "Historical source licenses remain pending/NOASSERTION where documented.",
     "No sensor has E4 real-device or E5 downstream evidence."
   ],
-  "recommended_next_action": "Ask ChatGPT to independently review Phase 4A and decide whether to merge, tag v0.6.0 and create the first Experimental GitHub Release. Do not perform those actions automatically."
+  "recommended_next_action": "Create only the Phase 4B multilingual documentation and future Sensor intake planning scaffold; do not begin large implementation in that PR."
 }

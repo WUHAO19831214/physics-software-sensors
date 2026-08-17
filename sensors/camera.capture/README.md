@@ -116,6 +116,6 @@ await source.stop()
 
 - Maturity/evidence: `experimental / E1`.
 - Implementation: `physics_sensors.capture.CameraSource` in Python package `0.5.0`.
-- Proposed bundle: `camera.capture-0.3.0.zip` (documentation/example bundle; package core is not copied).
+- Published bundle: [`camera.capture-0.3.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip) in [v0.6.0 Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0) (documentation/example bundle; package core is not copied).
 - Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
 - Minimal runnable example: [python-camera-capture](../../examples/python-camera-capture/README.md).

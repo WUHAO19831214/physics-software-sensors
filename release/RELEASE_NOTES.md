@@ -1,8 +1,8 @@
-# Physics Software Sensors v0.6.0 — Experimental
+# Physics Software Sensors v0.6.0 — Experimental / Pre-stable Release
 
 This is an experimental pre-stable release intended for evaluation, reuse experiments, teaching-tool development, and integration testing.
 
-这是实验性、pre-stable 的公开评估版本，面向复用实验、教学工具开发和集成测试；它不是 stable、production-ready、validated 或 measurement-grade 版本。
+这是实验性、pre-stable 的公开评估版本；它不是 stable、production-ready、validated、measurement-grade 或 metrology-ready 版本。
 
 ## What's included
 
@@ -16,34 +16,46 @@ Seven software sensors, all still `experimental`:
 - Template Tracker — E3
 - YOLO Tracker — E2
 
-Evidence levels describe actual exercised paths, not metrological accuracy or maturity.
+Evidence levels describe exercised software paths, not metrological accuracy or maturity.
 
-## Packages
+## Packages and bundles
 
-- `physics_software_sensors-0.5.0-py3-none-any.whl`
-- `physics-software-sensors-core-0.3.0.tgz`
+- Python wheel: `physics_software_sensors-0.5.0-py3-none-any.whl`
+- TypeScript tgz: `physics-software-sensors-core-0.3.0.tgz`
+- Seven versioned Sensor Bundle zip files
+- `release-manifest.json` and `SHA256SUMS`
 
-Repository release `v0.6.0`, Python `0.5.0`, TypeScript `0.3.0`, Sensor implementation versions and Contract `1.0.0` are intentionally independent.
+Repository release `v0.6.0`, Python `0.5.0`, TypeScript `0.3.0`, Sensor implementation versions and Contract `1.0.0` remain intentionally independent. Packages are GitHub Release attachments only; nothing is published to PyPI or npm registry.
 
-## Sensor bundles
+## Final release source and verification
 
-Seven versioned zip files provide an independently readable Sensor Page, provenance, assets, example, evidence and dependency/install metadata. They depend on the matching package artifact and do not copy package core.
+- Release/tag source: `1a4a3fe45c1eaafe06c7e053644188b7abba8c62`
+- Release: https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0
+- Two final builds: 11/11 generated files byte-identical in the recorded environment
+- Python: 75 passed
+- TypeScript: 15/15 offline and 18/18 full
+- Composition: 5/5
+- Local final-artifact clean room: Camera→Color/Spot/Template/YOLO-recorded 4/4; Screen→real Tesseract OCR passed
+- Sensor Bundle structure: 7/7; package core copies: 0
+- Tracked or packaged `.pt`/`.onnx`/`.engine`: 0
+- Five fixed source repository commits: clean
+
+Exact artifact bytes, SHA-256, build environment, experimental maturity and CI state are in `release-manifest.json`. Verify downloads with `SHA256SUMS`.
 
 ## Important limitations
 
-- Experimental only; no metrology claim, calibration guarantee or measurement-grade claim.
-- Real-device validation is incomplete; no sensor currently has E4 or E5 evidence.
+- No sensor has E4 real-device or E5 downstream evidence; no metrology claim is made.
 - No YOLO model or third-party weight is bundled or downloaded. Real inference requires a separately reviewed local runtime and `ModelArtifact`.
-- GitHub Actions is not enabled because the maintainer OAuth credential lacks `workflow` scope. A reviewed offline workflow remains at `templates/github-actions-ci.yml`.
+- GitHub Actions is not enabled because the maintainer OAuth credential lacks `workflow` scope. Validation used the fixed merge SHA, local test suites, two-build reproducibility and clean-room consumers.
 - Historical source repository license state remains pending/NOASSERTION where documented.
-- The packages are distributed only as GitHub Release files; nothing is published to PyPI or npm registry.
+- Real camera/browser/device compatibility is incomplete.
 
-## Verification
+## Post-release download verification
 
-The final RC is accepted only after repository validation, Python tests, TypeScript offline/full tests, five composition paths, two independent builds, clean-room wheel/tgz tests, all seven bundle structure checks, model-weight exclusion and source-repository clean checks pass. Exact tested SHA, counts, environment, file sizes and SHA-256 values are recorded in `release-manifest.json`, `SHA256SUMS`, the reproducibility report and Agent Handoff.
+All 11 attachments were downloaded again from GitHub and matched `SHA256SUMS`; the nine package/bundle artifacts also matched every size and SHA-256 entry in the published manifest. Fresh consumers installed only the downloaded wheel/tgz: Camera→Spot passed, Camera→YOLO-recorded passed, and Screen→real Tesseract OCR returned `-2.33`. All seven downloaded bundles passed structure, provenance, dependency-boundary and model-exclusion checks.
 
 ## Upgrade and rollback
 
-There is no previous public GitHub Release. To roll back an evaluation, uninstall the local wheel/tgz and return to the Phase 3D merge commit `89d26f4f306204cdae72d6988f46191f3e789cbb` (or a consumer's previously pinned commit). Do not delete existing source-project code; downstream integrations must retain a feature flag or dependency pin and an old path until comparison succeeds.
+This is the first public GitHub Release. To roll back an evaluation, uninstall the local wheel/tgz and return to Phase 3D merge commit `89d26f4f306204cdae72d6988f46191f3e789cbb`, or to the consumer's previous dependency pin. Existing source-project implementations must remain available behind a feature flag or old path until downstream comparison succeeds.
 
-No tag or GitHub Release is created by the Phase 4A Draft PR. After independent approval only: squash merge, tag the merge commit as `v0.6.0`, create the Experimental GitHub Release, attach exactly the manifest-listed files, and verify downloads against `SHA256SUMS`.
+The attached manifest's `release_status` and first limitation intentionally preserve build-time candidate state. Publication state is recorded by the immutable annotated tag, GitHub Release page, this post-release report and Agent Handoff; the published attachment was not silently replaced after verification.

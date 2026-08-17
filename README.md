@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前进入 **Phase 4A：Experimental Public Distribution**，准备首个 GitHub-only `v0.6.0` Experimental Release。七项传感器仍全部是 **experimental**，证据仅为 E1–E3；这不是 stable、validated、production-ready 或 measurement-grade 发布。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
+本仓库已完成 **Phase 4A：Experimental Public Distribution**，首个 GitHub-only [`v0.6.0` Experimental Release](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0) 已发布。七项传感器仍全部是 **experimental**，证据仅为 E1–E3；这不是 stable、validated、production-ready 或 measurement-grade 发布。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -38,14 +38,14 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 
 ## Download / 获取
 
-Phase 4A 正在准备以下 GitHub Release 文件：
+[`v0.6.0 Experimental Release`](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0) 提供以下文件：
 
 - Python wheel：`physics_software_sensors-0.5.0-py3-none-any.whl`
 - TypeScript tgz：`physics-software-sensors-core-0.3.0.tgz`
 - 七个按 Sensor implementation version 命名的 zip bundle
 - `release-manifest.json` 与 `SHA256SUMS`
 
-当前尚未创建 tag 或 GitHub Release，因此不提供虚假的 Release URL。请先阅读 [下载与完整性校验](docs/downloading-sensors.md) 和 [本地 wheel/tgz 安装](docs/installation.md)。Phase 4A 审核通过前，不要从 PyPI/npm registry 安装本项目。
+请从 [v0.6.0 Release 页面](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0) 下载，并阅读 [下载与完整性校验](docs/downloading-sensors.md) 和 [本地 wheel/tgz 安装](docs/installation.md)。所有附件已在发布后重新下载并验证。项目仍未发布到 PyPI/npm registry；不要从同名 registry 包推断它属于本项目。
 
 ## Working demonstrations
 

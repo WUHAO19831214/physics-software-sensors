@@ -121,6 +121,6 @@ button.onclick = async () => {
 
 - Maturity/evidence: `experimental / E1`.
 - Implementation: `ScreenCaptureSource` in TypeScript package `0.3.0`.
-- Proposed bundle: `screen.capture-0.3.0.zip`; requires the shared tgz and does not copy core.
+- Published bundle: [`screen.capture-0.3.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) in [v0.6.0 Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0); requires the shared tgz and does not copy core.
 - Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
 - Minimal runnable example: [web-screen-capture](../../examples/web-screen-capture/README.md).

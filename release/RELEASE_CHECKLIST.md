@@ -19,14 +19,15 @@
 - [x] Release Notes, download/install docs, seven Distribution sections and Agent Handoff are complete.
 - [x] Five fixed source repository commits are clean.
 
-## Publication actions — intentionally unchecked in the Draft PR
+## Publication actions
 
-- [ ] PR receives independent review.
-- [ ] Phase 4A PR is merged.
-- [ ] Merge commit is tagged `v0.6.0`.
-- [ ] GitHub Release `Physics Software Sensors v0.6.0 — Experimental` is created.
-- [ ] Exactly the reviewed artifacts, manifest and `SHA256SUMS` are attached.
-- [ ] Downloaded files pass post-release SHA-256 verification.
-- [ ] Release page links are added to README/Sensor Pages in a follow-up if needed.
+- [x] PR receives independent review.
+- [x] Phase 4A PR is squash-merged as `1a4a3fe45c1eaafe06c7e053644188b7abba8c62`.
+- [x] Annotated tag `v0.6.0` points exactly to the merge commit.
+- [x] GitHub pre-release `Physics Software Sensors v0.6.0 — Experimental` is created.
+- [x] Exactly the reviewed 11 artifacts/metadata files are attached.
+- [x] All 11 downloaded files pass post-release SHA-256 verification.
+- [x] Downloaded wheel/tgz pass fresh consumer tests; downloaded bundles pass 7/7 checks.
+- [x] Release page links are added to README, download guide and all seven Sensor Pages.
 
 PyPI and npm registry publication are not checklist items for this release.

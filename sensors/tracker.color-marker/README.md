@@ -150,6 +150,6 @@ python -m pip install -e 'packages/python[color-marker]'
 
 - Maturity/evidence: `experimental / E2`.
 - Implementation: `physics_sensors.tracking.ColorMarkerSensor` in Python package `0.5.0` with `color-marker` extra.
-- Proposed bundle: `tracker.color-marker-0.2.0.zip`; requires the wheel and does not copy core.
+- Published bundle: [`tracker.color-marker-0.2.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) in [v0.6.0 Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0); requires the wheel and does not copy core.
 - Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
 - Minimal runnable example: [python-color-marker](../../examples/python-color-marker/README.md).

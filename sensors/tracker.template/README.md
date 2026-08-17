@@ -120,6 +120,6 @@ await sensor.stop()
 
 - Maturity/evidence: `experimental / E3` (actual OpenCV contrib runtime on synthetic targets).
 - Implementation: `physics_sensors.tracking.TemplateTrackerSensor` in Python package `0.5.0` with `classical-trackers` extra.
-- Proposed bundle: `tracker.template-0.4.0.zip`; requires the wheel and does not copy core.
+- Published bundle: [`tracker.template-0.4.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) in [v0.6.0 Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0); requires the wheel and does not copy core.
 - Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
 - Minimal runnable example: [python-template-tracker](../../examples/python-template-tracker/README.md).

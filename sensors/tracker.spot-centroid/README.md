@@ -130,6 +130,6 @@ time series → amplitude / period / frequency
 
 - Maturity/evidence: `experimental / E2`.
 - Implementation: `physics_sensors.tracking.SpotCentroidSensor` in Python package `0.5.0` with `classical-trackers` extra.
-- Proposed bundle: `tracker.spot-centroid-0.4.0.zip`; requires the wheel and does not copy core.
+- Published bundle: [`tracker.spot-centroid-0.4.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) in [v0.6.0 Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0); requires the wheel and does not copy core.
 - Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
 - Minimal runnable example: [spot-centroid](../../examples/spot-centroid/README.md).

@@ -3,7 +3,9 @@
   "release_status": "release-candidate-not-published",
   "release_version": "v0.6.0",
   "release_title": "Physics Software Sensors v0.6.0 — Experimental",
-  "git_sha": "1dda09eb54883e94689e27472f97e03aeab59c91",
+  "release_source_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
+  "release_maturity": "experimental-pre-stable",
+  "git_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
   "contracts": {
     "sensor_event": "1.0.0",
     "frame_packet": "1.0.0"
@@ -19,15 +21,20 @@
     "python": "3.12.13",
     "node": "v24.13.0",
     "npm": "11.6.2",
-    "source_date_epoch": 1786929487
+    "source_date_epoch": 1786931073
   },
-  "build_timestamp": "2026-08-17T01:18:07Z",
+  "build_timestamp": "2026-08-17T01:44:33Z",
   "release_evidence_note": "Experimental E1-E3 evidence only; no E4 real-device validation, E5 downstream validation or metrology claim.",
+  "ci": {
+    "enabled": false,
+    "template": "templates/github-actions-ci.yml",
+    "reason": "Maintainer OAuth credential lacks workflow scope; release validation uses fixed-SHA local, reproducibility and clean-room evidence."
+  },
   "artifacts": [
     {
       "filename": "physics_software_sensors-0.5.0-py3-none-any.whl",
       "type": "python-wheel",
-      "sha256": "6fd6d903d392bd2f672d892b04a3234e9e998e5b0deea75b252dabdc9751dcef",
+      "sha256": "191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9",
       "bytes": 36702,
       "package": "physics-software-sensors",
       "package_version": "0.5.0"
@@ -35,8 +42,8 @@
     {
       "filename": "camera.capture-0.3.0.zip",
       "type": "sensor-bundle",
-      "sha256": "dbb0c59458764c3007989ae6033a2dc8d8f046a36e4d6109b990a618207730a9",
-      "bytes": 173496,
+      "sha256": "46cd480b1095997af30ba36ddbfb3fee4c0fc265cf7f99e2aab9f432edcdd0ec",
+      "bytes": 173494,
       "sensor_id": "camera.capture",
       "sensor_version": "0.3.0",
       "evidence_level": "E1"
@@ -44,8 +51,8 @@
     {
       "filename": "ocr.number-0.2.0.zip",
       "type": "sensor-bundle",
-      "sha256": "b3f2734bdf72742a4856bc2807a610332171d604b89352dabc034be94e282bed",
-      "bytes": 151902,
+      "sha256": "59fe9af0722f93209a726ae8613442891422f164154b0f292e90947f7cc1fb74",
+      "bytes": 151900,
       "sensor_id": "ocr.number",
       "sensor_version": "0.2.0",
       "evidence_level": "E3"
@@ -53,8 +60,8 @@
     {
       "filename": "screen.capture-0.3.0.zip",
       "type": "sensor-bundle",
-      "sha256": "f3decb0c5c7a398430bfc25e7ba128e5eb6839d860a73b6e61cda3228f9c7326",
-      "bytes": 201631,
+      "sha256": "5fc5149c7adee9091997ecd12c5e33a4b89c992f265fce16cd07fff5d3734fb2",
+      "bytes": 201630,
       "sensor_id": "screen.capture",
       "sensor_version": "0.3.0",
       "evidence_level": "E1"
@@ -62,8 +69,8 @@
     {
       "filename": "tracker.color-marker-0.2.0.zip",
       "type": "sensor-bundle",
-      "sha256": "8a450c764d90fab9243f5b9a5b87364be61bd4755fd018f02e27212f578f063e",
-      "bytes": 122791,
+      "sha256": "f26a80f7438fac61e314afc26f46f6f732870a8e9cb7d69c333d8a1fc32e16b2",
+      "bytes": 122790,
       "sensor_id": "tracker.color-marker",
       "sensor_version": "0.2.0",
       "evidence_level": "E2"
@@ -71,8 +78,8 @@
     {
       "filename": "tracker.spot-centroid-0.4.0.zip",
       "type": "sensor-bundle",
-      "sha256": "f228c3e478f1abbb29076dd81ba8987b876f448f5b00e84bee485a524dc6bb73",
-      "bytes": 150181,
+      "sha256": "9070310345f48fd19cff13a651d6d17c7d62b4dbadc2a31a3088450358f498a3",
+      "bytes": 150179,
       "sensor_id": "tracker.spot-centroid",
       "sensor_version": "0.4.0",
       "evidence_level": "E2"
@@ -80,7 +87,7 @@
     {
       "filename": "tracker.template-0.4.0.zip",
       "type": "sensor-bundle",
-      "sha256": "7284e2e72878daa044a1b41313447620e913083a93ad3b7b66af377821a538aa",
+      "sha256": "9cc2c43dddc5f13dc644b109fe8a5340773d69fde4fb377b275d78ecdce00ba3",
       "bytes": 76253,
       "sensor_id": "tracker.template",
       "sensor_version": "0.4.0",
@@ -89,8 +96,8 @@
     {
       "filename": "tracker.yolo-0.5.0.zip",
       "type": "sensor-bundle",
-      "sha256": "165559183f1602508e70dd911ca3ae020c839d9f8cca58050599c010d4497d93",
-      "bytes": 89998,
+      "sha256": "f6f2f15698907656cfea9b8dbfa54e67a6830b09bfb96beeb18c6da619583a41",
+      "bytes": 89997,
       "sensor_id": "tracker.yolo",
       "sensor_version": "0.5.0",
       "evidence_level": "E2"

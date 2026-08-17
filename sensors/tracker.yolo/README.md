@@ -160,7 +160,7 @@ await sensor.stop()
 
 - Maturity/evidence: `experimental / E2`; real Ultralytics inference is not part of current evidence.
 - Implementation: `physics_sensors.tracking.YoloTrackerSensor` in Python package `0.5.0`.
-- Proposed bundle: `tracker.yolo-0.5.0.zip`; offline replay requires `yolo-recorded`, while real inference separately requires `yolo-runtime` and an approved local `ModelArtifact`.
+- Published bundle: [`tracker.yolo-0.5.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) in [v0.6.0 Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0); offline replay requires `yolo-recorded`, while real inference separately requires `yolo-runtime` and an approved local `ModelArtifact`.
 - No `.pt`, `.onnx`, `.engine` or third-party weight is distributed or automatically downloaded.
 - Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
 - Minimal runnable example: [python-yolo-tracker](../../examples/python-yolo-tracker/README.md).
