@@ -17,6 +17,7 @@ from validate_i18n import validate_i18n
 ROOT = Path(__file__).resolve().parents[1]
 HEX40 = re.compile(r"^[a-f0-9]{40}$")
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+LINKED_IMAGE = re.compile(r"\[!\[[^\]]*\]\(([^)]+)\)\]\(([^)]+)\)")
 EXPECTED_SENSOR_IDS = {
     "camera.capture",
     "screen.capture",
@@ -65,6 +66,21 @@ PILOT_DEMO_ASSETS = {
     "tracker.spot-centroid": ("overview.png", "processing.png", "movement.png"),
     "tracker.template": ("overview.png", "initialization.png", "tracking.png", "lost.png"),
     "tracker.yolo": ("overview.png", "multi-target.png", "tracking.png", "fallback.png", "events.json"),
+}
+HOMEPAGE_FILES = {
+    "en": ROOT / "README.md",
+    "zh_CN": ROOT / "README.zh-CN.md",
+    "ja": ROOT / "README.ja.md",
+}
+HOMEPAGE_DEMO_IMAGES = {
+    "sensors/camera.capture/assets/captured-frame.png",
+    "sensors/screen.capture/assets/captured-screen-frame.png",
+    "sensors/ocr.number/assets/overview.png",
+    "sensors/tracker.color-marker/assets/overview.png",
+    "sensors/tracker.spot-centroid/assets/overview.png",
+    "sensors/tracker.template/assets/overview.png",
+    "sensors/tracker.yolo/assets/overview.png",
+    "processing/vector.compose-3d/assets/overview.png",
 }
 
 
@@ -173,6 +189,44 @@ def check_markdown_links() -> list[str]:
                 continue
             if not resolved.exists():
                 errors.append(f"{path.relative_to(ROOT)}: missing link target: {raw_target}")
+    return errors
+
+
+def check_homepage_showcase() -> list[str]:
+    errors: list[str] = []
+    status = load_json(ROOT / "docs/project-status.json")
+    if status.get("sensor_count") != 7:
+        errors.append("docs/project-status.json: sensor_count must remain 7")
+    if status.get("companion_tool_count") != 1:
+        errors.append("docs/project-status.json: companion_tool_count must be 1")
+    if status.get("public_capability_count") != 8:
+        errors.append("docs/project-status.json: public_capability_count must be 8")
+    expected_pages = set(EXPECTED_SENSOR_IDS) | {"vector.compose-3d"}
+    for language, path in HOMEPAGE_FILES.items():
+        text = path.read_text(encoding="utf-8")
+        try:
+            gallery = text.split("<!-- section:demonstrations -->", 1)[1].split("<!-- section:principles -->", 1)[0]
+        except IndexError:
+            errors.append(f"{path.name}: missing demonstrations/principles section boundary")
+            continue
+        linked_images = LINKED_IMAGE.findall(gallery)
+        image_targets = {image for image, _ in linked_images}
+        if len(linked_images) != 8 or image_targets != HOMEPAGE_DEMO_IMAGES:
+            errors.append(f"{path.name}: homepage gallery must contain the exact 8 capability images")
+        for image, target in linked_images:
+            if not (ROOT / image).is_file():
+                errors.append(f"{path.name}: missing homepage image {image}")
+            if not (ROOT / target).is_file():
+                errors.append(f"{path.name}: missing homepage capability link {target}")
+        if "Companion Processing Tools" not in text and "配套处理工具" not in text:
+            errors.append(f"{path.name}: missing separate Companion Processing Tools section")
+        for capability_id in expected_pages:
+            if capability_id not in text:
+                errors.append(f"{path.name}: missing homepage capability {capability_id}")
+        if "8/8" not in gallery:
+            errors.append(f"{path.name}: missing 8/8 visual coverage statement")
+        if "recorded detector replay" not in gallery.lower():
+            errors.append(f"{path.name}: missing recorded detector replay boundary")
     return errors
 
 
@@ -356,6 +410,7 @@ def main() -> int:
         + check_manifests()
         + check_tool_manifests()
         + check_markdown_links()
+        + check_homepage_showcase()
         + check_evidence_registry()
         + check_composition_matrix()
         + check_release_candidate()
@@ -371,7 +426,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, 1 trilingual Companion Tool, i18n parity, pilot demos, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, 1 trilingual Companion Tool, 8/8 homepage visuals, i18n parity, pilot demos, and local Markdown links")
     return 0
 
 

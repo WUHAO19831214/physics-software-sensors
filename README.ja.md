@@ -7,6 +7,8 @@
 
 **物理実験のための再利用可能なソフトウェアセンサー基盤です。** カメラフレーム、画面ピクセル、画像処理による観測を、来歴を追跡できる `FramePacket` と `SensorEvent` に統一し、将来の物理実験プロジェクトから再利用できるようにします。
 
+Sensor の出力を処理する再利用可能な補助処理ツールも収録します。これらのツールを、新しい直接観測を行う Sensor とは扱いません。
+
 新しい実験アプリケーションではなく、長期的に保守する基盤ライブラリです。ソースプロジェクトは変更せず、過去の実装と利用状況の事実源として維持します。
 
 ```text
@@ -21,10 +23,26 @@ Physics Software Sensors
 
 成熟した機能を adapter として段階的に抽出し、固定 commit に対するテスト、文書化、ベンチマークを経て再利用します。ピクセル位置、OCR 文字列、信頼度、バウンディングボックスは直接観測であり、自動的に校正済み物理量になるわけではありません。
 
+```text
+物理的／ソフトウェア source
+        ↓
+Capture Sensor → FramePacket
+        ↓
+Processor Sensor → SensorEvent / スカラー測定値
+        ↓
+補助処理ツール
+        ↓
+物理実験アプリケーション
+```
+
+例：`screen.capture → ocr.number → vector.compose-3d → 3次元合成ベクトル`。最後の段階は既存のスカラー測定値を再構成するもので、新しい量を観測しません。
+
 <!-- section:project-status -->
 ## Project status
 
-7 software Sensor · 7 experimental adapter · 1 experimental Companion Processing Tool · English / 简体中文 / 日本語 · 公開 experimental `v0.6.0` Release · 7 Sensor Bundle · 最初の E5 downstream reuse 完了。新ツールは未リリースであり、すべての Sensor が validated であるとは主張しません。
+**7 Software Sensor · 1 Companion Processing Tool** · English / 简体中文 / 日本語
+
+7 個の adapter と本ツールはすべて experimental です。公開 `v0.6.0` Release には 7 個の Sensor Bundle が含まれ、本ツールは未リリースです。最初の E5 downstream reuse は完了していますが、すべての Sensor が validated であるとは主張しません。
 
 <!-- section:catalog -->
 ## センサーカタログ
@@ -41,7 +59,13 @@ Physics Software Sensors
 
 詳細は[センサーカタログ](docs/sensor-catalog.ja.md)を参照してください。エビデンスレベルと成熟度は別の概念です。
 
-Companion Tool [`vector.compose-3d`](processing/vector.compose-3d/README.ja.md) は既存のスカラー成分から追跡可能な3次元ベクトルを再構成し、第8の Sensor として扱いません。[Tool Catalog](docs/tool-catalog.ja.md)と[ブラウザ demo](examples/web-vector-compose-3d/README.md)を参照してください。
+### Companion Processing Tools
+
+| Tool | 用途 | 言語 | 状態 | Example | 文書 |
+| --- | --- | --- | --- | --- | --- |
+| [`vector.compose-3d`](processing/vector.compose-3d/README.ja.md) | スカラー成分から3次元ベクトルを合成・再構成 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.ja.md) |
+
+詳細は [Companion Tool Catalog](docs/tool-catalog.ja.md)を参照してください。Companion Tool は拡張可能な測定処理 layer であり、Sensor 数には含めません。
 
 <!-- section:quick-start -->
 ## クイックスタート
@@ -59,13 +83,33 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release-manifest.json`、`SHA256SUMS` が含まれます。Sensor Bundle は文書・example 用であり、共通 core を複製しません。[Downloading Sensors](docs/downloading-sensors.ja.md) と [Installation](docs/installation.ja.md) を参照してください。
 
 <!-- section:demonstrations -->
-## デモ
+## 機能ギャラリー
 
-| カラーマーカー | 数値 OCR | 光スポット重心 |
+### Software Sensor
+
+| Camera Capture | Screen Capture | Number OCR |
 | --- | --- | --- |
-| [![カラーマーカーのリプレイ](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.ja.md) | [![OCR synthetic pixels](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.ja.md) | [![光スポット重心のリプレイ](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.ja.md) |
+| [![合成 recorded camera frame](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.ja.md) | [![合成 shared-window pixel](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.ja.md) | [![数値 OCR replay](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.ja.md) |
+| frame + 時刻 metadata | 許可された画面 pixel | ROI text → 数値 |
 
-これらは standalone synthetic/replay デモであり、実機精度や計量の根拠ではありません。YOLO の公開デモは recorded detector replay で、実モデル推論ではありません。
+| Color Marker | 光スポット重心 | Template / Single-object Tracker |
+| --- | --- | --- |
+| [![カラーマーカー replay](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.ja.md) | [![光スポット重心 replay](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.ja.md) | [![単一物体 tracker replay](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.ja.md) |
+| HSV marker → pixel center | 光スポット → 画像重心 | 初期 ROI → bbox/lost |
+
+| YOLO Tracker |
+| --- |
+| [![Recorded detector replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.ja.md) |
+| Recorded detector replay → detection と track ID |
+
+### Companion Processing Tools
+
+| 3次元ベクトル合成 |
+| --- |
+| [![recorded OCR 成分から3次元合成ベクトルを構成](processing/vector.compose-3d/assets/overview.png)](processing/vector.compose-3d/README.ja.md) |
+| スカラー x/y/z 成分 → 大きさ、方向、renderer-neutral な合成ベクトル |
+
+各画像は capability page に記載した synthetic、recorded、replay、standalone-runtime のいずれかのエビデンスであり、自動的に実機精度や計量の根拠にはなりません。YOLO 画像は **recorded detector replay** であり、実 YOLO inference ではありません。表示範囲：**7/7 Sensor + 1/1 Companion Tool = 8/8 公開 capability**。
 
 <!-- section:principles -->
 ## 基本原則
@@ -106,6 +150,7 @@ Experimental / Validation / Release
 - [最初の完全な再利用ループ](docs/first-reuse-loop.ja.md) と [Maintenance Guide](docs/maintenance.md)
 - [Current Project Status](docs/project-status.md)
 - [用語](docs/i18n/terminology.md) と [i18n Style Guide](docs/i18n/style-guide.md)
+- [Demo Asset Inventory](docs/demo-asset-inventory.md)
 - [Architecture](docs/architecture.md)、[Data Format](docs/data-format.md)、[Benchmarking](docs/benchmarking.md)
 - [v0.6.0 Release](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
 

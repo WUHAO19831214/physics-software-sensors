@@ -7,6 +7,8 @@
 
 **A reusable software sensing layer for physics experiments.** It turns camera frames, screen pixels and image-processing observations into traceable `FramePacket` and `SensorEvent` records that future physics projects can reuse.
 
+The repository also hosts reusable Companion Processing Tools that operate on Sensor outputs without pretending to create new direct observations.
+
 This is a long-lived capability library, not a new experiment application. Source projects remain unchanged and continue to be the historical source of truth.
 
 ```text
@@ -21,10 +23,26 @@ Future Physics Projects
 
 Mature capabilities are extracted through adapters, tested against fixed source commits, documented, benchmarked and then reused. Pixel position, OCR text, confidence and bounding boxes are direct software observations—not automatically calibrated physical quantities.
 
+```text
+Physical / Software Source
+        ↓
+Capture Sensors → FramePacket
+        ↓
+Processor Sensors → SensorEvent / scalar measurements
+        ↓
+Companion Processing Tools
+        ↓
+Physics Application
+```
+
+For example: `screen.capture → ocr.number → vector.compose-3d → 3D resultant vector`. The final step reconstructs existing scalar measurements; it does not sense a new quantity.
+
 <!-- section:project-status -->
 ## Project status
 
-7 software Sensors · 7 experimental adapters · 1 experimental Companion Processing Tool · English / 简体中文 / 日本語 · public experimental `v0.6.0` Release · 7 Sensor Bundles · first E5 downstream reuse completed. The new tool is unreleased; no Sensor is claimed as fully validated.
+**7 Software Sensors · 1 Companion Processing Tool** · English / 简体中文 / 日本語
+
+All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.
 
 <!-- section:catalog -->
 ## Sensor catalog
@@ -41,7 +59,13 @@ Mature capabilities are extracted through adapters, tested against fixed source 
 
 See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exercised paths; maturity is a separate release decision.
 
-Companion Tool: [`vector.compose-3d`](processing/vector.compose-3d/README.md) reconstructs a traceable 3D vector from existing scalar components without pretending to be an eighth Sensor. See the [Tool Catalog](docs/tool-catalog.md) and [browser demo](examples/web-vector-compose-3d/README.md).
+### Companion Processing Tools
+
+| Tool | Purpose | Language | Status | Example | Documentation |
+| --- | --- | --- | --- | --- | --- |
+| [`vector.compose-3d`](processing/vector.compose-3d/README.md) | 3D vector composition and reconstruction from scalar components | TypeScript | experimental | [web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.md) |
+
+See the full [Tool Catalog](docs/tool-catalog.md). Companion Tools form an extensible processing layer and are not counted as Sensors.
 
 <!-- section:quick-start -->
 ## Quick start
@@ -59,13 +83,33 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, `release-manifest.json` and `SHA256SUMS`. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read [Downloading Sensors](docs/downloading-sensors.md) and [Installation](docs/installation.md).
 
 <!-- section:demonstrations -->
-## Demonstrations
+## Capability gallery
 
-| Color Marker | Number OCR | Spot Centroid |
+### Software Sensors
+
+| Camera Capture | Screen Capture | Number OCR |
 | --- | --- | --- |
-| [![Color marker replay](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.md) | [![OCR synthetic pixels](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.md) | [![Spot centroid replay](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.md) |
+| [![Synthetic recorded camera frame](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.md) | [![Synthetic shared-window pixels](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.md) | [![Numeric OCR replay](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.md) |
+| Frames + timing metadata | Authorized screen pixels | ROI text → numeric value |
 
-These are standalone synthetic/replay demonstrations, not real-device accuracy or metrology evidence. The YOLO public demo is recorded detector replay, not real model inference.
+| Color Marker | Spot Centroid | Template Tracker |
+| --- | --- | --- |
+| [![Color marker replay](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.md) | [![Spot centroid replay](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.md) | [![Single-object tracker replay](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.md) |
+| HSV marker → pixel center | Light spot → image centroid | Initialized ROI → bbox/lost |
+
+| YOLO Tracker |
+| --- |
+| [![Recorded detector replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.md) |
+| Recorded detector replay → detections and track IDs |
+
+### Companion Processing Tools
+
+| 3D Vector Composition |
+| --- |
+| [![Recorded OCR components composed into a 3D resultant vector](processing/vector.compose-3d/assets/overview.png)](processing/vector.compose-3d/README.md) |
+| Scalar x/y/z components → magnitude, direction and renderer-neutral resultant |
+
+These demonstrations are synthetic, recorded, replay, or standalone-runtime evidence as stated on each capability page. They are not automatically real-device accuracy or metrology evidence. The YOLO image is **recorded detector replay**, not real YOLO inference. Gallery coverage: **7/7 Sensors + 1/1 Companion Tool = 8/8 public capabilities**.
 
 <!-- section:principles -->
 ## Core principles
@@ -106,6 +150,7 @@ Future work enters through [Sensor Intake](docs/sensor-intake.md), the [Add New 
 - [First Complete Reuse Loop](docs/first-reuse-loop.md) and [Maintenance Guide](docs/maintenance.md)
 - [Current Project Status](docs/project-status.md)
 - [Terminology](docs/i18n/terminology.md) and [i18n Style Guide](docs/i18n/style-guide.md)
+- [Demo Asset Inventory](docs/demo-asset-inventory.md)
 - [Architecture](docs/architecture.md), [data format](docs/data-format.md), [benchmarking](docs/benchmarking.md)
 - [Release v0.6.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
 

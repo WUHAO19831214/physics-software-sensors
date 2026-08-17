@@ -69,6 +69,10 @@ OCR 失败应转换为 `{ source: 'missing' }`；结果保持 `incomplete`，不
 
 可运行[小型浏览器 demo](../../examples/web-vector-compose-3d/README.md)，支持手动输入和 recorded OCR 模式。来源 golden、数学、分量来源、时差、坐标和 OCR 组合覆盖见 [benchmark](benchmarks/README.md)。
 
+[![录制 OCR 分量合成为三维合矢量](assets/overview.png)](../../examples/web-vector-compose-3d/README.md)
+
+图片来自 standalone demo 的真实运行截图；证据记录见 [assets/README.md](assets/README.md)。
+
 <!-- section:status -->
 ## 状态与分发
 

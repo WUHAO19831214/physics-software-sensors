@@ -21,6 +21,7 @@ def test_project_status_matches_sensor_registry_and_maintenance_baseline() -> No
     assert status["baseline_release"]["immutable"] is True
     assert status["sensor_count"] == status["implemented_adapter_count"] == 7
     assert status["companion_tool_count"] == 1
+    assert status["public_capability_count"] == 8
     assert status["languages"] == ["en", "zh-CN", "ja"]
     assert set(status["sensors"]) == set(document_map["sensors"])
     assert set(status["companion_tools"]) == set(document_map["tools"]) == {"vector.compose-3d"}

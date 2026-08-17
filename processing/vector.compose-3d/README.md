@@ -69,6 +69,10 @@ Core mathematics uses the caller's x/y/z system. `CoordinateTransform3` is a sep
 
 Run the [small browser demo](../../examples/web-vector-compose-3d/README.md) in manual or recorded-OCR mode. Source golden, math, component-source, skew, coordinate and OCR-composition coverage is described in [benchmarks](benchmarks/README.md).
 
+[![Recorded OCR components composed into a 3D resultant vector](assets/overview.png)](../../examples/web-vector-compose-3d/README.md)
+
+The image is an actual standalone-runtime screenshot; see the [asset evidence record](assets/README.md).
+
 <!-- section:status -->
 ## Status and distribution
 

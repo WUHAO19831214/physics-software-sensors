@@ -17,6 +17,10 @@ Use the [`v0.6.0` Experimental Release](https://github.com/WUHAO19831214/physics
 
 Open the selected [Sensor Page](sensor-catalog.md), install only its declared dependencies and run the linked small example. Recorded/synthetic examples prove separation from the source application, not real-device accuracy.
 
+### After sensing: process measurements
+
+When an experiment needs a derived representation, continue into the separate [Companion Tool Catalog](tool-catalog.md). For example, `screen.capture → ocr.number → vector.compose-3d` turns displayed scalar components into a traceable 3D resultant. The Tool does not create a new observation, and the current unreleased Tool source is not part of `v0.6.0`.
+
 <!-- section:interpret -->
 ## 4. Interpret conservatively
 

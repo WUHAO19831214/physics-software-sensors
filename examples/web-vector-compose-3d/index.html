@@ -12,12 +12,15 @@
     section { background: #17263a; border: 1px solid #304866; border-radius: 12px; padding: 18px; }
     label { display: grid; grid-template-columns: 30px 1fr 120px; gap: 8px; align-items: center; margin: 10px 0; }
     input, select, button { font: inherit; padding: 8px; border-radius: 6px; border: 1px solid #526c8c; }
+    input, select { min-width: 0; width: 100%; box-sizing: border-box; }
     button { cursor: pointer; background: #2c6faa; color: white; }
     canvas { width: 100%; height: 330px; background: #0a1220; border-radius: 8px; }
     dl { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     dt { color: #9db3ca; } dd { margin: 0; font-variant-numeric: tabular-nums; }
     .note { color: #b9c9d9; font-size: .9rem; }
     .warning { color: #ffd166; }
+    details { margin-top: 14px; }
+    details pre { max-height: 260px; overflow: auto; font-size: .78rem; }
     @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -41,7 +44,7 @@
         <dt>Elevation</dt><dd id="elevation">—</dd>
         <dt>Status</dt><dd id="status">—</dd>
       </dl>
-      <pre id="details"></pre>
+      <details><summary>Component provenance</summary><pre id="details"></pre></details>
       <p id="flags" class="warning"></p>
     </section>
     <section>
@@ -51,6 +54,6 @@
     </section>
   </div>
 </main>
-<script type="module" src="app.mjs"></script>
+<script type="module" src="app.mjs?v=1"></script>
 </body>
 </html>

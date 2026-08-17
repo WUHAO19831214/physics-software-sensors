@@ -7,6 +7,8 @@
 
 **面向物理实验的可复用软件传感器基础层。** 它把摄像头帧、屏幕像素和图像算法观测统一为可追溯的 `FramePacket` 与 `SensorEvent`，供后续物理实验项目复用。
 
+仓库也承载处理 Sensor 输出的可复用配套处理工具；这些工具不会假装产生新的直接观测。
+
 这是长期维护的基础能力库，不是新的实验应用。来源项目保持原状，继续作为历史实现和实际使用情境的事实来源。
 
 ```text
@@ -21,10 +23,26 @@
 
 成熟能力通过 adapter 渐进抽取，对固定来源 commit 做测试、文档和 benchmark，再服务未来项目。像素位置、OCR 文本、置信度和边界框是软件直接观测，不会自动成为经标定的物理量。
 
+```text
+物理 / 软件来源
+        ↓
+采集 Sensor → FramePacket
+        ↓
+处理 Sensor → SensorEvent / 标量测量值
+        ↓
+配套处理工具
+        ↓
+物理实验应用
+```
+
+例如：`screen.capture → ocr.number → vector.compose-3d → 三维合矢量`。最后一步只重建已有标量测量值，不感知新的物理量。
+
 <!-- section:project-status -->
 ## 项目状态
 
-7 个软件 Sensor · 7 个 experimental adapter · 1 个 experimental Companion Processing Tool · English / 简体中文 / 日本語 · 公开 experimental `v0.6.0` Release · 7 个 Sensor Bundle · 首次 E5 下游复用已完成。新工具尚未发布；不能把任何 Sensor 描述为已经全面 validated。
+**7 个软件传感器 · 1 个配套处理工具** · 英文 / 简体中文 / 日文
+
+7 个 adapter 和该工具目前均为 experimental。公开 `v0.6.0` Release 包含 7 个 Sensor Bundle；工具尚未发布。首次 E5 下游复用已经完成，但不能把任何 Sensor 描述为已经全面 validated。
 
 <!-- section:catalog -->
 ## 传感器目录
@@ -41,7 +59,13 @@
 
 完整信息见[传感器目录](docs/sensor-catalog.zh-CN.md)。证据等级表示实际跑过的路径；成熟度是另一项发布决策。
 
-配套工具 [`vector.compose-3d`](processing/vector.compose-3d/README.zh-CN.md) 从已有标量分量重建可追溯三维矢量，不伪装成第 8 个 Sensor。参阅[工具目录](docs/tool-catalog.zh-CN.md)和[浏览器 demo](examples/web-vector-compose-3d/README.md)。
+### 配套处理工具
+
+| Tool | 用途 | 语言 | 状态 | 示例 | 文档 |
+| --- | --- | --- | --- | --- | --- |
+| [`vector.compose-3d`](processing/vector.compose-3d/README.zh-CN.md) | 从标量分量进行三维矢量合成与重建 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.zh-CN.md) |
+
+完整信息见[配套工具目录](docs/tool-catalog.zh-CN.md)。配套工具构成可扩展的测量处理层，不计入 Sensor 数量。
 
 <!-- section:quick-start -->
 ## 快速开始
@@ -59,13 +83,33 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle、`release-manifest.json` 和 `SHA256SUMS`。Sensor Bundle 是便于阅读的文档/示例包，不复制公共 core。参阅[下载传感器](docs/downloading-sensors.zh-CN.md)和[安装](docs/installation.zh-CN.md)。
 
 <!-- section:demonstrations -->
-## 演示
+## 能力展示
 
-| 颜色标记 | 数字 OCR | 光斑重心 |
+### 软件传感器
+
+| 摄像头采集 | 屏幕采集 | 数字 OCR |
 | --- | --- | --- |
-| [![颜色标记回放](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.zh-CN.md) | [![OCR synthetic pixels](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.zh-CN.md) | [![光斑重心回放](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.zh-CN.md) |
+| [![合成录制摄像头帧](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.zh-CN.md) | [![合成共享窗口像素](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.zh-CN.md) | [![数字 OCR 回放](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.zh-CN.md) |
+| 帧 + 时间元数据 | 用户授权的屏幕像素 | ROI 文本 → 数值 |
 
-这些是 standalone synthetic/replay 演示，不是真实设备精度或计量证据。YOLO 公共演示是 recorded detector replay，不是真实模型 inference。
+| 颜色标记 | 光斑重心 | 模板 / 单目标追踪 |
+| --- | --- | --- |
+| [![颜色标记回放](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.zh-CN.md) | [![光斑重心回放](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.zh-CN.md) | [![单目标追踪回放](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.zh-CN.md) |
+| HSV 标记 → 像素中心 | 光斑 → 图像重心 | 初始化 ROI → bbox/lost |
+
+| YOLO 追踪 |
+| --- |
+| [![Recorded detector replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.zh-CN.md) |
+| Recorded detector replay → 检测与 track ID |
+
+### 配套处理工具
+
+| 三维矢量合成 |
+| --- |
+| [![录制 OCR 分量合成为三维合矢量](processing/vector.compose-3d/assets/overview.png)](processing/vector.compose-3d/README.zh-CN.md) |
+| 标量 x/y/z 分量 → 模长、方向和与渲染器无关的合矢量 |
+
+这些图片分别属于对应能力页面声明的 synthetic、recorded、replay 或 standalone-runtime 证据，不会自动成为真实设备精度或计量证据。YOLO 图片明确是 **recorded detector replay**，不是真实 YOLO inference。展示覆盖：**7/7 个 Sensor + 1/1 个配套工具 = 8/8 项公开能力**。
 
 <!-- section:principles -->
 ## 核心原则
@@ -106,6 +150,7 @@ Experimental / Validation / Release
 - [首次完整复用闭环](docs/first-reuse-loop.zh-CN.md)和[维护指南](docs/maintenance.md)
 - [当前项目状态](docs/project-status.md)
 - [术语](docs/i18n/terminology.md)和 [i18n 风格指南](docs/i18n/style-guide.md)
+- [Demo 素材清单](docs/demo-asset-inventory.md)
 - [架构](docs/architecture.md)、[数据格式](docs/data-format.md)、[benchmark](docs/benchmarking.md)
 - [v0.6.0 Release](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
 

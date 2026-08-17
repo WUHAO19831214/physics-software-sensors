@@ -14,4 +14,4 @@ cd ../..
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000/examples/web-vector-compose-3d/`. The app imports the built library; it does not contain a second vector implementation. The canvas is a minimal renderer-neutral projection, not the original Three.js classroom interface.
+Open `http://localhost:8000/examples/web-vector-compose-3d/`. The app imports the built OCR and Vector3 library modules directly; it does not contain a second vector implementation and does not require a browser bundler. The canvas is a minimal renderer-neutral projection, not the original Three.js classroom interface.

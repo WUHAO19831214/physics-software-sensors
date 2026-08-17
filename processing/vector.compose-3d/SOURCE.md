@@ -28,6 +28,8 @@ Extracted as general behavior: finite x/y/z components, magnitude, normalization
 
 Not extracted: screen capture, OCR inference, React UI, Three.js scene ownership, magnetic field lines, left-hand rule, teacher controls, snapshots, scaling panels, layout, branding, lesson workflow, or source assets.
 
+The public [`assets/overview.png`](assets/overview.png) was generated later from this repository's standalone demo in recorded OCR mode. It is repository-owned runtime evidence, not a copied Yan'an source asset; generation details and SHA-256 are recorded in [`assets/README.md`](assets/README.md).
+
 ## Algorithm changes
 
 The source did not have explicit missing/source/skew semantics or general azimuth/elevation output. The clean rewrite adds them because a reusable module must not treat a constrained zero as observed, silently combine asynchronous OCR results, or invent values for failed channels. The source-specific scene mapping is an opt-in transform and never changes core vector mathematics.

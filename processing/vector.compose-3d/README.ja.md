@@ -69,6 +69,10 @@ OCR 失敗は `{ source: 'missing' }` へ変換します。その場合は `inco
 
 [小規模ブラウザ demo](../../examples/web-vector-compose-3d/README.md)は手入力と recorded OCR を扱います。source golden、数学、成分 source、時刻差、座標、OCR composition の検証は [benchmark](benchmarks/README.md)を参照してください。
 
+[![recorded OCR 成分から3次元合成ベクトルを構成](assets/overview.png)](../../examples/web-vector-compose-3d/README.md)
+
+画像は standalone demo の実行画面です。[asset evidence record](assets/README.md)を参照してください。
+
 <!-- section:status -->
 ## 状態と配布
 

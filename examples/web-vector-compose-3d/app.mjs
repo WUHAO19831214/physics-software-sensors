@@ -1,11 +1,13 @@
 import {
   NumberOCRSensor,
   RecordedNumberRecognizer,
+} from '../../packages/typescript/dist/src/ocr/number.js';
+import {
   Vector3Assembler,
   YANAN_CLASSROOM_TO_SCENE,
   componentFromNumberOcrEvent,
   createVector3RenderModel,
-} from '../../packages/typescript/dist/src/index.js';
+} from '../../packages/typescript/dist/src/processing/vector3/index.js';
 
 const axes = ['x', 'y', 'z'];
 const inputs = document.querySelector('#inputs');
