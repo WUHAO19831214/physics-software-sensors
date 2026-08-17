@@ -1,57 +1,63 @@
-# Physics Software Sensors — NEW_REUSABLE_TOOL Handoff
+# Physics Software Sensors — Vector3 + Homepage Showcase Handoff
 
 ## Review state
 
 - Status: **READY_FOR_REVIEW**
-- Task: **NEW_REUSABLE_TOOL**
-- Tool: **`vector.compose-3d` — Companion Processing Tool**
+- Task: **NEW_REUSABLE_TOOL + HOMEPAGE_SHOWCASE**
 - Draft PR: [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9)
 - Branch: `agent/tool-vector-compose-3d`
-- Tested implementation SHA: `2759ccef506c1a5d4afe403bfddbcaa3c2a538cf`
-- Sensors: **7**; Companion Tools: **1**
-- Baseline Release: immutable `v0.6.0`; no new Release or registry publication
+- Tested implementation/showcase SHA: `9b4c69cb851b5d7689b627f179a8d7322403391e`
+- Sensors: **7**
+- Companion Processing Tools: **1**
+- Public capabilities: **8**
+- Baseline Release: immutable `v0.6.0`; no merge or new publication
 
-## 1–6. Source and historical decision
+## Reusable Tool result
 
-1. Source repository: `WUHAO19831214/ampere-force-visualizer-teacher-yanan`.
-2. Current source SHA: `cb073e89d6d87129287030f1df08bd540504eb39`; inspected read-only and left clean.
-3. Historical F1/F2/F3: **CONFIRMED**, first ROI IDs at `f3d93b3404d4246a4a0e4395070c2b7e67baea58`, first definitive 3D force implementation at `ac46ed58ed020c96e75d34d70759477ef898bbef`.
-4. Meaning: three simultaneous scalar OCR values treated as the x/y/z orthogonal components of one resultant force at a common point; source UI also called them three orthogonal forces. They were not arbitrary non-orthogonal vectors or one hardware SDK's three-axis record.
-5. Transition: `ed33d00774cd7eedf1ff4c3bd9a2cf9225410cf5` customized the application for Yan'an, changed default ROIs to Fy/Fz, retained F2/F3 aliases and set Fx to zero. The y-z apparatus-plane interpretation is supported by coordinate labels/code but is an inference; no richer commit body states the reason.
-6. xyz conclusion: historical F1/F2/F3-to-x/y/z behavior is source-confirmed. Current main is instead `{Fx=0 constrained, Fy/Fz observed}`. Stale F1/F2/F3 overview text in the current README is not treated as current runtime truth.
+`vector.compose-3d` remains an experimental Companion Processing Tool, not a Sensor. Historical F1/F2/F3 is source-confirmed as orthogonal x/y/z scalar components of one resultant. Current Yan'an behavior remains `{Fx=0 constrained, Fy/Fz observed}`. The TypeScript core, time-skew/quality semantics, coordinate adapter, recorded OCR composition, 10-case source golden and clean-rewrite provenance are unchanged by this homepage work.
 
-Full evidence: [Yan'an history](../docs/research/yanan-vector-reconstruction-history.md) and [SOURCE](../processing/vector.compose-3d/SOURCE.md).
+Source history: [research record](../docs/research/yanan-vector-reconstruction-history.md) · [SOURCE](../processing/vector.compose-3d/SOURCE.md).
 
-## 7–14. Architecture and API
+## Homepage Showcase report
 
-7. Final ID: `vector.compose-3d`.
-8. It is not a Sensor because it makes no direct observation: `screen.capture` observes pixels, `ocr.number` derives scalars, and this module performs downstream measurement processing.
-9. Public core: `Vector3Assembler`, `composeVector3`, `Vector3Measurement`, `applyCoordinateTransform`, `createVector3RenderModel`, and `componentFromNumberOcrEvent` under `packages/typescript/src/processing/vector3/`.
-10. Component source is explicit: `observed | derived | constrained | default | missing`. Missing yields an incomplete result; constrained zero is never reported as OCR-observed.
-11. Each component may carry `timestampMs`; `maxComponentSkewMs` defaults to 150 ms and excessive spread emits `component-time-skew`.
-12. Vector math uses caller coordinates. The opt-in Yan'an transform maps classroom `(x,y,z)` to scene `(-x,z,y)` and is tested separately.
-13. The optional adapter emits renderer-neutral axes, component arrows and resultant arrow. It does not copy or depend on the large teacher Three.js UI.
-14. Recorded `NumberOCRSensor` events compose through `componentFromNumberOcrEvent`; parse failure becomes `missing`, never a mock number.
+1. Sensor count: **7**, unchanged.
+2. Companion Tool count: **1**, `vector.compose-3d`.
+3. Homepage Sensor Catalog: **7/7** entries in EN/ZH/JA.
+4. Homepage Companion Tool Catalog: **1/1** separate entry in EN/ZH/JA; it is not mixed into the Sensor table.
+5. Sensor demo assets: **7/7** — camera, screen, OCR, color marker, spot centroid, template tracker and YOLO.
+6. Vector Tool demo asset: **1/1** — [`processing/vector.compose-3d/assets/overview.png`](../processing/vector.compose-3d/assets/overview.png).
+7. Reused assets: **7** existing reviewed Sensor assets.
+8. Newly generated assets: **1**. It is an actual standalone browser screenshot in recorded Fy/Fz OCR mode, not a fabricated UI or copied source screenshot.
+9. Broken homepage image/page links: **0**.
+10. Homepage parity: **PASS** for English / 简体中文 / 日本語, with identical 7+1 structure and evidence boundaries.
+11. Repository validation: **PASS**, including exact 8-image gallery and public capability counts.
+12. Python: **89/89 PASS**.
+13. TypeScript: **30/30 PASS**; offline count remains **27/27**.
+14. Vector/OCR focused tests: **12/12 PASS**.
+15. PR HEAD: resolved from `refs/heads/agent/tool-vector-compose-3d`; the final containing handoff commit is published after validation.
+16. Blockers: **none**. Known gaps remain source-license absence (clean rewrite/no copied source assets), no controlled physical validation, no downstream realtime Yan'an integration, and no full Three.js renderer.
 
-## 15–19. Evidence and public surface
+## Gallery evidence
 
-15. Golden fixture pins historical/current source commits and covers +x, +y, +z, xy, yz, xyz, negative, zero, historical F1/F2/F3 and current Fy/Fz+Fx=0. Magnitude, direction and scene mapping tolerance is `1e-12`.
-16. Tests: Python **87/87**; TypeScript **30/30** full and **27/27** offline; new Vector/OCR tests **12/12**; existing composition matrix **5/5**; i18n and repository structure pass after the containing handoff commit.
-17. Demo: `examples/web-vector-compose-3d/`, with manual input and recorded Fy/Fz OCR modes. It imports the built core and uses a minimal canvas projection.
-18. EN/ZH/JA: one Tool Page × 3, Tool Catalog × 3, 54-entry terminology authority, parity validation extended to Tool manifests/pages.
-19. Tool Catalog: `docs/tool-catalog.md`, `.zh-CN.md`, `.ja.md`; machine manifest: `processing/vector.compose-3d/tool.json`.
+| Capability | Homepage asset | Evidence |
+| --- | --- | --- |
+| `camera.capture` | `sensors/camera.capture/assets/captured-frame.png` | deterministic synthetic camera replay |
+| `screen.capture` | `sensors/screen.capture/assets/captured-screen-frame.png` | recorded synthetic shared-window pixels |
+| `ocr.number` | `sensors/ocr.number/assets/overview.png` | synthetic pixels through actual Tesseract.js path |
+| `tracker.color-marker` | `sensors/tracker.color-marker/assets/overview.png` | actual adapter on synthetic input |
+| `tracker.spot-centroid` | `sensors/tracker.spot-centroid/assets/overview.png` | actual adapter replay on synthetic input |
+| `tracker.template` | `sensors/tracker.template/assets/overview.png` | actual OpenCV CSRT synthetic replay |
+| `tracker.yolo` | `sensors/tracker.yolo/assets/overview.png` | **recorded detector replay**, not real YOLO inference |
+| `vector.compose-3d` | `processing/vector.compose-3d/assets/overview.png` | actual standalone runtime, recorded OCR mode |
 
-## 20–22. Repository and review boundary
+The exhaustive 55-file scan is in [Demo Asset Inventory](../docs/demo-asset-inventory.md). The Vector screenshot is 1112×720 px, SHA-256 `8ddeafac006676affbb26828e72019a0a890cd2efbde67367d9f13daa757d9c2`.
 
-20. Sensor count remains exactly **7**. Project status records **1 Companion Tool**, experimental `0.1.0`, unreleased.
-21. Draft PR [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9) remains unmerged.
-22. Blockers/gaps: source repository has no explicit license, so implementation is a clean rewrite and no code/assets were copied; no downstream real-time Yan'an integration; no controlled physical validation; no full Three.js renderer; cross-browser performance is not measured. None blocks review of the experimental core.
+## Immutable state
 
-## Immutable and source state
+- Source repository `WUHAO19831214/ampere-force-visualizer-teacher-yanan`: unchanged at `cb073e89d6d87129287030f1df08bd540504eb39`.
+- Library remote main: unchanged from maintenance baseline during this PR.
+- `v0.6.0`: unchanged.
+- Draft PR #9: remains Draft and unmerged.
+- No `v0.7.0`, PyPI, npm, second Tool or downstream integration was created.
 
-- Source repository main/worktree: unchanged at `cb073e89d6d87129287030f1df08bd540504eb39`.
-- Library remote main: unchanged at `0c5d484d2b6d85c8e28308c2b7338bbc2a282e6b` when the Draft PR was created.
-- `v0.6.0` tag object: unchanged at `c067c6c0e8196a284d6cba618a9fac5923bce8f7`.
-- No `v0.7.0`, PyPI, npm, merge, or downstream integration action was performed.
-
-Recommended next action: review the Vector3 handoff and decide whether Draft PR #9 should enter the long-term tool library. Do not merge automatically.
+Recommended next action: inspect the Vector3 + Homepage Showcase handoff and decide whether Draft PR #9 can be merged. Do not merge automatically.

@@ -2,8 +2,8 @@
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "MAINTENANCE",
-  "phase_name": "3D Vector Composition & Reconstruction",
-  "task_type": "NEW_REUSABLE_TOOL",
+  "phase_name": "3D Vector Composition & Reconstruction + Public Homepage Showcase",
+  "task_type": "NEW_REUSABLE_TOOL + HOMEPAGE_SHOWCASE",
   "status": "READY_FOR_REVIEW",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
@@ -14,7 +14,7 @@
     "base_branch": "main",
     "working_branch": "agent/tool-vector-compose-3d",
     "base_sha": "0c5d484d2b6d85c8e28308c2b7338bbc2a282e6b",
-    "tested_sha": "2759ccef506c1a5d4afe403bfddbcaa3c2a538cf",
+    "tested_sha": "9b4c69cb851b5d7689b627f179a8d7322403391e",
     "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/tool-vector-compose-3d"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
@@ -55,12 +55,28 @@
       "golden_cases": 10
     }
   },
+  "homepage_showcase": {
+    "sensor_catalog_entries": "7/7",
+    "companion_tool_catalog_entries": "1/1",
+    "sensor_demo_assets": "7/7",
+    "companion_tool_demo_assets": "1/1",
+    "visual_demonstrations": "8/8",
+    "reused_assets": 7,
+    "newly_generated_assets": 1,
+    "new_asset": "processing/vector.compose-3d/assets/overview.png",
+    "new_asset_evidence": "actual standalone browser runtime, recorded Fy/Fz OCR mode",
+    "broken_demo_links": 0,
+    "homepage_languages": ["en", "zh-CN", "ja"],
+    "parity": true,
+    "yolo_boundary": "recorded detector replay; not real YOLO inference"
+  },
   "tests": {
-    "repository_validation": {"passed": true},
+    "repository_validation": {"passed": true, "homepage_visuals": "8/8", "broken_demo_links": 0},
     "i18n": {"passed": true, "public_document_sets": 9, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
-    "python": {"passed": 87, "failed": 0},
+    "python": {"passed": 89, "failed": 0},
     "typescript": {"offline_passed": 27, "full_passed": 30, "failed": 0},
     "vector_and_ocr_tool": {"passed": 12, "failed": 0},
+    "homepage_showcase": {"passed": 2, "failed": 0},
     "source_golden_cases": {"passed": 10, "failed": 0, "tolerance": 1e-12},
     "composition": {"passed": 5, "failed": 0},
     "tracked_model_weights": 0
@@ -70,7 +86,11 @@
     "tool_page": "processing/vector.compose-3d/README.md",
     "tool_catalog": "docs/tool-catalog.md",
     "source": "processing/vector.compose-3d/SOURCE.md",
-    "demo": "examples/web-vector-compose-3d/README.md"
+    "demo": "examples/web-vector-compose-3d/README.md",
+    "demo_asset_inventory": "docs/demo-asset-inventory.md",
+    "homepage_en": "README.md",
+    "homepage_zh_CN": "README.zh-CN.md",
+    "homepage_ja": "README.ja.md"
   },
   "release": {
     "tag": "v0.6.0",
@@ -104,5 +124,5 @@
     "no full Three.js renderer",
     "cross-browser performance not measured"
   ],
-  "next_action": "Review Draft PR #9 and decide whether vector.compose-3d should enter the long-term tool library; do not merge automatically."
+  "next_action": "Review the Vector3 + Homepage Showcase handoff and decide whether Draft PR #9 can be merged; do not merge automatically."
 }
