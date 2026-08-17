@@ -5,7 +5,7 @@
 - Status: **READY_FOR_REVIEW**
 - Task: **PUBLIC_NAVIGATION_PAGES_FIRST**
 - Branch: `codex/pages-first-public-navigation`
-- PR: pending creation
+- Draft PR: [#11](https://github.com/WUHAO19831214/physics-software-sensors/pull/11)
 - Base SHA: `36d263f53d9ebcec4fc4d66b081ece5d77ba2f20`
 - Sensors: **7**
 - Companion Processing Tools: **1**

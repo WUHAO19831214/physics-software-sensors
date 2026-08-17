@@ -20,7 +20,7 @@
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
-  "pull_request": {"number": null, "url": "", "draft": true, "state": "PENDING", "title": "Improve Pages-first public capability navigation"},
+  "pull_request": {"number": 11, "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/11", "draft": true, "state": "OPEN", "title": "Improve Pages-first public capability navigation"},
   "public_document_delivery": {
     "repository_content_integrity": "PASS",
     "github_blob_view": "EXTERNAL_ERROR",
