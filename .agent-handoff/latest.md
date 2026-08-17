@@ -5,6 +5,7 @@
 - Status: **READY_FOR_REVIEW**
 - Task: **PUBLIC_DOCUMENT_DELIVERY**
 - Branch: `agent/public-docs-reliability`
+- Draft PR: [#10](https://github.com/WUHAO19831214/physics-software-sensors/pull/10)
 - Tested implementation SHA: `7d8852dc87ff610f16ac124ee41575dfac8687c0`
 - Sensors: **7**
 - Companion Processing Tools: **1**
@@ -44,4 +45,4 @@
 - `v0.6.0` tag and Release attachments: unchanged.
 - No `v0.7.0`, PyPI, npm, new Sensor or second Tool was published.
 
-Next action: push this branch, create Draft PR “Improve multilingual documentation access reliability”, then merge and enable GitHub Pages from `main /docs` after review.
+Next action: review Draft PR #10, merge it, then enable GitHub Pages from `main /docs` after review.

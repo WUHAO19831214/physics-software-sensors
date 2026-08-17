@@ -21,10 +21,10 @@
     "working_tree_clean": true
   },
   "pull_request": {
-    "number": null,
-    "url": "",
+    "number": 10,
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/10",
     "draft": true,
-    "state": "NOT_CREATED",
+    "state": "OPEN",
     "title": "Improve multilingual documentation access reliability"
   },
   "public_document_delivery": {
@@ -79,5 +79,5 @@
     "external GitHub Web blob delivery is currently unavailable in the route probe",
     "external GitHub Raw/CDN delivery can be temporarily rate-limited"
   ],
-  "next_action": "Create Draft PR, review, merge, then enable GitHub Pages from main /docs without Actions."
+  "next_action": "Review Draft PR #10, merge, then enable GitHub Pages from main /docs without Actions."
 }
