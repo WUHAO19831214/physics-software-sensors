@@ -33,3 +33,16 @@ npm --prefix packages/typescript test
 - 隐私、许可证与模型权重说明。
 
 模板位于 [`templates/`](templates/README.md)。
+
+## Adding a new Sensor
+
+普通 bugfix、文档修正和现有 adapter 的兼容性修复不需要完整 intake。新增 Sensor 或重大可复用能力必须先走标准流程：
+
+1. 阅读 [Sensor Intake](docs/sensor-intake.md) 和 [Sensor ID naming](docs/sensor-naming.md)。
+2. 填写 [Sensor Proposal](templates/SENSOR_PROPOSAL.md)，固定完整来源 commit、文件/符号、物理用途、直接观测与派生物理量。
+3. 记录 `ACCEPT`、`DEFER` 或 `REJECT`；只有 ACCEPT 才进入 scaffold/extraction。
+4. 遵守 [i18n style guide](docs/i18n/style-guide.md) 与 [terminology](docs/i18n/terminology.md)，提供 EN/ZH-CN/JA Sensor Page。
+5. 按 [benchmarking](docs/benchmarking.md)、[evidence/maturity](docs/evidence-and-maturity.md) 和 [licensing/provenance](docs/licensing-and-provenance.md) 完成证据门禁。
+6. 使用 `python tools/new_sensor.py --help` 生成 TODO 骨架；generator 不会替代来源审查，也不会把候选能力自动提升为 experimental。
+
+给 Codex 的完整执行顺序见 [add-new-sensor recipe](docs/agent-recipes/add-new-sensor.md)，可复制提示词见 [ADD_SENSOR_PROMPT](templates/ADD_SENSOR_PROMPT.md)。

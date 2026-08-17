@@ -1,20 +1,20 @@
-# Downloading Sensors
+# Sensor のダウンロード
 
-**English** | [简体中文](downloading-sensors.zh-CN.md) | [日本語](downloading-sensors.ja.md)
+[English](downloading-sensors.md) | [简体中文](downloading-sensors.zh-CN.md) | **日本語**
 
 <!-- section:release -->
 ## Release
 
-Download from [`v0.6.0` Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0). It is experimental/pre-stable and is not real-device or metrology validation.
+[`v0.6.0` Experimental](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0) から取得します。experimental/pre-stable であり、実機検証や計量検証を意味しません。
 
 <!-- section:packages -->
-## Whole packages
+## Package 全体
 
 - Python: [`physics_software_sensors-0.5.0-py3-none-any.whl`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/physics_software_sensors-0.5.0-py3-none-any.whl)
 - TypeScript: [`physics-software-sensors-core-0.3.0.tgz`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/physics-software-sensors-core-0.3.0.tgz)
 
 <!-- section:bundles -->
-## Single Sensor Bundles
+## 個別 Sensor Bundle
 
 | Sensor | Bundle |
 | --- | --- |
@@ -26,15 +26,15 @@ Download from [`v0.6.0` Experimental](https://github.com/WUHAO19831214/physics-s
 | `tracker.template` | [`tracker.template-0.4.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | `tracker.yolo` | [`tracker.yolo-0.5.0.zip`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
-A Sensor Bundle contains the Sensor Page, provenance, assets, example and dependency metadata. It does **not** copy the shared implementation core; install the referenced wheel/tgz.
+Sensor Bundle は Sensor Page、来歴、asset、example、依存情報を含みますが、共通実装 core は複製しません。参照先の wheel/tgz をインストールしてください。
 
 <!-- section:integrity -->
-## Integrity
+## 完全性確認
 
-Download [`SHA256SUMS`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/SHA256SUMS) beside the files and run:
+[`SHA256SUMS`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/SHA256SUMS) を同じ directory に置いて実行します。
 
 ```bash
 shasum -a 256 -c SHA256SUMS
 ```
 
-The [`release-manifest.json`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/release-manifest.json) records sizes, hashes, source SHA and build environment. Integrity does not prove Sensor accuracy or compatibility.
+[`release-manifest.json`](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/release-manifest.json) には size、hash、source SHA、build environment が記録されています。完全性確認は Sensor の精度・互換性を証明しません。
