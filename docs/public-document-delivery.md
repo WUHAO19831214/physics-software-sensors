@@ -25,11 +25,11 @@ The route probes below are delivery observations, not repository-content validat
 | GitHub Web blob | 404 / unavailable | 404 / unavailable | 404 / unavailable | External GitHub Web file-view delivery issue |
 | GitHub Raw | 429 | 429 | 429 | External GitHub Raw/CDN rate limiting |
 | GitHub Contents API | 200 | 200 | 200 | Repository content available |
-| GitHub Pages | 404 before setup | 404 before setup | 404 before setup | Not enabled yet |
+| GitHub Pages | 200 | 200 | 200 | Public reader enabled and built |
 
 Therefore a GitHub blob or Raw failure must not be described as broken Markdown, an encoding error or a missing repository file.
 
-## Pages-ready static reader
+## GitHub Pages static reader
 
 The version-controlled reader is generated from the canonical root READMEs and `project-status.json`:
 
@@ -64,16 +64,14 @@ python3 -m http.server 8765 --directory docs
 
 The three local routes are `/`, `/zh-CN/` and `/ja/`.
 
-## GitHub Pages enablement
+## GitHub Pages deployment
 
-Current state: **PAGES_READY_FOR_ENABLEMENT**. The Pages API returned 404 because a Pages site is not yet configured. The repository viewer has `ADMIN` permission, but this maintenance branch is intentionally a Draft PR and the final Pages source must be `main /docs`, not a temporary branch.
+Current state: **ENABLED**. On 2026-08-17, the Pages API configured and built the public site from branch **`main`** and folder **`/docs`**:
 
-After the PR is merged, enable the no-Actions deployment mode in the repository:
+- English: <https://wuhao19831214.github.io/physics-software-sensors/>
+- 简体中文: <https://wuhao19831214.github.io/physics-software-sensors/zh-CN/>
+- 日本語: <https://wuhao19831214.github.io/physics-software-sensors/ja/>
 
-1. Open **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select branch **`main`** and folder **`/docs`**.
-4. Save and wait for the Pages URL `https://wuhao19831214.github.io/physics-software-sensors/`.
-5. Verify `/`, `/zh-CN/` and `/ja/` return the expected language page.
+All three routes returned HTTP 200 after the Pages build reported `built`. The root Markdown README language links now prefer those public pages while retaining links to the version-controlled Markdown sources.
 
-Do not create a `gh-pages` branch and do not create an Actions workflow for this delivery path. When Pages is live, root README language navigation can be updated to prefer the Pages routes while retaining Markdown-source links for developers.
+This delivery path uses neither a `gh-pages` branch nor a GitHub Actions workflow. If the Pages configuration must be recreated, use **Settings → Pages**, choose **Deploy from a branch**, then select **`main`** and **`/docs`**.

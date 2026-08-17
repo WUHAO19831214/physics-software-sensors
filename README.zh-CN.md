@@ -1,6 +1,8 @@
 # 物理实验软件传感器库
 
-[English](README.md) | **简体中文** | [日本語](README.ja.md)
+[English Docs](https://wuhao19831214.github.io/physics-software-sensors/) | **简体中文** | [日本語 Docs](https://wuhao19831214.github.io/physics-software-sensors/ja/)
+
+Markdown sources: [English](README.md) | **简体中文** | [日本語](README.ja.md)
 
 <!-- section:introduction -->
 ## 它是什么？
@@ -42,8 +44,8 @@
 
 仓库三语内容完整性：**PASS**。英文、简体中文、日文 Markdown 都是完整的来源文档。如果某些地区的 GitHub 文件查看页暂时失败，仍可从仓库首页获得以下简要说明：
 
-- **English quick summary:** A reusable software sensing layer for physics experiments with 7 Software Sensors, 1 Companion Processing Tool and 8 public capabilities. It separates direct image/screen/OCR/tracking observations from downstream physical quantities. The public `v0.6.0` contains seven Sensor Bundles; `vector.compose-3d` remains an unreleased experimental Tool. A complete static reader is prepared in `docs/` for GitHub Pages `main /docs` deployment.
-- **日本語クイックガイド：**物理実験向けの再利用可能なソフトウェアセンサー基盤であり、7 個の Software Sensor、1 個の Companion Processing Tool、合計 8 項目の公開 capability を提供します。画像・画面・OCR・追跡の直接観測と下流の物理量は区別されます。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。GitHub Pages の `main /docs` 公開用 static reader は `docs/` に準備されています。
+- **English quick summary:** A reusable software sensing layer for physics experiments with 7 Software Sensors, 1 Companion Processing Tool and 8 public capabilities. It separates direct image/screen/OCR/tracking observations from downstream physical quantities. The public `v0.6.0` contains seven Sensor Bundles; `vector.compose-3d` remains an unreleased experimental Tool. The trilingual documentation website is now served by GitHub Pages from `main /docs`.
+- **日本語クイックガイド：**物理実験向けの再利用可能なソフトウェアセンサー基盤であり、7 個の Software Sensor、1 個の Companion Processing Tool、合計 8 項目の公開 capability を提供します。画像・画面・OCR・追跡の直接観測と下流の物理量は区別されます。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の static reader は GitHub Pages の `main /docs` から公開されています。
 
 <!-- section:project-status -->
 ## 项目状态
@@ -133,6 +135,7 @@ Experimental / Validation / Release
 <!-- section:documentation -->
 ## 文档
 
+- [三语文档网站](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/)
 - [传感器目录](docs/sensor-catalog.zh-CN.md)
 - [配套工具目录](docs/tool-catalog.zh-CN.md)
 - [能力展示详情](docs/capability-showcase.zh-CN.md)

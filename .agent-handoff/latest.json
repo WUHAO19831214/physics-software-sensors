@@ -4,7 +4,7 @@
   "phase": "MAINTENANCE",
   "phase_name": "Multilingual Public Document Access Reliability",
   "task_type": "PUBLIC_DOCUMENT_DELIVERY",
-  "status": "READY_FOR_REVIEW",
+  "status": "MAINTENANCE_READY",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 7,
@@ -13,27 +13,31 @@
   "languages": ["en", "zh-CN", "ja"],
   "git": {
     "base_branch": "main",
-    "working_branch": "agent/public-docs-reliability",
-    "base_sha": "838e864e83a207bff6b64ba417fda9b937c86df3",
-    "tested_sha": "7d8852dc87ff610f16ac124ee41575dfac8687c0",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/public-docs-reliability"},
+    "working_branch": "main",
+    "base_sha": "c95474a26738d1d68174958ba8bb575948e76d90",
+    "tested_sha": "c95474a26738d1d68174958ba8bb575948e76d90",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
   "pull_request": {
     "number": 10,
     "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/10",
-    "draft": true,
-    "state": "OPEN",
+    "draft": false,
+    "state": "MERGED",
     "title": "Improve multilingual documentation access reliability"
   },
   "public_document_delivery": {
     "repository_content_integrity": "PASS",
     "github_blob_view": "EXTERNAL_ERROR",
     "github_raw": "RATE_LIMITED",
-    "github_pages": "PAGES_READY_FOR_ENABLEMENT",
+    "github_pages": "ENABLED",
     "pages_source": "main /docs",
-    "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/"
+    "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
+    "build_status": "built",
+    "language_pages": {"en": "PASS", "zh_CN": "PASS", "ja": "PASS"},
+    "language_switching": "6/6 PASS",
+    "capability_showcase": "PASS"
   },
   "pages": {
     "files": {"en": "docs/index.html", "zh_CN": "docs/zh-CN/index.html", "ja": "docs/ja/index.html"},
@@ -42,12 +46,13 @@
     "gh_pages_branch": false
   },
   "tests": {
-    "repository_validation": {"passed": true, "pending_clean_commit_rerun": true},
+    "repository_validation": {"passed": true, "pending_clean_commit_rerun": false},
     "i18n": {"passed": true, "public_document_sets": 10, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
     "python": {"passed": 100, "failed": 0},
     "typescript": {"passed": 30, "failed": 0},
     "public_document_delivery": {"readme_sources": "3/3", "pages_files": "3/3", "language_routes": "6/6", "passed": true},
-    "local_http": {"routes": "3/3", "status": 200}
+    "local_http": {"routes": "3/3", "status": 200},
+    "github_pages": {"routes": "3/3", "status": 200, "language_switching": "6/6 PASS", "capability_showcase": "PASS"}
   },
   "release": {
     "tag": "v0.6.0",
@@ -74,10 +79,10 @@
     {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "unchanged"},
     {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "unchanged"}
   ],
-  "blockers": ["GitHub Pages is not enabled until the Draft PR is reviewed and main /docs is selected"],
+  "blockers": [],
   "known_gaps": [
     "external GitHub Web blob delivery is currently unavailable in the route probe",
     "external GitHub Raw/CDN delivery can be temporarily rate-limited"
   ],
-  "next_action": "Review Draft PR #10, merge, then enable GitHub Pages from main /docs without Actions."
+  "next_action": "Continue maintenance; use the GitHub Pages reader for public multilingual documentation and retain Markdown sources for version-controlled review."
 }

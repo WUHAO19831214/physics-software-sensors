@@ -30,8 +30,11 @@ def test_project_status_matches_sensor_registry_and_maintenance_baseline() -> No
         "repository_content_integrity": "pass",
         "github_blob_view": "external_error",
         "github_raw": "rate_limited",
-        "github_pages": "ready_for_enablement",
+        "github_pages": "enabled",
+        "provider": "github-pages",
         "pages_source": "main /docs",
+        "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
+        "languages": ["en", "zh-CN", "ja"],
     }
     evidence = {entry["sensor_id"]: entry["evidence_level"] for entry in benchmark["entries"]}
     for sensor_id, sensor in status["sensors"].items():

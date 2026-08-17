@@ -56,4 +56,4 @@ Repository image validity and GitHub delivery availability are separate checks. 
 
 ## Multilingual public-document delivery
 
-When GitHub Web blob views are unavailable while Contents API and local UTF-8 checks pass, treat the issue as an **external GitHub Web file-view delivery issue**. Do not rewrite valid Markdown in an attempt to refresh GitHub. The Pages-ready reader under `docs/` is generated from canonical root READMEs; validate it with `tools/validate_public_docs.py`. See [Public Document Delivery](public-document-delivery.md) for the route matrix and no-Actions `main /docs` Pages enablement procedure.
+When GitHub Web blob views are unavailable while Contents API and local UTF-8 checks pass, treat the issue as an **external GitHub Web file-view delivery issue**. Do not rewrite valid Markdown in an attempt to refresh GitHub. The GitHub Pages reader under `docs/` is generated from canonical root READMEs; validate it with `tools/validate_public_docs.py`. See [Public Document Delivery](public-document-delivery.md) for the route matrix and no-Actions `main /docs` deployment record.

@@ -61,8 +61,11 @@ def validate_public_docs(root: Path = ROOT) -> list[str]:
         "repository_content_integrity": "pass",
         "github_blob_view": "external_error",
         "github_raw": "rate_limited",
-        "github_pages": "ready_for_enablement",
+        "github_pages": "enabled",
+        "provider": "github-pages",
         "pages_source": "main /docs",
+        "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
+        "languages": ["en", "zh-CN", "ja"],
     }:
         errors.append("project-status.json: public-document delivery state mismatch")
     expected_status_hash = sha256(status_path)

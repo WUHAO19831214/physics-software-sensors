@@ -8,8 +8,11 @@
     "repository_content_integrity": "pass",
     "github_blob_view": "external_error",
     "github_raw": "rate_limited",
-    "github_pages": "ready_for_enablement",
-    "pages_source": "main /docs"
+    "github_pages": "enabled",
+    "provider": "github-pages",
+    "pages_source": "main /docs",
+    "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
+    "languages": ["en", "zh-CN", "ja"]
   },
   "baseline_release": {
     "tag": "v0.6.0",

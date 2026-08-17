@@ -1,6 +1,8 @@
 # Physics Software Sensors
 
-**English** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
+**English** | [简体中文 Docs](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/) | [日本語 Docs](https://wuhao19831214.github.io/physics-software-sensors/ja/)
+
+Markdown sources: **English** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <!-- section:introduction -->
 ## What is this?
@@ -42,8 +44,8 @@ For example: `screen.capture → ocr.number → vector.compose-3d → 3D resulta
 
 Repository multilingual content integrity: **PASS**. English, Simplified Chinese and Japanese Markdown are maintained as complete source documents. If a regional GitHub file-view route fails, this repository still provides the following quick orientation from the root README:
 
-- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，当前有 7 个软件传感器和 1 个配套处理工具，共 8 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle；`vector.compose-3d` 仍是未发布的 experimental 工具。完整三语静态阅读页已准备在 `docs/`，待 GitHub Pages 从 `main /docs` 启用。
-- **日本語クイックガイド：**これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。7 個の Software Sensor と 1 個の Companion Processing Tool、合計 8 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の静的 reader は `docs/` に準備済みで、GitHub Pages の `main /docs` 設定後に公開されます。
+- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，当前有 7 个软件传感器和 1 个配套处理工具，共 8 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle；`vector.compose-3d` 仍是未发布的 experimental 工具。三语文档网站现已由 GitHub Pages 从 `main /docs` 提供。
+- **日本語クイックガイド：**これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。7 個の Software Sensor と 1 個の Companion Processing Tool、合計 8 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の静的 reader は GitHub Pages の `main /docs` から公開されています。
 
 <!-- section:project-status -->
 ## Project status
@@ -133,6 +135,7 @@ Future work enters through [Sensor Intake](docs/sensor-intake.md), the [Add New 
 <!-- section:documentation -->
 ## Documentation
 
+- [Documentation Website](https://wuhao19831214.github.io/physics-software-sensors/)
 - [Sensor Catalog](docs/sensor-catalog.md)
 - [Companion Tool Catalog](docs/tool-catalog.md)
 - [Capability Showcase](docs/capability-showcase.md)
