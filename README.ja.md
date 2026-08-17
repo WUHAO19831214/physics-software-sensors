@@ -37,6 +37,14 @@ Processor Sensor → SensorEvent / スカラー測定値
 
 例：`screen.capture → ocr.number → vector.compose-3d → 3次元合成ベクトル`。最後の段階は既存のスカラー測定値を再構成するもので、新しい量を観測しません。
 
+<!-- section:language-access -->
+## 言語アクセス
+
+repository の 3 言語コンテンツ完全性：**PASS**。English、简体中文、日本語の Markdown はいずれも完全な source document として維持されています。地域によって GitHub の file view が一時的に失敗しても、repository のトップから次の概要を確認できます。
+
+- **English quick summary:** A reusable software sensing layer for physics experiments with 7 Software Sensors, 1 Companion Processing Tool and 8 public capabilities. It keeps direct image/screen/OCR/tracking observations separate from downstream physical quantities. Public `v0.6.0` contains seven Sensor Bundles, while `vector.compose-3d` is an unreleased experimental Tool. A complete static reader is prepared in `docs/` for GitHub Pages deployment from `main /docs`.
+- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，包含 7 个软件传感器、1 个配套处理工具和 8 项公开能力。它明确区分图像、屏幕、OCR、追踪的直接观测与后续物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle，`vector.compose-3d` 仍是未发布的 experimental 工具。完整静态阅读页已准备在 `docs/`，用于 GitHub Pages 的 `main /docs` 部署。
+
 <!-- section:project-status -->
 ## Project status
 
