@@ -2,19 +2,20 @@
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "MAINTENANCE",
-  "phase_name": "3D Vector Composition & Reconstruction + Public Homepage Showcase",
-  "task_type": "NEW_REUSABLE_TOOL + HOMEPAGE_SHOWCASE",
+  "phase_name": "Public Homepage Showcase Stabilization",
+  "task_type": "HOMEPAGE_SHOWCASE_STABILIZATION",
   "status": "READY_FOR_REVIEW",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 7,
   "companion_tool_count": 1,
+  "public_capability_count": 8,
   "languages": ["en", "zh-CN", "ja"],
   "git": {
     "base_branch": "main",
     "working_branch": "agent/tool-vector-compose-3d",
     "base_sha": "0c5d484d2b6d85c8e28308c2b7338bbc2a282e6b",
-    "tested_sha": "9b4c69cb851b5d7689b627f179a8d7322403391e",
+    "tested_sha": "da024e97969cfd60b85c82d75b2d9ac68fa4c3b8",
     "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/tool-vector-compose-3d"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
@@ -29,14 +30,6 @@
   "source_audit": {
     "repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan",
     "current_sha": "cb073e89d6d87129287030f1df08bd540504eb39",
-    "earliest_f1_f2_f3_sha": "f3d93b3404d4246a4a0e4395070c2b7e67baea58",
-    "historical_vector_sha": "ac46ed58ed020c96e75d34d70759477ef898bbef",
-    "fy_fz_transition_sha": "ed33d00774cd7eedf1ff4c3bd9a2cf9225410cf5",
-    "scene_sign_sha": "c9f362adc99b498d0ca606f8ed51e1a60b142b3c",
-    "historical_f1_f2_f3": "CONFIRMED",
-    "meaning": "three scalar OCR values treated as orthogonal x/y/z components of one resultant force",
-    "current_behavior": "Fy and Fz observed by OCR; Fx explicitly constrained to zero; F2/F3 migration aliases retained",
-    "license": "no explicit source license found",
     "source_modified": false
   },
   "companion_tools": {
@@ -46,55 +39,46 @@
       "version": "0.1.0",
       "language": "typescript",
       "released": false,
-      "direct_observation": false,
-      "component_sources": ["observed", "derived", "constrained", "default", "missing"],
-      "max_component_skew_ms_default": 150,
-      "coordinate_transform": "yanan classroom (x,y,z) to scene (-x,z,y)",
-      "renderer": "renderer-neutral axes/component/resultant model",
-      "ocr_composition": true,
-      "golden_cases": 10
+      "direct_observation": false
     }
   },
   "homepage_showcase": {
     "sensor_catalog_entries": "7/7",
     "companion_tool_catalog_entries": "1/1",
-    "sensor_demo_assets": "7/7",
-    "companion_tool_demo_assets": "1/1",
-    "visual_demonstrations": "8/8",
-    "reused_assets": 7,
-    "newly_generated_assets": 1,
-    "new_asset": "processing/vector.compose-3d/assets/overview.png",
-    "new_asset_evidence": "actual standalone browser runtime, recorded Fy/Fz OCR mode",
-    "broken_demo_links": 0,
-    "homepage_languages": ["en", "zh-CN", "ja"],
+    "public_capability_links": "8/8",
+    "detailed_demo_assets": "8/8",
+    "homepage_image_requests": 1,
+    "aggregate_asset": "docs/assets/capability-showcase.png",
+    "aggregate_dimensions": [1200, 1458],
+    "aggregate_bytes": 277904,
+    "aggregate_sha256": "39fcb7a008388b925fdec3f5d4aafb86df2cef77f610aebef1de1fd275bd6a88",
+    "generator": "tools/build_capability_showcase.py",
+    "external_hosting": false,
     "parity": true,
     "yolo_boundary": "recorded detector replay; not real YOLO inference"
   },
-  "tests": {
-    "repository_validation": {"passed": true, "homepage_visuals": "8/8", "broken_demo_links": 0},
-    "i18n": {"passed": true, "public_document_sets": 9, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
-    "python": {"passed": 89, "failed": 0},
-    "typescript": {"offline_passed": 27, "full_passed": 30, "failed": 0},
-    "vector_and_ocr_tool": {"passed": 12, "failed": 0},
-    "homepage_showcase": {"passed": 2, "failed": 0},
-    "source_golden_cases": {"passed": 10, "failed": 0, "tolerance": 1e-12},
-    "composition": {"passed": 5, "failed": 0},
-    "tracked_model_weights": 0
+  "github_delivery": {
+    "contents_api": 200,
+    "repository_blob": "present",
+    "local_decode": "PASS",
+    "raw_cdn": "429 Too Many Requests during inspection",
+    "classification": "external GitHub Raw/CDN delivery issue"
   },
-  "documentation": {
-    "history": "docs/research/yanan-vector-reconstruction-history.md",
-    "tool_page": "processing/vector.compose-3d/README.md",
-    "tool_catalog": "docs/tool-catalog.md",
-    "source": "processing/vector.compose-3d/SOURCE.md",
-    "demo": "examples/web-vector-compose-3d/README.md",
-    "demo_asset_inventory": "docs/demo-asset-inventory.md",
-    "homepage_en": "README.md",
-    "homepage_zh_CN": "README.zh-CN.md",
-    "homepage_ja": "README.ja.md"
+  "tests": {
+    "repository_validation": {"passed": true, "pending_clean_commit_rerun": true},
+    "i18n": {"passed": true, "public_document_sets": 10, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
+    "python": {"passed": 90, "failed": 0},
+    "typescript": {"passed": 30, "failed": 0},
+    "vector_and_ocr_tool": {"passed": 12, "failed": 0},
+    "homepage_showcase": {"passed": 3, "failed": 0},
+    "composition": {"passed": 5, "failed": 0},
+    "detailed_asset_decode": {"passed": 8, "failed": 0},
+    "aggregate_decode": {"passed": 1, "failed": 0}
   },
   "release": {
     "tag": "v0.6.0",
     "tag_object": "c067c6c0e8196a284d6cba618a9fac5923bce8f7",
+    "tag_target": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
     "mutated": false,
     "v0_7_0_published": false,
     "pypi_published": false,
@@ -110,19 +94,18 @@
     "tracker.yolo": {"maturity": "experimental", "evidence": "E2", "implementation_version": "0.5.0"}
   },
   "source_repositories": [
-    {"repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable", "commit": "85740d686c67452a057540edb564d713e01ccc51", "state": "remote main unchanged"},
-    {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "state": "historical source unchanged; prior downstream integration remains separate"},
-    {"repository": "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715", "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619", "state": "remote main unchanged"},
-    {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "remote main unchanged"},
-    {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "read-only source main and worktree unchanged"}
+    {"repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable", "commit": "85740d686c67452a057540edb564d713e01ccc51", "state": "unchanged"},
+    {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "state": "unchanged"},
+    {"repository": "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715", "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619", "state": "unchanged"},
+    {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "unchanged"},
+    {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "unchanged"}
   ],
   "blockers": [],
   "known_gaps": [
-    "source repository has no explicit license; clean rewrite used and no source code/assets copied",
+    "external GitHub Raw/CDN delivery can be temporarily rate-limited",
     "no downstream realtime Yan'an integration",
     "no controlled physical validation",
-    "no full Three.js renderer",
-    "cross-browser performance not measured"
+    "no full Three.js renderer"
   ],
-  "next_action": "Review the Vector3 + Homepage Showcase handoff and decide whether Draft PR #9 can be merged; do not merge automatically."
+  "next_action": "Run clean-tree validation, update PR #9, mark ready and squash merge to main."
 }

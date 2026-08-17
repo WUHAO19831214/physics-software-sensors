@@ -1,63 +1,48 @@
-# Physics Software Sensors — Vector3 + Homepage Showcase Handoff
+# Physics Software Sensors — Homepage Stabilization Handoff
 
 ## Review state
 
 - Status: **READY_FOR_REVIEW**
-- Task: **NEW_REUSABLE_TOOL + HOMEPAGE_SHOWCASE**
-- Draft PR: [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9)
+- Task: **HOMEPAGE_SHOWCASE_STABILIZATION**
+- PR: [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9)
 - Branch: `agent/tool-vector-compose-3d`
-- Tested implementation/showcase SHA: `9b4c69cb851b5d7689b627f179a8d7322403391e`
+- Tested implementation SHA: `da024e97969cfd60b85c82d75b2d9ac68fa4c3b8`
 - Sensors: **7**
 - Companion Processing Tools: **1**
 - Public capabilities: **8**
-- Baseline Release: immutable `v0.6.0`; no merge or new publication
+- Baseline Release: immutable `v0.6.0`
 
-## Reusable Tool result
+## Homepage stabilization
 
-`vector.compose-3d` remains an experimental Companion Processing Tool, not a Sensor. Historical F1/F2/F3 is source-confirmed as orthogonal x/y/z scalar components of one resultant. Current Yan'an behavior remains `{Fx=0 constrained, Fy/Fz observed}`. The TypeScript core, time-skew/quality semantics, coordinate adapter, recorded OCR composition, 10-case source golden and clean-rewrite provenance are unchanged by this homepage work.
+1. Eight canonical detail assets exist, are non-empty and decode locally: **8/8 PASS**.
+2. The Vector screenshot was normalized from JPEG bytes to a real PNG without changing its displayed content. SHA-256: `acdf56337794a4513a4869b148beed6a77d15d294cd1e8171fae0a75e0fc7353`.
+3. `tools/build_capability_showcase.py` creates one offline, reproducible 2×4 aggregate from those eight assets.
+4. Aggregate: [`docs/assets/capability-showcase.png`](../docs/assets/capability-showcase.png), 1200×1458, 277904 bytes, SHA-256 `39fcb7a008388b925fdec3f5d4aafb86df2cef77f610aebef1de1fd275bd6a88`.
+5. Each root README loads exactly one aggregate image and retains **8/8** text capability links.
+6. The trilingual detail pages retain all eight individual demo images and evidence boundaries.
+7. YOLO remains labeled **recorded detector replay**, not real YOLO inference.
+8. No external image host or base64 embedding was introduced.
 
-Source history: [research record](../docs/research/yanan-vector-reconstruction-history.md) · [SOURCE](../processing/vector.compose-3d/SOURCE.md).
+## GitHub delivery incident
 
-## Homepage Showcase report
+During inspection, GitHub Contents API returned `200`, repository blobs existed, and local decode passed while `raw.githubusercontent.com` returned `429 Too Many Requests`. This is recorded as an **external GitHub Raw/CDN delivery issue**, not a broken repository image. The public status page reported GitHub operational, so the result is treated as regional/edge/IP delivery throttling. Valid assets were preserved.
 
-1. Sensor count: **7**, unchanged.
-2. Companion Tool count: **1**, `vector.compose-3d`.
-3. Homepage Sensor Catalog: **7/7** entries in EN/ZH/JA.
-4. Homepage Companion Tool Catalog: **1/1** separate entry in EN/ZH/JA; it is not mixed into the Sensor table.
-5. Sensor demo assets: **7/7** — camera, screen, OCR, color marker, spot centroid, template tracker and YOLO.
-6. Vector Tool demo asset: **1/1** — [`processing/vector.compose-3d/assets/overview.png`](../processing/vector.compose-3d/assets/overview.png).
-7. Reused assets: **7** existing reviewed Sensor assets.
-8. Newly generated assets: **1**. It is an actual standalone browser screenshot in recorded Fy/Fz OCR mode, not a fabricated UI or copied source screenshot.
-9. Broken homepage image/page links: **0**.
-10. Homepage parity: **PASS** for English / 简体中文 / 日本語, with identical 7+1 structure and evidence boundaries.
-11. Repository validation: **PASS**, including exact 8-image gallery and public capability counts.
-12. Python: **89/89 PASS**.
-13. TypeScript: **30/30 PASS**; offline count remains **27/27**.
-14. Vector/OCR focused tests: **12/12 PASS**.
-15. PR HEAD: resolved from `refs/heads/agent/tool-vector-compose-3d`; the final containing handoff commit is published after validation.
-16. Blockers: **none**. Known gaps remain source-license absence (clean rewrite/no copied source assets), no controlled physical validation, no downstream realtime Yan'an integration, and no full Three.js renderer.
+## Verification
 
-## Gallery evidence
-
-| Capability | Homepage asset | Evidence |
-| --- | --- | --- |
-| `camera.capture` | `sensors/camera.capture/assets/captured-frame.png` | deterministic synthetic camera replay |
-| `screen.capture` | `sensors/screen.capture/assets/captured-screen-frame.png` | recorded synthetic shared-window pixels |
-| `ocr.number` | `sensors/ocr.number/assets/overview.png` | synthetic pixels through actual Tesseract.js path |
-| `tracker.color-marker` | `sensors/tracker.color-marker/assets/overview.png` | actual adapter on synthetic input |
-| `tracker.spot-centroid` | `sensors/tracker.spot-centroid/assets/overview.png` | actual adapter replay on synthetic input |
-| `tracker.template` | `sensors/tracker.template/assets/overview.png` | actual OpenCV CSRT synthetic replay |
-| `tracker.yolo` | `sensors/tracker.yolo/assets/overview.png` | **recorded detector replay**, not real YOLO inference |
-| `vector.compose-3d` | `processing/vector.compose-3d/assets/overview.png` | actual standalone runtime, recorded OCR mode |
-
-The exhaustive 55-file scan is in [Demo Asset Inventory](../docs/demo-asset-inventory.md). The Vector screenshot is 1112×720 px, SHA-256 `8ddeafac006676affbb26828e72019a0a890cd2efbde67367d9f13daa757d9c2`.
+- Python: **90/90 PASS**.
+- TypeScript: **30/30 PASS**.
+- Vector/OCR focused: **12/12 PASS** from the package working directory.
+- Composition: **5/5 PASS**.
+- Homepage showcase tests: **3/3 PASS**.
+- i18n: **PASS**, 10 public document sets, 7 Sensor Pages × 3, 1 Tool Page × 3, 54 terms.
+- Showcase source/output decode: **8/8 + aggregate PASS**.
+- Repository validation: run on the clean containing commit before merge.
 
 ## Immutable state
 
-- Source repository `WUHAO19831214/ampere-force-visualizer-teacher-yanan`: unchanged at `cb073e89d6d87129287030f1df08bd540504eb39`.
-- Library remote main: unchanged from maintenance baseline during this PR.
-- `v0.6.0`: unchanged.
-- Draft PR #9: remains Draft and unmerged.
-- No `v0.7.0`, PyPI, npm, second Tool or downstream integration was created.
+- Five historical source repositories: unchanged.
+- Sensor algorithms and maturity: unchanged.
+- `v0.6.0` tag and Release attachments: unchanged.
+- No `v0.7.0`, PyPI, npm, new Sensor or second Tool was published.
 
-Recommended next action: inspect the Vector3 + Homepage Showcase handoff and decide whether Draft PR #9 can be merged. Do not merge automatically.
+Next action: complete clean-tree repository validation, update PR #9, mark it ready, confirm mergeability and squash merge to `main`.
