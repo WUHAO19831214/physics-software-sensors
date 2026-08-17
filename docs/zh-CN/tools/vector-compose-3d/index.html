@@ -1,0 +1,63 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="1a37adaaf3089cdd9617881f556261eb78a7cebbb297e12598b829bc9c2bb1a1"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>三维矢量合成与重建</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../tools/vector-compose-3d/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/tools/vector-compose-3d/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>三维矢量合成与重建</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p><code>vector.compose-3d</code> · 三维矢量合成与重建 · 版本 <code>0.1.0</code> · <code>experimental</code></p>
+<p>它是 <strong>Companion Processing Tool（配套处理工具）</strong>，不是 Sensor。</p>
+<!-- section:purpose -->
+<h2>用途</h2>
+<p>把三个标量分量合成为可追溯的三维矢量，输出模长、归一化方向、方位角和仰角。它可位于 OCR 或其他标量测量之后，用于力、磁场、加速度、速度等实验。</p>
+<!-- section:boundary -->
+<h2>观测边界</h2>
+<p>本工具不产生新的直接观测。<code>screen.capture</code> 观测屏幕像素，<code>ocr.number</code> 从像素中派生标量读数，本工具再处理已有读数。受约束分量绝不会被描述成传感器观测值。</p>
+<!-- section:source -->
+<h2>来源行为</h2>
+<p>延安安培力项目历史版本把 F1/F2/F3 作为 x/y/z 三个正交标量分量；当前 main 通过 OCR 观测 Fy/Fz，并明确把 Fx 约束为零。<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/research/yanan-vector-reconstruction-history.md">Git 历史研究</a>严格区分两种行为。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>每个 x/y/z 分量在可用时携带有限数值、<code>observed | derived | constrained | default | missing</code> 来源、可选毫秒时间戳，以及自己的置信度、不确定度、warning 和 error。物理量、单位、坐标系名称都由调用者作为 metadata 提供，因此数学核心不写死为“力”。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p><code>Vector3Measurement</code> 包含分量、模长、归一化矢量、方向、最新分量时间戳、分量时差、状态和未合并的逐分量质量。方位角采用度，范围 <code>[0, 360)</code>，在 x-y 平面从 +x 朝 +y；仰角采用度，范围 <code>[-90, 90]</code>，从 x-y 平面朝 +z。零矢量的 <code>normalized</code> 和 <code>direction</code> 都是 <code>null</code>。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<pre><code class="language-ts">import { Vector3Assembler } from '@physics-software-sensors/core';
+
+const result = new Vector3Assembler({ maxComponentSkewMs: 150 }).compose({
+  quantity: 'force',
+  unit: 'N',
+  coordinateSystem: 'classroom-x-y-z',
+  components: {
+    x: { value: 0, source: 'constrained' },
+    y: { value: 1.2, source: 'observed', timestampMs: 1000 },
+    z: { value: -0.8, source: 'observed', timestampMs: 1040 },
+  },
+});
+</code></pre>
+<p>OCR 失败应转换为 <code>{ source: 'missing' }</code>；结果保持 <code>incomplete</code>，不会虚构矢量。</p>
+<!-- section:quality -->
+<h2>时间与质量</h2>
+<p>若时间戳跨度超过 <code>maxComponentSkewMs</code>，结果保留并标记 <code>component-time-skew</code> 和 warning 状态。各分量置信度分别保存；本工具不会取平均后称为“矢量准确率”。</p>
+<!-- section:coordinates -->
+<h2>坐标与可选渲染适配</h2>
+<p>数学核心使用调用者声明的 x/y/z 坐标系。<code>CoordinateTransform3</code> 是独立矩阵适配器。延安专用可选映射为课堂 <code>(x,y,z)</code> → Three.js 场景 <code>(-x,z,y)</code>。<code>createVector3RenderModel</code> 只输出坐标轴、分量箭头和合矢量箭头数据，不接管 Three.js 或应用 UI。</p>
+<!-- section:demo -->
+<h2>Demo 与测试</h2>
+<p>可运行<a href="../../examples/vector-compose-3d/">小型浏览器 demo</a>，支持手动输入和 recorded OCR 模式。来源 golden、数学、分量来源、时差、坐标和 OCR 组合覆盖见 <a href="./">benchmark</a>。</p>
+<p><a href="../../examples/vector-compose-3d/"><img alt="录制 OCR 分量合成为三维合矢量" src="../../../site-assets/processing/vector.compose-3d/assets/overview.png" /></a></p>
+<p>图片来自 standalone demo 的真实运行截图；证据记录见 <a href="./">assets/README.md</a>。</p>
+<!-- section:status -->
+<h2>状态与分发</h2>
+<p>当前为 <code>experimental</code>、版本 <code>0.1.0</code>，只存在于尚未发布的 TypeScript 源码中。它不属于不可变的 <code>v0.6.0</code> Release，尚未发布 <code>v0.7.0</code>，仓库仍然只有 7 个 Sensor。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<ul>
+<li>尚未反向接入延安项目实时流程。</li>
+<li>不推断物理标定或计量不确定度。</li>
+<li>不依赖 Three.js，也未提供完整 3D scene renderer；适配器只输出与渲染器无关的箭头数据。</li>
+<li>调用者提供的时间戳必须属于同一时钟域。</li>
+<li>尚未完成跨浏览器、跨操作系统性能 benchmark。</li>
+</ul>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>commit/file/symbol 锚点和 clean rewrite 许可证决定见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/SOURCE.md">SOURCE.md</a>。没有复制来源仓库代码或素材。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/processing/vector.compose-3d/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

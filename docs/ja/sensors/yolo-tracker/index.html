@@ -1,0 +1,66 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="d788443b61c4f0709969879d14f96f702e4fd08b2e87b8ce3032fb29c338579d"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>YOLO 検出・追跡センサー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/yolo-tracker/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/yolo-tracker/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>YOLO 検出・追跡センサー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>tracker.yolo</code> · Implementation version: <code>0.5.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E2</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>YOLO 検出・追跡センサー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>複数対象 detector/tracker backend の結果を、来歴付き detection、bbox、Track ID に変換します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>審査済みローカル model/runtime が適切な場合に、複数の可視物体・人物の画像軌跡を観測します。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>Class label、detector confidence、bbox/center、backend Track ID です。Confidence は精度、tracking confidence、物理的不確かさではなく、物理量には pixel 校正が必要です。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>detector.py::Detector.detect/track/_detect_hog</code>、<code>camera_processor.py</code>、config/setup/model docs/tests; YOLO/ByteTrack と HOG fallback boundary</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>Frame → backend 選択 → 必要時 model artifact 検証 → detection → 任意 ByteTrack/recorded Track ID → adapter result/fallback evidence → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>Camera/image <code>FramePacket</code>、backend 設定、class filter。実 YOLO では審査済みローカル <code>ModelArtifact</code> path/SHA-256/license status が必要です。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p>各対象の class ID/name、bbox/center、detector confidence、任意 Track ID、requested/actual/attempted backend metadata を含む <code>SensorEvent</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Recorded detector replay" src="../../../site-assets/sensors/tracker.yolo/assets/overview.png" /></a> Source-compatible recorded output で、実 YOLO inference や model accuracy の証拠ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/yolo-tracker/">python-yolo-tracker</a> で model を取得しない <code>RecordedDetectorBackend</code> を実行します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>Python package <code>0.5.0</code>; offline <code>yolo-recorded</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">tracker.yolo-0.5.0.zip</a>。実 <code>yolo-runtime</code> は別です。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E2</code>: 固定 source recorded output と adapter/fallback/lifecycle test。実 Ultralytics/ByteTrack inference は未実行です。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>; manifest は <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p><code>.pt</code>/<code>.onnx</code>/<code>.engine</code> を同梱・自動取得しません。HOG は person-only で YOLO と同等ではありません。Model accuracy、実 ByteTrack、実験室/device performance は未測定です。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">Benchmark</a>: adapter/source compatibility、multi-target/lost/fallback semantics、latency。Model accuracy は not measured。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p>Source symbol、model/license boundary、replay construction は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/SOURCE.md">SOURCE.md</a> と <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/yolo-model-and-license-review.md">YOLO review</a>、facts は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/sensor.json">sensor.json</a> にあります。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.yolo/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

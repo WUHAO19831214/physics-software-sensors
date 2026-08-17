@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="b0c127aed08fc50107d0aab0abd75a6c79de85da3c5935ca7f7c69df9ba6ded5"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Capability Showcase</title><link rel="stylesheet" href="../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">Home</a><a href="../catalog/">Catalog</a><a href="../installation/">Installation</a><a href="../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../zh-CN/capability-showcase/">简体中文</a> <span>|</span> <a href="../ja/capability-showcase/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Capability Showcase</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:overview -->
+<h2>Overview</h2>
+<p>The repository homepage loads one aggregate preview to reduce independent GitHub Raw/CDN requests. This detail page keeps the eight reviewed demonstrations available when a reader intentionally opens the gallery.</p>
+<p><a href="../"><img alt="Physics Software Sensors capability showcase" src="../site-assets/docs/assets/capability-showcase.png" /></a></p>
+<p>The aggregate is reproducibly built from the eight images below with <code>python3 tools/build_capability_showcase.py</code>. It uses no network access or external image host.</p>
+<!-- section:software-sensors -->
+<h2>Software Sensors</h2>
+<h3>Camera Capture</h3>
+<p><a href="../sensors/camera-capture/"><img alt="Synthetic recorded camera frame" src="../site-assets/sensors/camera.capture/assets/captured-frame.png" /></a></p>
+<p>Turns a recorded or live camera image into a timed <code>FramePacket</code>. The image is a deterministic synthetic camera replay, not a hardware-camera claim.</p>
+<h3>Screen Capture</h3>
+<p><a href="../sensors/screen-capture/"><img alt="Synthetic shared-window pixels" src="../site-assets/sensors/screen.capture/assets/captured-screen-frame.png" /></a></p>
+<p>Represents pixels from a user-authorized screen or window as a <code>FramePacket</code>. The image uses synthetic shared-window pixels.</p>
+<h3>Number OCR</h3>
+<p><a href="../sensors/number-ocr/"><img alt="Numeric OCR replay" src="../site-assets/sensors/ocr.number/assets/overview.png" /></a></p>
+<p>Recognizes text in a screen-image ROI and parses a numeric observation. It does not read a device SDK value.</p>
+<h3>Color Marker Tracker</h3>
+<p><a href="../sensors/color-marker/"><img alt="Color marker replay" src="../site-assets/sensors/tracker.color-marker/assets/overview.png" /></a></p>
+<p>Finds an HSV color marker and reports its image-space center. Pixel position is not calibrated physical displacement.</p>
+<h3>Spot Centroid</h3>
+<p><a href="../sensors/spot-centroid/"><img alt="Spot centroid replay" src="../site-assets/sensors/tracker.spot-centroid/assets/overview.png" /></a></p>
+<p>Reports the brightness-weighted centroid of a light spot inside the image ROI. It does not directly measure mechanical displacement.</p>
+<h3>Template / Single-object Tracker</h3>
+<p><a href="../sensors/template-tracker/"><img alt="Single-object tracker replay" src="../site-assets/sensors/tracker.template/assets/overview.png" /></a></p>
+<p>Tracks an ROI-initialized object with an OpenCV single-object backend and reports bbox/lost state; this is not static template matching.</p>
+<h3>YOLO Tracker</h3>
+<p><a href="../sensors/yolo-tracker/"><img alt="Recorded detector replay" src="../site-assets/sensors/tracker.yolo/assets/overview.png" /></a></p>
+<p>Demonstrates detections and track IDs through a <strong>recorded detector replay</strong>. This public image is not evidence of real YOLO model inference.</p>
+<!-- section:companion-tools -->
+<h2>Companion Processing Tools</h2>
+<h3>3D Vector Composition</h3>
+<p><a href="../tools/vector-compose-3d/"><img alt="Recorded OCR components composed into a 3D resultant vector" src="../site-assets/processing/vector.compose-3d/assets/overview.png" /></a></p>
+<p>Composes traceable scalar x/y/z components into a resultant vector and renderer-neutral model. It derives from existing observations and is not a new direct Sensor observation. See the <a href="../examples/vector-compose-3d/">standalone web example</a>.</p>
+<!-- section:evidence -->
+<h2>Evidence boundary</h2>
+<p>These are representative standalone, synthetic, recorded or replay demonstrations. Evidence level varies by capability; none of the images alone establishes real-device accuracy, calibration, repeatability or metrology performance. Canonical assets remain version-controlled in this repository.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/capability-showcase.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

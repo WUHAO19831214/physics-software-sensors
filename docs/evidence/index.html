@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="8a13fda86f55ba06c8491558da5d1fe6f6933169e8721caeb145ea274c529535"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Evidence and Maturity</title><link rel="stylesheet" href="../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">Home</a><a href="../catalog/">Catalog</a><a href="../installation/">Installation</a><a href="../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../zh-CN/evidence/">简体中文</a> <span>|</span> <a href="../ja/evidence/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Evidence and Maturity</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:evidence -->
+<h2>Evidence levels</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E0</td>
+<td>Contract/schema only</td>
+</tr>
+<tr>
+<td>E1</td>
+<td>Deterministic synthetic or recorded replay</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Fixed-source compatibility/golden comparison</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Real OCR/CV/runtime on controlled pixels</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>Named real device/lab setup and reproducible dataset</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>Pinned downstream project integration with rollback</td>
+</tr>
+</tbody>
+</table>
+<p>Recorded output is not a real runtime. Synthetic pixels are not a real device. Missing evidence is <code>not measured</code>, never zero.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<ul>
+<li><code>contract-only</code>: no repository implementation is required.</li>
+<li><code>experimental</code>: adapter and deterministic tests exist; important validation may remain pending.</li>
+<li><code>validated</code>: applicable real-world, metrics and supported-path licensing gates passed.</li>
+<li><code>stable</code>: validated public API plus downstream pinned reuse, rollback and compatibility commitments.</li>
+</ul>
+<!-- section:separation -->
+<h2>Evidence Level ≠ Maturity</h2>
+<p>Evidence records what ran. Maturity is a release decision across implementation, reproducibility, metrics, licensing, documentation and reuse. E3 or E5 does not automatically mean validated. All seven current Sensors remain experimental. <code>tracker.spot-centroid</code> has E5 downstream reuse evidence, but no Sensor has E4 real-device/lab evidence.</p>
+<p>Maintainer details: <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-levels.md">evidence levels</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/maturity-gates.md">maturity gates</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-and-maturity.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/evidence-and-maturity.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

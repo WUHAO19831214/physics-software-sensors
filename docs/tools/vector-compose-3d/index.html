@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="d64a0950886a8fc0b5682946a98c9e1a915ac8f1bac42375a77285a269a757ac"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>3D Vector Composition &amp; Reconstruction</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/tools/vector-compose-3d/">简体中文</a> <span>|</span> <a href="../../ja/tools/vector-compose-3d/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>3D Vector Composition &amp; Reconstruction</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p><code>vector.compose-3d</code> · 3D Vector Composition &amp; Reconstruction · version <code>0.1.0</code> · <code>experimental</code></p>
+<p>This is a <strong>Companion Processing Tool</strong>, not a Sensor.</p>
+<!-- section:purpose -->
+<h2>Purpose</h2>
+<p>Combine three scalar components into a traceable 3D vector with magnitude, normalized direction, azimuth and elevation. It is useful after OCR or other scalar measurements in force, magnetic-field, acceleration, velocity, and other experiments.</p>
+<!-- section:boundary -->
+<h2>Observation boundary</h2>
+<p>The tool makes no new direct observation. <code>screen.capture</code> observes screen pixels; <code>ocr.number</code> derives scalar readings; this tool processes those existing readings. A constrained component is never presented as an observed value.</p>
+<!-- section:source -->
+<h2>Source behavior</h2>
+<p>The Yan'an Ampere-force project historically treated F1/F2/F3 as x/y/z orthogonal scalar components. Current main observes Fy and Fz through OCR and explicitly constrains Fx to zero. The <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/research/yanan-vector-reconstruction-history.md">Git history study</a> separates these two behaviors.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Each x/y/z component carries a finite value when available, one of <code>observed | derived | constrained | default | missing</code>, an optional timestamp in milliseconds, and its own confidence, uncertainty, warnings and errors. Quantity, unit and coordinate-system names are caller metadata, so the core is not force-specific.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p><code>Vector3Measurement</code> contains components, magnitude, normalized vector, direction, latest component timestamp, component skew, status and unmerged per-component quality. Azimuth is degrees in <code>[0, 360)</code>, from +x toward +y in the x-y plane. Elevation is degrees in <code>[-90, 90]</code>, above the x-y plane toward +z. A zero vector has <code>normalized: null</code> and <code>direction: null</code>.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<pre><code class="language-ts">import { Vector3Assembler } from '@physics-software-sensors/core';
+
+const result = new Vector3Assembler({ maxComponentSkewMs: 150 }).compose({
+  quantity: 'force',
+  unit: 'N',
+  coordinateSystem: 'classroom-x-y-z',
+  components: {
+    x: { value: 0, source: 'constrained' },
+    y: { value: 1.2, source: 'observed', timestampMs: 1000 },
+    z: { value: -0.8, source: 'observed', timestampMs: 1040 },
+  },
+});
+</code></pre>
+<p>An OCR error should be converted to <code>{ source: 'missing' }</code>; the result then remains <code>incomplete</code> and contains no invented vector.</p>
+<!-- section:quality -->
+<h2>Time and quality</h2>
+<p>If timestamp spread exceeds <code>maxComponentSkewMs</code>, the result is retained with <code>component-time-skew</code> and warning status. Component confidence is preserved separately; the tool never averages confidence and calls it vector accuracy.</p>
+<!-- section:coordinates -->
+<h2>Coordinates and optional renderer</h2>
+<p>Core mathematics uses the caller's x/y/z system. <code>CoordinateTransform3</code> is a separate matrix adapter. The Yan'an opt-in mapping is classroom <code>(x,y,z)</code> → Three.js scene <code>(-x,z,y)</code>. <code>createVector3RenderModel</code> emits axes/component/resultant arrow data without taking ownership of Three.js or application UI.</p>
+<!-- section:demo -->
+<h2>Demo and tests</h2>
+<p>Run the <a href="../../examples/vector-compose-3d/">small browser demo</a> in manual or recorded-OCR mode. Source golden, math, component-source, skew, coordinate and OCR-composition coverage is described in <a href="./">benchmarks</a>.</p>
+<p><a href="../../examples/vector-compose-3d/"><img alt="Recorded OCR components composed into a 3D resultant vector" src="../../site-assets/processing/vector.compose-3d/assets/overview.png" /></a></p>
+<p>The image is an actual standalone-runtime screenshot; see the <a href="./">asset evidence record</a>.</p>
+<!-- section:status -->
+<h2>Status and distribution</h2>
+<p>The tool is <code>experimental</code>, version <code>0.1.0</code>, and is available from the unreleased TypeScript source tree. It is not included in immutable Release <code>v0.6.0</code>, no <code>v0.7.0</code> has been published, and the repository still contains exactly seven Sensors.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<ul>
+<li>No real-time downstream Yan'an integration has been performed.</li>
+<li>No physical calibration or metrological uncertainty is inferred.</li>
+<li>There is no Three.js dependency or full 3D scene renderer; the adapter emits renderer-neutral arrows.</li>
+<li>Caller-provided timestamps must share a clock domain.</li>
+<li>Performance across browsers and operating systems is not yet benchmarked.</li>
+</ul>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>See <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/SOURCE.md">SOURCE.md</a> for commit/file/symbol anchors and the clean-rewrite license decision. No code or assets were copied from the source repository.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/processing/vector.compose-3d/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

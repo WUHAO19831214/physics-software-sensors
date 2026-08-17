@@ -1,0 +1,66 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="ab0b85764f85f107baad30e7b0b0c8d8b980e113dec384afe075a9b77c3ee0ef"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>YOLO 检测与追踪软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/yolo-tracker/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/yolo-tracker/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>YOLO 检测与追踪软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.yolo</code> · Implementation version: <code>0.5.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E2</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>YOLO 检测与追踪软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>把多目标 detector/tracker 后端结果转换为可追溯的 detection、bbox 和 Track ID。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>在适合使用已审核本地模型/runtime 时，观测多个可见物体或人员的图像轨迹。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>直接输出 class label、detector confidence、bbox/center 和 backend Track ID。Confidence 不是准确率、tracking confidence 或物理不确定度；像素必须标定后才能得到物理量。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>detector.py::Detector.detect/track/_detect_hog</code>、<code>camera_processor.py</code>、config/setup/model docs/tests；YOLO/ByteTrack 与 HOG fallback 边界</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>Frame → 选择 backend → 适用时校验 model artifact → detection → 可选 ByteTrack/recorded Track ID → adapter 标准结果/fallback 证据 → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>Camera/image <code>FramePacket</code>、backend 配置、class filter；真实 YOLO 还必须提供已审核的本地 <code>ModelArtifact</code> 路径/SHA-256/许可证状态。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p>Detection/tracking <code>SensorEvent</code>：每个目标的 class ID/name、bbox/center、detector confidence、可选 Track ID，以及 requested/actual/attempted backend 元数据。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Recorded detector replay" src="../../../site-assets/sensors/tracker.yolo/assets/overview.png" /></a> 这是来源兼容 recorded output，不是真实 YOLO inference 或模型准确率证据。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/yolo-tracker/">python-yolo-tracker</a>，使用不会下载模型的 <code>RecordedDetectorBackend</code>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>Python package <code>0.5.0</code>；offline <code>yolo-recorded</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">tracker.yolo-0.5.0.zip</a>。真实 <code>yolo-runtime</code> 独立安装。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E2</code>：固定来源 recorded output 和 adapter/fallback/lifecycle tests。没有执行真实 Ultralytics/ByteTrack inference。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 为 <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>不捆绑或自动下载 <code>.pt</code>/<code>.onnx</code>/<code>.engine</code>。HOG 仅限 person 且不等价于 YOLO。模型准确率、真实 ByteTrack 行为和实验室/设备性能均未测量。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见 <a href="./">benchmark</a>：adapter/来源兼容性、多目标/lost/fallback 语义和延迟；模型准确率仍为 not measured。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>来源符号、模型/许可证边界和 replay 构造见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/SOURCE.md">SOURCE.md</a>及 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/yolo-model-and-license-review.md">YOLO 审查</a>，事实见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.yolo/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

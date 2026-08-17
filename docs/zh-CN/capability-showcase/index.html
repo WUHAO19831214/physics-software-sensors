@@ -1,0 +1,38 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="f5c1d4e26cad9dcea8ff834c1b85ca93cad1545607526a475be348d71e5229bb"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>能力展示详情</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">首页</a><a href="../catalog/">目录</a><a href="../installation/">安装</a><a href="../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../capability-showcase/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../ja/capability-showcase/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>能力展示详情</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<!-- section:overview -->
+<h2>概览</h2>
+<p>仓库首页只加载一张聚合预览图，以减少独立的 GitHub Raw/CDN 请求。用户主动进入本页后，仍可查看八项能力各自的详细演示。</p>
+<p><a href="../"><img alt="Physics Software Sensors 能力总览" src="../../site-assets/docs/assets/capability-showcase.png" /></a></p>
+<p>聚合图由 <code>python3 tools/build_capability_showcase.py</code> 从下面八张图片可重复生成；脚本不访问网络，也不使用外部图床。</p>
+<!-- section:software-sensors -->
+<h2>软件传感器</h2>
+<h3>摄像头采集</h3>
+<p><a href="../sensors/camera-capture/"><img alt="合成录制摄像头帧" src="../../site-assets/sensors/camera.capture/assets/captured-frame.png" /></a></p>
+<p>把录制或实时摄像头图像组织为带时间信息的 <code>FramePacket</code>。图片是确定性的合成摄像头回放，不代表真实硬件测试。</p>
+<h3>屏幕采集</h3>
+<p><a href="../sensors/screen-capture/"><img alt="合成共享窗口像素" src="../../site-assets/sensors/screen.capture/assets/captured-screen-frame.png" /></a></p>
+<p>把用户授权的屏幕或窗口像素组织为 <code>FramePacket</code>。图片使用合成的共享窗口像素。</p>
+<h3>数字 OCR</h3>
+<p><a href="../sensors/number-ocr/"><img alt="数字 OCR 回放" src="../../site-assets/sensors/ocr.number/assets/overview.png" /></a></p>
+<p>识别屏幕图像 ROI 中的文本并解析数字观测；它读取的是屏幕像素，不是设备 SDK 数值。</p>
+<h3>颜色标记追踪</h3>
+<p><a href="../sensors/color-marker/"><img alt="颜色标记回放" src="../../site-assets/sensors/tracker.color-marker/assets/overview.png" /></a></p>
+<p>寻找 HSV 颜色标记并报告图像坐标中心。像素位置不等于经过标定的物理位移。</p>
+<h3>光斑重心</h3>
+<p><a href="../sensors/spot-centroid/"><img alt="光斑重心回放" src="../../site-assets/sensors/tracker.spot-centroid/assets/overview.png" /></a></p>
+<p>报告图像 ROI 中光斑的亮度加权重心，并不直接测量机械位移。</p>
+<h3>模板 / 单目标追踪</h3>
+<p><a href="../sensors/template-tracker/"><img alt="单目标追踪回放" src="../../site-assets/sensors/tracker.template/assets/overview.png" /></a></p>
+<p>使用 OpenCV 单目标 backend 追踪初始化 ROI，输出 bbox/lost 状态；它不是静态模板匹配。</p>
+<h3>YOLO 追踪</h3>
+<p><a href="../sensors/yolo-tracker/"><img alt="Recorded detector replay" src="../../site-assets/sensors/tracker.yolo/assets/overview.png" /></a></p>
+<p>通过 <strong>recorded detector replay</strong> 展示检测结果与 track ID。这张公开图片不是真实 YOLO 模型推理证据。</p>
+<!-- section:companion-tools -->
+<h2>配套处理工具</h2>
+<h3>三维矢量合成</h3>
+<p><a href="../tools/vector-compose-3d/"><img alt="录制 OCR 分量合成为三维合矢量" src="../../site-assets/processing/vector.compose-3d/assets/overview.png" /></a></p>
+<p>把可追溯的 x/y/z 标量分量合成为合矢量及与渲染器无关的模型。它派生已有观测，不会冒充新的 Sensor 直接观测。参阅<a href="../examples/vector-compose-3d/">独立 Web 示例</a>。</p>
+<!-- section:evidence -->
+<h2>证据边界</h2>
+<p>这些是代表性的 standalone、synthetic、recorded 或 replay 演示。不同能力的证据等级不同；任何单张图片都不能单独证明真实设备精度、标定、重复性或计量性能。规范 demo 资产继续保存在本仓库并纳入版本控制。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/capability-showcase.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

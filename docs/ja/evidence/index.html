@@ -1,0 +1,51 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="891c75513940b44f7cb6f3dcaf784437b7491ee31590084399a4d26321ac5cd7"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>エビデンスレベルと成熟度</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">ホーム</a><a href="../catalog/">カタログ</a><a href="../installation/">インストール</a><a href="../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../evidence/">English</a> <span>|</span> <a href="../../zh-CN/evidence/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>エビデンスレベルと成熟度</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E0</td>
+<td>契約・Schema のみ</td>
+</tr>
+<tr>
+<td>E1</td>
+<td>決定的な synthetic / recorded replay</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>固定ソースとの互換性・golden 比較</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>制御された pixel 上で実 OCR/CV/runtime を実行</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>特定した実機・実験室条件と再現可能 dataset</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>rollback を備えた下流 project の version 固定統合</td>
+</tr>
+</tbody>
+</table>
+<p>Recorded output は実 runtime ではなく、synthetic pixels は実機ではありません。未取得の証拠はゼロではなく <code>not measured</code> とします。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<ul>
+<li><code>contract-only</code>: 本 repository の実装は必須ではない。</li>
+<li><code>experimental</code>: adapter と決定的テストはあるが、重要な検証が未完の場合がある。</li>
+<li><code>validated</code>: 対象となる実環境、指標、対応経路のライセンス gate を通過済み。</li>
+<li><code>stable</code>: validated public API に加え、下流での version 固定再利用、rollback、互換性を保証。</li>
+</ul>
+<!-- section:separation -->
+<h2>Evidence Level ≠ Maturity</h2>
+<p>エビデンスは「実行した経路」、成熟度は実装・再現性・指標・ライセンス・文書・再利用を含む release 判断です。E3 や E5 だけで validated にはなりません。現在の 7 Sensor はすべて experimental のままです。<code>tracker.spot-centroid</code> には E5 の下流再利用エビデンスがありますが、E4 の実機・実験室エビデンスを持つ Sensor はありません。</p>
+<p>保守者向け詳細: <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-levels.md">Evidence Levels</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/maturity-gates.md">Maturity Gates</a>。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-and-maturity.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/evidence-and-maturity.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

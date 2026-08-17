@@ -1,0 +1,125 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="47b010868c5cd0faf6ab7a3b91621f454d73362b2ca86efbc6b06f23d25a357a"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Public Capability Catalog</title><link rel="stylesheet" href="../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">Home</a><a href="./">Catalog</a><a href="../installation/">Installation</a><a href="../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../zh-CN/catalog/">简体中文</a> <span>|</span> <a href="../ja/catalog/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Public Capability Catalog</h1>
+<h1>Sensor Catalog</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:catalog -->
+<h2>Available Sensors</h2>
+<p>Status describes the implementation in this repository, not the historical source project's maturity.</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Purpose</th>
+<th>Language</th>
+<th>Maturity</th>
+<th>Evidence</th>
+<th>Example</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../sensors/camera-capture/"><code>camera.capture</code></a></td>
+<td>Camera frames and capture metadata</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="../examples/camera-capture/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">0.3.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/screen-capture/"><code>screen.capture</code></a></td>
+<td>User-authorized screen/window pixels</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="../examples/screen-capture/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">0.3.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/number-ocr/"><code>ocr.number</code></a></td>
+<td>Numeric OCR from an ROI</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="../examples/number-ocr/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">0.2.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/color-marker/"><code>tracker.color-marker</code></a></td>
+<td>Color marker position/lost state</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="../examples/color-marker/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">0.2.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/spot-centroid/"><code>tracker.spot-centroid</code></a></td>
+<td>Light-spot weighted centroid</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E5</td>
+<td><a href="../examples/spot-centroid/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">0.4.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/template-tracker/"><code>tracker.template</code></a></td>
+<td>ROI-initialized single-object tracker</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="../examples/template-tracker/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">0.4.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/yolo-tracker/"><code>tracker.yolo</code></a></td>
+<td>Multi-target detector/tracker adapter</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="../examples/yolo-tracker/">run</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">0.5.0</a></td>
+</tr>
+</tbody>
+</table>
+<!-- section:status -->
+<h2>Status meaning</h2>
+<ul>
+<li><code>contract-only</code>: contract and documentation, no repository implementation.</li>
+<li><code>experimental</code>: standalone adapter and offline evidence; real-device/downstream validation may be missing.</li>
+<li><code>validated</code>: applicable real runtime/device, metrics and licensing gates have passed.</li>
+<li><code>stable</code>: validated public API plus downstream pinned reuse and rollback evidence.</li>
+</ul>
+<p>Evidence is not maturity. See <a href="../evidence/">Evidence and Maturity</a>. All seven Sensors remain experimental. Only <code>tracker.spot-centroid</code> has E5 downstream reuse evidence; it still has no E4 real optical/device evidence. Real YOLO inference remains not measured and no model weight is distributed.</p>
+<h1>Companion Tool Catalog</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:catalog -->
+<h2>Catalog</h2>
+<p>Companion Tools process existing observations or measurements; they do not create a new direct observation and are not counted as Sensors.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Language</th>
+<th>Status</th>
+<th>Source</th>
+<th>Example</th>
+<th>Docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../tools/vector-compose-3d/"><code>vector.compose-3d</code></a></td>
+<td>Compose traceable x/y/z scalar components into a 3D vector and optional render model</td>
+<td>TypeScript</td>
+<td><code>experimental</code> <code>0.1.0</code></td>
+<td>Yan'an Ampere-force teacher application</td>
+<td><a href="../examples/vector-compose-3d/">Web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/SOURCE.md">Source record</a></td>
+</tr>
+</tbody>
+</table>
+<!-- section:status -->
+<h2>Status boundary</h2>
+<p>Repository inventory: <strong>7 Sensors · 1 Companion Tool</strong>. The tool is unreleased development after immutable <code>v0.6.0</code>; it is not present in that Release and does not change Sensor maturity or evidence.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/sensor-catalog.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

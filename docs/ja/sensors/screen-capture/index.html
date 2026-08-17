@@ -1,0 +1,71 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="7490fcd951d504f0a3e8a96746e390231a5dba46a85f137f62ed902d002ad558"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>画面キャプチャセンサー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/screen-capture/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/screen-capture/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>画面キャプチャセンサー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>screen.capture</code> · Implementation version: <code>0.3.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E1</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>画面キャプチャセンサー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>ユーザーが選択した画面、window、tab の pixel を取得し、timestamp 付き screen <code>FramePacket</code> を出力します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>利用可能な device SDK がない場合に、計測ソフト画面を下流の ROI/OCR 処理へ橋渡しします。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>直接観測するのは許可された画面 pixel と取得 lifecycle/time であり、機器内部値、SDK 値、物理量ではありません。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>ScreenCapturePanel.tsx</code>、<code>screenCaptureRuntime.ts</code>、<code>SCREEN_CAPTURE_PIPELINE.md</code>; 許可画面→ROI/OCR</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td><code>ScreenCapturePanel.tsx</code>、<code>SENSOR_INTEGRATION.md</code>; Fy/Fz 表示 pixel bridge</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>User gesture → <code>getDisplayMedia</code> permission → stream → video/canvas pixel → time/status → screen <code>FramePacket</code>。Recorded backend で browser UI なしの決定的 replay が可能です。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>Browser permission/configuration または recorded RGBA frame、要求 sampling interval、source ID。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p>ID、RGBA size/pixel、artifact URI、timestamp、quality flag を含む screen <code>FramePacket</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="画面 replay" src="../../../site-assets/sensors/screen.capture/assets/captured-screen-frame.png" /></a> Synthetic replay は browser/device 互換性の証拠ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/screen-capture/">web-screen-capture</a> を実行し、OCR 合成は <a href="../../examples/screen-to-ocr/">web-screen-to-ocr</a> を参照します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>TypeScript package <code>0.3.0</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">screen.capture-0.3.0.zip</a>。Bundle は共通 tgz に依存します。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E1</code>: 決定的 recorded RGBA replay。Browser capture は自動実行しません。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>; manifest は <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p>Permission は user gesture で開始し、reload 後は通常再許可が必要です。拒否/終了は capture lifecycle error です。OCR 失敗を mock 数値で置換しません。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">Benchmark</a> と<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/compatibility-matrix.md">互換性 matrix</a>を参照してください。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/SOURCE.md">SOURCE.md</a> と <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/sensor.json">sensor.json</a> を参照してください。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/screen.capture/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

@@ -1,0 +1,32 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="753a8593fd452889047d4d237467a7cf30d295f319a32fe4d5b4e60c7fde985e"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>安装</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">首页</a><a href="../catalog/">目录</a><a href="./">安装</a><a href="../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../installation/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../ja/installation/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>安装</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<!-- section:prerequisites -->
+<h2>前置条件</h2>
+<ul>
+<li>Python 包需要 Python 3.11+。</li>
+<li>TypeScript 包需要 Node.js 18+。</li>
+<li>从 <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental</a> 下载 artifact；本项目没有 registry 包。</li>
+</ul>
+<!-- section:python -->
+<h2>Python</h2>
+<pre><code class="language-bash">python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install ./physics_software_sensors-0.5.0-py3-none-any.whl
+</code></pre>
+<p>只安装实际需要的 extra：</p>
+<pre><code class="language-bash">python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[color-marker]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[camera-opencv]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[yolo-recorded]'
+</code></pre>
+<p><code>yolo-runtime</code> 只应在完成许可证审查后安装可选的 Ultralytics/<code>lap</code>。它不会提供、选择或下载模型；调用方必须提供已审核的本地 <code>ModelArtifact</code> 路径、SHA-256 和许可证状态。</p>
+<!-- section:typescript -->
+<h2>TypeScript</h2>
+<pre><code class="language-bash">npm install ./physics-software-sensors-core-0.3.0.tgz
+</code></pre>
+<pre><code class="language-ts">import { ScreenCaptureSource, BrowserScreenBackend, NumberOCRSensor } from '@physics-software-sensors/core';
+</code></pre>
+<p>浏览器采集需要安全上下文、用户操作和明确授权。真实 Tesseract.js 可能获取/缓存语言数据；tgz 不捆绑 traineddata。</p>
+<!-- section:verification -->
+<h2>验证安装来源</h2>
+<p>安装前先校验 SHA-256。本版本不要把 <code>pip install physics-software-sensors</code> 或 <code>npm install @physics-software-sensors/core</code> 当作 registry 安装命令。参阅<a href="../downloads/">下载传感器</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/installation.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

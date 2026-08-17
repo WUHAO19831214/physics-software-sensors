@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Stable public routes generated from repository Markdown and machine-readable facts. Paths are relative to the GitHub Pages project root.",
+  "home": ".",
+  "catalog": "catalog",
+  "installation": "installation",
+  "downloads": "downloads",
+  "evidence": "evidence",
+  "showcase": "capability-showcase",
+  "getting_started": "getting-started",
+  "sensor_intake": "sensor-intake",
+  "sensors": {
+    "camera.capture": "sensors/camera-capture",
+    "screen.capture": "sensors/screen-capture",
+    "ocr.number": "sensors/number-ocr",
+    "tracker.color-marker": "sensors/color-marker",
+    "tracker.spot-centroid": "sensors/spot-centroid",
+    "tracker.template": "sensors/template-tracker",
+    "tracker.yolo": "sensors/yolo-tracker"
+  },
+  "tools": {
+    "vector.compose-3d": "tools/vector-compose-3d"
+  },
+  "examples": {
+    "camera-capture": "examples/camera-capture",
+    "screen-capture": "examples/screen-capture",
+    "number-ocr": "examples/number-ocr",
+    "screen-to-ocr": "examples/screen-to-ocr",
+    "color-marker": "examples/color-marker",
+    "spot-centroid": "examples/spot-centroid",
+    "template-tracker": "examples/template-tracker",
+    "yolo-tracker": "examples/yolo-tracker",
+    "vector-compose-3d": "examples/vector-compose-3d"
+  }
+}

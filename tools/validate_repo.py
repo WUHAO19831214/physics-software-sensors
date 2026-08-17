@@ -278,25 +278,18 @@ def check_homepage_showcase() -> list[str]:
             errors.append(f"{path.name}: missing capability-showcase/principles section boundary")
             continue
         linked_images = LINKED_IMAGE.findall(gallery)
-        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, HOMEPAGE_SHOWCASE_PAGES[language])]
+        pages_root = "https://wuhao19831214.github.io/physics-software-sensors/"
+        prefix = {"en": "", "zh_CN": "zh-CN/", "ja": "ja/"}[language]
+        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, pages_root + prefix + "capability-showcase/")]
         if linked_images != expected_linked_image:
             errors.append(f"{path.name}: homepage must contain exactly one linked aggregate image")
         for image, target in linked_images:
             if not (ROOT / image).is_file():
                 errors.append(f"{path.name}: missing homepage image {image}")
-            if not (ROOT / target).is_file():
-                errors.append(f"{path.name}: missing homepage capability link {target}")
-        local_targets = {
-            raw_target.strip().strip("<>").split("#", 1)[0]
-            for raw_target in MARKDOWN_LINK.findall(gallery)
-            if not raw_target.startswith(("http://", "https://", "mailto:"))
-        }
-        missing_links = HOMEPAGE_CAPABILITY_LINKS[language] - local_targets
-        if missing_links:
-            errors.append(f"{path.name}: missing homepage capability text links {sorted(missing_links)}")
-        for target in HOMEPAGE_CAPABILITY_LINKS[language]:
-            if not (ROOT / target).is_file():
-                errors.append(f"{path.name}: invalid homepage capability target {target}")
+        if "/sensors/" not in gallery:
+            errors.append(f"{path.name}: missing Pages-first Sensor navigation")
+        if "/tools/vector-compose-3d/" not in gallery:
+            errors.append(f"{path.name}: missing Pages-first Tool navigation")
         if "Companion Processing Tools" not in text and "配套处理工具" not in text:
             errors.append(f"{path.name}: missing separate Companion Processing Tools section")
         for capability_id in expected_pages:

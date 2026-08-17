@@ -1,0 +1,71 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="ddeebfe69f28fc5ef9ef9c38c2c0ee7aad3ca1187e454be87007e10601dd4bfb"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>テンプレート／単一物体トラッカー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/template-tracker/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/template-tracker/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>テンプレート／単一物体トラッカー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>tracker.template</code> · Implementation version: <code>0.4.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E3</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>テンプレート／単一物体トラッカー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>ROI から 1 対象を初期化し、OpenCV CSRT/KCF/MIL fallback で画像上の bbox を追跡します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>色分割が適さない運動・振動実験で、1 つの可視対象を連続追跡します。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>画像座標の bbox/center と tracking/lost/backend state です。静的テンプレートマッチングではなく、pixel motion は校正なしに物理変位にはなりません。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>object_template_tracker.py::initialize/update/reset/create_opencv_tracker/validate_bbox</code> と tests; 抽出 ROI tracker</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>TemplateMatchingAnalyzer.ts</code>; 関連 static matching profile、未抽出</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>Initialization frame + ROI validation → CSRT→KCF→MIL backend → frame ごとの <code>update</code> → bbox/center または lost → 任意 reinitialize → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>Camera/image <code>FramePacket</code>、initialization ROI、任意 backend preference。現 profile に template asset は不要です。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p>Bbox、center、requested/actual backend、fallback attempt、initialization/reinitialization、lost state を含む <code>SensorEvent</code>。OpenCV は校正済み confidence を提供しません。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="ROI tracker replay" src="../../../site-assets/sensors/tracker.template/assets/overview.png" /></a> 実 OpenCV runtime を synthetic target で実行したもので、実験精度の証拠ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/template-tracker/">python-template-tracker</a> で <code>TemplateTrackerSensor</code> を実行します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>Python package <code>0.5.0</code> + <code>classical-trackers</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">tracker.template-0.4.0.zip</a>。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E3</code>: 実 OpenCV contrib tracker を controlled synthetic/scripted sequence で実行済み。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>; manifest は <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p>Fallback は behavior/performance を変えます。Occlusion、scale、blur、不正 ROI で lost になります。校正済み confidence、物理 scale、E4 実機証拠はありません。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">Benchmark</a>: initialization/update success、bbox/center error、lost/reinitialize、backend、latency。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p>Algorithm family boundary、source symbol、comparison は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/SOURCE.md">SOURCE.md</a>、facts は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/sensor.json">sensor.json</a> にあります。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.template/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

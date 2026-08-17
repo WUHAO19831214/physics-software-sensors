@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="bb3f9a7ca85ca46cc5b3fbe87f3acf21522c1d5382006eb69140ff21c2e67210"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>屏幕采集软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/screen-capture/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/screen-capture/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>屏幕采集软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>screen.capture</code> · Implementation version: <code>0.3.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E1</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>屏幕/窗口采集软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>采集用户选择的屏幕、窗口或标签页像素，输出带时间戳的 screen <code>FramePacket</code>。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>当设备没有可用 SDK 时，把仪器软件显示桥接到后续 ROI/OCR 处理。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>直接观测用户授权的屏幕像素与采集生命周期/时间，不是仪器内部数据、设备 SDK 数值或物理量。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>ScreenCapturePanel.tsx</code>、<code>screenCaptureRuntime.ts</code>、<code>SCREEN_CAPTURE_PIPELINE.md</code>；授权屏幕→ROI/OCR</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td><code>ScreenCapturePanel.tsx</code>、<code>SENSOR_INTEGRATION.md</code>；Fy/Fz 显示像素桥</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>用户操作 → <code>getDisplayMedia</code> 授权 → 选定流 → video/canvas 像素 → 时间/状态 → screen <code>FramePacket</code>。Recorded backend 可脱离浏览器 UI 做确定性回放。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>浏览器授权/配置或 recorded RGBA 帧、请求采样间隔和 source ID。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p>Screen <code>FramePacket</code>：ID、RGBA 尺寸/像素、artifact URI、时间戳和采集质量 flags。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="屏幕回放" src="../../../site-assets/sensors/screen.capture/assets/captured-screen-frame.png" /></a> Synthetic replay 不证明浏览器/设备兼容性。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/screen-capture/">web-screen-capture</a>；与 OCR 组合见 <a href="../../examples/screen-to-ocr/">web-screen-to-ocr</a>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>TypeScript package <code>0.3.0</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">screen.capture-0.3.0.zip</a>。Bundle 依赖公共 tgz。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E1</code>：确定性 recorded RGBA replay；不会自动执行浏览器采集。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 为 <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>必须由用户操作触发授权，刷新后通常要重新授权。拒绝/结束属于采集生命周期错误。OCR 是下游处理，失败时不得返回 mock 数字。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见 <a href="./">benchmark</a>和<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/compatibility-matrix.md">兼容性矩阵</a>。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/SOURCE.md">SOURCE.md</a> 和 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/screen.capture/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

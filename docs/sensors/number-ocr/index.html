@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="da0685f605879c06d635d67495824130146a0770db1a9a0e36f2478db8d8933f"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Number OCR Sensor</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/sensors/number-ocr/">简体中文</a> <span>|</span> <a href="../../ja/sensors/number-ocr/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Number OCR Sensor</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>ocr.number</code> · Implementation version: <code>0.2.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E3</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p>Number OCR Sensor</p>
+<!-- section:description -->
+<h2>One-line description</h2>
+<p>Reads a numeric display from a frame ROI while preserving raw text, parsed value, confidence, duration, warnings and explicit failure.</p>
+<!-- section:physics-use -->
+<h2>Typical physics experiment use</h2>
+<p>Reads values shown by existing instrument software for teaching visualization or synchronized analysis when direct SDK data is unavailable.</p>
+<!-- section:measurement -->
+<h2>What it actually measures</h2>
+<p>The chain is software display → screen pixels → OCR text → numeric parse. It does not directly read device internals; units and physical range checks come from configuration/downstream logic.</p>
+<!-- section:sources -->
+<h2>Source projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source paths / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>TesseractRecognizer.ts</code>, <code>extractNumber.ts</code>, preprocess utilities, <code>OCR_VALIDATION.md</code>; real Tesseract.js path</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td>matching recognizer/utilities; Fy/Fz teacher display reading</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>How it works</h2>
+<p>RGBA frame → normalized ROI → preprocessing → Tesseract.js/recorded recognizer → raw text normalization → numeric parse/validation → <code>SensorEvent</code>. OCR/parse errors emit no mock measurement.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Screen/image <code>FramePacket</code> with RGBA pixels, ROI, whitelist/preprocess options, value name and unit.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p><code>SensorEvent</code> with <code>raw_text</code>, parsed measurement when successful, confidence, duration, warnings/artifacts and explicit <code>OCR_RECOGNITION_FAILED</code> or <code>OCR_PARSE_FAILED</code> errors.</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Synthetic pixel OCR" src="../../site-assets/sensors/ocr.number/assets/overview.png" /></a> Shows real Tesseract.js on synthetic pixels, not a real instrument display.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<p>Run <a href="../../examples/number-ocr/">web-number-ocr</a> or <a href="../../examples/screen-to-ocr/">screen-to-ocr</a>.</p>
+<!-- section:distribution -->
+<h2>Distribution / Download</h2>
+<p>TypeScript package <code>0.3.0</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">ocr.number-0.2.0.zip</a>. Real OCR may obtain language data at runtime.</p>
+<!-- section:evidence -->
+<h2>Evidence level</h2>
+<p><code>E3</code>: actual Tesseract.js executed on controlled synthetic pixels, including failures.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<p><code>experimental</code>; manifest <code>incubating/adapter-present</code>.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<p>Default numeric parsing excludes scientific notation. Character normalization can confuse letters/digits. Confidence is not accuracy; real displays, fonts, scaling, glare and browser compatibility lack E4 evidence.</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>See <a href="./">OCR benchmark</a>; required metrics include exact match, numeric parse success/error, latency and failure rate.</p>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>The two fixed source commits share identical core OCR/preprocess files; hashes and changes are in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/SOURCE.md">SOURCE.md</a>, facts in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/sensor.json">sensor.json</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/ocr.number/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

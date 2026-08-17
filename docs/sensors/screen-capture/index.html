@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="08a4a80f26f9a2bdc20612f5a7541fb6fa4250211e33f01c58e8c13b97a6c82e"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Screen Capture Sensor</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/sensors/screen-capture/">简体中文</a> <span>|</span> <a href="../../ja/sensors/screen-capture/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Screen Capture Sensor</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>screen.capture</code> · Implementation version: <code>0.3.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E1</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p>Screen Capture Sensor</p>
+<!-- section:description -->
+<h2>One-line description</h2>
+<p>Captures pixels from a user-selected screen, window or tab and emits timestamped screen <code>FramePacket</code> records.</p>
+<!-- section:physics-use -->
+<h2>Typical physics experiment use</h2>
+<p>Bridges instrument software displays to downstream ROI/OCR processing when no supported device SDK is available.</p>
+<!-- section:measurement -->
+<h2>What it actually measures</h2>
+<p>User-authorized screen pixels and capture lifecycle/timing—not instrument internals, device SDK values or physical quantities.</p>
+<!-- section:sources -->
+<h2>Source projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source paths / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>src/screen/ScreenCapturePanel.tsx</code>, <code>screenCaptureRuntime.ts</code>, <code>docs/SCREEN_CAPTURE_PIPELINE.md</code>; authorized screen→ROI/OCR</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td><code>ScreenCapturePanel.tsx</code>, <code>docs/SENSOR_INTEGRATION.md</code>; Fy/Fz display pixel bridge</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>How it works</h2>
+<p>User gesture → <code>getDisplayMedia</code> permission → selected stream → video/canvas pixels → timing/status → screen <code>FramePacket</code>. A recorded backend provides deterministic replay without browser UI.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Browser permission/configuration or recorded RGBA frames, requested sampling interval and source ID.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p>Screen <code>FramePacket</code> with IDs, RGBA dimensions/pixels, artifact URI, timestamps and capture quality flags.</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Recorded screen replay" src="../../site-assets/sensors/screen.capture/assets/captured-screen-frame.png" /></a> Synthetic replay is not browser/device compatibility evidence.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<p>Run <a href="../../examples/screen-capture/">web-screen-capture</a>; compose with OCR via <a href="../../examples/screen-to-ocr/">web-screen-to-ocr</a>.</p>
+<!-- section:distribution -->
+<h2>Distribution / Download</h2>
+<p>TypeScript package <code>0.3.0</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">screen.capture-0.3.0.zip</a>. Bundle requires the shared tgz.</p>
+<!-- section:evidence -->
+<h2>Evidence level</h2>
+<p><code>E1</code>: deterministic recorded RGBA replay; browser capture is not automatically exercised.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<p><code>experimental</code>; manifest <code>incubating/adapter-present</code>.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<p>Permission must be user initiated and normally repeats after reload. Denial/end are capture lifecycle errors. OCR is downstream and must report failures without mock values.</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>See <a href="./">benchmark</a> and <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/compatibility-matrix.md">compatibility matrix</a>.</p>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>See <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/SOURCE.md">SOURCE.md</a> and <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/sensor.json">sensor.json</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/screen.capture/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

@@ -1,0 +1,16 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="f5eb5836351211d05cb96586cf974d99232b61f83dd9a4e50169c3d1352505ea"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Getting Started</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">ホーム</a><a href="../catalog/">カタログ</a><a href="../installation/">インストール</a><a href="../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../getting-started/">English</a> <span>|</span> <a href="../../zh-CN/getting-started/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Getting Started</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<!-- section:choose -->
+<h2>1. 直接観測を選ぶ</h2>
+<p>pixel には camera/screen capture、表示文字列には OCR、画像上の位置・bbox には tracker を選びます。変位、力、周波数、角度が必要なら、下流の校正・導出 chain を別途記録します。</p>
+<!-- section:download -->
+<h2>2. ダウンロードして確認する</h2>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental Release</a> を取得し、<code>SHA256SUMS</code> を確認してから<a href="../installation/">インストール</a>します。registry package はありません。</p>
+<!-- section:run -->
+<h2>3. 独立 example を実行する</h2>
+<p>対象の <a href="../catalog/">Sensor Page</a> を開き、宣言された依存関係だけを導入して小さな example を実行します。Recorded/synthetic example は元アプリからの分離を示しますが、実機精度の証拠ではありません。</p>
+<h3>センシング後：測定値を処理する</h3>
+<p>導出表現が必要な場合は、独立した <a href="../catalog/">Companion Tool Catalog</a>へ進みます。例として、<code>screen.capture → ocr.number → vector.compose-3d</code> は画面表示のスカラー成分から追跡可能な3次元合成ベクトルを構成します。この Tool は新しい観測を作らず、現在の未リリース Tool source は <code>v0.6.0</code> に含まれません。</p>
+<!-- section:interpret -->
+<h2>4. 保守的に解釈する</h2>
+<p>統合前に Evidence、Maturity、Known Limitations、Benchmark、Provenance を確認します。下流比較が成功するまで、ソースプロジェクトの旧経路と rollback を残します。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/getting-started.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/getting-started.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

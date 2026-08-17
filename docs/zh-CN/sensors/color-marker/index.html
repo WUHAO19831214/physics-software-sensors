@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="48dcb519edcda70ce44624c98428dc35bf9148cd314a059d200ee4f393b65bb0"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>颜色标记视觉追踪软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/color-marker/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/color-marker/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>颜色标记视觉追踪软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.color-marker</code> · Implementation version: <code>0.2.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E2</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>颜色标记视觉追踪软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>在摄像头图像中寻找指定颜色标记，连续输出图像坐标位置与丢失状态。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>追踪彩色球/标记，用于运动、振动、轨迹实验和声音—视觉对齐。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>直接输出像素重心、轮廓/面积证据和检测状态。像素位置必须经过明确标定和时间推导后，才能得到位移、速度或振幅。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>tennis_ball_tracker.py::TennisBallTracker.update</code>、mask/candidate 函数和 tests；本轮抽取 profile</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>ColorTrackingAnalyzer.ts</code>、<code>MarkerTrackingAnalyzer.ts</code>；相关浏览器 profile，本轮未抽取</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>BGR frame → HSV → 阈值 mask → 形态学 → 轮廓候选 → 面积/圆度/连续性排序 → 重心平滑/丢失 → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>Camera/image <code>FramePacket</code>、HSV 阈值、面积/圆度过滤、平滑和可选 ROI/连续性设置。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p>Tracking <code>SensorEvent</code>：原始/平滑像素中心、归一化位置、bbox/面积/质量证据和明确 lost 状态。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="颜色标记回放" src="../../../site-assets/sensors/tracker.color-marker/assets/overview.png" /></a> Standalone synthetic 输出，不是真实实验精度声明。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/color-marker/">python-color-marker</a>，调用 <code>ColorMarkerSensor</code>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>Python package <code>0.5.0</code> + <code>color-marker</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">tracker.color-marker-0.2.0.zip</a>。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E2</code>：固定来源 commit 执行/golden 对比，以及确定性成功、丢失、重获测试。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 为 <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>HSV 阈值依赖相机和光照；相似颜色、模糊、遮挡、曝光会导致误检/丢失。算法置信度不是物理不确定度。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见 <a href="./">benchmark</a>：成功率、lost-frame rate、center error、latency/FPS 和来源输出兼容性。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>抽取变更、来源符号、容差和 golden 方法见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/SOURCE.md">SOURCE.md</a>，事实见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.color-marker/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

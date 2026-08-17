@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="5718cbb463622499f47e23c65474ec79611f4c11774bb6392fdd049e4aff4a7b"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>数字 OCR 软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/number-ocr/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/number-ocr/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>数字 OCR 软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>ocr.number</code> · Implementation version: <code>0.2.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E3</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>数字 OCR 软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>从帧的 ROI 读取数字显示，同时保留 raw text、解析值、置信度、耗时、warning 和明确失败。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>当没有直接 SDK 数据时，读取现有仪器软件显示值，用于教学可视化或同步分析。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>路径是“软件显示 → 屏幕像素 → OCR 文本 → 数字解析”，不是直接读取设备内部数据；单位和物理范围检查来自配置/下游逻辑。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>TesseractRecognizer.ts</code>、<code>extractNumber.ts</code>、预处理工具、<code>OCR_VALIDATION.md</code>；真实 Tesseract.js 路径</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td>相同 recognizer/utilities；教师端 Fy/Fz 显示读取</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>RGBA frame → normalized ROI → 预处理 → Tesseract.js/recorded recognizer → raw text 规范化 → 数字解析/验证 → <code>SensorEvent</code>。OCR/解析失败不会生成 mock measurement。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>含 RGBA 像素的 screen/image <code>FramePacket</code>、ROI、whitelist/预处理选项、数值名称和单位。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p><code>SensorEvent</code> 保留 <code>raw_text</code>、成功时的 measurement、置信度、耗时、warning/artifact，以及明确的 <code>OCR_RECOGNITION_FAILED</code>/<code>OCR_PARSE_FAILED</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Synthetic pixel OCR" src="../../../site-assets/sensors/ocr.number/assets/overview.png" /></a> 展示真实 Tesseract.js 在 synthetic pixels 上运行，不是真实仪器显示。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/number-ocr/">web-number-ocr</a> 或 <a href="../../examples/screen-to-ocr/">screen-to-ocr</a>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>TypeScript package <code>0.3.0</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">ocr.number-0.2.0.zip</a>。真实 OCR 可能在运行时获取语言数据。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E3</code>：真实 Tesseract.js 已在受控 synthetic pixels 上执行并覆盖失败路径。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 为 <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>默认数字解析不支持科学计数法；字符规范化可能混淆字母/数字。置信度不是准确率；真实显示、字体、缩放、眩光和浏览器兼容性没有 E4 证据。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见 <a href="./">OCR benchmark</a>；指标包括 exact match、解析成功/误差、延迟和失败率。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>两个固定来源 commit 的核心 OCR/预处理文件一致；hash 与变更见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/SOURCE.md">SOURCE.md</a>，事实见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/ocr.number/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

@@ -2,12 +2,11 @@
 
 ## Review state
 
-- Status: **MAINTENANCE_READY**
-- Task: **PUBLIC_DOCUMENT_DELIVERY**
-- Branch: `main`
-- Merged PR: [#10](https://github.com/WUHAO19831214/physics-software-sensors/pull/10)
-- PR #10 squash merge SHA: `c95474a26738d1d68174958ba8bb575948e76d90`
-- Tested implementation SHA: `c95474a26738d1d68174958ba8bb575948e76d90`
+- Status: **READY_FOR_REVIEW**
+- Task: **PUBLIC_NAVIGATION_PAGES_FIRST**
+- Branch: `codex/pages-first-public-navigation`
+- Draft PR: [#11](https://github.com/WUHAO19831214/physics-software-sensors/pull/11)
+- Base SHA: `36d263f53d9ebcec4fc4d66b081ece5d77ba2f20`
 - Sensors: **7**
 - Companion Processing Tools: **1**
 - Public capabilities: **8**

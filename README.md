@@ -2,7 +2,7 @@
 
 **English** | [简体中文 Docs](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/) | [日本語 Docs](https://wuhao19831214.github.io/physics-software-sensors/ja/)
 
-Markdown sources: **English** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
+Developer Markdown sources: **English** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <!-- section:introduction -->
 ## What is this?
@@ -59,29 +59,29 @@ All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contai
 
 | Sensor | Purpose | Language | Maturity | Evidence | Example | Download |
 | --- | --- | --- | --- | --- | --- | --- |
-| [`camera.capture`](sensors/camera.capture/README.md) | Camera frames with timing/backend metadata | Python | experimental | E1 | [example](examples/python-camera-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip) |
-| [`screen.capture`](sensors/screen.capture/README.md) | User-authorized screen/window pixels | TypeScript | experimental | E1 | [example](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
-| [`ocr.number`](sensors/ocr.number/README.md) | Numeric OCR from an image ROI | TypeScript | experimental | E3 | [example](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
-| [`tracker.color-marker`](sensors/tracker.color-marker/README.md) | HSV/contour color-marker tracking | Python | experimental | E2 | [example](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.md) | Brightness-weighted light-spot centroid | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
-| [`tracker.template`](sensors/tracker.template/README.md) | ROI-initialized single-object tracking | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
-| [`tracker.yolo`](sensors/tracker.yolo/README.md) | Multi-target detection/tracking adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`camera.capture`](https://wuhao19831214.github.io/physics-software-sensors/sensors/camera-capture/) | Camera frames with timing/backend metadata | Python | experimental | E1 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/camera-capture/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
+| [`screen.capture`](https://wuhao19831214.github.io/physics-software-sensors/sensors/screen-capture/) | User-authorized screen/window pixels | TypeScript | experimental | E1 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/screen-capture/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
+| [`ocr.number`](https://wuhao19831214.github.io/physics-software-sensors/sensors/number-ocr/) | Numeric OCR from an image ROI | TypeScript | experimental | E3 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/number-ocr/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
+| [`tracker.color-marker`](https://wuhao19831214.github.io/physics-software-sensors/sensors/color-marker/) | HSV/contour color-marker tracking | Python | experimental | E2 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/color-marker/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
+| [`tracker.spot-centroid`](https://wuhao19831214.github.io/physics-software-sensors/sensors/spot-centroid/) | Brightness-weighted light-spot centroid | Python | experimental | E5 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/spot-centroid/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
+| [`tracker.template`](https://wuhao19831214.github.io/physics-software-sensors/sensors/template-tracker/) | ROI-initialized single-object tracking | Python | experimental | E3 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/template-tracker/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
+| [`tracker.yolo`](https://wuhao19831214.github.io/physics-software-sensors/sensors/yolo-tracker/) | Multi-target detection/tracking adapter | Python | experimental | E2 | [example](https://wuhao19831214.github.io/physics-software-sensors/examples/yolo-tracker/) | [download](https://wuhao19831214.github.io/physics-software-sensors/downloads/) |
 
-See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exercised paths; maturity is a separate release decision.
+See the full [Sensor Catalog](https://wuhao19831214.github.io/physics-software-sensors/catalog/). Evidence describes exercised paths; maturity is a separate release decision.
 
 <!-- section:companion-tools -->
 ### Companion Processing Tools
 
 | Tool | Purpose | Language | Status | Example | Documentation |
 | --- | --- | --- | --- | --- | --- |
-| [`vector.compose-3d`](processing/vector.compose-3d/README.md) | 3D vector composition and reconstruction from scalar components | TypeScript | experimental | [web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.md) |
+| [`vector.compose-3d`](https://wuhao19831214.github.io/physics-software-sensors/tools/vector-compose-3d/) | 3D vector composition and reconstruction from scalar components | TypeScript | experimental | [web demo](https://wuhao19831214.github.io/physics-software-sensors/examples/vector-compose-3d/) | [Tool Page](https://wuhao19831214.github.io/physics-software-sensors/tools/vector-compose-3d/) |
 
 See the full [Tool Catalog](docs/tool-catalog.md). Companion Tools form an extensible processing layer and are not counted as Sensors.
 
 <!-- section:quick-start -->
 ## Quick start
 
-Start with [Getting Started](docs/getting-started.md), then choose either the Python wheel or TypeScript tgz from the [`v0.6.0` Experimental Release](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0). Nothing is published to PyPI or the npm registry.
+Start with [Getting Started](https://wuhao19831214.github.io/physics-software-sensors/getting-started/), then choose downloads from the [Downloads page](https://wuhao19831214.github.io/physics-software-sensors/downloads/). Nothing is published to PyPI or the npm registry.
 
 ```bash
 python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
@@ -91,16 +91,16 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 <!-- section:download -->
 ## Download
 
-The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, `release-manifest.json` and `SHA256SUMS`. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read [Downloading Sensors](docs/downloading-sensors.md) and [Installation](docs/installation.md).
+The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, `release-manifest.json` and `SHA256SUMS`. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read [Downloads](https://wuhao19831214.github.io/physics-software-sensors/downloads/) and [Installation](https://wuhao19831214.github.io/physics-software-sensors/installation/).
 
 <!-- section:capability-showcase -->
 ## Capability Showcase
 
-[![Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.md)
+[![Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool](docs/assets/capability-showcase.png)](https://wuhao19831214.github.io/physics-software-sensors/capability-showcase/)
 
 Representative standalone, synthetic and replay demonstrations. Evidence level varies by capability; the YOLO tile is **recorded detector replay**, not real YOLO inference. The image is an enhancement, while the text links below remain the canonical navigation when image delivery is unavailable.
 
-[Camera Capture](sensors/camera.capture/README.md) · [Screen Capture](sensors/screen.capture/README.md) · [Number OCR](sensors/ocr.number/README.md) · [Color Marker](sensors/tracker.color-marker/README.md) · [Spot Centroid](sensors/tracker.spot-centroid/README.md) · [Template Tracker](sensors/tracker.template/README.md) · [YOLO Tracker](sensors/tracker.yolo/README.md) · [3D Vector Composition](processing/vector.compose-3d/README.md)
+[Camera Capture](https://wuhao19831214.github.io/physics-software-sensors/sensors/camera-capture/) · [Screen Capture](https://wuhao19831214.github.io/physics-software-sensors/sensors/screen-capture/) · [Number OCR](https://wuhao19831214.github.io/physics-software-sensors/sensors/number-ocr/) · [Color Marker](https://wuhao19831214.github.io/physics-software-sensors/sensors/color-marker/) · [Spot Centroid](https://wuhao19831214.github.io/physics-software-sensors/sensors/spot-centroid/) · [Template Tracker](https://wuhao19831214.github.io/physics-software-sensors/sensors/template-tracker/) · [YOLO Tracker](https://wuhao19831214.github.io/physics-software-sensors/sensors/yolo-tracker/) · [3D Vector Composition](https://wuhao19831214.github.io/physics-software-sensors/tools/vector-compose-3d/)
 
 Coverage: **7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities**. Open the trilingual [Capability Showcase](docs/capability-showcase.md) for all eight detailed demo images and evidence boundaries.
 
