@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Purposeful source-to-processor combinations only; not a Cartesian product.",
+  "compositions": [
+    {"source": "camera.capture", "processor": "tracker.color-marker", "tested": true, "fixture": "synthetic BGR frame with yellow marker", "result": "passed", "test": "tests/composition/test_cross_sensor.py::test_camera_to_color_marker"},
+    {"source": "camera.capture", "processor": "tracker.spot-centroid", "tested": true, "fixture": "synthetic BGR frame with red spot", "result": "passed", "test": "tests/composition/test_cross_sensor.py::test_camera_to_spot_centroid"},
+    {"source": "camera.capture", "processor": "tracker.template", "tested": true, "fixture": "synthetic textured ROI sequence using real OpenCV contrib backend", "result": "passed", "test": "tests/composition/test_cross_sensor.py::test_camera_to_template_tracker"},
+    {"source": "camera.capture", "processor": "tracker.yolo", "tested": true, "fixture": "synthetic camera frame plus recorded source-generated detection", "result": "passed", "test": "tests/composition/test_cross_sensor.py::test_camera_to_yolo_tracker"},
+    {"source": "screen.capture", "processor": "ocr.number", "tested": true, "fixture": "recorded synthetic RGBA screen frame containing -2.33", "result": "passed", "test": "packages/typescript/tests/tesseract-integration.test.ts::ScreenCaptureSource pixels compose with real Tesseract.js OCR"}
+  ]
+}

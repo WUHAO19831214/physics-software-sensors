@@ -1,132 +1,87 @@
 # Physics Software Sensors — Agent Handoff
-## Current Phase
-Phase 3C — YOLO Tracker
-## Status
-READY_FOR_REVIEW
 
-## Repository
+## Current state
 
-* Repository: `WUHAO19831214/physics-software-sensors`
-* Base branch: `main`
-* Working branch: `agent/phase3c-yolo-tracker`
-* Base SHA: `9d48904b86c4e2ec218faf2fd18968abbfa7f0b6`
-* HEAD SHA: `6f4380f8a925f324c64cbd73fa45805f78dfe048` (exact tested implementation snapshot; the published tip is the handoff-only child commit described in `.agent-handoff/README.md`)
-* PR: [#4](https://github.com/WUHAO19831214/physics-software-sensors/pull/4)
-* PR state: OPEN / DRAFT
-* Mergeable: MERGEABLE
-* Working tree: clean after the handoff-only commit
+- Status: **READY_FOR_REVIEW**
+- Phase: **3D — Cross-sensor validation and release readiness**
+- Phase 3C squash merge SHA: `ad1220d6166e43dc68a0bd0477728600de880c54`
+- Branch: `agent/phase3d-cross-sensor-validation`
+- Tested implementation SHA: `1417662c520f97a02d788c538023cab9c6d53be9`
+- Draft PR: [#5](https://github.com/WUHAO19831214/physics-software-sensors/pull/5), OPEN / MERGEABLE at handoff preparation
+- Published HEAD and handoff commit: resolve after the handoff-only push using the schema 1.1 resolvers in `latest.json`; concrete values are reported to the user after push.
 
-## Previous Phase
+## Seven-sensor evidence
 
-* Previous PR: [#3](https://github.com/WUHAO19831214/physics-software-sensors/pull/3)
-* Previous merge SHA: `9d48904b86c4e2ec218faf2fd18968abbfa7f0b6`
+| Sensor | Maturity | Evidence | Strongest evidence | Still missing |
+| --- | --- | --- | --- | --- |
+| `camera.capture@0.3.0` | experimental | E1 | deterministic synthetic replay | physical camera/runtime E3/E4 |
+| `screen.capture@0.3.0` | experimental | E1 | recorded RGBA + mocked permission/error | actual `getDisplayMedia` E3/E4 |
+| `ocr.number@0.2.0` | experimental | E3 | real Tesseract.js on synthetic pixels | real experiment UI controlled set E4 |
+| `tracker.color-marker@0.2.0` | experimental | E2 | fixed-source match 4/4 | real camera/illumination/calibration E4 |
+| `tracker.spot-centroid@0.4.0` | experimental | E2 | fixed-source match 6/6 | real optical spot/exposure/calibration E4 |
+| `tracker.template@0.4.0` | experimental | E3 | actual OpenCV contrib CSRT synthetic replay | real blur/occlusion/platform data E4 |
+| `tracker.yolo@0.5.0` | experimental | E2 | fixed-source/recorded adapter replay | approved model, real inference and labelled data |
 
-## Implemented
+No maturity was promoted. Evidence level and maturity remain separate.
 
-* Added `tracker.yolo@0.5.0` as the seventh experimental / incubating adapter.
-* Added explicit local `ModelArtifact` with SHA-256, runtime, class names and license-state fields; HTTP(S) model URIs are rejected.
-* Added deterministic `RecordedDetectorBackend`, optional `YoloDetectorBackend`, source-compatible person-only `OpenCVHogDetectorBackend`, and `CentroidAssociator`.
-* Added multi-target `payload.detections[]` with bbox, center, class, detector score, track ID and native-ID availability; SensorEvent and FramePacket Schemas remain `1.0.0`.
-* Separated detection from tracking and detector confidence from tracking confidence, uncertainty and physical accuracy.
-* Added all/ID/name class filters, requested/actual/attempted backend metadata, explicit fallback/warning flags, and Schema-valid error events without mock detections.
-* Added source-generated golden replay, offline example, assets, dataset card, microbenchmark, complete Sensor Page, upgrade record and model/license review.
-* Added the repository-level Agent Handoff mechanism and validator.
+## Validation and documentation
 
-## Public APIs
+- E0–E5 policy: `docs/evidence-levels.md`
+- 7/7 quality matrix: `docs/validation-matrix.md`
+- 7/7 machine benchmark registry: `benchmarks/results/index.json`; missing metrics say `not measured`
+- Human benchmark summary: `docs/benchmark-summary.md`; YOLO mapping latency is not inference latency
+- Compatibility matrix: `docs/compatibility-matrix.md`; untested platforms are not claimed
+- Real-world gaps: `docs/real-world-validation-gaps.md`
+- Maturity gates: `docs/maturity-gates.md`
+- Dependency/license audit: `docs/package-dependency-audit.md`
+- Architecture and public “Choose a Sensor” navigation: `docs/architecture.md` and `README.md`
 
-* `physics_sensors.core.ModelArtifact`
-* `physics_sensors.tracking.ClassFilter`
-* `physics_sensors.tracking.YoloDetection`
-* `physics_sensors.tracking.DetectorFrameResult` / `DetectorBackend`
-* `physics_sensors.tracking.RecordedDetectorBackend`
-* `physics_sensors.tracking.OpenCVHogDetectorBackend`
-* `physics_sensors.tracking.YoloDetectorBackend`
-* `physics_sensors.tracking.CentroidAssociator`
-* `physics_sensors.tracking.YoloTrackerSensor`
+## Composition matrix
 
-## Source Provenance
+`tests/composition/matrix.json` records exactly five purposeful paths: Camera→Color, Camera→Spot, Camera→Template, Camera→YOLO and Screen→OCR. Four Python composition tests and the existing real Tesseract.js Screen→OCR test passed; no meaningless Cartesian combinations were added.
 
-* Source repository: `WUHAO19831214/audio-visual-soundfield-tracker-stable`
-* Source commit: `85740d686c67452a057540edb564d713e01ccc51`
-* Source files: `src/detector.py`; `src/camera_processor.py`; `requirements.txt`; `config.yaml`; `scripts/setup_yolo.sh`; `models/README.md`; `tests/test_detector.py`; `tests/test_tracking.py`
-* Class/function: `Detection`; `Detector.__init__/detect/track/_parse_yolo_results/_detect_hog`; `CentroidTracker.update/reset`; `CameraProcessor._update_tracks`
-* Extraction method: dependency-injected behavior reimplementation plus direct execution of the fixed source for golden output; UI/business code, project-directory model scanning and automatic model preparation were excluded; source repository unchanged
+## Tests and clean install
 
-## Tests
+- Repository validation: passed, 38 JSON files and exactly 7 Sensor Pages/manifests.
+- Python: **72 passed, 0 failed**, including 4 formal Python composition tests and 16 YOLO tests.
+- TypeScript: **15/15 offline** and **18/18 full**, including real Tesseract.js pixel inference.
+- Python wheel clean install: passed; camera and four tracker APIs imported with NumPy/OpenCV dependencies in a new venv.
+- npm tgz clean install: passed; screen and OCR APIs imported in a new npm consumer/cache.
+- SensorEvent and FramePacket remain `1.0.0`.
 
-* Repository validation: passed — 35 JSON files, exactly 7 Sensor Pages/manifests, reviewed demo assets and local Markdown links.
-* Python: 65 passed, 0 failed; YOLO module 16 passed.
-* TypeScript: 18 passed, 0 failed.
-* Golden: source script regenerated 3 detection, 6 tracking and 6 centroid source cases plus 7 recorded frames from the exact source SHA.
-* Composition: 5/5 workflows — Camera→Color, Camera→Spot, Camera→Template, Camera→YOLO, Screen→OCR.
-* Clean install: wheel `physics-software-sensors==0.5.0` imported/run outside the repository; Camera→four trackers passed; installed-wheel YOLO recorded example emitted 7/7 events.
-* Clean install: npm tgz `@physics-software-sensors/core@0.3.0` installed in a clean consumer with an isolated npm cache; Screen→real-pixel Tesseract OCR passed.
+## Release dry run
 
-## Benchmarks
+Built from tested SHA on macOS 26.3.1 arm64 / Python 3.12.13 / Node 24.13.0 / npm 11.6.2. Nothing was published.
 
-Deterministic adapter, 500 mappings per serialization case on macOS arm64 / Python 3.12.13 / NumPy 2.5.2 / 360×260 synthetic frames:
+| Artifact | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `physics_software_sensors-0.5.0-py3-none-any.whl` | 36,578 | `f87163a10afd41a480f656d8062f01310621edc6bad6887562f6d43634657141` |
+| `physics-software-sensors-core-0.3.0.tgz` | 13,472 | `34cc6597c4f33f8a616958a6771dd4222d87e174ef876534e663dc1f4a7c5d35` |
 
-* Single target median / p95: `0.099937 / 0.123583 ms`.
-* Two-target serialization median / p95: `0.110354 / 0.130291 ms`.
-* Class filters: 3/3.
-* Tracking status + ID handling: 10/10.
-* Real inference: not measured.
-* Model/device/input/inference latency/FPS/process or GPU memory/detection count/accuracy: not measured.
-* Reason: no maintainer-approved local model artifact; Ultralytics not installed; online download prohibited; no labelled evaluation set.
+No PyPI/npm/GitHub Release action, Ultralytics install or model download occurred.
 
-## Demo Assets
+## Sensor bundle dry run
 
-* `sensors/tracker.yolo/assets/overview.png`
-* `sensors/tracker.yolo/assets/multi-target.png`
-* `sensors/tracker.yolo/assets/tracking.png`
-* `sensors/tracker.yolo/assets/fallback.png`
-* `sensors/tracker.yolo/assets/events.json`
+Seven deterministic sensor zip bundles were built from the tested SHA. Each contains its Sensor Page, manifest, SOURCE, assets, small example, install/dependency metadata and `BUNDLE.json`. All hashes are in `latest.json`. Package core was not copied, and no bundle was committed or published.
 
-All are explicitly labelled recorded detector replay / synthetic fixture. None is represented as real inference.
+## CI status
 
-## Licensing
+GitHub Actions repository settings allow actions, but the current OAuth App token lacks the `workflow` scope required to create `.github/workflows/ci.yml`; GitHub rejected that push. No bypass was attempted. The reviewed minimum offline workflow is retained at `templates/github-actions-ci.yml` and covers validation, Python tests/build, TypeScript offline tests/pack and no model download. PR #5 therefore has no CI checks yet.
 
-* Repository license: MIT.
-* Source license state: pending; the fixed historical source repository has no detected license file and GitHub metadata is `NOASSERTION`.
-* Model/runtime license state: source dependency range is `ultralytics>=8.2,<9`; runtime was not installed in Phase 3C. Published Ultralytics metadata declares AGPL-3.0 with an Enterprise route; exact downstream terms require review.
-* Weight redistribution state: not approved; no weight was committed, bundled, downloaded or redistributed. Artifact-specific weight license remains pending.
-* Original ByteTrack and Ultralytics integration licensing are recorded separately; HOG uses OpenCV 4.x and is person-only.
-* Review: `docs/yolo-model-and-license-review.md`.
+## Source repositories
 
-## Source Repositories
+The five fixed commits were freshly fetched into temporary audit checkouts and all were clean:
 
-* `audio-visual-soundfield-tracker-stable` — `85740d686c67452a057540edb564d713e01ccc51` — clean
-* `spot-vibration-tracking-system-20260508-171952` — `7f0d91cc73afafaecc54acc46b2b9d69375d994a` — clean
-* `forced-vibration-af-analyzer-20260502-122715` — `c3f58175a09ff29cacdfb976a5055758c4eff619` — clean
-* `physics-experiment-bridge-mvp` — `8bba87df6475cae1e595fc925551db8bea83fb68` — clean
-* `ampere-force-visualizer-teacher-yanan` — `cb073e89d6d87129287030f1df08bd540504eb39` — clean
+- `audio-visual-soundfield-tracker-stable@85740d686c67452a057540edb564d713e01ccc51`
+- `spot-vibration-tracking-system-20260508-171952@7f0d91cc73afafaecc54acc46b2b9d69375d994a`
+- `forced-vibration-af-analyzer-20260502-122715@c3f58175a09ff29cacdfb976a5055758c4eff619`
+- `physics-experiment-bridge-mvp@8bba87df6475cae1e595fc925551db8bea83fb68`
+- `ampere-force-visualizer-teacher-yanan@cb073e89d6d87129287030f1df08bd540504eb39`
 
-## Contract Versions
+No source repository was modified.
 
-* SensorEvent: `1.0.0`
-* FramePacket: `1.0.0`
-* Sensor implementation version: `tracker.yolo@0.5.0`
+## Blockers and next phase
 
-## Current Sensor Catalog
+There is no blocker to independent Phase 3D review. CI activation still needs an authorized maintainer credential with workflow scope. E4 real-device and E5 downstream evidence remain deliberately open.
 
-* `camera.capture` — experimental — `0.3.0`
-* `screen.capture` — experimental — `0.3.0`
-* `ocr.number` — experimental — `0.2.0`
-* `tracker.color-marker` — experimental — `0.2.0`
-* `tracker.spot-centroid` — experimental — `0.4.0`
-* `tracker.template` — experimental — `0.4.0`
-* `tracker.yolo` — experimental — `0.5.0`
-
-## Remaining Blockers
-
-None for current experimental phase.
-
-Real inference, source/model license gates, labelled accuracy evaluation, real-camera L2, downstream integration and stable publication remain future maturity gates, not completed Phase 3C claims.
-
-## Recommended Next Phase
-
-After independent review, plan Phase 3D cross-sensor benchmark. Do not execute it from this handoff and do not merge Phase 3C automatically.
-
-## ChatGPT Instruction
-
-Review this handoff together with the current GitHub PR and repository state. Verify the claims independently from GitHub before accepting them. If the phase passes review, produce the next Codex prompt. Do not rely only on this handoff summary.
+After review and an explicit merge decision, the recommended Phase 4 is one low-risk, pinned, feature-flagged downstream comparison with a tested rollback. Do not merge this Draft PR or start Phase 4 automatically from this handoff.

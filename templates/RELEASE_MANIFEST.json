@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "release_status": "dry-run-not-published",
+  "git_sha": "FULL_COMMIT_SHA",
+  "generated_at": "RFC3339_TIMESTAMP",
+  "build_environment": {
+    "platform": "not measured",
+    "python": "not measured",
+    "node": "not measured",
+    "npm": "not measured"
+  },
+  "artifacts": [
+    {
+      "filename": "artifact filename",
+      "sha256": "64 lowercase hexadecimal characters",
+      "bytes": 1,
+      "package": "package name",
+      "package_version": "0.0.0",
+      "artifact_type": "python-wheel or npm-tarball"
+    }
+  ],
+  "limitations": ["Dry-run only; no registry or GitHub Release publication."]
+}

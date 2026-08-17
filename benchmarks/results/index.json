@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "generated_date": "2026-08-16",
+  "policy": "Existing evidence only; missing measurements are strings reading not measured, never numeric zero.",
+  "entries": [
+    {
+      "sensor_id": "camera.capture",
+      "implementation_version": "0.3.0",
+      "benchmark_type": "deterministic capture replay",
+      "evidence_level": "E1",
+      "environment": {"python": "3.12.13", "platform": "macOS 26.3.1 arm64", "numpy": "2.5.2"},
+      "dataset": "benchmarks/datasets/capture-synthetic-replay/dataset-card.md",
+      "source_report": "benchmarks/results/phase3a-capture-replay-2026-08-16.md",
+      "metrics": {"frames_delivered": "3/3", "measured_fps": 20.0, "inter_frame_jitter_ms": 0.0, "injected_dropped_frames_preserved": 1, "capture_latency_ms": "not measured", "cpu": "not measured", "memory": "not measured"},
+      "limitations": ["Synthetic image-sequence backend only.", "No physical camera, permission, exposure, resolution negotiation or hardware drop evidence.", "Fixture timing is not a performance ceiling."]
+    },
+    {
+      "sensor_id": "screen.capture",
+      "implementation_version": "0.3.0",
+      "benchmark_type": "deterministic screen replay",
+      "evidence_level": "E1",
+      "environment": {"node": "24.13.0", "platform": "macOS 26.3.1 arm64", "runtime": "recorded backend"},
+      "dataset": "benchmarks/datasets/capture-synthetic-replay/dataset-card.md",
+      "source_report": "benchmarks/results/phase3a-capture-replay-2026-08-16.md",
+      "metrics": {"frames_delivered": "2/2", "measured_rate_hz": 4.0, "measured_interval_ms": 250.0, "injected_dropped_frames_preserved": 1, "browser_capture_latency_ms": "not measured", "cpu": "not measured", "memory": "not measured"},
+      "limitations": ["Recorded RGBA backend and mocked permission/error boundaries only.", "No real getDisplayMedia chooser, browser, window, tab or full-screen capture was run."]
+    },
+    {
+      "sensor_id": "ocr.number",
+      "implementation_version": "0.2.0",
+      "benchmark_type": "real Tesseract.js runtime on synthetic pixels",
+      "evidence_level": "E3",
+      "environment": {"node": "24.13.0", "platform": "macOS 26.3.1 arm64", "tesseract_js": "7.0.0", "language": "eng", "psm": "SINGLE_WORD"},
+      "dataset": "benchmarks/datasets/ocr-number-synthetic-pixels/dataset-card.md",
+      "source_report": "benchmarks/results/phase2d-demonstration-2026-08-16.md",
+      "metrics": {"synthetic_exact_numeric_match": "3/3", "explicit_parse_failure": "2/2", "controlled_engine_failure": "1/1", "sample_duration_ms": [224, 65, 63], "p50_latency_ms": "not measured", "p95_latency_ms": "not measured", "real_device_error": "not measured"},
+      "limitations": ["Real OCR runtime, but only repository-generated pixels.", "First sample includes worker warm-up and the three durations are not a benchmark distribution.", "No Langwei device UI, font/scaling/glare/background dataset."]
+    },
+    {
+      "sensor_id": "tracker.color-marker",
+      "implementation_version": "0.2.0",
+      "benchmark_type": "source-compatible synthetic golden",
+      "evidence_level": "E2",
+      "environment": {"python": "3.12.13", "platform": "macOS 26.3.1 arm64", "opencv": "4.14.0", "numpy": "2.5.2"},
+      "dataset": "benchmarks/datasets/color-marker-synthetic-golden/dataset-card.md",
+      "source_report": "benchmarks/results/phase2-adapter-verification-2026-08-16.md",
+      "metrics": {"source_cases_matched": "4/4", "absolute_numeric_tolerance": 0.000001, "standalone_status_sequence": ["ok", "lost", "ok"], "median_latency_ms": "not measured", "center_error_px": "not measured", "detection_success_rate": "not measured"},
+      "limitations": ["Synthetic frames only.", "No actual camera, illumination, white-balance, background or occlusion matrix.", "No physical calibration."]
+    },
+    {
+      "sensor_id": "tracker.spot-centroid",
+      "implementation_version": "0.4.0",
+      "benchmark_type": "source-compatible synthetic centroid replay",
+      "evidence_level": "E2",
+      "environment": {"python": "3.12.13", "platform": "macOS 26.3.1 arm64", "opencv": "4.14.0", "numpy": "2.5.2"},
+      "dataset": "benchmarks/datasets/spot-centroid-synthetic-source-golden/dataset-card.md",
+      "source_report": "benchmarks/results/phase3b-classical-trackers-2026-08-16.md",
+      "metrics": {"detection_lost_agreement": "6/6", "maximum_centroid_error_px": 0.0, "comparison_tolerance_px": 1e-09, "median_latency_ms": 0.793, "p95_latency_ms": 0.875, "median_derived_throughput_fps": 1260},
+      "limitations": ["160x120 synthetic red-spot frames only.", "No real laser, exposure, saturation, ROI or optical calibration evidence.", "Image centroid is not mechanical displacement."]
+    },
+    {
+      "sensor_id": "tracker.template",
+      "implementation_version": "0.4.0",
+      "benchmark_type": "source lifecycle golden plus real OpenCV runtime synthetic replay",
+      "evidence_level": "E3",
+      "environment": {"python": "3.12.13", "platform": "macOS 26.3.1 arm64", "opencv_contrib": "4.14.0", "numpy": "2.5.2"},
+      "dataset": "benchmarks/datasets/template-tracker-scripted-and-synthetic-replay/dataset-card.md",
+      "source_report": "benchmarks/results/phase3b-classical-trackers-2026-08-16.md",
+      "metrics": {"source_scripted_cases": 7, "requested_backend": "CSRT", "selected_backend": "CSRT", "synthetic_moving_frames_tracked": "3/3", "blank_frame_lost": true, "maximum_synthetic_center_error_px": 1.0, "median_latency_ms": 7.722, "p95_latency_ms": 9.577},
+      "limitations": ["Real OpenCV contrib runtime, but synthetic textured target only.", "No real moving object, blur, occlusion, scale, rotation or cross-platform matrix.", "ROI tracking is not static template matching."]
+    },
+    {
+      "sensor_id": "tracker.yolo",
+      "implementation_version": "0.5.0",
+      "benchmark_type": "deterministic adapter mapping replay",
+      "evidence_level": "E2",
+      "environment": {"python": "3.12.13", "platform": "macOS 26.3.1 arm64", "numpy": "2.5.2", "input_size": "360x260"},
+      "dataset": "benchmarks/datasets/yolo-tracker-source-recorded-replay/dataset-card.md",
+      "source_report": "benchmarks/results/phase3c-yolo-adapter-2026-08-16.md",
+      "metrics": {"single_target_mapping_median_ms": 0.099937, "single_target_mapping_p95_ms": 0.123583, "multi_target_mapping_median_ms": 0.110354, "multi_target_mapping_p95_ms": 0.130291, "class_filters": "3/3", "tracking_state_checks": "10/10", "real_inference_latency_ms": "not measured", "accuracy": "not measured"},
+      "limitations": ["Latency is FramePacket-to-event mapping, not YOLO inference.", "No approved model artifact or real Ultralytics inference.", "Recorded IDs do not validate real ByteTrack identity stability."]
+    }
+  ]
+}

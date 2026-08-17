@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -21,6 +22,13 @@ EXPECTED_SENSOR_IDS = {
     "tracker.yolo",
     "tracker.template",
     "tracker.spot-centroid",
+}
+EXPECTED_COMPOSITIONS = {
+    ("camera.capture", "tracker.color-marker"),
+    ("camera.capture", "tracker.spot-centroid"),
+    ("camera.capture", "tracker.template"),
+    ("camera.capture", "tracker.yolo"),
+    ("screen.capture", "ocr.number"),
 }
 EXPECTED_SOURCE_REPOSITORIES = {
     "WUHAO19831214/audio-visual-soundfield-tracker-stable",
@@ -134,6 +142,48 @@ def check_markdown_links() -> list[str]:
     return errors
 
 
+def check_evidence_registry() -> list[str]:
+    errors: list[str] = []
+    registry = load_json(ROOT / "benchmarks/results/index.json")
+    entries = registry.get("entries", [])
+    if not isinstance(entries, list):
+        return ["benchmarks/results/index.json: entries must be an array"]
+    ids = {entry.get("sensor_id") for entry in entries if isinstance(entry, dict)}
+    if len(entries) != 7 or ids != EXPECTED_SENSOR_IDS:
+        errors.append("benchmarks/results/index.json: exactly one entry per known sensor is required")
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            errors.append(f"benchmarks/results/index.json: entry {index} must be an object")
+            continue
+        if entry.get("evidence_level") not in {f"E{level}" for level in range(6)}:
+            errors.append(f"benchmarks/results/index.json: invalid evidence level at entry {index}")
+        for field in ("implementation_version", "benchmark_type", "environment", "dataset", "source_report", "metrics", "limitations"):
+            if field not in entry:
+                errors.append(f"benchmarks/results/index.json: entry {index} missing {field}")
+    return errors
+
+
+def check_composition_matrix() -> list[str]:
+    errors: list[str] = []
+    matrix = load_json(ROOT / "tests/composition/matrix.json")
+    compositions = matrix.get("compositions", [])
+    if not isinstance(compositions, list):
+        return ["tests/composition/matrix.json: compositions must be an array"]
+    actual = {
+        (entry.get("source"), entry.get("processor"))
+        for entry in compositions
+        if isinstance(entry, dict)
+    }
+    if len(compositions) != 5 or actual != EXPECTED_COMPOSITIONS:
+        errors.append("tests/composition/matrix.json: the five purposeful source/processor paths are required")
+    for index, entry in enumerate(compositions):
+        if not isinstance(entry, dict) or entry.get("tested") is not True or entry.get("result") != "passed":
+            errors.append(f"tests/composition/matrix.json: composition {index} must record a passed test")
+        elif not all(entry.get(field) for field in ("fixture", "test")):
+            errors.append(f"tests/composition/matrix.json: composition {index} lacks fixture/test evidence")
+    return errors
+
+
 def git(*args: str) -> str:
     return subprocess.run(
         ("git", *args), cwd=ROOT, check=True, text=True, capture_output=True
@@ -147,8 +197,8 @@ def check_handoff() -> list[str]:
         handoff = load_json(path)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return [f"invalid agent handoff: {exc}"]
-    if not handoff.get("schema_version"):
-        errors.append(".agent-handoff/latest.json: schema_version is required")
+    if handoff.get("schema_version") != "1.1.0":
+        errors.append(".agent-handoff/latest.json: schema_version must be 1.1.0")
     if handoff.get("repository") != "WUHAO19831214/physics-software-sensors":
         errors.append(".agent-handoff/latest.json: repository mismatch")
     if handoff.get("status") not in {"IN_PROGRESS", "BLOCKED", "READY_FOR_REVIEW", "MERGED"}:
@@ -157,24 +207,21 @@ def check_handoff() -> list[str]:
     if not isinstance(git_value, dict):
         return errors + [".agent-handoff/latest.json: git must be an object"]
     actual_head = git("rev-parse", "HEAD")
-    actual_branch = git("branch", "--show-current")
+    actual_branch = git("branch", "--show-current") or os.environ.get("GITHUB_HEAD_REF", "")
     if git_value.get("working_branch") != actual_branch:
-        errors.append(f".agent-handoff/latest.json: branch does not match {actual_branch}")
-    relation = git_value.get("head_relation", "current")
-    recorded_head = git_value.get("head_sha")
-    if relation == "current":
-        if recorded_head != actual_head:
-            errors.append(".agent-handoff/latest.json: head_sha does not match current HEAD")
-    elif relation == "parent-of-handoff-commit":
-        parent = git("rev-parse", "HEAD^")
-        changed = set(git("diff", "--name-only", "HEAD^", "HEAD").splitlines())
-        allowed = {".agent-handoff/latest.md", ".agent-handoff/latest.json"}
-        if recorded_head != parent:
-            errors.append(".agent-handoff/latest.json: head_sha does not match handoff commit parent")
-        if not changed or not changed <= allowed:
-            errors.append(".agent-handoff/latest.json: parent relation requires a handoff-only tip commit")
-    else:
-        errors.append(".agent-handoff/latest.json: invalid head_relation")
+        errors.append(f".agent-handoff/latest.json: branch does not match {actual_branch or 'detached HEAD'}")
+    tested_sha = git_value.get("tested_sha")
+    if not HEX40.fullmatch(str(tested_sha or "")):
+        errors.append(".agent-handoff/latest.json: tested_sha must be a full commit SHA")
+    elif subprocess.run(("git", "merge-base", "--is-ancestor", tested_sha, actual_head), cwd=ROOT).returncode:
+        errors.append(".agent-handoff/latest.json: tested_sha must be an ancestor of current HEAD")
+    published = git_value.get("published_head_sha")
+    expected_ref = f"refs/heads/{git_value.get('working_branch')}"
+    if published != {"resolution": "branch-ref", "ref": expected_ref}:
+        errors.append(".agent-handoff/latest.json: published_head_sha must resolve from the working branch ref")
+    handoff_commit = git_value.get("handoff_commit_sha")
+    if handoff_commit != {"resolution": "containing-commit"}:
+        errors.append(".agent-handoff/latest.json: handoff_commit_sha must resolve from the containing commit")
     porcelain = git("status", "--porcelain")
     actual_clean = porcelain == ""
     if git_value.get("working_tree_clean") is not actual_clean:
@@ -218,7 +265,14 @@ def check_handoff() -> list[str]:
 
 
 def main() -> int:
-    errors = check_json() + check_manifests() + check_markdown_links() + check_handoff()
+    errors = (
+        check_json()
+        + check_manifests()
+        + check_markdown_links()
+        + check_evidence_registry()
+        + check_composition_matrix()
+        + check_handoff()
+    )
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
