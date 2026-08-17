@@ -4,7 +4,7 @@
   "phase": "MAINTENANCE",
   "phase_name": "Public Homepage Showcase Stabilization",
   "task_type": "HOMEPAGE_SHOWCASE_STABILIZATION",
-  "status": "READY_FOR_REVIEW",
+  "status": "MAINTENANCE_READY",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 7,
@@ -13,19 +13,21 @@
   "languages": ["en", "zh-CN", "ja"],
   "git": {
     "base_branch": "main",
-    "working_branch": "agent/tool-vector-compose-3d",
+    "working_branch": "main",
     "base_sha": "0c5d484d2b6d85c8e28308c2b7338bbc2a282e6b",
-    "tested_sha": "da024e97969cfd60b85c82d75b2d9ac68fa4c3b8",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/tool-vector-compose-3d"},
+    "tested_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
   "pull_request": {
     "number": 9,
     "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/9",
-    "draft": true,
-    "state": "OPEN",
-    "title": "Add reusable 3D vector composition and reconstruction tool"
+    "draft": false,
+    "state": "MERGED",
+    "title": "Add 3D vector companion tool and public capability showcase",
+    "merged_at": "2026-08-17T14:07:47Z",
+    "merge_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6"
   },
   "source_audit": {
     "repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan",
@@ -65,7 +67,7 @@
     "classification": "external GitHub Raw/CDN delivery issue"
   },
   "tests": {
-    "repository_validation": {"passed": true, "pending_clean_commit_rerun": true},
+    "repository_validation": {"passed": true, "pending_clean_commit_rerun": false},
     "i18n": {"passed": true, "public_document_sets": 10, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
     "python": {"passed": 90, "failed": 0},
     "typescript": {"passed": 30, "failed": 0},
@@ -107,5 +109,5 @@
     "no controlled physical validation",
     "no full Three.js renderer"
   ],
-  "next_action": "Run clean-tree validation, update PR #9, mark ready and squash merge to main."
+  "next_action": "Inspect the public main homepage and final showcase, then close the maintenance task."
 }

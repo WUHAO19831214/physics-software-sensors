@@ -2,11 +2,11 @@
 
 ## Review state
 
-- Status: **READY_FOR_REVIEW**
+- Status: **MAINTENANCE_READY**
 - Task: **HOMEPAGE_SHOWCASE_STABILIZATION**
-- PR: [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9)
-- Branch: `agent/tool-vector-compose-3d`
-- Tested implementation SHA: `da024e97969cfd60b85c82d75b2d9ac68fa4c3b8`
+- PR: [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9) — **MERGED**
+- Branch: `main`
+- PR #9 merge SHA / tested public tree: `ff0906835d7f81cbb01e756931ed455f4b5c43e6`
 - Sensors: **7**
 - Companion Processing Tools: **1**
 - Public capabilities: **8**
@@ -36,7 +36,7 @@ During inspection, GitHub Contents API returned `200`, repository blobs existed,
 - Homepage showcase tests: **3/3 PASS**.
 - i18n: **PASS**, 10 public document sets, 7 Sensor Pages × 3, 1 Tool Page × 3, 54 terms.
 - Showcase source/output decode: **8/8 + aggregate PASS**.
-- Repository validation: run on the clean containing commit before merge.
+- Repository validation: **PASS** on merged `main`; rerun after the containing handoff commit.
 
 ## Immutable state
 
@@ -45,4 +45,11 @@ During inspection, GitHub Contents API returned `200`, repository blobs existed,
 - `v0.6.0` tag and Release attachments: unchanged.
 - No `v0.7.0`, PyPI, npm, new Sensor or second Tool was published.
 
-Next action: complete clean-tree repository validation, update PR #9, mark it ready, confirm mergeability and squash merge to `main`.
+## Merge result
+
+- PR #9: **MERGED** at 2026-08-17T14:07:47Z.
+- Squash merge SHA: `ff0906835d7f81cbb01e756931ed455f4b5c43e6`.
+- Public `main`: contains 7 Sensors, 1 Companion Tool, the Capability Showcase and `vector.compose-3d`.
+- `v0.6.0`: unchanged.
+
+Next action: inspect the public `main` homepage and final showcase, then close the maintenance task.

@@ -3,6 +3,7 @@
   "updated_date": "2026-08-17",
   "project_state": "maintenance",
   "phase_5_library_merge_sha": "2c3e91ed3c36f23b82c76cfd70076807adc1f891",
+  "homepage_showcase_merge_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6",
   "baseline_release": {
     "tag": "v0.6.0",
     "maturity": "experimental-pre-stable",
