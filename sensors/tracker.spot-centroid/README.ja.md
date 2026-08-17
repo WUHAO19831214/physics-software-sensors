@@ -46,7 +46,7 @@ Python package `0.5.0` + `classical-trackers`; [tracker.spot-centroid-0.4.0.zip]
 
 ### 下流での再利用
 
-Browser-only の[光スポット振動追跡システム](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952)が、`legacy/library/compare` の offline replay adapter から公開 `v0.6.0` wheel を使用します。同一 frame の 7 case は `1e-9 px` の許容差内で一致し、下流の `y` range は両経路とも `28 px / 0.56 cm`、rollback も通過しました。[統合記録](../../integrations/spot-vibration/README.md)を参照してください。Realtime browser 統合や実光学精度の検証を意味しません。
+Browser-only の[光スポット振動追跡システム](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952)が、`legacy/library/compare` の offline replay adapter から公開 `v0.6.0` wheel を使用します。[統合 PR](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1) は [`172429fae463274ee354e54d56400096c2c6d375`](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375) として merge 済みです。同一 frame の 7 case は `1e-9 px` の許容差内で一致し、下流の `y` range は両経路とも `28 px / 0.56 cm`、merge 後の `main` でも rollback を再確認しました。[統合記録](../../integrations/spot-vibration/README.md)を参照してください。E5 は達成済みですが maturity は `experimental` のままで、realtime browser 統合と E4 の実光学・実機エビデンスは未完です。
 <!-- section:maturity -->
 ## 成熟度
 `experimental`; manifest は `incubating/adapter-present`。

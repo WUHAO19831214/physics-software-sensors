@@ -6,6 +6,7 @@
 | --- | --- |
 | Historical downstream base | `7f0d91cc73afafaecc54acc46b2b9d69375d994a` |
 | Downstream integration commit | `6d2a1b8c79bd6b0400c596db9b989235f3637ba3` |
+| Downstream merged `main` commit | `172429fae463274ee354e54d56400096c2c6d375` |
 | Public library release | `v0.6.0` |
 | Wheel / Sensor | package `0.5.0` / `tracker.spot-centroid@0.4.0` |
 | Wheel SHA-256 | `191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9` |

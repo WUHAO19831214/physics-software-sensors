@@ -21,6 +21,11 @@ Future Physics Projects
 
 Mature capabilities are extracted through adapters, tested against fixed source commits, documented, benchmarked and then reused. Pixel position, OCR text, confidence and bounding boxes are direct software observations—not automatically calibrated physical quantities.
 
+<!-- section:project-status -->
+## Project status
+
+7 software Sensors · 7 experimental adapters · English / 简体中文 / 日本語 · public experimental `v0.6.0` Release · 7 Sensor Bundles · new-Sensor scaffold ready · first E5 downstream reuse completed. No Sensor is claimed as fully validated.
+
 <!-- section:catalog -->
 ## Sensor catalog
 
@@ -69,6 +74,25 @@ These are standalone synthetic/replay demonstrations, not real-device accuracy o
 4. Make time, coordinates, units, confidence and uncertainty explicit.
 5. State evidence, maturity, licensing and model boundaries conservatively.
 
+<!-- section:long-term-workflow -->
+## Long-term workflow
+
+```text
+New Physics Project
+      ↓
+Reusable mature capability
+      ↓
+Sensor Intake
+      ↓
+Physics Software Sensors
+      ↓
+Experimental / Validation / Release
+      ↓
+Future Physics Projects
+```
+
+Future work enters through [Sensor Intake](docs/sensor-intake.md), the [Add New Sensor recipe](docs/agent-recipes/add-new-sensor.md), or an existing-Sensor maintenance track. The first completed extraction-to-reuse cycle is documented in [First Complete Reuse Loop](docs/first-reuse-loop.md).
+
 <!-- section:documentation -->
 ## Documentation
 
@@ -76,6 +100,8 @@ These are standalone synthetic/replay demonstrations, not real-device accuracy o
 - [Getting Started](docs/getting-started.md)
 - [Evidence and Maturity](docs/evidence-and-maturity.md)
 - [Sensor Intake](docs/sensor-intake.md)
+- [First Complete Reuse Loop](docs/first-reuse-loop.md) and [Maintenance Guide](docs/maintenance.md)
+- [Current Project Status](docs/project-status.md)
 - [Terminology](docs/i18n/terminology.md) and [i18n Style Guide](docs/i18n/style-guide.md)
 - [Architecture](docs/architecture.md), [data format](docs/data-format.md), [benchmarking](docs/benchmarking.md)
 - [Release v0.6.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
@@ -97,7 +123,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). A new Sensor or major capability follows
 - No stable, production-ready, measurement-grade or metrology claim.
 - No automatic YOLO model download or bundled model weight.
 - No forced migration of historical experiment projects.
-- No PyPI/npm registry publication; the first Phase 5 integration is a Draft, offline replay path and does not replace the downstream live-camera implementation.
+- No PyPI/npm registry publication; the first merged E5 integration is an offline replay path and does not replace the downstream live-camera implementation.
 
 <!-- section:license -->
 ## License

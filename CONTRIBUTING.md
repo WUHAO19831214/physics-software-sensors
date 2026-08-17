@@ -46,3 +46,7 @@ npm --prefix packages/typescript test
 6. 使用 `python tools/new_sensor.py --help` 生成 TODO 骨架；generator 不会替代来源审查，也不会把候选能力自动提升为 experimental。
 
 给 Codex 的完整执行顺序见 [add-new-sensor recipe](docs/agent-recipes/add-new-sensor.md)，可复制提示词见 [ADD_SENSOR_PROMPT](templates/ADD_SENSOR_PROMPT.md)。
+
+## Maintaining existing Sensors
+
+现有 Sensor 的算法升级、真实环境验证、下游复用、Release 和弃用不重新走 new-Sensor intake，也不能直接覆盖历史行为。按 [Maintenance Guide](docs/maintenance.md) 选择任务类型，保留 old/new benchmark、golden、兼容性决定、升级记录、版本变化和 rollback。开始工作前先读取 [Current Project Status](docs/project-status.md)。

@@ -11,6 +11,8 @@ def test_spot_downstream_record_is_pinned_comparable_and_reversible() -> None:
     record = json.loads((ROOT / "integrations/spot-vibration/integration.json").read_text(encoding="utf-8"))
     assert record["downstream_base_sha"] == "7f0d91cc73afafaecc54acc46b2b9d69375d994a"
     assert len(record["downstream_integration_sha"]) == 40
+    assert record["downstream_pull_request_state"] == "MERGED"
+    assert record["downstream_merge_sha"] == "172429fae463274ee354e54d56400096c2c6d375"
     assert record["library_release"] == "v0.6.0"
     assert record["package_version"] == "0.5.0"
     assert record["artifact"]["sha256"] == "191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9"
@@ -31,3 +33,5 @@ def test_spot_evidence_registry_matches_integration_record() -> None:
     assert spot["evidence_level"] == "E5"
     assert spot["downstream_integration"]["rollback_tested"] is True
     assert spot["downstream_integration"]["integration_sha"] == "6d2a1b8c79bd6b0400c596db9b989235f3637ba3"
+    assert spot["downstream_integration"]["merge_sha"] == "172429fae463274ee354e54d56400096c2c6d375"
+    assert spot["downstream_integration"]["post_merge_main_verified"] is True

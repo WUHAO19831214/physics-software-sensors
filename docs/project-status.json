@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "updated_date": "2026-08-17",
+  "project_state": "maintenance",
+  "baseline_release": {
+    "tag": "v0.6.0",
+    "maturity": "experimental-pre-stable",
+    "tag_target": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
+    "immutable": true
+  },
+  "sensor_count": 7,
+  "implemented_adapter_count": 7,
+  "languages": ["en", "zh-CN", "ja"],
+  "distribution": {"python_wheel": true, "typescript_tgz": true, "sensor_bundles": 7, "pypi": false, "npm_registry": false},
+  "sensors": {
+    "camera.capture": {"maturity": "experimental", "evidence": "E1", "version": "0.3.0"},
+    "screen.capture": {"maturity": "experimental", "evidence": "E1", "version": "0.3.0"},
+    "ocr.number": {"maturity": "experimental", "evidence": "E3", "version": "0.2.0"},
+    "tracker.color-marker": {"maturity": "experimental", "evidence": "E2", "version": "0.2.0"},
+    "tracker.spot-centroid": {"maturity": "experimental", "evidence": "E5", "version": "0.4.0", "e4_real_device": false},
+    "tracker.template": {"maturity": "experimental", "evidence": "E3", "version": "0.4.0"},
+    "tracker.yolo": {"maturity": "experimental", "evidence": "E2", "version": "0.5.0"}
+  },
+  "downstream_integrations": [
+    {
+      "repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+      "sensor_id": "tracker.spot-centroid",
+      "status": "merged",
+      "merge_sha": "172429fae463274ee354e54d56400096c2c6d375",
+      "evidence": "E5",
+      "default_backend": "legacy",
+      "realtime_bridge": false
+    }
+  ],
+  "workflows": {"sensor_intake": "ready", "sensor_upgrade": "ready", "downstream_reuse": "ready", "release": "ready"},
+  "ci": {"enabled": false, "templates_available": true, "validation_mode": "local fixed-SHA and clean-install evidence"},
+  "known_gaps": ["E4 real camera/optical validation", "controlled physical movement", "repeatability and uncertainty", "cross-platform runtime coverage", "historical source license resolution"]
+}

@@ -46,7 +46,7 @@ Python package `0.5.0` with `classical-trackers`; [tracker.spot-centroid-0.4.0.z
 
 ### Downstream reuse
 
-The browser-only [Spot Vibration Tracking System](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952) uses the public `v0.6.0` wheel in an offline replay adapter behind `legacy/library/compare`. Seven same-frame cases matched within `1e-9 px`, downstream `y` range matched at `28 px / 0.56 cm`, and rollback passed. See the [integration record](../../integrations/spot-vibration/README.md). This does not claim realtime browser integration or real optical accuracy.
+The browser-only [Spot Vibration Tracking System](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952) uses the public `v0.6.0` wheel in an offline replay adapter behind `legacy/library/compare`. Its [integration PR](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1) was merged as [`172429fae463274ee354e54d56400096c2c6d375`](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375). Seven same-frame cases matched within `1e-9 px`, downstream `y` range matched at `28 px / 0.56 cm`, and rollback passed again on merged `main`. See the [integration record](../../integrations/spot-vibration/README.md). E5 is achieved while maturity stays `experimental`; realtime browser integration and E4 real optical/device evidence remain missing.
 <!-- section:maturity -->
 ## Maturity
 `experimental`; manifest `incubating/adapter-present`.

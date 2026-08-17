@@ -7,6 +7,8 @@
   "downstream_integration_branch": "agent/physics-sensors-spot-integration",
   "downstream_integration_sha": "6d2a1b8c79bd6b0400c596db9b989235f3637ba3",
   "downstream_pull_request": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1",
+  "downstream_pull_request_state": "MERGED",
+  "downstream_merge_sha": "172429fae463274ee354e54d56400096c2c6d375",
   "sensor_id": "tracker.spot-centroid",
   "sensor_version": "0.4.0",
   "library_release": "v0.6.0",
@@ -47,7 +49,8 @@
     "library_mode": true,
     "compare_mode": true,
     "javascript_syntax": true,
-    "static_app_start": true
+    "static_app_start": true,
+    "post_merge_main_verified": true
   },
   "rollback_tested": true,
   "legacy_implementation_retained": true,

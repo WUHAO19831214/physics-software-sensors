@@ -46,7 +46,7 @@ Python package `0.5.0` + `classical-trackers`；[tracker.spot-centroid-0.4.0.zip
 
 ### 下游复用
 
-纯浏览器项目[光斑振动追踪系统](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952)通过 `legacy/library/compare` 离线回放适配器使用公开 `v0.6.0` wheel。七个同帧场景在 `1e-9 px` 容差内一致，下游 `y` 范围两条路径均为 `28 px / 0.56 cm`，回退测试通过。详见[集成记录](../../integrations/spot-vibration/README.md)。这不代表实时浏览器接入或真实光学精度已经验证。
+纯浏览器项目[光斑振动追踪系统](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952)通过 `legacy/library/compare` 离线回放适配器使用公开 `v0.6.0` wheel。[集成 PR](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1) 已合并为 [`172429fae463274ee354e54d56400096c2c6d375`](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375)。七个同帧场景在 `1e-9 px` 容差内一致，下游 `y` 范围两条路径均为 `28 px / 0.56 cm`，合并后的 `main` 再次通过回退测试。详见[集成记录](../../integrations/spot-vibration/README.md)。E5 已达到但成熟度仍是 `experimental`；实时浏览器接入和 E4 真实光学/设备证据仍未完成。
 <!-- section:maturity -->
 ## 成熟度
 `experimental`；manifest 为 `incubating/adapter-present`。
