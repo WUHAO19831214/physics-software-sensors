@@ -1,0 +1,73 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="9d18e197fd2f6480cabde2b29519fbc200276d56ecf62d091684a86e816cb120"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>光スポット重心トラッカー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/spot-centroid/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/spot-centroid/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>光スポット重心トラッカー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>tracker.spot-centroid</code> · Implementation version: <code>0.4.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E5</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>光スポット重心（Spot Centroid）トラッカー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>赤色の光スポットを検出し、画像上の輝度加重重心と quality/lost evidence を出力します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>振動、共振、軌跡実験で投影・取り付けた赤色光スポットを観測し、下流で振幅・周波数を解析します。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>赤 candidate pixel、weighted centroid、bbox、weight sum、saturation/ROI-edge evidence、lost state です。機械変位や振幅を直接測定しません。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">spot-vibration-tracking-system-20260508-171952</a></td>
+<td><code>7f0d91cc73afafaecc54acc46b2b9d69375d994a</code></td>
+<td><code>app.js::rgbToHsv/trackRedSpot/getAmplitudeFrom</code>; 赤色加重重心・sweep window</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715">forced-vibration-af-analyzer-20260502-122715</a></td>
+<td><code>c3f58175a09ff29cacdfb976a5055758c4eff619</code></td>
+<td>同一 threshold/weight 式; 強制振動画像範囲</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>Frame/ROI → source-compatible red threshold → pixel brightness weight → weighted sum → centroid/bbox/quality flag または明示的 lost → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>Camera/image <code>FramePacket</code>、normalized ROI、source-compatible red threshold/quality 設定。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p>Pixel/normalized centroid、bbox、candidate/weight evidence、<code>spot-lost</code>、<code>low-signal</code>、<code>overexposed</code>、<code>roi-edge</code> 等を持つ <code>SensorEvent</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="光スポット重心 replay" src="../../../site-assets/sensors/tracker.spot-centroid/assets/overview.png" /></a> Synthetic adapter output で、実験校正の証拠ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/spot-centroid/">spot-centroid</a> で <code>SpotCentroidSensor</code> を実行します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>Python package <code>0.5.0</code> + <code>classical-trackers</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">tracker.spot-centroid-0.4.0.zip</a>。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E5</code>: source-compatible golden replay に加え、version 固定、比較可能、rollback 可能な下流 project 統合を確認しました。Release manifest は公開時点の E2 履歴を保持し、E5 は公開後の再利用で成立しています。</p>
+<h3>下流での再利用</h3>
+<p>Browser-only の<a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">光スポット振動追跡システム</a>が、<code>legacy/library/compare</code> の offline replay adapter から公開 <code>v0.6.0</code> wheel を使用します。<a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1">統合 PR</a> は <a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375"><code>172429fae463274ee354e54d56400096c2c6d375</code></a> として merge 済みです。同一 frame の 7 case は <code>1e-9 px</code> の許容差内で一致し、下流の <code>y</code> range は両経路とも <code>28 px / 0.56 cm</code>、merge 後の <code>main</code> でも rollback を再確認しました。<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/integrations/spot-vibration/README.md">統合記録</a>を参照してください。E5 は達成済みですが maturity は <code>experimental</code> のままで、realtime browser 統合と E4 の実光学・実機エビデンスは未完です。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>; manifest は <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p>0.4.0 は source red-channel profile のみです。Exposure、弱い spot、ROI edge が結果に影響します。Repeatability、不確かさ、物理校正の E4 証拠はありません。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">Benchmark</a>: centroid pixel error、missing rate、exposure/ROI sensitivity、latency。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p>固定 source function/formula と比較結果は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/SOURCE.md">SOURCE.md</a>、facts は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/sensor.json">sensor.json</a> にあります。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.spot-centroid/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

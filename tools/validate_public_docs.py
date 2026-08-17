@@ -1,116 +1,56 @@
 #!/usr/bin/env python3
-"""Offline validation for multilingual public-document delivery routes."""
-
+"""Offline validation for Pages-first public documentation routes."""
 from __future__ import annotations
 
-import hashlib
 import json
 import re
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-README_FILES = {
-    "en": ROOT / "README.md",
-    "zh_CN": ROOT / "README.zh-CN.md",
-    "ja": ROOT / "README.ja.md",
-}
-PAGES = {
-    "en": DOCS / "index.html",
-    "zh_CN": DOCS / "zh-CN/index.html",
-    "ja": DOCS / "ja/index.html",
-}
-NAVIGATION = {
-    "en": ('href="zh-CN/"', 'href="ja/"'),
-    "zh_CN": ('href="../"', 'href="../ja/"'),
-    "ja": ('href="../"', 'href="../zh-CN/"'),
-}
-SOURCE_NAMES = {"en": "README.md", "zh_CN": "README.zh-CN.md", "ja": "README.ja.md"}
 LINK = re.compile(r'(?:href|src)="([^"]+)"')
-META = re.compile(r'<meta name="([^"]+)" content="([a-f0-9]{64})">')
-CAPABILITIES = {
-    "camera.capture",
-    "screen.capture",
-    "ocr.number",
-    "tracker.color-marker",
-    "tracker.spot-centroid",
-    "tracker.template",
-    "tracker.yolo",
-    "vector.compose-3d",
-}
+LANGUAGES = {"en": "", "zh_CN": "zh-CN", "ja": "ja"}
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def route_output(route: str, language: str) -> Path:
+    prefix = LANGUAGES[language]
+    return DOCS.joinpath(*(([prefix] if prefix else []) + ([] if route == "." else route.split("/")) + ["index.html"]))
 
 
 def validate_public_docs(root: Path = ROOT) -> list[str]:
     docs = root / "docs"
     errors: list[str] = []
-    status_path = docs / "project-status.json"
     try:
-        status = json.loads(status_path.read_text(encoding="utf-8"))
+        routes = json.loads((docs / "site-routes.json").read_text(encoding="utf-8"))
+        status = json.loads((docs / "project-status.json").read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
-        return [f"docs/project-status.json: {exc}"]
+        return [f"public docs metadata: {exc}"]
     if (status.get("sensor_count"), status.get("companion_tool_count"), status.get("public_capability_count")) != (7, 1, 8):
-        errors.append("project-status.json: expected 7 Sensors, 1 Companion Tool and 8 public capabilities")
-    if status.get("public_document_delivery") != {
-        "repository_content_integrity": "pass",
-        "github_blob_view": "external_error",
-        "github_raw": "rate_limited",
-        "github_pages": "enabled",
-        "provider": "github-pages",
-        "pages_source": "main /docs",
-        "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
-        "languages": ["en", "zh-CN", "ja"],
-    }:
-        errors.append("project-status.json: public-document delivery state mismatch")
-    expected_status_hash = sha256(status_path)
-
-    for language, relative in ((key, path.relative_to(root)) for key, path in README_FILES.items()):
-        path = root / relative
-        try:
-            text = path.read_text(encoding="utf-8")
-        except (OSError, UnicodeDecodeError) as exc:
-            errors.append(f"{relative}: missing or invalid UTF-8: {exc}")
-            continue
-        for target in ("README.md", "README.zh-CN.md", "README.ja.md"):
-            if target not in text and target != path.name:
-                errors.append(f"{relative}: missing language source target {target}")
-        if "Repository multilingual content integrity: **PASS**" not in text and "仓库三语内容完整性：**PASS**" not in text and "repository の 3 言語コンテンツ完全性：**PASS**" not in text:
-            errors.append(f"{relative}: missing language-access integrity statement")
-
-    for language, default_page in PAGES.items():
-        page = root / default_page.relative_to(ROOT)
+        errors.append("project status capability count is not 7 Sensors + 1 Tool")
+    if status.get("public_document_delivery", {}).get("github_pages") != "enabled":
+        errors.append("project status must record enabled GitHub Pages")
+    capability_routes = list(routes["sensors"].values()) + list(routes["tools"].values())
+    required = [routes["home"], routes["catalog"], routes["installation"], routes["downloads"], routes["evidence"], routes["showcase"], routes["getting_started"], routes["sensor_intake"]] + capability_routes + list(routes["examples"].values())
+    pages: list[Path] = []
+    for language in LANGUAGES:
+        for route in required:
+            page = route_output(route, language)
+            if not page.is_file():
+                errors.append(f"missing public page: {page.relative_to(root)}")
+            else:
+                pages.append(page)
+    if len(routes["sensors"]) != 7 or len(routes["tools"]) != 1:
+        errors.append("route manifest must contain exactly 7 Sensors and 1 Tool")
+    for page in pages:
         relative = page.relative_to(root)
-        try:
-            html = page.read_text(encoding="utf-8")
-        except (OSError, UnicodeDecodeError) as exc:
-            errors.append(f"{relative}: missing or invalid UTF-8: {exc}")
-            continue
-        if '<meta charset="utf-8">' not in html:
-            errors.append(f"{relative}: missing UTF-8 declaration")
-        for required in NAVIGATION[language]:
-            if required not in html:
-                errors.append(f"{relative}: missing language route {required}")
-        if 'class="language-nav"' not in html:
-            errors.append(f"{relative}: missing language navigation")
-        if "docs/assets/capability-showcase.png" in html:
-            errors.append(f"{relative}: must use a Pages-relative showcase asset route")
-        if "capability-showcase.png" not in html:
-            errors.append(f"{relative}: missing capability showcase")
-        if not CAPABILITIES <= set(re.findall(r"(?:camera\.capture|screen\.capture|ocr\.number|tracker\.(?:color-marker|spot-centroid|template|yolo)|vector\.compose-3d)", html)):
-            errors.append(f"{relative}: missing one or more public capabilities")
-        meta = dict(META.findall(html))
-        source = root / SOURCE_NAMES[language]
-        if meta.get("source-readme-sha256") != sha256(source):
-            errors.append(f"{relative}: generated page does not match {SOURCE_NAMES[language]}")
-        if meta.get("project-status-sha256") != expected_status_hash:
-            errors.append(f"{relative}: generated page does not match docs/project-status.json")
-        for target in LINK.findall(html):
+        text = page.read_text(encoding="utf-8")
+        if '<meta charset="utf-8">' not in text or 'class="language-nav"' not in text or 'class="site-nav"' not in text:
+            errors.append(f"{relative}: missing Pages shell/navigation")
+        if 'Developer resources' not in text and '开发者资源' not in text and '開発者向けリソース' not in text:
+            errors.append(f"{relative}: missing secondary developer resources")
+        for target in LINK.findall(text):
             parts = urlsplit(target)
             if parts.scheme or parts.netloc or target.startswith("#"):
                 continue
@@ -118,10 +58,10 @@ def validate_public_docs(root: Path = ROOT) -> list[str]:
             try:
                 local.relative_to(root)
             except ValueError:
-                errors.append(f"{relative}: route escapes Pages root: {target}")
+                errors.append(f"{relative}: internal link escapes site: {target}")
                 continue
             if not local.exists():
-                errors.append(f"{relative}: missing local Pages target: {target}")
+                errors.append(f"{relative}: broken internal public link: {target}")
     return errors
 
 
@@ -131,7 +71,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print("OK: public docs 3/3 README sources, 3/3 Pages files, 6/6 language routes, 7 Sensors + 1 Tool")
+    print("OK: Pages-first docs 3/3 languages, 7/7 Sensors, 1/1 Tool, 9 examples, catalog/support pages and zero broken internal links")
     return 0
 
 

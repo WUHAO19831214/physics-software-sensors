@@ -1,0 +1,73 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="02afbc019a5ee1ebb4a5cda87b91dc0152dd593eaa17e06e405a25ce6950d214"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>光斑重心识别软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/spot-centroid/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/spot-centroid/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>光斑重心识别软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.spot-centroid</code> · Implementation version: <code>0.4.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E5</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>光斑重心识别软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>寻找红色光斑，输出图像中的亮度加权重心以及质量/丢失证据。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>在振动、共振和轨迹实验中观测投射/附着的红色光斑，再由下游分析振幅或频率。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>红色候选像素、加权重心、bbox、权重和、过曝/ROI 边缘证据和 lost 状态；它<strong>不直接测量</strong>机械位移或振幅。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">spot-vibration-tracking-system-20260508-171952</a></td>
+<td><code>7f0d91cc73afafaecc54acc46b2b9d69375d994a</code></td>
+<td><code>app.js::rgbToHsv/trackRedSpot/getAmplitudeFrom</code>；红色加权重心与扫频窗口</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715">forced-vibration-af-analyzer-20260502-122715</a></td>
+<td><code>c3f58175a09ff29cacdfb976a5055758c4eff619</code></td>
+<td>相同核心阈值/权重公式；受迫振动图像范围</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>Frame/ROI → 来源兼容红通道阈值 → 逐像素亮度权重 → 加权和 → centroid/bbox/quality flags 或明确 lost → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>Camera/image <code>FramePacket</code>、normalized ROI 和来源兼容红色阈值/质量配置。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p>Centroid/tracking <code>SensorEvent</code>：像素/归一化重心、bbox、候选/权重证据，以及 <code>spot-lost</code>、<code>low-signal</code>、<code>overexposed</code>、<code>roi-edge</code> 等 flags。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="光斑重心回放" src="../../../site-assets/sensors/tracker.spot-centroid/assets/overview.png" /></a> Synthetic adapter 输出，不是真实实验标定证据。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/spot-centroid/">spot-centroid</a>，调用 <code>SpotCentroidSensor</code>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>Python package <code>0.5.0</code> + <code>classical-trackers</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">tracker.spot-centroid-0.4.0.zip</a>。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E5</code>：来源兼容 golden replay，以及固定版本、可比较、可回退的下游项目接入。Release manifest 保留发布时 E2 的历史记录；E5 来自发布后的真实复用流程。</p>
+<h3>下游复用</h3>
+<p>纯浏览器项目<a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">光斑振动追踪系统</a>通过 <code>legacy/library/compare</code> 离线回放适配器使用公开 <code>v0.6.0</code> wheel。<a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1">集成 PR</a> 已合并为 <a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375"><code>172429fae463274ee354e54d56400096c2c6d375</code></a>。七个同帧场景在 <code>1e-9 px</code> 容差内一致，下游 <code>y</code> 范围两条路径均为 <code>28 px / 0.56 cm</code>，合并后的 <code>main</code> 再次通过回退测试。详见<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/integrations/spot-vibration/README.md">集成记录</a>。E5 已达到但成熟度仍是 <code>experimental</code>；实时浏览器接入和 E4 真实光学/设备证据仍未完成。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 为 <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>0.4.0 只实现来源 red-channel profile。曝光、弱光斑和 ROI 边缘会影响结果；重复性、不确定度和物理标定都没有 E4 证据。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见 <a href="./">benchmark</a>：centroid pixel error、missing rate、曝光/ROI 敏感性和延迟。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>固定来源函数/公式与比较结果见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/SOURCE.md">SOURCE.md</a>，事实见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.spot-centroid/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

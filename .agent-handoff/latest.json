@@ -2,9 +2,9 @@
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "MAINTENANCE",
-  "phase_name": "Multilingual Public Document Access Reliability",
-  "task_type": "PUBLIC_DOCUMENT_DELIVERY",
-  "status": "MAINTENANCE_READY",
+  "phase_name": "Pages-first Public Capability Navigation",
+  "task_type": "PUBLIC_NAVIGATION_PAGES_FIRST",
+  "status": "READY_FOR_REVIEW",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 7,
@@ -13,20 +13,14 @@
   "languages": ["en", "zh-CN", "ja"],
   "git": {
     "base_branch": "main",
-    "working_branch": "main",
-    "base_sha": "c95474a26738d1d68174958ba8bb575948e76d90",
-    "tested_sha": "c95474a26738d1d68174958ba8bb575948e76d90",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
+    "working_branch": "codex/pages-first-public-navigation",
+    "base_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
+    "tested_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/codex/pages-first-public-navigation"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
-  "pull_request": {
-    "number": 10,
-    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/10",
-    "draft": false,
-    "state": "MERGED",
-    "title": "Improve multilingual documentation access reliability"
-  },
+  "pull_request": {"number": null, "url": "", "draft": true, "state": "PENDING", "title": "Improve Pages-first public capability navigation"},
   "public_document_delivery": {
     "repository_content_integrity": "PASS",
     "github_blob_view": "EXTERNAL_ERROR",

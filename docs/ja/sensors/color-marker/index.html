@@ -1,0 +1,71 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="b1b705e9ff09a03e7e6abfe2c829c8c2c154e985c7bcbeb2f7e8ec1bda352f97"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>カラーマーカートラッカー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/color-marker/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/color-marker/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>カラーマーカートラッカー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>tracker.color-marker</code> · Implementation version: <code>0.2.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E2</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>カラーマーカートラッカー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>Camera image から指定色の marker を検出し、画像座標の位置とロスト状態を連続出力します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>色付き球・marker を追跡し、運動、振動、軌跡、音声・映像整合の実験に使います。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>Pixel centroid、輪郭・面積の証拠、検出状態です。変位、速度、振幅には明示的な校正と時間導出が必要です。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>tennis_ball_tracker.py::TennisBallTracker.update</code>、mask/candidate、tests; 抽出 profile</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>ColorTrackingAnalyzer.ts</code>、<code>MarkerTrackingAnalyzer.ts</code>; 関連 browser profile、未抽出</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>BGR frame → HSV → threshold mask → morphology → contour candidate → area/circularity/continuity ranking → centroid smoothing/lost → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>Camera/image <code>FramePacket</code>、HSV threshold、area/circularity filter、smoothing、任意 ROI/continuity 設定。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p>Raw/smoothed pixel center、normalized position、bbox/area/quality evidence、明示的 lost 状態を含む tracking <code>SensorEvent</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Color marker replay" src="../../../site-assets/sensors/tracker.color-marker/assets/overview.png" /></a> Standalone synthetic output で、実験精度の主張ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/color-marker/">python-color-marker</a> で <code>ColorMarkerSensor</code> を実行します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>Python package <code>0.5.0</code> + <code>color-marker</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">tracker.color-marker-0.2.0.zip</a>。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E2</code>: 固定 source commit の実行/golden 比較と、決定的 success/lost/reacquire test。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>; manifest は <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p>HSV threshold は camera/照明に依存します。類似色、blur、occlusion、exposure で誤検出・lost が起きます。Algorithm confidence は物理的不確かさではありません。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">Benchmark</a>: success、lost-frame rate、center error、latency/FPS、source-output compatibility。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p>抽出変更、source symbol、tolerance、golden method は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/SOURCE.md">SOURCE.md</a>、facts は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/sensor.json">sensor.json</a> にあります。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.color-marker/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

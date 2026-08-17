@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="20add23ef50f4bc29d4f30aa1c34fbc04b0c7fb3396bcb94c8ef30f653d69dc9"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Spot Centroid Tracker</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/sensors/spot-centroid/">简体中文</a> <span>|</span> <a href="../../ja/sensors/spot-centroid/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Spot Centroid Tracker</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.spot-centroid</code> · Implementation version: <code>0.4.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E5</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p>Spot Centroid Tracker</p>
+<!-- section:description -->
+<h2>One-line description</h2>
+<p>Finds a red light spot and emits its brightness-weighted image-space centroid with quality/lost evidence.</p>
+<!-- section:physics-use -->
+<h2>Typical physics experiment use</h2>
+<p>Observes a projected/attached red spot in vibration, resonance and trajectory experiments before downstream amplitude/frequency analysis.</p>
+<!-- section:measurement -->
+<h2>What it actually measures</h2>
+<p>Red candidate pixels, weighted centroid, bbox, weight sum, saturation/ROI-edge evidence and lost state. It does <strong>not</strong> directly measure mechanical displacement or amplitude.</p>
+<!-- section:sources -->
+<h2>Source projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source paths / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">spot-vibration-tracking-system-20260508-171952</a></td>
+<td><code>7f0d91cc73afafaecc54acc46b2b9d69375d994a</code></td>
+<td><code>app.js::rgbToHsv/trackRedSpot/getAmplitudeFrom</code>; weighted red centroid and sweep windows</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715">forced-vibration-af-analyzer-20260502-122715</a></td>
+<td><code>c3f58175a09ff29cacdfb976a5055758c4eff619</code></td>
+<td>same core threshold/weight formula; forced-vibration image range</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>How it works</h2>
+<p>Frame/ROI → source-compatible red-channel threshold → per-pixel brightness weights → weighted sums → centroid/bbox/quality flags or explicit lost → <code>SensorEvent</code>.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Camera/image <code>FramePacket</code>, normalized ROI and source-compatible red threshold/quality configuration.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p>Centroid/tracking <code>SensorEvent</code> with pixel/normalized centroid, bbox, candidate/weight evidence and flags such as <code>spot-lost</code>, <code>low-signal</code>, <code>overexposed</code>, <code>roi-edge</code>.</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Spot centroid replay" src="../../site-assets/sensors/tracker.spot-centroid/assets/overview.png" /></a> Synthetic adapter output, not real-experiment calibration evidence.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<p>Run <a href="../../examples/spot-centroid/">spot-centroid</a> with <code>SpotCentroidSensor</code>.</p>
+<!-- section:distribution -->
+<h2>Distribution / Download</h2>
+<p>Python package <code>0.5.0</code> with <code>classical-trackers</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">tracker.spot-centroid-0.4.0.zip</a>.</p>
+<!-- section:evidence -->
+<h2>Evidence level</h2>
+<p><code>E5</code>: source-compatible golden replay plus a pinned downstream project integration with comparison and rollback. The Release manifest retains its historical E2-at-publication record; E5 was established by post-release reuse.</p>
+<h3>Downstream reuse</h3>
+<p>The browser-only <a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">Spot Vibration Tracking System</a> uses the public <code>v0.6.0</code> wheel in an offline replay adapter behind <code>legacy/library/compare</code>. Its <a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1">integration PR</a> was merged as <a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375"><code>172429fae463274ee354e54d56400096c2c6d375</code></a>. Seven same-frame cases matched within <code>1e-9 px</code>, downstream <code>y</code> range matched at <code>28 px / 0.56 cm</code>, and rollback passed again on merged <code>main</code>. See the <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/integrations/spot-vibration/README.md">integration record</a>. E5 is achieved while maturity stays <code>experimental</code>; realtime browser integration and E4 real optical/device evidence remain missing.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<p><code>experimental</code>; manifest <code>incubating/adapter-present</code>.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<p>Version 0.4.0 implements the source red-channel profile only. Exposure, weak spots and ROI edges affect results. No repeatability, uncertainty or physical calibration has E4 evidence.</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>See <a href="./">benchmark</a>: centroid pixel error, missing rate, exposure/ROI sensitivity and latency.</p>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>Fixed source functions/formulas and comparison results are in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/SOURCE.md">SOURCE.md</a>; facts in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/sensor.json">sensor.json</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.spot-centroid/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

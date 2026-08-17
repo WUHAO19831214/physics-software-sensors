@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="0d629d0431de54288baca84df93ae0d333f90d0ac0788b012e685f574fd376be"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>模板 / 单目标视觉追踪软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/template-tracker/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/template-tracker/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>模板 / 单目标视觉追踪软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.template</code> · Implementation version: <code>0.4.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E3</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>模板 / 单目标视觉追踪软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>从 ROI 初始化一个目标，使用 OpenCV CSRT/KCF/MIL fallback 追踪其图像边界框。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>当颜色分割不适合时，在运动或振动实验中连续追踪一个可见目标。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>直接输出图像 bbox/中心以及 tracking/lost/backend 状态。当前实现不是静态模板匹配，像素运动也不是未标定的物理位移。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>object_template_tracker.py::initialize/update/reset/create_opencv_tracker/validate_bbox</code> 与 tests；本轮抽取 ROI tracker</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>TemplateMatchingAnalyzer.ts</code>；相关静态 matching profile，本轮未抽取</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>初始化帧 + ROI 校验 → 选择 CSRT→KCF→MIL backend → 逐帧 <code>update</code> → bbox/center 或 lost → 可选重新初始化 → <code>SensorEvent</code>。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>Camera/image <code>FramePacket</code>、初始化 ROI 和可选 backend preference。当前实现不要求 template asset。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p>Tracking <code>SensorEvent</code>：bbox、center、requested/actual backend、fallback 尝试、初始化/重初始化和 lost 状态。OpenCV 不提供已标定置信度。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="ROI tracker replay" src="../../../site-assets/sensors/tracker.template/assets/overview.png" /></a> 真实 OpenCV runtime 在 synthetic targets 上运行，不是真实实验精度。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/template-tracker/">python-template-tracker</a>，调用 <code>TemplateTrackerSensor</code>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>Python package <code>0.5.0</code> + <code>classical-trackers</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">tracker.template-0.4.0.zip</a>。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E3</code>：真实 OpenCV contrib tracker 已在受控 synthetic/scripted sequence 上执行。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 为 <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>Fallback 会改变行为/性能；遮挡、缩放、模糊和无效 ROI 可能导致 lost。没有已标定置信度、物理尺度或 E4 真实设备证据。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见 <a href="./">benchmark</a>：初始化/update 成功、bbox/center error、lost/reinitialize、backend 和 latency。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>算法家族边界、来源符号和比较见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/SOURCE.md">SOURCE.md</a>，事实见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.template/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

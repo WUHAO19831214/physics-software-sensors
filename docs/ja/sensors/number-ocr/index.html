@@ -1,0 +1,71 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="ade961d2a31358b3bf1d331518608499b210d09c45c5322a1737fa0f09fdd108"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>数値 OCR センサー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/number-ocr/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/number-ocr/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>数値 OCR センサー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>ocr.number</code> · Implementation version: <code>0.2.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E3</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>数値 OCR センサー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>Frame の ROI から数値表示を読み取り、raw text、parse 値、信頼度、処理時間、warning、明示的 failure を保持します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>直接 SDK data がない場合に既存計測ソフトの表示値を読み、授業可視化や同期解析へ渡します。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>経路は software display → screen pixels → OCR text → numeric parse です。機器内部を直接読まず、unit と物理範囲 check は設定・下流処理が担います。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>TesseractRecognizer.ts</code>、<code>extractNumber.ts</code>、preprocess、<code>OCR_VALIDATION.md</code>; 実 Tesseract.js</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td>同一 recognizer/utilities; 教師用 Fy/Fz 表示読取</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>RGBA frame → normalized ROI → preprocess → Tesseract.js/recorded recognizer → raw text 正規化 → numeric parse/validation → <code>SensorEvent</code>。失敗時に mock measurement は出しません。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>RGBA pixel を持つ screen/image <code>FramePacket</code>、ROI、whitelist/preprocess option、value name、unit。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p><code>raw_text</code>、成功時 measurement、信頼度、duration、warning/artifact、明示的 <code>OCR_RECOGNITION_FAILED</code>/<code>OCR_PARSE_FAILED</code> を持つ <code>SensorEvent</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Synthetic pixel OCR" src="../../../site-assets/sensors/ocr.number/assets/overview.png" /></a> 実 Tesseract.js を synthetic pixels で実行した証拠で、実機表示ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/number-ocr/">web-number-ocr</a> または <a href="../../examples/screen-to-ocr/">screen-to-ocr</a> を実行します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>TypeScript package <code>0.3.0</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">ocr.number-0.2.0.zip</a>。実 OCR は runtime に言語 data を取得する場合があります。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E3</code>: 実 Tesseract.js を制御された synthetic pixels と failure path で実行済み。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>; manifest は <code>incubating/adapter-present</code>。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p>標準 parse は科学表記を扱いません。文字正規化で英字と数字を誤る場合があります。信頼度は精度ではなく、実表示・font・scale・glare・browser の E4 証拠はありません。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">OCR benchmark</a> は exact match、parse success/error、latency、failure rate を扱います。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p>2 固定 commit の主要 OCR/preprocess file は同一です。Hash・変更は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/SOURCE.md">SOURCE.md</a>、facts は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/sensor.json">sensor.json</a> にあります。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/ocr.number/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

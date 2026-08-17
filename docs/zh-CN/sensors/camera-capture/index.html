@@ -1,0 +1,86 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="59ce83e4741db0514cad4f53db0339658877044b151306033766eaecfc7f4a73"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>摄像头采集软件传感器</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">首页</a><a href="../../catalog/">目录</a><a href="../../installation/">安装</a><a href="../../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/camera-capture/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../../ja/sensors/camera-capture/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>摄像头采集软件传感器</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>camera.capture</code> · Implementation version: <code>0.3.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E1</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>摄像头采集软件传感器</p>
+<!-- section:description -->
+<h2>一句话介绍</h2>
+<p>输出带明确时间戳、后端信息和采集质量元数据的摄像头或图像序列帧。</p>
+<!-- section:physics-use -->
+<h2>典型物理实验用途</h2>
+<p>为运动、振动、轨迹、光斑和声音—视觉同步实验提供视觉输入，不耦合原项目 UI 或物理业务逻辑。</p>
+<!-- section:measurement -->
+<h2>它实际测到什么</h2>
+<p>直接观测图像像素与采集时间/状态。位置、位移、速度、振幅需要后续 Sensor；转换为物理单位还必须标定。</p>
+<!-- section:sources -->
+<h2>来源项目</h2>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Commit</th>
+<th>原文件/用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>src/browser_capture.py</code>、<code>camera_devices.py</code>、<code>local_capture.py</code>、<code>camera_processor.py</code>；OpenCV/WebRTC 帧</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">spot-vibration-tracking-system-20260508-171952</a></td>
+<td><code>7f0d91cc73afafaecc54acc46b2b9d69375d994a</code></td>
+<td><code>app.js</code>；camera→canvas 光斑处理</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715">forced-vibration-af-analyzer-20260502-122715</a></td>
+<td><code>c3f58175a09ff29cacdfb976a5055758c4eff619</code></td>
+<td><code>app.js</code>；摄像头选择与振动输入</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>src/camera/CameraCapturePanel.tsx</code>、<code>cameraUtils.ts</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td>教师端相同 camera 边界</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>工作原理</h2>
+<p>后端 → 读取帧 → 墙钟/单调时钟 → 像素与媒体元数据 → 请求值/实测速率和状态 → <code>FramePacket</code>。当前 Python 后端是 OpenCV 与确定性图像序列回放。</p>
+<!-- section:input -->
+<h2>输入</h2>
+<p>摄像头设备/后端配置、请求宽高/FPS，以及可选图像序列。浏览器 camera 仍是跨语言契约，不是当前 Python 实现。</p>
+<!-- section:output -->
+<h2>输出</h2>
+<p>camera <code>FramePacket</code>：frame/run/sequence ID、尺寸、颜色/媒体类型、observed/monotonic time、后端状态和质量 flags。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Synthetic 回放帧" src="../../../site-assets/sensors/camera.capture/assets/captured-frame.png" /></a> Synthetic replay 只证明 adapter 路径，不证明真实摄像头兼容性或计时精度。</p>
+<!-- section:example -->
+<h2>最小示例</h2>
+<p>运行 <a href="../../examples/camera-capture/">python-camera-capture</a>，使用 <code>CameraSource</code> 和 <code>ImageSequenceCameraBackend</code>。</p>
+<!-- section:distribution -->
+<h2>分发 / 下载</h2>
+<p>Python package <code>0.5.0</code>；<a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">camera.capture-0.3.0.zip</a>。Bundle 不复制 package core。</p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<p><code>E1</code>：只有确定性 synthetic 图像序列回放。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>；manifest 仍为 <code>incubating/adapter-present</code>。页面完整不会自动升级。</p>
+<!-- section:limitations -->
+<h2>已知限制</h2>
+<p>请求 FPS/分辨率可能不同于后端 nominal/measured 值。真实摄像头、驱动、丢帧和计时精度没有 E4 证据。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>见<a href="./">采集回放 benchmark</a>和仓库<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/benchmark-summary.md">汇总</a>。</p>
+<!-- section:provenance -->
+<h2>来源追溯</h2>
+<p>文件/符号级抽取与验证见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/SOURCE.md">SOURCE.md</a>，机器事实见 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/sensor.json">sensor.json</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/camera.capture/README.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

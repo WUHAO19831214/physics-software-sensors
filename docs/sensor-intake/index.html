@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="366c61e2be11532cec9c41b8b13ec94a591f2ce3ce21399389c875ac41dcb827"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Future Sensor Intake</title><link rel="stylesheet" href="../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">Home</a><a href="../catalog/">Catalog</a><a href="../installation/">Installation</a><a href="../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../zh-CN/sensor-intake/">简体中文</a> <span>|</span> <a href="../ja/sensor-intake/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Future Sensor Intake</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:purpose -->
+<h2>Purpose</h2>
+<p>This repeatable workflow moves a mature project-local sensing capability into this repository without breaking the source project or turning the library into a miscellaneous utilities collection.</p>
+<!-- section:qualification -->
+<h2>What is worth a Sensor?</h2>
+<p>A candidate should satisfy most of these: proven project use; clear boundary/input/output; separable from UI/business state; cross-project value; deterministic testing; complete provenance; legally distributable dependencies/assets; and a direct relationship to physics experiment sensing/observation.</p>
+<p>UI layout, lesson buttons/text, charts, one-project stores/databases, device workflow orchestration, untestable helpers and unrelated utilities do not belong here.</p>
+<!-- section:decision -->
+<h2>Intake decision</h2>
+<ul>
+<li><code>ACCEPT</code>: boundary, reuse value, provenance and legal/test path are sufficient for extraction.</li>
+<li><code>DEFER</code>: useful candidate, but source behavior, evidence, licensing or boundary is not ready.</li>
+<li><code>REJECT</code>: not a Sensor, not reusable, not testable or inappropriate for this repository. Record the reason.</li>
+</ul>
+<!-- section:lifecycle -->
+<h2>Lifecycle</h2>
+<pre><code class="language-text">candidate → accepted → contract-only → incubating → experimental
+          → validated → stable → deprecated
+</code></pre>
+<p><code>candidate/accepted</code> are intake states. <code>contract-only/incubating/...</code> map onto existing contract and maturity fields; this workflow does not change the current schema enum. Evidence E0–E5 remains separate.</p>
+<!-- section:workflow -->
+<h2>Standard workflow</h2>
+<ol>
+<li>Complete <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/templates/SENSOR_PROPOSAL.md"><code>SENSOR_PROPOSAL.md</code></a>.</li>
+<li>Pin repository, full commit SHA, paths/symbols, actual physics use and license state.</li>
+<li>Decide <code>ACCEPT</code>, <code>DEFER</code> or <code>REJECT</code> with reasons.</li>
+<li>For accepted work, run <code>tools/new_sensor.py</code> only to create a truthful TODO scaffold.</li>
+<li>Extract an adapter behind shared core; leave source/UI/business behavior unchanged.</li>
+<li>Add L0 contract, L1 deterministic fixture, L2 source golden/replay and applicable L3/L4 evidence without inventing results.</li>
+<li>Add EN/ZH-CN/JA Sensor Pages, example, real demo asset or explicit pending state, benchmark, dependency/license audit, clean install, bundle and CHANGELOG.</li>
+<li>Promote only through <a href="../evidence/">Evidence and Maturity</a> gates; retain downstream rollback.</li>
+</ol>
+<!-- section:observation-boundary -->
+<h2>Direct observation vs derived physics</h2>
+<p>Every proposal must separate direct observation (<code>camera frame</code>, <code>screen pixels</code>, <code>OCR text</code>, <code>pixel centroid</code>, <code>bbox</code>) from downstream quantities (<code>displacement</code>, <code>velocity</code>, <code>force</code>, <code>amplitude</code>, <code>frequency</code>, <code>angle</code>). The derivation, units, calibration and uncertainty cannot be implied by the Sensor name.</p>
+<!-- section:required-deliverables -->
+<h2>Required before experimental</h2>
+<p>EN/ZH/JA Sensor Page; <code>sensor.json</code>; <code>SOURCE.md</code> and source commit; standalone adapter; deterministic and golden/replay tests; example; non-fabricated demo evidence; benchmark; evidence/maturity; dependency/license audit; clean install; Sensor Bundle; CHANGELOG. Missing items prevent a phase-complete claim.</p>
+<!-- section:handoff -->
+<h2>Agent handoff</h2>
+<p>During an intake, <code>.agent-handoff/latest.json</code> may include <code>sensor_intake</code> with candidate ID, decision/reason and source repository/SHA. When no intake is active it is <code>null</code> for backward compatibility.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-intake.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/sensor-intake.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

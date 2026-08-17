@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="f37b6beeb43a6c86f82fce4f70cbeda707f4654e2a645105ce62b1b2175d01a6"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Installation</title><link rel="stylesheet" href="../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">Home</a><a href="../catalog/">Catalog</a><a href="./">Installation</a><a href="../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../zh-CN/installation/">简体中文</a> <span>|</span> <a href="../ja/installation/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Installation</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:prerequisites -->
+<h2>Prerequisites</h2>
+<ul>
+<li>Python 3.11+ for the Python package.</li>
+<li>Node.js 18+ for the TypeScript package.</li>
+<li>Downloaded artifacts from <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental</a>; no registry package is published.</li>
+</ul>
+<!-- section:python -->
+<h2>Python</h2>
+<pre><code class="language-bash">python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install ./physics_software_sensors-0.5.0-py3-none-any.whl
+</code></pre>
+<p>Install only required extras:</p>
+<pre><code class="language-bash">python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[color-marker]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[camera-opencv]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[yolo-recorded]'
+</code></pre>
+<p><code>yolo-runtime</code> installs optional Ultralytics/<code>lap</code> only after a licensing review. It does not supply, choose or download a model. The caller must provide a reviewed local <code>ModelArtifact</code> path, SHA-256 and license status.</p>
+<!-- section:typescript -->
+<h2>TypeScript</h2>
+<pre><code class="language-bash">npm install ./physics-software-sensors-core-0.3.0.tgz
+</code></pre>
+<pre><code class="language-ts">import { ScreenCaptureSource, BrowserScreenBackend, NumberOCRSensor } from '@physics-software-sensors/core';
+</code></pre>
+<p>Browser capture requires a secure context, a user gesture and explicit user permission. Real Tesseract.js may retrieve/cache language data; traineddata is not bundled.</p>
+<!-- section:verification -->
+<h2>Verify the source</h2>
+<p>Validate SHA-256 before installation. Do not run <code>pip install physics-software-sensors</code> or <code>npm install @physics-software-sensors/core</code> as registry commands for this release. See <a href="../downloads/">Downloading Sensors</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/installation.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

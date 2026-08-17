@@ -1,0 +1,32 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="b2809b2049b66b30729d07c326f73f000b8e545480af9f9d17867e8b1e5d005b"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>インストール</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">ホーム</a><a href="../catalog/">カタログ</a><a href="./">インストール</a><a href="../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../installation/">English</a> <span>|</span> <a href="../../zh-CN/installation/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>インストール</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<!-- section:prerequisites -->
+<h2>前提条件</h2>
+<ul>
+<li>Python package は Python 3.11+。</li>
+<li>TypeScript package は Node.js 18+。</li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental</a> から取得した artifact。registry package は公開していません。</li>
+</ul>
+<!-- section:python -->
+<h2>Python</h2>
+<pre><code class="language-bash">python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install ./physics_software_sensors-0.5.0-py3-none-any.whl
+</code></pre>
+<p>必要な extra だけをインストールします。</p>
+<pre><code class="language-bash">python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[color-marker]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[camera-opencv]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
+python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[yolo-recorded]'
+</code></pre>
+<p><code>yolo-runtime</code> はライセンス確認後に任意の Ultralytics/<code>lap</code> を導入する extra です。モデルの提供・選択・自動取得は行いません。呼び出し側が審査済みローカル <code>ModelArtifact</code> の path、SHA-256、license status を指定します。</p>
+<!-- section:typescript -->
+<h2>TypeScript</h2>
+<pre><code class="language-bash">npm install ./physics-software-sensors-core-0.3.0.tgz
+</code></pre>
+<pre><code class="language-ts">import { ScreenCaptureSource, BrowserScreenBackend, NumberOCRSensor } from '@physics-software-sensors/core';
+</code></pre>
+<p>ブラウザ取得には secure context、ユーザー操作、明示的許可が必要です。実 Tesseract.js は言語データを取得・cache する場合がありますが、traineddata は tgz に含まれません。</p>
+<!-- section:verification -->
+<h2>入手元の確認</h2>
+<p>インストール前に SHA-256 を確認してください。この release では <code>pip install physics-software-sensors</code> と <code>npm install @physics-software-sensors/core</code> を registry command として実行しません。<a href="../downloads/">Downloading Sensors</a> を参照してください。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/installation.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

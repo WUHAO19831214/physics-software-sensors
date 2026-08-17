@@ -1,0 +1,51 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="c0f4cedf839e65234ebe7416618229222961d03d6d01731c2828bee1bc53915a"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>证据等级与成熟度</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">首页</a><a href="../catalog/">目录</a><a href="../installation/">安装</a><a href="../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../evidence/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../ja/evidence/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>证据等级与成熟度</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<!-- section:evidence -->
+<h2>证据等级</h2>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E0</td>
+<td>只有契约/Schema</td>
+</tr>
+<tr>
+<td>E1</td>
+<td>确定性的 synthetic 或 recorded replay</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>固定来源兼容/golden 对比</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>真实 OCR/CV/runtime 在受控像素上运行</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>指明真实设备/实验室设置和可复现数据集</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>下游项目固定版本接入并保留 rollback</td>
+</tr>
+</tbody>
+</table>
+<p>Recorded output 不是真实 runtime；synthetic pixels 不是真实设备。缺失证据写 <code>not measured</code>，不能写成零。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<ul>
+<li><code>contract-only</code>：不要求本仓库实现。</li>
+<li><code>experimental</code>：已有 adapter 和确定性测试，但重要验证可能仍未完成。</li>
+<li><code>validated</code>：适用的真实环境、指标和支持路径许可证门禁已通过。</li>
+<li><code>stable</code>：validated public API 已具备下游固定版本复用、回退和兼容承诺。</li>
+</ul>
+<!-- section:separation -->
+<h2>证据等级 ≠ 成熟度</h2>
+<p>证据记录“实际跑过什么”；成熟度是实现、可复现性、指标、许可证、文档和复用共同形成的发布决策。E3 或 E5 都不会自动变成 validated。当前七项 Sensor 均为 experimental；<code>tracker.spot-centroid</code> 已有 E5 下游复用证据，但所有 Sensor 都还没有 E4 真实设备/实验室证据。</p>
+<p>维护者详版：<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-levels.md">证据等级</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/maturity-gates.md">成熟度门禁</a>。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-and-maturity.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/evidence-and-maturity.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

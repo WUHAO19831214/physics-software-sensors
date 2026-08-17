@@ -1,0 +1,125 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="9b453914423e3c69b4beb6c1324c80fb6813b7977cf63bf0bc706bc47f6757a3"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Public Capability Catalog</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">ホーム</a><a href="./">カタログ</a><a href="../installation/">インストール</a><a href="../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../catalog/">English</a> <span>|</span> <a href="../../zh-CN/catalog/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Public Capability Catalog</h1>
+<h1>センサーカタログ</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<!-- section:catalog -->
+<h2>利用可能な Sensor</h2>
+<p>ここでの状態は本 repository の実装を表し、過去のソースプロジェクトの成熟度を表すものではありません。</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>用途</th>
+<th>言語</th>
+<th>成熟度</th>
+<th>エビデンス</th>
+<th>Example</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../sensors/camera-capture/"><code>camera.capture</code></a></td>
+<td>カメラフレームと取得メタデータ</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="../examples/camera-capture/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">0.3.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/screen-capture/"><code>screen.capture</code></a></td>
+<td>許可済み画面・ウィンドウのピクセル</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="../examples/screen-capture/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">0.3.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/number-ocr/"><code>ocr.number</code></a></td>
+<td>ROI の数値 OCR</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="../examples/number-ocr/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">0.2.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/color-marker/"><code>tracker.color-marker</code></a></td>
+<td>マーカー位置とロスト状態</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="../examples/color-marker/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">0.2.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/spot-centroid/"><code>tracker.spot-centroid</code></a></td>
+<td>光スポットの輝度加重重心</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E5</td>
+<td><a href="../examples/spot-centroid/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">0.4.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/template-tracker/"><code>tracker.template</code></a></td>
+<td>ROI 初期化型単一物体トラッカー</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="../examples/template-tracker/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">0.4.0</a></td>
+</tr>
+<tr>
+<td><a href="../sensors/yolo-tracker/"><code>tracker.yolo</code></a></td>
+<td>複数対象の検出・追跡 adapter</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="../examples/yolo-tracker/">実行</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">0.5.0</a></td>
+</tr>
+</tbody>
+</table>
+<!-- section:status -->
+<h2>状態の意味</h2>
+<ul>
+<li><code>contract-only</code>: 契約と文書のみで、本 repository の実装はない。</li>
+<li><code>experimental</code>: 独立 adapter とオフライン証拠はあるが、実機・下流検証が未完の場合がある。</li>
+<li><code>validated</code>: 対象 runtime/device、指標、ライセンスの gate を通過している。</li>
+<li><code>stable</code>: validated API に加え、下流での固定 version 再利用と rollback が検証済み。</li>
+</ul>
+<p>エビデンスレベルと成熟度は別です。<a href="../evidence/">エビデンスと成熟度</a>を参照してください。7 Sensor はすべて experimental のままです。E5 の下流再利用エビデンスがあるのは <code>tracker.spot-centroid</code> のみで、E4 の実光学・実機エビデンスはまだありません。実 YOLO inference は not measured で、モデル weight は配布しません。</p>
+<h1>Companion Tool カタログ</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<!-- section:catalog -->
+<h2>カタログ</h2>
+<p>Companion Tool（補助処理ツール）は既存の観測・測定値を処理します。新しい直接観測を作らず、Sensor 数にも含めません。</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>用途</th>
+<th>言語</th>
+<th>状態</th>
+<th>ソース</th>
+<th>Example</th>
+<th>文書</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../tools/vector-compose-3d/"><code>vector.compose-3d</code></a></td>
+<td>source 情報を持つ x/y/z スカラー成分から3次元ベクトルと任意の render model を構成</td>
+<td>TypeScript</td>
+<td><code>experimental</code> <code>0.1.0</code></td>
+<td>延安アンペール力教師用アプリ</td>
+<td><a href="../examples/vector-compose-3d/">Web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/SOURCE.md">来歴</a></td>
+</tr>
+</tbody>
+</table>
+<!-- section:status -->
+<h2>状態境界</h2>
+<p>リポジトリ構成は <strong>7 Sensor · 1 Companion Tool</strong> です。本ツールは不変の <code>v0.6.0</code> 以降の未リリース開発であり、その Release には含まれず、Sensor の maturity や evidence も変更しません。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/sensor-catalog.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

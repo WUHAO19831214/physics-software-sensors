@@ -59,13 +59,13 @@ repository の 3 言語コンテンツ完全性：**PASS**。English、简体中
 
 | Sensor | 用途 | 言語 | 成熟度 | エビデンス | Example | Download |
 | --- | --- | --- | --- | --- | --- | --- |
-| [`camera.capture`](sensors/camera.capture/README.ja.md) | 時刻・バックエンド情報付きカメラフレーム | Python | experimental | E1 | [example](examples/python-camera-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip) |
-| [`screen.capture`](sensors/screen.capture/README.ja.md) | ユーザー許可済みの画面ピクセル | TypeScript | experimental | E1 | [example](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
-| [`ocr.number`](sensors/ocr.number/README.ja.md) | ROI から数値を OCR | TypeScript | experimental | E3 | [example](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
-| [`tracker.color-marker`](sensors/tracker.color-marker/README.ja.md) | HSV・輪郭によるカラーマーカー追跡 | Python | experimental | E2 | [example](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
-| [`tracker.template`](sensors/tracker.template/README.ja.md) | ROI 初期化型の単一物体追跡 | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
-| [`tracker.yolo`](sensors/tracker.yolo/README.ja.md) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`camera.capture`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/camera-capture/) | 時刻・バックエンド情報付きカメラフレーム | Python | experimental | E1 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/camera-capture/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
+| [`screen.capture`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/screen-capture/) | ユーザー許可済みの画面ピクセル | TypeScript | experimental | E1 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/screen-capture/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
+| [`ocr.number`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/number-ocr/) | ROI から数値を OCR | TypeScript | experimental | E3 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/number-ocr/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
+| [`tracker.color-marker`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/color-marker/) | HSV・輪郭によるカラーマーカー追跡 | Python | experimental | E2 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/color-marker/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
+| [`tracker.spot-centroid`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/spot-centroid/) | 光スポットの輝度加重重心 | Python | experimental | E5 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/spot-centroid/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
+| [`tracker.template`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/template-tracker/) | ROI 初期化型の単一物体追跡 | Python | experimental | E3 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/template-tracker/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
+| [`tracker.yolo`](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/yolo-tracker/) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [example](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/yolo-tracker/) | [download](https://wuhao19831214.github.io/physics-software-sensors/ja/downloads/) |
 
 詳細は[センサーカタログ](docs/sensor-catalog.ja.md)を参照してください。エビデンスレベルと成熟度は別の概念です。
 
@@ -74,7 +74,7 @@ repository の 3 言語コンテンツ完全性：**PASS**。English、简体中
 
 | Tool | 用途 | 言語 | 状態 | Example | 文書 |
 | --- | --- | --- | --- | --- | --- |
-| [`vector.compose-3d`](processing/vector.compose-3d/README.ja.md) | スカラー成分から3次元ベクトルを合成・再構成 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.ja.md) |
+| [`vector.compose-3d`](https://wuhao19831214.github.io/physics-software-sensors/ja/tools/vector-compose-3d/) | スカラー成分から3次元ベクトルを合成・再構成 | TypeScript | experimental | [Web demo](https://wuhao19831214.github.io/physics-software-sensors/ja/examples/vector-compose-3d/) | [Tool Page](https://wuhao19831214.github.io/physics-software-sensors/ja/tools/vector-compose-3d/) |
 
 詳細は [Companion Tool Catalog](docs/tool-catalog.ja.md)を参照してください。Companion Tool は拡張可能な測定処理 layer であり、Sensor 数には含めません。
 
@@ -96,11 +96,11 @@ Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release
 <!-- section:capability-showcase -->
 ## Capability Showcase
 
-[![Physics Software Sensors：7 個の Software Sensor と 1 個の Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.ja.md)
+[![Physics Software Sensors：7 個の Software Sensor と 1 個の Companion Processing Tool](docs/assets/capability-showcase.png)](https://wuhao19831214.github.io/physics-software-sensors/ja/capability-showcase/)
 
 standalone、synthetic、replay の代表的なデモを 1 枚にまとめています。エビデンスレベルは capability ごとに異なり、YOLO tile は **recorded detector replay** であって実 YOLO inference ではありません。画像は補助表示であり、配信できない場合も下記のテキストリンクから全項目へ移動できます。
 
-[Camera Capture](sensors/camera.capture/README.ja.md) · [Screen Capture](sensors/screen.capture/README.ja.md) · [Number OCR](sensors/ocr.number/README.ja.md) · [Color Marker](sensors/tracker.color-marker/README.ja.md) · [光スポット重心](sensors/tracker.spot-centroid/README.ja.md) · [Template / Single-object Tracker](sensors/tracker.template/README.ja.md) · [YOLO Tracker](sensors/tracker.yolo/README.ja.md) · [3次元ベクトル合成](processing/vector.compose-3d/README.ja.md)
+[Camera Capture](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/camera-capture/) · [Screen Capture](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/screen-capture/) · [Number OCR](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/number-ocr/) · [Color Marker](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/color-marker/) · [光スポット重心](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/spot-centroid/) · [Template / Single-object Tracker](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/template-tracker/) · [YOLO Tracker](https://wuhao19831214.github.io/physics-software-sensors/ja/sensors/yolo-tracker/) · [3次元ベクトル合成](https://wuhao19831214.github.io/physics-software-sensors/ja/tools/vector-compose-3d/)
 
 範囲：**7/7 Software Sensor + 1/1 Companion Processing Tool = 再利用可能な公開 capability 8/8 項**。8 枚の詳細 demo とエビデンス境界は、3 言語の [Capability Showcase](docs/capability-showcase.ja.md) に掲載しています。
 

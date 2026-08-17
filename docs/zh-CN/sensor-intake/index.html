@@ -1,0 +1,43 @@
+<!doctype html><html lang="zh_CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="833a3b6eb528ce316b851b49f0f56f4d8d7000ec8f7bb59b5f5d43fffba482cb"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>新 Sensor 长期接入流程</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">首页</a><a href="../catalog/">目录</a><a href="../installation/">安装</a><a href="../downloads/">下载</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../sensor-intake/">English</a> <span>|</span> <strong>简体中文</strong> <span>|</span> <a href="../../ja/sensor-intake/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>新 Sensor 长期接入流程</h1>
+<p><a href="./">English</a> | <strong>简体中文</strong> | <a href="./">日本語</a></p>
+<!-- section:purpose -->
+<h2>目的</h2>
+<p>这套可重复流程把项目中成熟的传感能力纳入本仓库，同时不破坏来源项目，也避免仓库变成无边界的 utils 集合。</p>
+<!-- section:qualification -->
+<h2>什么值得成为 Sensor？</h2>
+<p>候选能力应满足多数条件：已在真实项目使用；输入/输出/边界明确；可脱离 UI/业务状态；有跨项目价值；可做确定性测试；能完整追溯；依赖/资产可合法分发；与物理实验传感或观测直接相关。</p>
+<p>页面布局、课程按钮/文本、图表、单项目 store/database、设备流程 orchestration、不可独立测试的 helper 和无关通用工具不应进入。</p>
+<!-- section:decision -->
+<h2>接入决定</h2>
+<ul>
+<li><code>ACCEPT</code>：边界、复用、来源、合法性和测试路径足够，进入 extraction。</li>
+<li><code>DEFER</code>：有价值，但来源行为、证据、许可证或边界尚未成熟。</li>
+<li><code>REJECT</code>：不是 Sensor、不可复用/测试，或不适合本仓库；必须记录原因。</li>
+</ul>
+<!-- section:lifecycle -->
+<h2>生命周期</h2>
+<pre><code class="language-text">candidate → accepted → contract-only → incubating → experimental
+          → validated → stable → deprecated
+</code></pre>
+<p><code>candidate/accepted</code> 是 intake 状态；后续状态映射现有 contract/maturity 字段，不修改当前 schema enum。Evidence E0–E5 始终独立。</p>
+<!-- section:workflow -->
+<h2>标准流程</h2>
+<ol>
+<li>填写 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/templates/SENSOR_PROPOSAL.md"><code>SENSOR_PROPOSAL.md</code></a>。</li>
+<li>固定仓库、完整 commit SHA、路径/符号、真实物理用途和许可证状态。</li>
+<li>给出 <code>ACCEPT</code>、<code>DEFER</code> 或 <code>REJECT</code> 及理由。</li>
+<li>对 ACCEPT 项使用 <code>tools/new_sensor.py</code> 只生成诚实的 TODO 骨架。</li>
+<li>在公共 core 后抽取 adapter，保持来源 UI/业务行为不变。</li>
+<li>建立 L0 contract、L1 deterministic fixture、L2 source golden/replay 和适用 L3/L4，禁止虚构结果。</li>
+<li>补齐 EN/ZH-CN/JA 页面、示例、真实 demo 或 pending、benchmark、依赖/许可证审计、clean install、bundle 和 CHANGELOG。</li>
+<li>只按<a href="../evidence/">证据与成熟度</a>门禁升级；下游保留 rollback。</li>
+</ol>
+<!-- section:observation-boundary -->
+<h2>直接观测与派生物理量</h2>
+<p>Proposal 必须把 <code>camera frame</code>、<code>screen pixels</code>、<code>OCR text</code>、<code>pixel centroid</code>、<code>bbox</code> 等直接观测，与位移、速度、力、振幅、频率、角度等下游物理量分开。不能用 Sensor 名称暗示推导、单位、标定或不确定度已经成立。</p>
+<!-- section:required-deliverables -->
+<h2>进入 experimental 前的强制交付</h2>
+<p>EN/ZH/JA Sensor Page、<code>sensor.json</code>、<code>SOURCE.md</code> 与来源 commit、独立 adapter、deterministic 与 golden/replay tests、example、非伪造 demo 证据、benchmark、evidence/maturity、依赖/许可证审计、clean install、Sensor Bundle、CHANGELOG。缺项不能宣称 Phase complete。</p>
+<!-- section:handoff -->
+<h2>Agent Handoff</h2>
+<p>Intake 期间 <code>.agent-handoff/latest.json</code> 可包含 <code>sensor_intake</code>：candidate ID、decision/reason、source repository/SHA。没有 intake 时为 <code>null</code>，保持向后兼容。</p><aside class="developer-resources"><h2>开发者资源</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-intake.zh-CN.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/sensor-intake.zh-CN.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

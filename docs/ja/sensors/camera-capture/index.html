@@ -1,0 +1,86 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="86e89049b1bdf5a21f6e3084baf1d9d2747ce12d2caaa7bdb37af3ec93d11741"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>カメラキャプチャセンサー</title><link rel="stylesheet" href="../../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">ホーム</a><a href="../../catalog/">カタログ</a><a href="../../installation/">インストール</a><a href="../../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../../sensors/camera-capture/">English</a> <span>|</span> <a href="../../../zh-CN/sensors/camera-capture/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>カメラキャプチャセンサー</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<p>Sensor ID: <code>camera.capture</code> · Implementation version: <code>0.3.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E1</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>名称</h2>
+<p>カメラキャプチャセンサー</p>
+<!-- section:description -->
+<h2>一文での説明</h2>
+<p>時刻、バックエンド、取得品質のメタデータを明示したカメラ・画像系列フレームを出力します。</p>
+<!-- section:physics-use -->
+<h2>代表的な物理実験での用途</h2>
+<p>運動、振動、軌跡、光スポット、音声・映像同期実験へ視覚入力を供給し、元アプリの UI や実験ロジックには依存しません。</p>
+<!-- section:measurement -->
+<h2>実際に観測するもの</h2>
+<p>直接観測するのは画像 pixel と取得時刻・状態です。位置、変位、速度、振幅には下流 Sensor が必要で、物理単位には校正が必要です。</p>
+<!-- section:sources -->
+<h2>ソースプロジェクト</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source path / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>browser_capture.py</code>、<code>camera_devices.py</code>、<code>local_capture.py</code>、<code>camera_processor.py</code>; OpenCV/WebRTC</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">spot-vibration-tracking-system-20260508-171952</a></td>
+<td><code>7f0d91cc73afafaecc54acc46b2b9d69375d994a</code></td>
+<td><code>app.js</code>; camera→canvas 光スポット処理</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715">forced-vibration-af-analyzer-20260502-122715</a></td>
+<td><code>c3f58175a09ff29cacdfb976a5055758c4eff619</code></td>
+<td><code>app.js</code>; camera 選択と振動入力</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>CameraCapturePanel.tsx</code>、<code>cameraUtils.ts</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td>教師用アプリの同じ camera 境界</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>動作原理</h2>
+<p>Backend → frame 取得 → wall/monotonic timestamp → pixel/media metadata → requested/measured rate・status → <code>FramePacket</code>。現在の Python backend は OpenCV と決定的 image-sequence replay です。</p>
+<!-- section:input -->
+<h2>入力</h2>
+<p>Camera device/backend 設定、要求 width/height/FPS、任意の画像系列。Browser camera は言語横断 contract で、現 Python 実装には含まれません。</p>
+<!-- section:output -->
+<h2>出力</h2>
+<p>Frame/run/sequence ID、寸法、color/media type、observed/monotonic time、backend status、quality flag を含む camera <code>FramePacket</code>。</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Synthetic replay frame" src="../../../site-assets/sensors/camera.capture/assets/captured-frame.png" /></a> Synthetic replay は adapter 経路の証拠で、実カメラ互換性や時刻精度の証拠ではありません。</p>
+<!-- section:example -->
+<h2>最小 example</h2>
+<p><a href="../../examples/camera-capture/">python-camera-capture</a> で <code>CameraSource</code> と <code>ImageSequenceCameraBackend</code> を実行します。</p>
+<!-- section:distribution -->
+<h2>配布 / Download</h2>
+<p>Python package <code>0.5.0</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">camera.capture-0.3.0.zip</a>。Bundle は package core を複製しません。</p>
+<!-- section:evidence -->
+<h2>エビデンスレベル</h2>
+<p><code>E1</code>: 決定的 synthetic image-sequence replay のみ。</p>
+<!-- section:maturity -->
+<h2>成熟度</h2>
+<p><code>experimental</code>。Manifest は <code>incubating/adapter-present</code> のままで、文書の完成だけでは昇格しません。</p>
+<!-- section:limitations -->
+<h2>既知の制限</h2>
+<p>要求 FPS/解像度は backend の nominal/measured 値と異なる場合があります。実 camera、driver、drop frame、時刻精度の E4 証拠はありません。</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p><a href="./">Capture replay benchmark</a> と<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/benchmark-summary.md">集約結果</a>を参照してください。</p>
+<!-- section:provenance -->
+<h2>来歴</h2>
+<p>File/symbol 単位の抽出・検証は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/SOURCE.md">SOURCE.md</a>、machine facts は <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/sensor.json">sensor.json</a> にあります。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/camera.capture/README.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

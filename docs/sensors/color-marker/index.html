@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="ddde66cc50cddb2b46d3a5adfc89512ca47e85be1e543483d3971df8f92d0019"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Color Marker Tracker</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/sensors/color-marker/">简体中文</a> <span>|</span> <a href="../../ja/sensors/color-marker/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Color Marker Tracker</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.color-marker</code> · Implementation version: <code>0.2.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E2</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p>Color Marker Tracker</p>
+<!-- section:description -->
+<h2>One-line description</h2>
+<p>Finds a configured color marker in camera images and continuously emits its image-space position and lost state.</p>
+<!-- section:physics-use -->
+<h2>Typical physics experiment use</h2>
+<p>Tracks a colored ball/marker for motion, vibration or trajectory experiments and audio/visual alignment.</p>
+<!-- section:measurement -->
+<h2>What it actually measures</h2>
+<p>Pixel centroid, contour/area evidence and detection state. Pixel position is not displacement, velocity or amplitude until a documented calibration/time derivation is applied.</p>
+<!-- section:sources -->
+<h2>Source projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source paths / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>src/tennis_ball_tracker.py::TennisBallTracker.update</code>, mask/candidate functions and tests; extracted profile</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>ColorTrackingAnalyzer.ts</code>, <code>MarkerTrackingAnalyzer.ts</code>; related browser profile, not extracted here</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>How it works</h2>
+<p>BGR frame → HSV conversion → threshold mask → morphology → contour candidates → area/circularity/continuity ranking → centroid smoothing/lost state → <code>SensorEvent</code>.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Camera/image <code>FramePacket</code>, HSV thresholds, area/circularity filters, smoothing and optional ROI/continuity settings.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p>Tracking <code>SensorEvent</code> with raw/smoothed pixel center, normalized position, bbox/area/quality evidence and explicit lost state.</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Color marker replay" src="../../site-assets/sensors/tracker.color-marker/assets/overview.png" /></a> Standalone synthetic output, not a real experiment accuracy claim.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<p>Run <a href="../../examples/color-marker/">python-color-marker</a> with <code>ColorMarkerSensor</code>.</p>
+<!-- section:distribution -->
+<h2>Distribution / Download</h2>
+<p>Python package <code>0.5.0</code> with <code>color-marker</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">tracker.color-marker-0.2.0.zip</a>.</p>
+<!-- section:evidence -->
+<h2>Evidence level</h2>
+<p><code>E2</code>: fixed source commit execution/golden comparison plus deterministic success/lost/reacquire tests.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<p><code>experimental</code>; manifest <code>incubating/adapter-present</code>.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<p>HSV thresholds depend on camera and lighting. Similar colors, blur, occlusion and exposure can cause false/lost detections. Algorithm confidence is not physical uncertainty.</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>See <a href="./">benchmark</a>: success, lost-frame rate, center error, latency/FPS and source-output compatibility.</p>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>Extraction changes, source symbols, tolerances and golden method are in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/SOURCE.md">SOURCE.md</a>; facts in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/sensor.json">sensor.json</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.color-marker/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="cb06d77a5cc08942a88b9530936a9cdfdacb15870ccf04edc69b7edfed732c85"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Template / Single-object Tracker</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/sensors/template-tracker/">简体中文</a> <span>|</span> <a href="../../ja/sensors/template-tracker/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Template / Single-object Tracker</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>tracker.template</code> · Implementation version: <code>0.4.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E3</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p>Template / Single-object Tracker</p>
+<!-- section:description -->
+<h2>One-line description</h2>
+<p>Initializes one target from an ROI and tracks its image-space bounding box with OpenCV CSRT/KCF/MIL fallback.</p>
+<!-- section:physics-use -->
+<h2>Typical physics experiment use</h2>
+<p>Follows one visible object in motion or vibration experiments when color segmentation is unsuitable.</p>
+<!-- section:measurement -->
+<h2>What it actually measures</h2>
+<p>Image-space bbox/center and tracking/lost/backend state. It is not static template matching, and pixel motion is not physical displacement without calibration.</p>
+<!-- section:sources -->
+<h2>Source projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source paths / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>object_template_tracker.py::initialize/update/reset/create_opencv_tracker/validate_bbox</code> and tests; extracted ROI tracker</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>TemplateMatchingAnalyzer.ts</code>; related static matching profile, not extracted</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>How it works</h2>
+<p>Initialization frame + ROI validation → choose CSRT→KCF→MIL backend → per-frame <code>update</code> → bbox/center or lost → optional reinitialize → <code>SensorEvent</code>.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Camera/image <code>FramePacket</code>, initialization ROI and optional backend preference. A template asset is not required by the implemented profile.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p>Tracking <code>SensorEvent</code> with bbox, center, requested/actual backend, attempted fallbacks, initialization/reinitialization and lost state. OpenCV supplies no calibrated confidence.</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="ROI tracker replay" src="../../site-assets/sensors/tracker.template/assets/overview.png" /></a> Real OpenCV runtime on synthetic targets, not real-experiment accuracy.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<p>Run <a href="../../examples/template-tracker/">python-template-tracker</a> with <code>TemplateTrackerSensor</code>.</p>
+<!-- section:distribution -->
+<h2>Distribution / Download</h2>
+<p>Python package <code>0.5.0</code> with <code>classical-trackers</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">tracker.template-0.4.0.zip</a>.</p>
+<!-- section:evidence -->
+<h2>Evidence level</h2>
+<p><code>E3</code>: actual OpenCV contrib tracker executes on controlled synthetic/scripted sequences.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<p><code>experimental</code>; manifest <code>incubating/adapter-present</code>.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<p>Fallback changes behavior/performance. Occlusion, scale, blur and invalid ROI can cause lost state. There is no calibrated confidence, physical scale or E4 real-device evidence.</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>See <a href="./">benchmark</a>: initialization/update success, bbox/center error, lost/reinitialize, backend and latency.</p>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>Algorithm-family boundary, source symbols and comparisons are in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/SOURCE.md">SOURCE.md</a>; facts in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/sensor.json">sensor.json</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/tracker.template/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

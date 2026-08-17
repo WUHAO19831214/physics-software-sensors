@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="ed50ab2add9c80a9bf0cff0cdffb9dbfeef0b8db28c091d7b015586651c05985"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Camera Capture Sensor</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../../">Home</a><a href="../../catalog/">Catalog</a><a href="../../installation/">Installation</a><a href="../../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../../zh-CN/sensors/camera-capture/">简体中文</a> <span>|</span> <a href="../../ja/sensors/camera-capture/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Camera Capture Sensor</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<p>Sensor ID: <code>camera.capture</code> · Implementation version: <code>0.3.0</code> · Maturity: <code>experimental</code> · Evidence: <code>E1</code> · Release: <code>v0.6.0</code></p>
+<!-- section:name -->
+<h2>Name</h2>
+<p>Camera Capture Sensor</p>
+<!-- section:description -->
+<h2>One-line description</h2>
+<p>Produces camera/image-sequence frames with explicit timestamps, backend metadata and capture quality information.</p>
+<!-- section:physics-use -->
+<h2>Typical physics experiment use</h2>
+<p>Supplies visual input for motion, vibration, trajectory, light-spot and synchronized audio/visual experiments without embedding their UI or physics business logic.</p>
+<!-- section:measurement -->
+<h2>What it actually measures</h2>
+<p>It directly observes image pixels and capture timing/status. Position, displacement, velocity or amplitude are downstream results requiring another Sensor and, for physical units, calibration.</p>
+<!-- section:sources -->
+<h2>Source projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Commit</th>
+<th>Source paths / use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/audio-visual-soundfield-tracker-stable">audio-visual-soundfield-tracker-stable</a></td>
+<td><code>85740d686c67452a057540edb564d713e01ccc51</code></td>
+<td><code>src/browser_capture.py</code>, <code>camera_devices.py</code>, <code>local_capture.py</code>, <code>camera_processor.py</code>; OpenCV/WebRTC frames</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952">spot-vibration-tracking-system-20260508-171952</a></td>
+<td><code>7f0d91cc73afafaecc54acc46b2b9d69375d994a</code></td>
+<td><code>app.js</code>; camera-to-canvas spot processing</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/forced-vibration-af-analyzer-20260502-122715">forced-vibration-af-analyzer-20260502-122715</a></td>
+<td><code>c3f58175a09ff29cacdfb976a5055758c4eff619</code></td>
+<td><code>app.js</code>; camera selection and vibration input</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-experiment-bridge-mvp">physics-experiment-bridge-mvp</a></td>
+<td><code>8bba87df6475cae1e595fc925551db8bea83fb68</code></td>
+<td><code>src/camera/CameraCapturePanel.tsx</code>, <code>cameraUtils.ts</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan">ampere-force-visualizer-teacher-yanan</a></td>
+<td><code>cb073e89d6d87129287030f1df08bd540504eb39</code></td>
+<td>same camera boundary in the teacher application</td>
+</tr>
+</tbody>
+</table>
+<!-- section:how-it-works -->
+<h2>How it works</h2>
+<p>Backend → frame read → wall/monotonic timestamp → pixel/media metadata → requested vs measured rate/status → <code>FramePacket</code>. Current Python backends are OpenCV and deterministic image-sequence replay.</p>
+<!-- section:input -->
+<h2>Input</h2>
+<p>Camera device/backend configuration, requested width/height/FPS and optional image sequence. Browser camera remains a cross-language contract rather than this Python implementation.</p>
+<!-- section:output -->
+<h2>Output</h2>
+<p>A camera <code>FramePacket</code> with frame/run/sequence IDs, dimensions, color/media type, observed/monotonic time, backend status and quality flags.</p>
+<!-- section:demo -->
+<h2>Demo</h2>
+<p><a href="./"><img alt="Synthetic replay frame" src="../../site-assets/sensors/camera.capture/assets/captured-frame.png" /></a> Synthetic replay proves the adapter path, not real-camera compatibility or timing accuracy.</p>
+<!-- section:example -->
+<h2>Minimal example</h2>
+<p>Run <a href="../../examples/camera-capture/">python-camera-capture</a> with <code>CameraSource</code> and <code>ImageSequenceCameraBackend</code>.</p>
+<!-- section:distribution -->
+<h2>Distribution / Download</h2>
+<p>Python package <code>0.5.0</code>; <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">camera.capture-0.3.0.zip</a>. The bundle does not copy package core.</p>
+<!-- section:evidence -->
+<h2>Evidence level</h2>
+<p><code>E1</code>: deterministic synthetic image-sequence replay only.</p>
+<!-- section:maturity -->
+<h2>Maturity</h2>
+<p><code>experimental</code>; the manifest remains <code>incubating/adapter-present</code>. Page completeness does not promote it.</p>
+<!-- section:limitations -->
+<h2>Known limitations</h2>
+<p>Requested FPS/resolution may differ from backend nominal/measured values. Real cameras, drivers, dropped-frame behavior and timing accuracy have no E4 evidence.</p>
+<!-- section:benchmark -->
+<h2>Benchmark</h2>
+<p>See <a href="./">capture replay benchmark</a> and the repository <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/benchmark-summary.md">benchmark summary</a>.</p>
+<!-- section:provenance -->
+<h2>Provenance</h2>
+<p>File/symbol-level extraction and validation are recorded in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/SOURCE.md">SOURCE.md</a>; machine facts are in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/sensor.json">sensor.json</a>.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/sensors/camera.capture/README.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

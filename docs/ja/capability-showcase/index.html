@@ -1,0 +1,38 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="af5e314e770aec56445c666ca90917708704f9eb43b2db34ce34af39e4ac1eab"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Capability Showcase</title><link rel="stylesheet" href="../../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">ホーム</a><a href="../catalog/">カタログ</a><a href="../installation/">インストール</a><a href="../downloads/">ダウンロード</a></nav><nav class="language-nav" aria-label="Language navigation"><a href="../../capability-showcase/">English</a> <span>|</span> <a href="../../zh-CN/capability-showcase/">简体中文</a> <span>|</span> <strong>日本語</strong></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Capability Showcase</h1>
+<p><a href="./">English</a> | <a href="./">简体中文</a> | <strong>日本語</strong></p>
+<!-- section:overview -->
+<h2>概要</h2>
+<p>repository のホームページでは、GitHub Raw/CDN への個別リクエストを減らすため、集約したプレビュー画像を 1 枚だけ読み込みます。この詳細ページを開いた場合は、8 項目それぞれのデモを確認できます。</p>
+<p><a href="../"><img alt="Physics Software Sensors capability showcase" src="../../site-assets/docs/assets/capability-showcase.png" /></a></p>
+<p>集約画像は <code>python3 tools/build_capability_showcase.py</code> により、下記 8 枚から再現可能な形で生成されます。ネットワークや外部画像ホストは使用しません。</p>
+<!-- section:software-sensors -->
+<h2>Software Sensor</h2>
+<h3>Camera Capture</h3>
+<p><a href="../sensors/camera-capture/"><img alt="合成 recorded camera frame" src="../../site-assets/sensors/camera.capture/assets/captured-frame.png" /></a></p>
+<p>recorded または live のカメラ画像を、時刻情報付き <code>FramePacket</code> にします。画像は決定的な synthetic camera replay であり、実カメラの検証結果ではありません。</p>
+<h3>Screen Capture</h3>
+<p><a href="../sensors/screen-capture/"><img alt="合成 shared-window pixel" src="../../site-assets/sensors/screen.capture/assets/captured-screen-frame.png" /></a></p>
+<p>ユーザーが許可した画面または window の pixel を <code>FramePacket</code> にします。画像は synthetic shared-window pixel です。</p>
+<h3>Number OCR</h3>
+<p><a href="../sensors/number-ocr/"><img alt="数値 OCR replay" src="../../site-assets/sensors/ocr.number/assets/overview.png" /></a></p>
+<p>画面画像の ROI にある文字を認識し、数値観測へ parse します。device SDK の値を直接取得するものではありません。</p>
+<h3>Color Marker Tracker</h3>
+<p><a href="../sensors/color-marker/"><img alt="カラーマーカー replay" src="../../site-assets/sensors/tracker.color-marker/assets/overview.png" /></a></p>
+<p>HSV カラーマーカーを検出して画像座標上の中心を報告します。pixel 位置は校正済みの物理変位ではありません。</p>
+<h3>光スポット重心</h3>
+<p><a href="../sensors/spot-centroid/"><img alt="光スポット重心 replay" src="../../site-assets/sensors/tracker.spot-centroid/assets/overview.png" /></a></p>
+<p>画像 ROI 内にある光スポットの輝度加重重心を報告します。機械変位を直接測定する Sensor ではありません。</p>
+<h3>Template / Single-object Tracker</h3>
+<p><a href="../sensors/template-tracker/"><img alt="単一物体 tracker replay" src="../../site-assets/sensors/tracker.template/assets/overview.png" /></a></p>
+<p>OpenCV の単一物体 backend で初期 ROI を追跡し、bbox/lost 状態を出力します。静的な template matching ではありません。</p>
+<h3>YOLO Tracker</h3>
+<p><a href="../sensors/yolo-tracker/"><img alt="Recorded detector replay" src="../../site-assets/sensors/tracker.yolo/assets/overview.png" /></a></p>
+<p><strong>recorded detector replay</strong> によって detection と track ID を示します。この公開画像は実 YOLO model inference のエビデンスではありません。</p>
+<!-- section:companion-tools -->
+<h2>Companion Processing Tools</h2>
+<h3>3次元ベクトル合成</h3>
+<p><a href="../tools/vector-compose-3d/"><img alt="recorded OCR 成分から3次元合成ベクトルを構成" src="../../site-assets/processing/vector.compose-3d/assets/overview.png" /></a></p>
+<p>追跡可能な x/y/z スカラー成分を、合成ベクトルと renderer-neutral な model に構成します。既存の観測から導出する Tool であり、新しい Sensor の直接観測ではありません。<a href="../examples/vector-compose-3d/">standalone Web example</a>も参照してください。</p>
+<!-- section:evidence -->
+<h2>エビデンス境界</h2>
+<p>これらは standalone、synthetic、recorded、replay の代表的なデモです。エビデンスレベルは capability ごとに異なり、画像だけで実機精度、校正、再現性、計量性能を証明することはできません。canonical demo asset は引き続き本 repository で version control されます。</p><aside class="developer-resources"><h2>開発者向けリソース</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.ja.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/capability-showcase.ja.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

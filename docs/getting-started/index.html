@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="178db01d73470a63cced97f50112b16ee5ec36ce6725c9c7fab865bd87653406"><meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e"><title>Getting Started</title><link rel="stylesheet" href="../site.css"></head><body><header class="site-header"><a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a><nav class="site-nav"><a href="../">Home</a><a href="../catalog/">Catalog</a><a href="../installation/">Installation</a><a href="../downloads/">Downloads</a></nav><nav class="language-nav" aria-label="Language navigation"><strong>English</strong> <span>|</span> <a href="../zh-CN/getting-started/">简体中文</a> <span>|</span> <a href="../ja/getting-started/">日本語</a></nav><p class="status-banner">7 Sensors · 1 Tool · 8 public capabilities</p></header><main><h1>Getting Started</h1>
+<p><strong>English</strong> | <a href="./">简体中文</a> | <a href="./">日本語</a></p>
+<!-- section:choose -->
+<h2>1. Choose the direct observation</h2>
+<p>Choose camera/screen capture for pixels, OCR for displayed text, or a tracker for an image-space position/bounding box. If you need displacement, force, frequency or angle, document the downstream calibration/derivation separately.</p>
+<!-- section:download -->
+<h2>2. Download and verify</h2>
+<p>Use the <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental Release</a>, verify <code>SHA256SUMS</code>, then follow <a href="../installation/">Installation</a>. No registry package is published.</p>
+<!-- section:run -->
+<h2>3. Run a standalone example</h2>
+<p>Open the selected <a href="../catalog/">Sensor Page</a>, install only its declared dependencies and run the linked small example. Recorded/synthetic examples prove separation from the source application, not real-device accuracy.</p>
+<h3>After sensing: process measurements</h3>
+<p>When an experiment needs a derived representation, continue into the separate <a href="../catalog/">Companion Tool Catalog</a>. For example, <code>screen.capture → ocr.number → vector.compose-3d</code> turns displayed scalar components into a traceable 3D resultant. The Tool does not create a new observation, and the current unreleased Tool source is not part of <code>v0.6.0</code>.</p>
+<!-- section:interpret -->
+<h2>4. Interpret conservatively</h2>
+<p>Read Evidence, Maturity, Known Limitations, Benchmark and Provenance before integration. Retain the old source-project path and a rollback mechanism until downstream comparison succeeds.</p><aside class="developer-resources"><h2>Developer resources</h2><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/getting-started.md">Source on GitHub</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/commits/main/docs/getting-started.md">Git history</a></aside></main><footer>Public reader · <a href="https://github.com/WUHAO19831214/physics-software-sensors">Repository source of truth</a></footer></body></html>

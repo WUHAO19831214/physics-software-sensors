@@ -59,13 +59,13 @@ Markdown sources: [English](README.md) | **简体中文** | [日本語](README.j
 
 | Sensor | 用途 | 语言 | 成熟度 | 证据 | 示例 | 下载 |
 | --- | --- | --- | --- | --- | --- | --- |
-| [`camera.capture`](sensors/camera.capture/README.zh-CN.md) | 带时间/后端信息的摄像头帧 | Python | experimental | E1 | [示例](examples/python-camera-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip) |
-| [`screen.capture`](sensors/screen.capture/README.zh-CN.md) | 用户授权的屏幕/窗口像素 | TypeScript | experimental | E1 | [示例](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
-| [`ocr.number`](sensors/ocr.number/README.zh-CN.md) | 从图像 ROI 读取数字 | TypeScript | experimental | E3 | [示例](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
-| [`tracker.color-marker`](sensors/tracker.color-marker/README.zh-CN.md) | HSV/轮廓颜色标记追踪 | Python | experimental | E2 | [示例](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.zh-CN.md) | 光斑亮度加权重心 | Python | experimental | E5 | [示例](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
-| [`tracker.template`](sensors/tracker.template/README.zh-CN.md) | ROI 初始化的单目标追踪 | Python | experimental | E3 | [示例](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
-| [`tracker.yolo`](sensors/tracker.yolo/README.zh-CN.md) | 多目标检测/追踪 adapter | Python | experimental | E2 | [示例](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`camera.capture`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/camera-capture/) | 带时间/后端信息的摄像头帧 | Python | experimental | E1 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/camera-capture/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
+| [`screen.capture`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/screen-capture/) | 用户授权的屏幕/窗口像素 | TypeScript | experimental | E1 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/screen-capture/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
+| [`ocr.number`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/number-ocr/) | 从图像 ROI 读取数字 | TypeScript | experimental | E3 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/number-ocr/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
+| [`tracker.color-marker`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/color-marker/) | HSV/轮廓颜色标记追踪 | Python | experimental | E2 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/color-marker/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
+| [`tracker.spot-centroid`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/spot-centroid/) | 光斑亮度加权重心 | Python | experimental | E5 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/spot-centroid/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
+| [`tracker.template`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/template-tracker/) | ROI 初始化的单目标追踪 | Python | experimental | E3 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/template-tracker/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
+| [`tracker.yolo`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/yolo-tracker/) | 多目标检测/追踪 adapter | Python | experimental | E2 | [示例](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/yolo-tracker/) | [下载](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/downloads/) |
 
 完整信息见[传感器目录](docs/sensor-catalog.zh-CN.md)。证据等级表示实际跑过的路径；成熟度是另一项发布决策。
 
@@ -74,7 +74,7 @@ Markdown sources: [English](README.md) | **简体中文** | [日本語](README.j
 
 | Tool | 用途 | 语言 | 状态 | 示例 | 文档 |
 | --- | --- | --- | --- | --- | --- |
-| [`vector.compose-3d`](processing/vector.compose-3d/README.zh-CN.md) | 从标量分量进行三维矢量合成与重建 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.zh-CN.md) |
+| [`vector.compose-3d`](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/tools/vector-compose-3d/) | 从标量分量进行三维矢量合成与重建 | TypeScript | experimental | [Web demo](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/examples/vector-compose-3d/) | [Tool Page](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/tools/vector-compose-3d/) |
 
 完整信息见[配套工具目录](docs/tool-catalog.zh-CN.md)。配套工具构成可扩展的测量处理层，不计入 Sensor 数量。
 
@@ -96,11 +96,11 @@ Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle
 <!-- section:capability-showcase -->
 ## 能力总览
 
-[![Physics Software Sensors：7 个软件传感器和 1 个配套处理工具](docs/assets/capability-showcase.png)](docs/capability-showcase.zh-CN.md)
+[![Physics Software Sensors：7 个软件传感器和 1 个配套处理工具](docs/assets/capability-showcase.png)](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/capability-showcase/)
 
 图中汇总了 standalone、synthetic 和 replay 演示，各能力的证据等级并不相同；YOLO tile 明确是 **recorded detector replay**，不是真实 YOLO inference。图片只是增强展示；即使图片服务不可用，下面的文字链接仍是可靠入口。
 
-[摄像头采集](sensors/camera.capture/README.zh-CN.md) · [屏幕采集](sensors/screen.capture/README.zh-CN.md) · [数字 OCR](sensors/ocr.number/README.zh-CN.md) · [颜色标记追踪](sensors/tracker.color-marker/README.zh-CN.md) · [光斑重心](sensors/tracker.spot-centroid/README.zh-CN.md) · [模板 / 单目标追踪](sensors/tracker.template/README.zh-CN.md) · [YOLO 追踪](sensors/tracker.yolo/README.zh-CN.md) · [三维矢量合成](processing/vector.compose-3d/README.zh-CN.md)
+[摄像头采集](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/camera-capture/) · [屏幕采集](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/screen-capture/) · [数字 OCR](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/number-ocr/) · [颜色标记追踪](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/color-marker/) · [光斑重心](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/spot-centroid/) · [模板 / 单目标追踪](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/template-tracker/) · [YOLO 追踪](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/sensors/yolo-tracker/) · [三维矢量合成](https://wuhao19831214.github.io/physics-software-sensors/zh-CN/tools/vector-compose-3d/)
 
 覆盖：**7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力**。进入三语[能力展示详情页](docs/capability-showcase.zh-CN.md)可查看八张独立 demo 图及其证据边界。
 
