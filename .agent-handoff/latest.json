@@ -1,21 +1,21 @@
 {
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
-  "phase": "4A",
-  "phase_name": "Experimental Public Distribution",
-  "status": "RELEASED",
+  "phase": "4B",
+  "phase_name": "Multilingual Docs & Sensor Intake",
+  "status": "READY_FOR_REVIEW",
   "git": {
     "base_branch": "main",
     "working_branch": "agent/phase4b-i18n-sensor-intake",
     "base_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb",
-    "tested_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
+    "tested_sha": "8d671722535440e1f6f0c3f9dc85689f0e00ef6b",
     "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/phase4b-i18n-sensor-intake"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
   "pull_request": {"number": 7, "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/7", "draft": true, "state": "OPEN"},
   "completed_pull_request": {"number": 6, "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/6", "state": "MERGED", "merge_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62"},
-  "previous_phase": {"pr": 5, "merge_sha": "89d26f4f306204cdae72d6988f46191f3e789cbb"},
+  "previous_phase": {"phase": "4A", "pr": 6, "merge_sha": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62", "release": "v0.6.0"},
   "release": {
     "repository_version": "v0.6.0",
     "title": "Physics Software Sensors v0.6.0 — Experimental",
@@ -53,10 +53,13 @@
     {"filename": "SHA256SUMS", "type": "checksums", "sha256": "7e5330c39c4825ff7ea6909e706a6583dae710cfba8f9ff0076844089ae89c1e", "bytes": 954}
   ],
   "tests": {
-    "repository_validation": {"passed": true, "json_files": 39, "sensor_pages": 7},
-    "python": {"passed": 75, "failed": 0},
+    "repository_validation": {"passed": true, "json_files": 41, "sensor_pages": 7, "sensor_page_languages": 3},
+    "python": {"passed": 82, "failed": 0},
     "typescript": {"offline_passed": 15, "full_passed": 18, "failed": 0},
     "composition": {"passed": 5, "failed": 0},
+    "i18n": {"passed": true, "public_document_sets": 7, "sensor_pages": 21, "terminology_entries": 46, "parity_errors": 0},
+    "scaffold_generator": {"passed": true, "tests": 3, "dry_run": true, "formal_sensors_created": 0},
+    "package_build": {"wheel": 1, "typescript_tgz": 1, "sensor_bundles": 7, "trilingual_bundle_pages": 7},
     "final_reproducibility": {"independent_builds": 2, "files_compared": 11, "byte_identical": 11, "different": 0},
     "post_download": {"attachments_verified": 11, "manifest_artifacts_verified": 9, "local_build_byte_matches": 11},
     "downloaded_python_consumer": {"passed": 2, "paths": ["Camera->Spot", "Camera->YOLO-recorded"]},
@@ -70,6 +73,29 @@
     "checks_run": 0,
     "template": "templates/github-actions-ci.yml",
     "reason": "Maintainer OAuth credential lacks workflow scope; release validation uses fixed-SHA local, reproducibility and clean-room evidence."
+  },
+  "i18n": {
+    "languages": ["en", "zh-CN", "ja"],
+    "root_readmes": 3,
+    "sensor_page_sets": 7,
+    "sensor_pages_total": 21,
+    "public_document_sets": 7,
+    "public_documents_total": 21,
+    "terminology_entries": 46,
+    "document_map": "docs/i18n/document-map.json",
+    "validator": "tools/validate_i18n.py",
+    "style_guide": "docs/i18n/style-guide.md"
+  },
+  "sensor_intake": null,
+  "intake_workflow": {
+    "workflow": "docs/sensor-intake.md",
+    "naming": "docs/sensor-naming.md",
+    "proposal": "templates/SENSOR_PROPOSAL.md",
+    "generator": "tools/new_sensor.py",
+    "agent_recipe": "docs/agent-recipes/add-new-sensor.md",
+    "prompt_template": "templates/ADD_SENSOR_PROMPT.md",
+    "decisions": ["ACCEPT", "DEFER", "REJECT"],
+    "new_sensor_created": false
   },
   "sensors": {
     "camera.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
@@ -94,12 +120,10 @@
     "No sensor has E4 real-device or E5 downstream evidence."
   ],
   "next_phase": {
-    "phase": "4B",
-    "name": "Multilingual Documentation and Future Sensor Intake",
-    "planning_document": "docs/phase4b-plan.md",
-    "languages": ["en", "zh-CN", "ja"],
-    "implementation_started": false,
-    "new_sensor_started": false
+    "phase": "5",
+    "name": "Downstream Reuse Validation",
+    "started": false,
+    "requires": "Independent Phase 4B review and merge before any downstream integration"
   },
-  "recommended_next_action": "Ask ChatGPT to design Phase 4B multilingual documentation and the long-term new Sensor intake mechanism before implementation."
+  "recommended_next_action": "Ask ChatGPT to inspect the Phase 4B handoff and then plan downstream project reuse validation; do not merge or start Phase 5 automatically."
 }
