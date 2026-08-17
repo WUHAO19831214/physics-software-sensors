@@ -24,7 +24,7 @@
 | Template Tracker | `tracker.template-0.4.0.zip` | Python wheel + `classical-trackers` |
 | YOLO Tracker | `tracker.yolo-0.5.0.zip` | Python wheel + `yolo-recorded`；真实 inference 另需审核过的本地 artifact |
 
-Sensor Bundle 是 **Sensor Page + manifest + provenance + demo assets + minimal example + dependency/install/evidence metadata**。它不是一份脱离公共 core 的重复实现，也不鼓励复制单文件形成分叉。每个 zip 内的 `BUNDLE.json`、`DEPENDENCIES.json` 和 `INSTALL.md` 会指明入口与所需 package。
+Sensor Bundle 是 **root README + Sensor Page + manifest + provenance + demo assets + minimal example + dependency/install/evidence metadata**。它不是一份脱离公共 core 的重复实现，也不鼓励复制单文件形成分叉。每个 zip 的 root `README.md` 只链接 bundle 内存在的入口；保存的完整 Sensor Page 若含仓库级链接，则明确指向 `BUNDLE.json` 中固定 SHA 的 canonical page。
 
 ## Integrity verification
 
