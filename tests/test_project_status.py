@@ -26,6 +26,13 @@ def test_project_status_matches_sensor_registry_and_maintenance_baseline() -> No
     assert set(status["sensors"]) == set(document_map["sensors"])
     assert set(status["companion_tools"]) == set(document_map["tools"]) == {"vector.compose-3d"}
     assert status["companion_tools"]["vector.compose-3d"]["released"] is False
+    assert status["public_document_delivery"] == {
+        "repository_content_integrity": "pass",
+        "github_blob_view": "external_error",
+        "github_raw": "rate_limited",
+        "github_pages": "ready_for_enablement",
+        "pages_source": "main /docs",
+    }
     evidence = {entry["sensor_id"]: entry["evidence_level"] for entry in benchmark["entries"]}
     for sensor_id, sensor in status["sensors"].items():
         assert sensor["maturity"] == "experimental"

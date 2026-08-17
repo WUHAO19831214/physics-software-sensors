@@ -35,6 +35,7 @@ yolo-runtime = [
   "lap>=0.5.12,<1",
 ]
 dev = [
+  "Markdown>=3.7,<4",
   "jsonschema>=4.23,<5",
   "Pillow>=11,<12",
   "pytest>=8,<9",

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="source-readme-sha256" content="67d34cf30427f0504b778f5e7109128aedca2fe3df3061d6adab106ad78ebf36">
+  <meta name="project-status-sha256" content="39aa9a32954b43d20b7eab472627d75a5801618e3462064ec1bb4cf4c2010489">
+  <title>物理实验软件传感器库</title>
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a>
+    <nav class="language-nav" aria-label="Language navigation"><a lang="en" href="../">English</a> <span>|</span> <strong lang="zh_CN">简体中文</strong> <span>|</span> <a lang="ja" href="../ja/">日本語</a></nav>
+    <p class="status-banner">7 个软件传感器 · 1 个配套处理工具 · 共 8 项可复用公开能力</p>
+    <p class="source-link">Markdown source: <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/README.zh-CN.md">README.zh-CN.md</a></p>
+  </header>
+  <main>
+<h1>物理实验软件传感器库</h1>
+<!-- section:introduction -->
+<h2>它是什么？</h2>
+<p><strong>面向物理实验的可复用软件传感器基础层。</strong> 它把摄像头帧、屏幕像素和图像算法观测统一为可追溯的 <code>FramePacket</code> 与 <code>SensorEvent</code>，供后续物理实验项目复用。</p>
+<p>仓库也承载处理 Sensor 输出的可复用配套处理工具；这些工具不会假装产生新的直接观测。</p>
+<p>这是长期维护的基础能力库，不是新的实验应用。来源项目保持原状，继续作为历史实现和实际使用情境的事实来源。</p>
+<pre><code class="language-text">物理实验项目
+      ↓
+可复用成熟能力
+      ↓
+物理实验软件传感器库
+      ↓
+未来物理实验项目
+</code></pre>
+<p>成熟能力通过 adapter 渐进抽取，对固定来源 commit 做测试、文档和 benchmark，再服务未来项目。像素位置、OCR 文本、置信度和边界框是软件直接观测，不会自动成为经标定的物理量。</p>
+<pre><code class="language-text">物理 / 软件来源
+        ↓
+采集 Sensor → FramePacket
+        ↓
+处理 Sensor → SensorEvent / 标量测量值
+        ↓
+配套处理工具
+        ↓
+物理实验应用
+</code></pre>
+<p>例如：<code>screen.capture → ocr.number → vector.compose-3d → 三维合矢量</code>。最后一步只重建已有标量测量值，不感知新的物理量。</p>
+<!-- section:language-access -->
+<h2>语言访问</h2>
+<p>仓库三语内容完整性：<strong>PASS</strong>。英文、简体中文、日文 Markdown 都是完整的来源文档。如果某些地区的 GitHub 文件查看页暂时失败，仍可从仓库首页获得以下简要说明：</p>
+<ul>
+<li><strong>English quick summary:</strong> A reusable software sensing layer for physics experiments with 7 Software Sensors, 1 Companion Processing Tool and 8 public capabilities. It separates direct image/screen/OCR/tracking observations from downstream physical quantities. The public <code>v0.6.0</code> contains seven Sensor Bundles; <code>vector.compose-3d</code> remains an unreleased experimental Tool. A complete static reader is prepared in <code>docs/</code> for GitHub Pages <code>main /docs</code> deployment.</li>
+<li><strong>日本語クイックガイド：</strong>物理実験向けの再利用可能なソフトウェアセンサー基盤であり、7 個の Software Sensor、1 個の Companion Processing Tool、合計 8 項目の公開 capability を提供します。画像・画面・OCR・追跡の直接観測と下流の物理量は区別されます。公開 <code>v0.6.0</code> には 7 個の Sensor Bundle が含まれ、<code>vector.compose-3d</code> は未リリースの experimental Tool です。GitHub Pages の <code>main /docs</code> 公開用 static reader は <code>docs/</code> に準備されています。</li>
+</ul>
+<!-- section:project-status -->
+<h2>项目状态</h2>
+<p><strong>7 个软件传感器 · 1 个配套处理工具 · 共 8 项可复用公开能力</strong> · 英文 / 简体中文 / 日文</p>
+<p>7 个 adapter 和该工具目前均为 experimental。公开 <code>v0.6.0</code> Release 包含 7 个 Sensor Bundle；工具尚未发布。首次 E5 下游复用已经完成，但不能把任何 Sensor 描述为已经全面 validated。</p>
+<!-- section:catalog -->
+<h2>传感器目录</h2>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>用途</th>
+<th>语言</th>
+<th>成熟度</th>
+<th>证据</th>
+<th>示例</th>
+<th>下载</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.zh-CN.md"><code>camera.capture</code></a></td>
+<td>带时间/后端信息的摄像头帧</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-camera-capture/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.zh-CN.md"><code>screen.capture</code></a></td>
+<td>用户授权的屏幕/窗口像素</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-screen-capture/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.zh-CN.md"><code>ocr.number</code></a></td>
+<td>从图像 ROI 读取数字</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-number-ocr/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.zh-CN.md"><code>tracker.color-marker</code></a></td>
+<td>HSV/轮廓颜色标记追踪</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-color-marker/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.zh-CN.md"><code>tracker.spot-centroid</code></a></td>
+<td>光斑亮度加权重心</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E5</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/spot-centroid/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.zh-CN.md"><code>tracker.template</code></a></td>
+<td>ROI 初始化的单目标追踪</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-template-tracker/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.zh-CN.md"><code>tracker.yolo</code></a></td>
+<td>多目标检测/追踪 adapter</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-yolo-tracker/README.md">示例</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">bundle</a></td>
+</tr>
+</tbody>
+</table>
+<p>完整信息见<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.zh-CN.md">传感器目录</a>。证据等级表示实际跑过的路径；成熟度是另一项发布决策。</p>
+<!-- section:companion-tools -->
+<h3>配套处理工具</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>用途</th>
+<th>语言</th>
+<th>状态</th>
+<th>示例</th>
+<th>文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.zh-CN.md"><code>vector.compose-3d</code></a></td>
+<td>从标量分量进行三维矢量合成与重建</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-vector-compose-3d/README.md">Web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.zh-CN.md">Tool Page</a></td>
+</tr>
+</tbody>
+</table>
+<p>完整信息见<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/tool-catalog.zh-CN.md">配套工具目录</a>。配套工具构成可扩展的测量处理层，不计入 Sensor 数量。</p>
+<!-- section:quick-start -->
+<h2>快速开始</h2>
+<p>先阅读<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/getting-started.zh-CN.md">快速开始</a>，再从 <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental Release</a> 选择 Python wheel 或 TypeScript tgz。本项目没有发布到 PyPI 或 npm registry。</p>
+<pre><code class="language-bash">python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
+npm install ./physics-software-sensors-core-0.3.0.tgz
+</code></pre>
+<!-- section:download -->
+<h2>下载</h2>
+<p>Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle、<code>release-manifest.json</code> 和 <code>SHA256SUMS</code>。Sensor Bundle 是便于阅读的文档/示例包，不复制公共 core。参阅<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/downloading-sensors.zh-CN.md">下载传感器</a>和<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.zh-CN.md">安装</a>。</p>
+<!-- section:capability-showcase -->
+<h2>能力总览</h2>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.zh-CN.md"><img alt="Physics Software Sensors：7 个软件传感器和 1 个配套处理工具" src="../assets/capability-showcase.png" /></a></p>
+<p>图中汇总了 standalone、synthetic 和 replay 演示，各能力的证据等级并不相同；YOLO tile 明确是 <strong>recorded detector replay</strong>，不是真实 YOLO inference。图片只是增强展示；即使图片服务不可用，下面的文字链接仍是可靠入口。</p>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.zh-CN.md">摄像头采集</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.zh-CN.md">屏幕采集</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.zh-CN.md">数字 OCR</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.zh-CN.md">颜色标记追踪</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.zh-CN.md">光斑重心</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.zh-CN.md">模板 / 单目标追踪</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.zh-CN.md">YOLO 追踪</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.zh-CN.md">三维矢量合成</a></p>
+<p>覆盖：<strong>7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力</strong>。进入三语<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.zh-CN.md">能力展示详情页</a>可查看八张独立 demo 图及其证据边界。</p>
+<!-- section:principles -->
+<h2>核心原则</h2>
+<ol>
+<li>不破坏或静默改写来源项目。</li>
+<li>来源追溯固定到仓库、完整 commit SHA、路径和符号。</li>
+<li>保存原始观测，明确区分后续派生值。</li>
+<li>显式记录时间、坐标、单位、置信度和不确定度。</li>
+<li>保守说明证据、成熟度、许可证和模型边界。</li>
+</ol>
+<!-- section:long-term-workflow -->
+<h2>长期工作流</h2>
+<pre><code class="language-text">新的物理实验项目
+      ↓
+可复用的成熟能力
+      ↓
+Sensor Intake
+      ↓
+Physics Software Sensors
+      ↓
+Experimental / Validation / Release
+      ↓
+未来物理实验项目
+</code></pre>
+<p>今后的工作通过 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-intake.zh-CN.md">Sensor Intake</a>、<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/agent-recipes/add-new-sensor.md">新增 Sensor 操作说明</a>或已有 Sensor 维护轨道进入，不再默认创建新 Phase。首次从抽取到复用的完整周期见<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/first-reuse-loop.zh-CN.md">首次完整复用闭环</a>。</p>
+<!-- section:documentation -->
+<h2>文档</h2>
+<ul>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.zh-CN.md">传感器目录</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/tool-catalog.zh-CN.md">配套工具目录</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.zh-CN.md">能力展示详情</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/getting-started.zh-CN.md">快速开始</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-and-maturity.zh-CN.md">证据与成熟度</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-intake.zh-CN.md">Sensor 接入流程</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/first-reuse-loop.zh-CN.md">首次完整复用闭环</a>和<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/maintenance.md">维护指南</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/project-status.md">当前项目状态</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/i18n/terminology.md">术语</a>和 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/i18n/style-guide.md">i18n 风格指南</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/demo-asset-inventory.md">Demo 素材清单</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/architecture.md">架构</a>、<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/data-format.md">数据格式</a>、<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/benchmarking.md">benchmark</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0">v0.6.0 Release</a></li>
+</ul>
+<!-- section:development -->
+<h2>开发与校验</h2>
+<pre><code class="language-bash">python3 tools/validate_repo.py
+pytest
+npm --prefix packages/typescript test
+</code></pre>
+<p>参阅 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>。新 Sensor 或重大能力必须走正式 intake；普通 bugfix 不需要。</p>
+<!-- section:non-goals -->
+<h2>当前非目标</h2>
+<ul>
+<li>不声称 stable、production-ready、measurement-grade 或 metrology-ready。</li>
+<li>不自动下载 YOLO 模型，也不捆绑模型权重。</li>
+<li>不强制来源实验项目迁移。</li>
+<li>不发布 PyPI/npm；首次已合并的 E5 接入是离线回放路径，不替换下游实时摄像头实现。</li>
+</ul>
+<!-- section:license -->
+<h2>许可</h2>
+<p>本仓库自有代码和文档采用 MIT。来源代码、模型、数据和依赖继续遵守各自许可证边界；参阅 <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/THIRD_PARTY_NOTICES.md">THIRD_PARTY_NOTICES.md</a>。</p>
+<p>最新 handoff：<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/.agent-handoff/latest.md">.agent-handoff/latest.md</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/.agent-handoff/latest.json">.agent-handoff/latest.json</a></p>
+  </main>
+  <footer>Repository source of truth: <a href="https://github.com/WUHAO19831214/physics-software-sensors">WUHAO19831214/physics-software-sensors</a></footer>
+</body>
+</html>

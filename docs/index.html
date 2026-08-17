@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="source-readme-sha256" content="44c513b83ad3f1c454e6659882404b499504e75049fa068c26ca0d1337b87948">
+  <meta name="project-status-sha256" content="39aa9a32954b43d20b7eab472627d75a5801618e3462064ec1bb4cf4c2010489">
+  <title>Physics Software Sensors</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a>
+    <nav class="language-nav" aria-label="Language navigation"><strong lang="en">English</strong> <span>|</span> <a lang="zh_CN" href="zh-CN/">简体中文</a> <span>|</span> <a lang="ja" href="ja/">日本語</a></nav>
+    <p class="status-banner">7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities</p>
+    <p class="source-link">Markdown source: <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/README.md">README.md</a></p>
+  </header>
+  <main>
+<h1>Physics Software Sensors</h1>
+<!-- section:introduction -->
+<h2>What is this?</h2>
+<p><strong>A reusable software sensing layer for physics experiments.</strong> It turns camera frames, screen pixels and image-processing observations into traceable <code>FramePacket</code> and <code>SensorEvent</code> records that future physics projects can reuse.</p>
+<p>The repository also hosts reusable Companion Processing Tools that operate on Sensor outputs without pretending to create new direct observations.</p>
+<p>This is a long-lived capability library, not a new experiment application. Source projects remain unchanged and continue to be the historical source of truth.</p>
+<pre><code class="language-text">Physics Project
+      ↓
+Reusable Capability
+      ↓
+Physics Software Sensors
+      ↓
+Future Physics Projects
+</code></pre>
+<p>Mature capabilities are extracted through adapters, tested against fixed source commits, documented, benchmarked and then reused. Pixel position, OCR text, confidence and bounding boxes are direct software observations—not automatically calibrated physical quantities.</p>
+<pre><code class="language-text">Physical / Software Source
+        ↓
+Capture Sensors → FramePacket
+        ↓
+Processor Sensors → SensorEvent / scalar measurements
+        ↓
+Companion Processing Tools
+        ↓
+Physics Application
+</code></pre>
+<p>For example: <code>screen.capture → ocr.number → vector.compose-3d → 3D resultant vector</code>. The final step reconstructs existing scalar measurements; it does not sense a new quantity.</p>
+<!-- section:language-access -->
+<h2>Language access</h2>
+<p>Repository multilingual content integrity: <strong>PASS</strong>. English, Simplified Chinese and Japanese Markdown are maintained as complete source documents. If a regional GitHub file-view route fails, this repository still provides the following quick orientation from the root README:</p>
+<ul>
+<li><strong>简体中文快速说明：</strong>这是面向物理实验的可复用软件传感器基础层，当前有 7 个软件传感器和 1 个配套处理工具，共 8 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 <code>v0.6.0</code> 包含 7 个 Sensor Bundle；<code>vector.compose-3d</code> 仍是未发布的 experimental 工具。完整三语静态阅读页已准备在 <code>docs/</code>，待 GitHub Pages 从 <code>main /docs</code> 启用。</li>
+<li><strong>日本語クイックガイド：</strong>これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。7 個の Software Sensor と 1 個の Companion Processing Tool、合計 8 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 <code>v0.6.0</code> には 7 個の Sensor Bundle が含まれ、<code>vector.compose-3d</code> は未リリースの experimental Tool です。3 言語の静的 reader は <code>docs/</code> に準備済みで、GitHub Pages の <code>main /docs</code> 設定後に公開されます。</li>
+</ul>
+<!-- section:project-status -->
+<h2>Project status</h2>
+<p><strong>7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities</strong> · English / 简体中文 / 日本語</p>
+<p>All 7 adapters and the Tool are experimental. The public <code>v0.6.0</code> Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.</p>
+<!-- section:catalog -->
+<h2>Sensor catalog</h2>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Purpose</th>
+<th>Language</th>
+<th>Maturity</th>
+<th>Evidence</th>
+<th>Example</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.md"><code>camera.capture</code></a></td>
+<td>Camera frames with timing/backend metadata</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-camera-capture/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.md"><code>screen.capture</code></a></td>
+<td>User-authorized screen/window pixels</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E1</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-screen-capture/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.md"><code>ocr.number</code></a></td>
+<td>Numeric OCR from an image ROI</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-number-ocr/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.md"><code>tracker.color-marker</code></a></td>
+<td>HSV/contour color-marker tracking</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-color-marker/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.md"><code>tracker.spot-centroid</code></a></td>
+<td>Brightness-weighted light-spot centroid</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E5</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/spot-centroid/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.md"><code>tracker.template</code></a></td>
+<td>ROI-initialized single-object tracking</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E3</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-template-tracker/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip">bundle</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.md"><code>tracker.yolo</code></a></td>
+<td>Multi-target detection/tracking adapter</td>
+<td>Python</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-yolo-tracker/README.md">example</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">bundle</a></td>
+</tr>
+</tbody>
+</table>
+<p>See the full <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.md">Sensor Catalog</a>. Evidence describes exercised paths; maturity is a separate release decision.</p>
+<!-- section:companion-tools -->
+<h3>Companion Processing Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Language</th>
+<th>Status</th>
+<th>Example</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.md"><code>vector.compose-3d</code></a></td>
+<td>3D vector composition and reconstruction from scalar components</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-vector-compose-3d/README.md">web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.md">Tool Page</a></td>
+</tr>
+</tbody>
+</table>
+<p>See the full <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/tool-catalog.md">Tool Catalog</a>. Companion Tools form an extensible processing layer and are not counted as Sensors.</p>
+<!-- section:quick-start -->
+<h2>Quick start</h2>
+<p>Start with <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/getting-started.md">Getting Started</a>, then choose either the Python wheel or TypeScript tgz from the <a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0"><code>v0.6.0</code> Experimental Release</a>. Nothing is published to PyPI or the npm registry.</p>
+<pre><code class="language-bash">python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
+npm install ./physics-software-sensors-core-0.3.0.tgz
+</code></pre>
+<!-- section:download -->
+<h2>Download</h2>
+<p>The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, <code>release-manifest.json</code> and <code>SHA256SUMS</code>. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/downloading-sensors.md">Downloading Sensors</a> and <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.md">Installation</a>.</p>
+<!-- section:capability-showcase -->
+<h2>Capability Showcase</h2>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md"><img alt="Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool" src="assets/capability-showcase.png" /></a></p>
+<p>Representative standalone, synthetic and replay demonstrations. Evidence level varies by capability; the YOLO tile is <strong>recorded detector replay</strong>, not real YOLO inference. The image is an enhancement, while the text links below remain the canonical navigation when image delivery is unavailable.</p>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.md">Camera Capture</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.md">Screen Capture</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.md">Number OCR</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.md">Color Marker</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.md">Spot Centroid</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.md">Template Tracker</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.md">YOLO Tracker</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.md">3D Vector Composition</a></p>
+<p>Coverage: <strong>7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities</strong>. Open the trilingual <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md">Capability Showcase</a> for all eight detailed demo images and evidence boundaries.</p>
+<!-- section:principles -->
+<h2>Core principles</h2>
+<ol>
+<li>Do not break or silently rewrite source projects.</li>
+<li>Pin provenance to repository, full commit SHA, path and symbol.</li>
+<li>Preserve raw observations and distinguish downstream derivations.</li>
+<li>Make time, coordinates, units, confidence and uncertainty explicit.</li>
+<li>State evidence, maturity, licensing and model boundaries conservatively.</li>
+</ol>
+<!-- section:long-term-workflow -->
+<h2>Long-term workflow</h2>
+<pre><code class="language-text">New Physics Project
+      ↓
+Reusable mature capability
+      ↓
+Sensor Intake
+      ↓
+Physics Software Sensors
+      ↓
+Experimental / Validation / Release
+      ↓
+Future Physics Projects
+</code></pre>
+<p>Future work enters through <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-intake.md">Sensor Intake</a>, the <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/agent-recipes/add-new-sensor.md">Add New Sensor recipe</a>, or an existing-Sensor maintenance track. The first completed extraction-to-reuse cycle is documented in <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/first-reuse-loop.md">First Complete Reuse Loop</a>.</p>
+<!-- section:documentation -->
+<h2>Documentation</h2>
+<ul>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.md">Sensor Catalog</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/tool-catalog.md">Companion Tool Catalog</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md">Capability Showcase</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/getting-started.md">Getting Started</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/evidence-and-maturity.md">Evidence and Maturity</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-intake.md">Sensor Intake</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/first-reuse-loop.md">First Complete Reuse Loop</a> and <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/maintenance.md">Maintenance Guide</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/project-status.md">Current Project Status</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/i18n/terminology.md">Terminology</a> and <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/i18n/style-guide.md">i18n Style Guide</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/demo-asset-inventory.md">Demo Asset Inventory</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/architecture.md">Architecture</a>, <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/data-format.md">data format</a>, <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/benchmarking.md">benchmarking</a></li>
+<li><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0">Release v0.6.0</a></li>
+</ul>
+<!-- section:development -->
+<h2>Development and validation</h2>
+<pre><code class="language-bash">python3 tools/validate_repo.py
+pytest
+npm --prefix packages/typescript test
+</code></pre>
+<p>See <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>. A new Sensor or major capability follows the formal intake workflow; ordinary bug fixes do not.</p>
+<!-- section:non-goals -->
+<h2>Current non-goals</h2>
+<ul>
+<li>No stable, production-ready, measurement-grade or metrology claim.</li>
+<li>No automatic YOLO model download or bundled model weight.</li>
+<li>No forced migration of historical experiment projects.</li>
+<li>No PyPI/npm registry publication; the first merged E5 integration is an offline replay path and does not replace the downstream live-camera implementation.</li>
+</ul>
+<!-- section:license -->
+<h2>License</h2>
+<p>Repository-owned code and documentation are MIT licensed. Historical source code, models, data and dependencies retain their own licensing boundaries; see <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/THIRD_PARTY_NOTICES.md">THIRD_PARTY_NOTICES.md</a>.</p>
+<p>Latest development handoff: <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/.agent-handoff/latest.md">.agent-handoff/latest.md</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/.agent-handoff/latest.json">.agent-handoff/latest.json</a></p>
+  </main>
+  <footer>Repository source of truth: <a href="https://github.com/WUHAO19831214/physics-software-sensors">WUHAO19831214/physics-software-sensors</a></footer>
+</body>
+</html>

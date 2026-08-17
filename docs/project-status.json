@@ -4,6 +4,13 @@
   "project_state": "maintenance",
   "phase_5_library_merge_sha": "2c3e91ed3c36f23b82c76cfd70076807adc1f891",
   "homepage_showcase_merge_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6",
+  "public_document_delivery": {
+    "repository_content_integrity": "pass",
+    "github_blob_view": "external_error",
+    "github_raw": "rate_limited",
+    "github_pages": "ready_for_enablement",
+    "pages_source": "main /docs"
+  },
   "baseline_release": {
     "tag": "v0.6.0",
     "maturity": "experimental-pre-stable",

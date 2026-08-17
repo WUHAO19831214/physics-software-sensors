@@ -53,3 +53,7 @@ Future handoffs use one of `NEW_SENSOR`, `NEW_REUSABLE_TOOL`, `SENSOR_UPGRADE`, 
 ## Homepage asset delivery incidents
 
 Repository image validity and GitHub delivery availability are separate checks. If the GitHub Contents API returns `200`, the repository blob exists, and local decode passes while `raw.githubusercontent.com` returns `429`, classify the incident as an **external GitHub Raw/CDN delivery issue**, not a broken repository image. Preserve valid canonical assets, use text navigation as graceful degradation, and record the incident without moving assets to an external image host. See the [2026-08-17 homepage stabilization record](upgrades/2026-08-17-homepage-showcase-stabilization.md).
+
+## Multilingual public-document delivery
+
+When GitHub Web blob views are unavailable while Contents API and local UTF-8 checks pass, treat the issue as an **external GitHub Web file-view delivery issue**. Do not rewrite valid Markdown in an attempt to refresh GitHub. The Pages-ready reader under `docs/` is generated from canonical root READMEs; validate it with `tools/validate_public_docs.py`. See [Public Document Delivery](public-document-delivery.md) for the route matrix and no-Actions `main /docs` Pages enablement procedure.

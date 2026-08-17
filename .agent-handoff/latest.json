@@ -2,9 +2,9 @@
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "MAINTENANCE",
-  "phase_name": "Public Homepage Showcase Stabilization",
-  "task_type": "HOMEPAGE_SHOWCASE_STABILIZATION",
-  "status": "MAINTENANCE_READY",
+  "phase_name": "Multilingual Public Document Access Reliability",
+  "task_type": "PUBLIC_DOCUMENT_DELIVERY",
+  "status": "READY_FOR_REVIEW",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 7,
@@ -13,69 +13,41 @@
   "languages": ["en", "zh-CN", "ja"],
   "git": {
     "base_branch": "main",
-    "working_branch": "main",
-    "base_sha": "0c5d484d2b6d85c8e28308c2b7338bbc2a282e6b",
-    "tested_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
+    "working_branch": "agent/public-docs-reliability",
+    "base_sha": "838e864e83a207bff6b64ba417fda9b937c86df3",
+    "tested_sha": "7d8852dc87ff610f16ac124ee41575dfac8687c0",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/public-docs-reliability"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
   "pull_request": {
-    "number": 9,
-    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/9",
-    "draft": false,
-    "state": "MERGED",
-    "title": "Add 3D vector companion tool and public capability showcase",
-    "merged_at": "2026-08-17T14:07:47Z",
-    "merge_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6"
+    "number": 10,
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/10",
+    "draft": true,
+    "state": "OPEN",
+    "title": "Improve multilingual documentation access reliability"
   },
-  "source_audit": {
-    "repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan",
-    "current_sha": "cb073e89d6d87129287030f1df08bd540504eb39",
-    "source_modified": false
+  "public_document_delivery": {
+    "repository_content_integrity": "PASS",
+    "github_blob_view": "EXTERNAL_ERROR",
+    "github_raw": "RATE_LIMITED",
+    "github_pages": "PAGES_READY_FOR_ENABLEMENT",
+    "pages_source": "main /docs",
+    "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/"
   },
-  "companion_tools": {
-    "vector.compose-3d": {
-      "type": "companion-processing-tool",
-      "status": "experimental",
-      "version": "0.1.0",
-      "language": "typescript",
-      "released": false,
-      "direct_observation": false
-    }
-  },
-  "homepage_showcase": {
-    "sensor_catalog_entries": "7/7",
-    "companion_tool_catalog_entries": "1/1",
-    "public_capability_links": "8/8",
-    "detailed_demo_assets": "8/8",
-    "homepage_image_requests": 1,
-    "aggregate_asset": "docs/assets/capability-showcase.png",
-    "aggregate_dimensions": [1200, 1458],
-    "aggregate_bytes": 277904,
-    "aggregate_sha256": "39fcb7a008388b925fdec3f5d4aafb86df2cef77f610aebef1de1fd275bd6a88",
-    "generator": "tools/build_capability_showcase.py",
-    "external_hosting": false,
-    "parity": true,
-    "yolo_boundary": "recorded detector replay; not real YOLO inference"
-  },
-  "github_delivery": {
-    "contents_api": 200,
-    "repository_blob": "present",
-    "local_decode": "PASS",
-    "raw_cdn": "429 Too Many Requests during inspection",
-    "classification": "external GitHub Raw/CDN delivery issue"
+  "pages": {
+    "files": {"en": "docs/index.html", "zh_CN": "docs/zh-CN/index.html", "ja": "docs/ja/index.html"},
+    "language_routes": "6/6",
+    "actions_workflow": false,
+    "gh_pages_branch": false
   },
   "tests": {
-    "repository_validation": {"passed": true, "pending_clean_commit_rerun": false},
+    "repository_validation": {"passed": true, "pending_clean_commit_rerun": true},
     "i18n": {"passed": true, "public_document_sets": 10, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
-    "python": {"passed": 90, "failed": 0},
+    "python": {"passed": 100, "failed": 0},
     "typescript": {"passed": 30, "failed": 0},
-    "vector_and_ocr_tool": {"passed": 12, "failed": 0},
-    "homepage_showcase": {"passed": 3, "failed": 0},
-    "composition": {"passed": 5, "failed": 0},
-    "detailed_asset_decode": {"passed": 8, "failed": 0},
-    "aggregate_decode": {"passed": 1, "failed": 0}
+    "public_document_delivery": {"readme_sources": "3/3", "pages_files": "3/3", "language_routes": "6/6", "passed": true},
+    "local_http": {"routes": "3/3", "status": 200}
   },
   "release": {
     "tag": "v0.6.0",
@@ -102,12 +74,10 @@
     {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "unchanged"},
     {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "unchanged"}
   ],
-  "blockers": [],
+  "blockers": ["GitHub Pages is not enabled until the Draft PR is reviewed and main /docs is selected"],
   "known_gaps": [
-    "external GitHub Raw/CDN delivery can be temporarily rate-limited",
-    "no downstream realtime Yan'an integration",
-    "no controlled physical validation",
-    "no full Three.js renderer"
+    "external GitHub Web blob delivery is currently unavailable in the route probe",
+    "external GitHub Raw/CDN delivery can be temporarily rate-limited"
   ],
-  "next_action": "Inspect the public main homepage and final showcase, then close the maintenance task."
+  "next_action": "Review Draft PR #10, merge, then enable GitHub Pages from main /docs without Actions."
 }

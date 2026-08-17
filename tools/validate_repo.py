@@ -14,6 +14,7 @@ import zlib
 from pathlib import Path
 
 from validate_i18n import validate_i18n
+from validate_public_docs import validate_public_docs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -545,6 +546,7 @@ def main() -> int:
         + check_release_candidate()
         + check_handoff()
         + validate_i18n(ROOT)
+        + validate_public_docs(ROOT)
     )
     if errors:
         for error in errors:
