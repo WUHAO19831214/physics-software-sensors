@@ -1,49 +1,57 @@
-# Physics Software Sensors — Maintenance Handoff
+# Physics Software Sensors — NEW_REUSABLE_TOOL Handoff
 
-## Baseline state
+## Review state
 
-- Status: **MAINTENANCE_READY**
-- Phase 5: **COMPLETE**
-- Project state: **long-term maintenance**
-- Baseline public Release: **v0.6.0 — Experimental**
-- Sensors: **7**, all with experimental maturity
-- Languages: **English / 简体中文 / 日本語**
-- First E5 Sensor: **`tracker.spot-centroid`**
+- Status: **READY_FOR_REVIEW**
+- Task: **NEW_REUSABLE_TOOL**
+- Tool: **`vector.compose-3d` — Companion Processing Tool**
+- Draft PR: [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9)
+- Branch: `agent/tool-vector-compose-3d`
+- Tested implementation SHA: `2759ccef506c1a5d4afe403bfddbcaa3c2a538cf`
+- Sensors: **7**; Companion Tools: **1**
+- Baseline Release: immutable `v0.6.0`; no new Release or registry publication
 
-Phase 5 Library PR [#8](https://github.com/WUHAO19831214/physics-software-sensors/pull/8) was squash-merged as `2c3e91ed3c36f23b82c76cfd70076807adc1f891`. Downstream Spot Vibration PR [#1](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1) was merged first as `172429fae463274ee354e54d56400096c2c6d375`.
+## 1–6. Source and historical decision
 
-## First complete reuse loop
+1. Source repository: `WUHAO19831214/ampere-force-visualizer-teacher-yanan`.
+2. Current source SHA: `cb073e89d6d87129287030f1df08bd540504eb39`; inspected read-only and left clean.
+3. Historical F1/F2/F3: **CONFIRMED**, first ROI IDs at `f3d93b3404d4246a4a0e4395070c2b7e67baea58`, first definitive 3D force implementation at `ac46ed58ed020c96e75d34d70759477ef898bbef`.
+4. Meaning: three simultaneous scalar OCR values treated as the x/y/z orthogonal components of one resultant force at a common point; source UI also called them three orthogonal forces. They were not arbitrary non-orthogonal vectors or one hardware SDK's three-axis record.
+5. Transition: `ed33d00774cd7eedf1ff4c3bd9a2cf9225410cf5` customized the application for Yan'an, changed default ROIs to Fy/Fz, retained F2/F3 aliases and set Fx to zero. The y-z apparatus-plane interpretation is supported by coordinate labels/code but is an inference; no richer commit body states the reason.
+6. xyz conclusion: historical F1/F2/F3-to-x/y/z behavior is source-confirmed. Current main is instead `{Fx=0 constrained, Fy/Fz observed}`. Stale F1/F2/F3 overview text in the current README is not treated as current runtime truth.
 
-The historical source SHA remains `7f0d91cc73afafaecc54acc46b2b9d69375d994a`; it identifies where `trackRedSpot` behavior came from. The downstream merge SHA is separate evidence that the public `v0.6.0` wheel was reused. The complete chain is documented in [First Complete Reuse Loop](../docs/first-reuse-loop.md) and the machine record in [`integrations/spot-vibration`](../integrations/spot-vibration/integration.json).
+Full evidence: [Yan'an history](../docs/research/yanan-vector-reconstruction-history.md) and [SOURCE](../processing/vector.compose-3d/SOURCE.md).
 
-The downstream adapter pins package `0.5.0`, Sensor `tracker.spot-centroid@0.4.0` and wheel SHA-256 `191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9`. `legacy`, `library` and `compare` passed on the integration branch and merged `main`; default and rollback remain `legacy`. Seven same-frame cases matched within `1e-9 px`, maximum delta was `7.105427357601002e-15`, and both downstream paths produced `28 px / 0.56 cm`.
+## 7–14. Architecture and API
 
-This is E5 software reuse evidence, not E4 physical validation. The browser realtime path was not replaced, and real camera/optical movement, exposure robustness, repeatability and uncertainty remain open. `tracker.spot-centroid` therefore remains `experimental`.
+7. Final ID: `vector.compose-3d`.
+8. It is not a Sensor because it makes no direct observation: `screen.capture` observes pixels, `ocr.number` derives scalars, and this module performs downstream measurement processing.
+9. Public core: `Vector3Assembler`, `composeVector3`, `Vector3Measurement`, `applyCoordinateTransform`, `createVector3RenderModel`, and `componentFromNumberOcrEvent` under `packages/typescript/src/processing/vector3/`.
+10. Component source is explicit: `observed | derived | constrained | default | missing`. Missing yields an incomplete result; constrained zero is never reported as OCR-observed.
+11. Each component may carry `timestampMs`; `maxComponentSkewMs` defaults to 150 ms and excessive spread emits `component-time-skew`.
+12. Vector math uses caller coordinates. The opt-in Yan'an transform maps classroom `(x,y,z)` to scene `(-x,z,y)` and is tested separately.
+13. The optional adapter emits renderer-neutral axes, component arrows and resultant arrow. It does not copy or depend on the large teacher Three.js UI.
+14. Recorded `NumberOCRSensor` events compose through `componentFromNumberOcrEvent`; parse failure becomes `missing`, never a mock number.
 
-## Final verification
+## 15–19. Evidence and public surface
 
-- Repository validation: **PASS**, 43 JSON files.
-- i18n: **PASS**, 8 public document sets, 7 × 3 Sensor Pages, 46 terms.
-- Python: **86 passed**; composition **5/5**.
-- TypeScript: **15/15 offline**, **18/18 full**.
-- Package build: wheel **1/1**, tgz **1/1**.
-- Sensor Bundles: **7/7**, trilingual pages **7/7**.
-- Tracked model weights: **0**.
-- Downstream merged `main`: integration **3/3**, all modes, rollback and static app smoke **PASS**; legacy browser files unchanged.
+15. Golden fixture pins historical/current source commits and covers +x, +y, +z, xy, yz, xyz, negative, zero, historical F1/F2/F3 and current Fy/Fz+Fx=0. Magnitude, direction and scene mapping tolerance is `1e-12`.
+16. Tests: Python **87/87**; TypeScript **30/30** full and **27/27** offline; new Vector/OCR tests **12/12**; existing composition matrix **5/5**; i18n and repository structure pass after the containing handoff commit.
+17. Demo: `examples/web-vector-compose-3d/`, with manual input and recorded Fy/Fz OCR modes. It imports the built core and uses a minimal canvas projection.
+18. EN/ZH/JA: one Tool Page × 3, Tool Catalog × 3, 54-entry terminology authority, parity validation extended to Tool manifests/pages.
+19. Tool Catalog: `docs/tool-catalog.md`, `.zh-CN.md`, `.ja.md`; machine manifest: `processing/vector.compose-3d/tool.json`.
 
-## Immutable release
+## 20–22. Repository and review boundary
 
-`v0.6.0` is unchanged: annotated tag object `c067c6c0e8196a284d6cba618a9fac5923bce8f7` still peels to `1a4a3fe45c1eaafe06c7e053644188b7abba8c62`, with the same 11 attachments. No `v0.7.0`, PyPI or npm publication occurred.
+20. Sensor count remains exactly **7**. Project status records **1 Companion Tool**, experimental `0.1.0`, unreleased.
+21. Draft PR [#9](https://github.com/WUHAO19831214/physics-software-sensors/pull/9) remains unmerged.
+22. Blockers/gaps: source repository has no explicit license, so implementation is a clean rewrite and no code/assets were copied; no downstream real-time Yan'an integration; no controlled physical validation; no full Three.js renderer; cross-browser performance is not measured. None blocks review of the experimental core.
 
-## Maintenance workflow
+## Immutable and source state
 
-Read [Current Project Status](../docs/project-status.md) and [Maintenance Guide](../docs/maintenance.md) before work. Future tasks use one of:
+- Source repository main/worktree: unchanged at `cb073e89d6d87129287030f1df08bd540504eb39`.
+- Library remote main: unchanged at `0c5d484d2b6d85c8e28308c2b7338bbc2a282e6b` when the Draft PR was created.
+- `v0.6.0` tag object: unchanged at `c067c6c0e8196a284d6cba618a9fac5923bce8f7`.
+- No `v0.7.0`, PyPI, npm, merge, or downstream integration action was performed.
 
-- `NEW_SENSOR` — formal Sensor Intake and scaffold;
-- `SENSOR_UPGRADE` — old/new benchmark, golden, compatibility decision, upgrade record and version bump;
-- `VALIDATION` — reproducible real-world evidence and matrix update;
-- `DOWNSTREAM_INTEGRATION` — pinned dependency, feature flag, comparison and rollback;
-- `RELEASE` — checklist, reproducible artifacts, licensing and immutable tag;
-- `MAINTENANCE` — compatible fixes and documentation.
-
-There is no automatic Phase 6. There is no blocker for maintenance. A future `v0.7.0` may package multilingual/intake/reuse documentation, but requires a separate release decision.
+Recommended next action: review the Vector3 handoff and decide whether Draft PR #9 should enter the long-term tool library. Do not merge automatically.
