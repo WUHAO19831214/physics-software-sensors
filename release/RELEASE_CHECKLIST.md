@@ -2,22 +2,22 @@
 
 ## Release candidate validation
 
-- [ ] Repository validation passes.
-- [ ] Python full test suite passes.
-- [ ] TypeScript offline test suite passes without runtime model download.
-- [ ] TypeScript full suite, including real Tesseract synthetic-pixel integration, passes.
-- [ ] Composition matrix passes 5/5.
-- [ ] Python wheel and TypeScript tgz build from one recorded tested SHA.
-- [ ] Seven Sensor Bundles build and their `BUNDLE.json`/structure validate.
-- [ ] `release-manifest.json` records 9 artifacts, environment, contracts and hashes.
-- [ ] `SHA256SUMS` covers 9 artifacts plus the manifest.
-- [ ] Clean-room Python Camera/Color/Spot/Template/YOLO-recorded smoke passes.
-- [ ] Clean-room TypeScript Screen/OCR/real-pixel Tesseract smoke passes.
-- [ ] Two consecutive builds are compared and reproducibility is recorded honestly.
-- [ ] Dependency/license and historical source-license boundaries are reviewed.
-- [ ] No `.pt`, `.onnx`, `.engine` or third-party weight is tracked or packaged.
+- [x] Repository validation passes.
+- [x] Python full test suite passes.
+- [x] TypeScript offline test suite passes without runtime model download.
+- [x] TypeScript full suite, including real Tesseract synthetic-pixel integration, passes.
+- [x] Composition matrix passes 5/5.
+- [x] Python wheel and TypeScript tgz build from one recorded tested SHA.
+- [x] Seven Sensor Bundles build and their `BUNDLE.json`/structure validate.
+- [x] `release-manifest.json` records 9 artifacts, environment, contracts and hashes.
+- [x] `SHA256SUMS` covers 9 artifacts plus the manifest.
+- [x] Clean-room Python Camera/Color/Spot/Template/YOLO-recorded smoke passes.
+- [x] Clean-room TypeScript Screen/OCR/real-pixel Tesseract smoke passes.
+- [x] Two consecutive builds are compared and reproducibility is recorded honestly.
+- [x] Dependency/license and historical source-license boundaries are reviewed.
+- [x] No `.pt`, `.onnx`, `.engine` or third-party weight is tracked or packaged.
 - [ ] Release Notes, download/install docs, seven Distribution sections and Agent Handoff are complete.
-- [ ] Five fixed source repository commits are clean.
+- [x] Five fixed source repository commits are clean.
 
 ## Publication actions — intentionally unchecked in the Draft PR
 

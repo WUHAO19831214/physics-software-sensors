@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "release_status": "release-candidate-not-published",
+  "release_version": "v0.6.0",
+  "release_title": "Physics Software Sensors v0.6.0 — Experimental",
+  "git_sha": "1dda09eb54883e94689e27472f97e03aeab59c91",
+  "contracts": {
+    "sensor_event": "1.0.0",
+    "frame_packet": "1.0.0"
+  },
+  "packages": {
+    "python": "0.5.0",
+    "typescript": "0.3.0"
+  },
+  "build_environment": {
+    "os": "Darwin",
+    "os_release": "25.3.0",
+    "architecture": "arm64",
+    "python": "3.12.13",
+    "node": "v24.13.0",
+    "npm": "11.6.2",
+    "source_date_epoch": 1786929487
+  },
+  "build_timestamp": "2026-08-17T01:18:07Z",
+  "release_evidence_note": "Experimental E1-E3 evidence only; no E4 real-device validation, E5 downstream validation or metrology claim.",
+  "artifacts": [
+    {
+      "filename": "physics_software_sensors-0.5.0-py3-none-any.whl",
+      "type": "python-wheel",
+      "sha256": "6fd6d903d392bd2f672d892b04a3234e9e998e5b0deea75b252dabdc9751dcef",
+      "bytes": 36702,
+      "package": "physics-software-sensors",
+      "package_version": "0.5.0"
+    },
+    {
+      "filename": "camera.capture-0.3.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "dbb0c59458764c3007989ae6033a2dc8d8f046a36e4d6109b990a618207730a9",
+      "bytes": 173496,
+      "sensor_id": "camera.capture",
+      "sensor_version": "0.3.0",
+      "evidence_level": "E1"
+    },
+    {
+      "filename": "ocr.number-0.2.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "b3f2734bdf72742a4856bc2807a610332171d604b89352dabc034be94e282bed",
+      "bytes": 151902,
+      "sensor_id": "ocr.number",
+      "sensor_version": "0.2.0",
+      "evidence_level": "E3"
+    },
+    {
+      "filename": "screen.capture-0.3.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "f3decb0c5c7a398430bfc25e7ba128e5eb6839d860a73b6e61cda3228f9c7326",
+      "bytes": 201631,
+      "sensor_id": "screen.capture",
+      "sensor_version": "0.3.0",
+      "evidence_level": "E1"
+    },
+    {
+      "filename": "tracker.color-marker-0.2.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "8a450c764d90fab9243f5b9a5b87364be61bd4755fd018f02e27212f578f063e",
+      "bytes": 122791,
+      "sensor_id": "tracker.color-marker",
+      "sensor_version": "0.2.0",
+      "evidence_level": "E2"
+    },
+    {
+      "filename": "tracker.spot-centroid-0.4.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "f228c3e478f1abbb29076dd81ba8987b876f448f5b00e84bee485a524dc6bb73",
+      "bytes": 150181,
+      "sensor_id": "tracker.spot-centroid",
+      "sensor_version": "0.4.0",
+      "evidence_level": "E2"
+    },
+    {
+      "filename": "tracker.template-0.4.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "7284e2e72878daa044a1b41313447620e913083a93ad3b7b66af377821a538aa",
+      "bytes": 76253,
+      "sensor_id": "tracker.template",
+      "sensor_version": "0.4.0",
+      "evidence_level": "E3"
+    },
+    {
+      "filename": "tracker.yolo-0.5.0.zip",
+      "type": "sensor-bundle",
+      "sha256": "165559183f1602508e70dd911ca3ae020c839d9f8cca58050599c010d4497d93",
+      "bytes": 89998,
+      "sensor_id": "tracker.yolo",
+      "sensor_version": "0.5.0",
+      "evidence_level": "E2"
+    },
+    {
+      "filename": "physics-software-sensors-core-0.3.0.tgz",
+      "type": "typescript-tgz",
+      "sha256": "704e0f21ea5bdf02156af1cfdc0b8fce6605996f3ecb4dbe8fbb6b25f0b70d3a",
+      "bytes": 13561,
+      "package": "@physics-software-sensors/core",
+      "package_version": "0.3.0"
+    }
+  ],
+  "limitations": [
+    "Release candidate only: no tag, GitHub Release, PyPI publication or npm registry publication was created.",
+    "All seven sensors remain experimental.",
+    "No YOLO model weight is included or downloaded; real inference requires a separately reviewed local ModelArtifact.",
+    "Historical source repository license state remains pending/NOASSERTION where documented."
+  ]
+}

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 import re
 import subprocess
@@ -108,6 +109,8 @@ def check_manifests() -> list[str]:
         for relative in SENSOR_PAGE_FILES:
             if not (path.parent / relative).is_file():
                 errors.append(f"{path.parent.relative_to(ROOT)}: missing Sensor Page file {relative}")
+        if "## Distribution" not in (path.parent / "README.md").read_text(encoding="utf-8"):
+            errors.append(f"{path.parent.relative_to(ROOT)}: missing Distribution section")
         for asset in PILOT_DEMO_ASSETS.get(str(sensor_id), ()):
             if not (path.parent / "assets" / asset).is_file():
                 errors.append(f"{path.parent.relative_to(ROOT)}: missing reviewed demo asset {asset}")
@@ -181,6 +184,58 @@ def check_composition_matrix() -> list[str]:
             errors.append(f"tests/composition/matrix.json: composition {index} must record a passed test")
         elif not all(entry.get(field) for field in ("fixture", "test")):
             errors.append(f"tests/composition/matrix.json: composition {index} lacks fixture/test evidence")
+    return errors
+
+
+def check_release_candidate() -> list[str]:
+    errors: list[str] = []
+    manifest_path = ROOT / "release/release-manifest.json"
+    manifest = load_json(manifest_path)
+    if manifest.get("release_version") != "v0.6.0" or manifest.get("release_status") != "release-candidate-not-published":
+        errors.append("release/release-manifest.json: expected v0.6.0 unpublished release candidate")
+    if manifest.get("contracts") != {"sensor_event": "1.0.0", "frame_packet": "1.0.0"}:
+        errors.append("release/release-manifest.json: contract versions must remain 1.0.0")
+    if manifest.get("packages") != {"python": "0.5.0", "typescript": "0.3.0"}:
+        errors.append("release/release-manifest.json: package versions mismatch")
+    artifacts = manifest.get("artifacts", [])
+    if not isinstance(artifacts, list) or len(artifacts) != 9:
+        return errors + ["release/release-manifest.json: exactly nine artifacts are required"]
+    bundle_ids = {
+        item.get("sensor_id") for item in artifacts
+        if isinstance(item, dict) and item.get("type") == "sensor-bundle"
+    }
+    if bundle_ids != EXPECTED_SENSOR_IDS:
+        errors.append("release/release-manifest.json: exactly seven known sensor bundles are required")
+    types = [item.get("type") for item in artifacts if isinstance(item, dict)]
+    if types.count("python-wheel") != 1 or types.count("typescript-tgz") != 1:
+        errors.append("release/release-manifest.json: one wheel and one tgz are required")
+    for index, item in enumerate(artifacts):
+        if not isinstance(item, dict):
+            errors.append(f"release/release-manifest.json: artifact {index} must be an object")
+            continue
+        if not re.fullmatch(r"[a-f0-9]{64}", str(item.get("sha256", ""))):
+            errors.append(f"release/release-manifest.json: artifact {index} has invalid SHA-256")
+        if not isinstance(item.get("bytes"), int) or item["bytes"] <= 0:
+            errors.append(f"release/release-manifest.json: artifact {index} has invalid size")
+        if Path(str(item.get("filename", ""))).suffix.lower() in {".pt", ".onnx", ".engine"}:
+            errors.append("release/release-manifest.json: model weights are prohibited")
+    sums: dict[str, str] = {}
+    for line in (ROOT / "release/SHA256SUMS").read_text(encoding="utf-8").splitlines():
+        try:
+            digest, filename = line.split("  ", 1)
+        except ValueError:
+            errors.append("release/SHA256SUMS: invalid line format")
+            continue
+        sums[filename] = digest
+    artifact_names = {str(item.get("filename")) for item in artifacts if isinstance(item, dict)}
+    if set(sums) != artifact_names | {"release-manifest.json"}:
+        errors.append("release/SHA256SUMS: must cover nine artifacts and release-manifest.json")
+    for item in artifacts:
+        if isinstance(item, dict) and sums.get(str(item.get("filename"))) != item.get("sha256"):
+            errors.append(f"release/SHA256SUMS: hash mismatch for {item.get('filename')}")
+    actual_manifest_hash = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+    if sums.get("release-manifest.json") != actual_manifest_hash:
+        errors.append("release/SHA256SUMS: release-manifest.json hash mismatch")
     return errors
 
 
@@ -271,6 +326,7 @@ def main() -> int:
         + check_markdown_links()
         + check_evidence_registry()
         + check_composition_matrix()
+        + check_release_candidate()
         + check_handoff()
     )
     if errors:

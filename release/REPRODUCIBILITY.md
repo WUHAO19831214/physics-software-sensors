@@ -1,7 +1,19 @@
 # Release reproducibility report
 
-Status: pending final RC comparison.
+Status: **verified for the recorded environment and tested SHA**.
 
-Phase 4A will build the same tested commit twice in separate empty temporary directories with `SOURCE_DATE_EPOCH` set to that commit's timestamp and `PYTHONHASHSEED=0`. It will compare the wheel, tgz, seven bundles, release manifest and `SHA256SUMS` byte-for-byte.
+Phase 4A built tested commit `1dda09eb54883e94689e27472f97e03aeab59c91` twice in separate empty temporary directories with `SOURCE_DATE_EPOCH=1786929487` (the commit timestamp) and `PYTHONHASHSEED=0`.
 
-The final report will list exact matching/non-matching files and causes. Archive hashes will not be described as deterministic unless the two independent builds actually match.
+Environment: Darwin 25.3.0 arm64, Python 3.12.13, Node 24.13.0, npm 11.6.2.
+
+## Result
+
+All 11 generated files were byte-for-byte identical across the two builds:
+
+- Python wheel: 1/1 match;
+- TypeScript tgz: 1/1 match;
+- Sensor bundles: 7/7 match;
+- `release-manifest.json`: match;
+- `SHA256SUMS`: match.
+
+The canonical hashes are committed in [`SHA256SUMS`](SHA256SUMS). This demonstrates deterministic output for the same Git SHA and recorded toolchain/environment. It does not yet prove cross-OS, cross-architecture or future-build-backend reproducibility; those remain `not measured`.
