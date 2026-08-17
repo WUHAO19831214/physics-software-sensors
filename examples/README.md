@@ -10,3 +10,4 @@ Example 只证明传感器离开原实验应用后能够独立调用，不重建
 - [`spot-centroid`](spot-centroid/README.md)：CameraSource → red weighted centroid → image-pixel SensorEvent；
 - [`python-template-tracker`](python-template-tracker/README.md)：CameraSource + initialization ROI → real OpenCV tracker → bbox/lost SensorEvent；
 - [`python-yolo-tracker`](python-yolo-tracker/README.md)：默认 offline recorded multi-target/ID/fallback replay；真实模式只接受显式本地模型。
+- [`web-vector-compose-3d`](web-vector-compose-3d/README.md)：手动分量与 recorded Fy/Fz OCR → Vector3Assembler → renderer-neutral 投影；它是 Companion Tool demo，不是第 8 个 Sensor。

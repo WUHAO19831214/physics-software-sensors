@@ -24,7 +24,7 @@
 <!-- section:project-status -->
 ## 项目状态
 
-7 个软件 Sensor · 7 个 experimental adapter · English / 简体中文 / 日本語 · 公开 experimental `v0.6.0` Release · 7 个 Sensor Bundle · 新 Sensor scaffold 已就绪 · 首次 E5 下游复用已完成。不能把任何 Sensor 描述为已经全面 validated。
+7 个软件 Sensor · 7 个 experimental adapter · 1 个 experimental Companion Processing Tool · English / 简体中文 / 日本語 · 公开 experimental `v0.6.0` Release · 7 个 Sensor Bundle · 首次 E5 下游复用已完成。新工具尚未发布；不能把任何 Sensor 描述为已经全面 validated。
 
 <!-- section:catalog -->
 ## 传感器目录
@@ -40,6 +40,8 @@
 | [`tracker.yolo`](sensors/tracker.yolo/README.zh-CN.md) | 多目标检测/追踪 adapter | Python | experimental | E2 | [示例](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
 完整信息见[传感器目录](docs/sensor-catalog.zh-CN.md)。证据等级表示实际跑过的路径；成熟度是另一项发布决策。
+
+配套工具 [`vector.compose-3d`](processing/vector.compose-3d/README.zh-CN.md) 从已有标量分量重建可追溯三维矢量，不伪装成第 8 个 Sensor。参阅[工具目录](docs/tool-catalog.zh-CN.md)和[浏览器 demo](examples/web-vector-compose-3d/README.md)。
 
 <!-- section:quick-start -->
 ## 快速开始
@@ -97,6 +99,7 @@ Experimental / Validation / Release
 ## 文档
 
 - [传感器目录](docs/sensor-catalog.zh-CN.md)
+- [配套工具目录](docs/tool-catalog.zh-CN.md)
 - [快速开始](docs/getting-started.zh-CN.md)
 - [证据与成熟度](docs/evidence-and-maturity.zh-CN.md)
 - [Sensor 接入流程](docs/sensor-intake.zh-CN.md)

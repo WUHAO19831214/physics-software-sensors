@@ -126,6 +126,35 @@ def check_manifests() -> list[str]:
     return errors
 
 
+def check_tool_manifests() -> list[str]:
+    errors: list[str] = []
+    paths = sorted((ROOT / "processing").glob("*/tool.json"))
+    if len(paths) != 1:
+        return [f"processing: expected exactly one Companion Tool, found {len(paths)}"]
+    path = paths[0]
+    manifest = load_json(path)
+    if manifest.get("id") != path.parent.name or manifest.get("id") != "vector.compose-3d":
+        errors.append(f"{path.relative_to(ROOT)}: expected id vector.compose-3d matching directory")
+    expected = {
+        "type": "companion-processing-tool",
+        "status": "experimental",
+        "version": "0.1.0",
+        "language": "typescript",
+    }
+    for field, value in expected.items():
+        if manifest.get(field) != value:
+            errors.append(f"{path.relative_to(ROOT)}: {field} must be {value!r}")
+    for relative in ("README.md", "README.zh-CN.md", "README.ja.md", "SOURCE.md", "CHANGELOG.md", "benchmarks/README.md", "examples/README.md"):
+        if not (path.parent / relative).is_file():
+            errors.append(f"{path.parent.relative_to(ROOT)}: missing Tool Page file {relative}")
+    for source in manifest.get("source_references", []):
+        if not HEX40.fullmatch(str(source.get("commit", ""))):
+            errors.append(f"{path.relative_to(ROOT)}: source commit must be a full SHA")
+        if not str(source.get("repository", "")).startswith("https://github.com/"):
+            errors.append(f"{path.relative_to(ROOT)}: source repository must be a GitHub URL")
+    return errors
+
+
 def check_markdown_links() -> list[str]:
     errors: list[str] = []
     for path in sorted(ROOT.rglob("*.md")):
@@ -325,6 +354,7 @@ def main() -> int:
     errors = (
         check_json()
         + check_manifests()
+        + check_tool_manifests()
         + check_markdown_links()
         + check_evidence_registry()
         + check_composition_matrix()
@@ -341,7 +371,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, i18n parity, pilot demos, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, 1 trilingual Companion Tool, i18n parity, pilot demos, and local Markdown links")
     return 0
 
 

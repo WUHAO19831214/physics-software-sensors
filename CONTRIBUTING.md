@@ -50,3 +50,7 @@ npm --prefix packages/typescript test
 ## Maintaining existing Sensors
 
 现有 Sensor 的算法升级、真实环境验证、下游复用、Release 和弃用不重新走 new-Sensor intake，也不能直接覆盖历史行为。按 [Maintenance Guide](docs/maintenance.md) 选择任务类型，保留 old/new benchmark、golden、兼容性决定、升级记录、版本变化和 rollback。开始工作前先读取 [Current Project Status](docs/project-status.md)。
+
+## Adding a Companion Tool
+
+若成熟能力只处理已有观测或测量值，例如数学合成、标定、派生测量或轻量可视化 adapter，不要把它包装成 Sensor。先按 [Maintenance Guide](docs/maintenance.md) 完成边界和来源审查，再提供独立 `tool.json`、EN/ZH-CN/JA Tool Page、SOURCE、golden/replay、测试、example、许可证判断和 Tool Catalog 更新。Tool 不得复用 `sensor.json`，也不得改变 Sensor count。

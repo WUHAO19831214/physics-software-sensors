@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/tests/*.test.js",
-    "test:offline": "npm run build && node --test dist/tests/number-ocr.test.js dist/tests/pixels.test.js dist/tests/screen-capture.test.js",
+    "test:offline": "npm run build && node --test dist/tests/number-ocr.test.js dist/tests/pixels.test.js dist/tests/screen-capture.test.js dist/tests/vector3.test.js dist/tests/vector3-ocr-composition.test.js",
     "test:tesseract": "npm run build && node --test dist/tests/tesseract-integration.test.js"
   },
   "dependencies": {

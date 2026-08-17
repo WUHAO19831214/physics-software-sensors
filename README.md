@@ -24,7 +24,7 @@ Mature capabilities are extracted through adapters, tested against fixed source 
 <!-- section:project-status -->
 ## Project status
 
-7 software Sensors · 7 experimental adapters · English / 简体中文 / 日本語 · public experimental `v0.6.0` Release · 7 Sensor Bundles · new-Sensor scaffold ready · first E5 downstream reuse completed. No Sensor is claimed as fully validated.
+7 software Sensors · 7 experimental adapters · 1 experimental Companion Processing Tool · English / 简体中文 / 日本語 · public experimental `v0.6.0` Release · 7 Sensor Bundles · first E5 downstream reuse completed. The new tool is unreleased; no Sensor is claimed as fully validated.
 
 <!-- section:catalog -->
 ## Sensor catalog
@@ -40,6 +40,8 @@ Mature capabilities are extracted through adapters, tested against fixed source 
 | [`tracker.yolo`](sensors/tracker.yolo/README.md) | Multi-target detection/tracking adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
 See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exercised paths; maturity is a separate release decision.
+
+Companion Tool: [`vector.compose-3d`](processing/vector.compose-3d/README.md) reconstructs a traceable 3D vector from existing scalar components without pretending to be an eighth Sensor. See the [Tool Catalog](docs/tool-catalog.md) and [browser demo](examples/web-vector-compose-3d/README.md).
 
 <!-- section:quick-start -->
 ## Quick start
@@ -97,6 +99,7 @@ Future work enters through [Sensor Intake](docs/sensor-intake.md), the [Add New 
 ## Documentation
 
 - [Sensor Catalog](docs/sensor-catalog.md)
+- [Companion Tool Catalog](docs/tool-catalog.md)
 - [Getting Started](docs/getting-started.md)
 - [Evidence and Maturity](docs/evidence-and-maturity.md)
 - [Sensor Intake](docs/sensor-intake.md)

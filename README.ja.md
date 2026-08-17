@@ -24,7 +24,7 @@ Physics Software Sensors
 <!-- section:project-status -->
 ## Project status
 
-7 software Sensor · 7 experimental adapter · English / 简体中文 / 日本語 · 公開 experimental `v0.6.0` Release · 7 Sensor Bundle · new-Sensor scaffold ready · 最初の E5 downstream reuse 完了。すべての Sensor が validated であるとは主張しません。
+7 software Sensor · 7 experimental adapter · 1 experimental Companion Processing Tool · English / 简体中文 / 日本語 · 公開 experimental `v0.6.0` Release · 7 Sensor Bundle · 最初の E5 downstream reuse 完了。新ツールは未リリースであり、すべての Sensor が validated であるとは主張しません。
 
 <!-- section:catalog -->
 ## センサーカタログ
@@ -40,6 +40,8 @@ Physics Software Sensors
 | [`tracker.yolo`](sensors/tracker.yolo/README.ja.md) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
 詳細は[センサーカタログ](docs/sensor-catalog.ja.md)を参照してください。エビデンスレベルと成熟度は別の概念です。
+
+Companion Tool [`vector.compose-3d`](processing/vector.compose-3d/README.ja.md) は既存のスカラー成分から追跡可能な3次元ベクトルを再構成し、第8の Sensor として扱いません。[Tool Catalog](docs/tool-catalog.ja.md)と[ブラウザ demo](examples/web-vector-compose-3d/README.md)を参照してください。
 
 <!-- section:quick-start -->
 ## クイックスタート
@@ -97,6 +99,7 @@ Experimental / Validation / Release
 ## ドキュメント
 
 - [センサーカタログ](docs/sensor-catalog.ja.md)
+- [Companion Tool カタログ](docs/tool-catalog.ja.md)
 - [Getting Started](docs/getting-started.ja.md)
 - [エビデンスと成熟度](docs/evidence-and-maturity.ja.md)
 - [Sensor Intake](docs/sensor-intake.ja.md)

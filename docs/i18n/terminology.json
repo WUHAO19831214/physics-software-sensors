@@ -46,6 +46,14 @@
     {"key": "source_project", "en": "Source project", "zh_CN": "来源项目", "ja": "ソースプロジェクト", "notes": "Historical implementation remains unchanged."},
     {"key": "numeric_ocr", "en": "Numeric OCR", "zh_CN": "数值 OCR", "ja": "数値 OCR", "notes": "Retains rawText and explicit parse failures."},
     {"key": "lost_state", "en": "Lost state", "zh_CN": "丢失状态", "ja": "ロスト状態", "notes": "Do not reuse a previous position as a current observation."},
-    {"key": "physical_quantity", "en": "Physical quantity", "zh_CN": "物理量", "ja": "物理量", "notes": "Requires units and a documented derivation/calibration path."}
+    {"key": "physical_quantity", "en": "Physical quantity", "zh_CN": "物理量", "ja": "物理量", "notes": "Requires units and a documented derivation/calibration path."},
+    {"key": "companion_processing_tool", "en": "Companion Processing Tool", "zh_CN": "配套处理工具", "ja": "補助処理ツール", "notes": "Processes existing observations; it is not counted as a Sensor."},
+    {"key": "vector_composition", "en": "Vector Composition", "zh_CN": "矢量合成", "ja": "ベクトル合成", "notes": "Composition of components or vectors must be stated precisely."},
+    {"key": "vector_reconstruction", "en": "Vector Reconstruction", "zh_CN": "矢量重建", "ja": "ベクトル再構成", "notes": "Reconstructs a vector representation from existing scalar measurements."},
+    {"key": "component_source", "en": "Component Source", "zh_CN": "分量来源", "ja": "成分ソース", "notes": "One of observed, derived, constrained, default, or missing."},
+    {"key": "azimuth", "en": "Azimuth", "zh_CN": "方位角", "ja": "方位角", "notes": "This tool defines zero axis, sign, range, and unit explicitly."},
+    {"key": "elevation", "en": "Elevation", "zh_CN": "仰角", "ja": "仰角", "notes": "This tool measures elevation from the x-y plane toward +z."},
+    {"key": "coordinate_transform", "en": "Coordinate Transform", "zh_CN": "坐标变换", "ja": "座標変換", "notes": "Kept outside vector mathematics core."},
+    {"key": "resultant_vector", "en": "Resultant Vector", "zh_CN": "合矢量", "ja": "合成ベクトル", "notes": "The vector sum; not a new direct observation."}
   ]
 }
