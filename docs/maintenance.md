@@ -49,3 +49,7 @@ Document the reason, replacement, compatibility impact, migration instructions a
 ## Maintenance task types
 
 Future handoffs use one of `NEW_SENSOR`, `NEW_REUSABLE_TOOL`, `SENSOR_UPGRADE`, `VALIDATION`, `DOWNSTREAM_INTEGRATION`, `RELEASE` or `MAINTENANCE`. Read [Current Project Status](project-status.md) before starting.
+
+## Homepage asset delivery incidents
+
+Repository image validity and GitHub delivery availability are separate checks. If the GitHub Contents API returns `200`, the repository blob exists, and local decode passes while `raw.githubusercontent.com` returns `429`, classify the incident as an **external GitHub Raw/CDN delivery issue**, not a broken repository image. Preserve valid canonical assets, use text navigation as graceful degradation, and record the incident without moving assets to an external image host. See the [2026-08-17 homepage stabilization record](upgrades/2026-08-17-homepage-showcase-stabilization.md).

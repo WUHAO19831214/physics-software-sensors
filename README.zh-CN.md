@@ -40,7 +40,7 @@
 <!-- section:project-status -->
 ## 项目状态
 
-**7 个软件传感器 · 1 个配套处理工具** · 英文 / 简体中文 / 日文
+**7 个软件传感器 · 1 个配套处理工具 · 共 8 项可复用公开能力** · 英文 / 简体中文 / 日文
 
 7 个 adapter 和该工具目前均为 experimental。公开 `v0.6.0` Release 包含 7 个 Sensor Bundle；工具尚未发布。首次 E5 下游复用已经完成，但不能把任何 Sensor 描述为已经全面 validated。
 
@@ -59,6 +59,7 @@
 
 完整信息见[传感器目录](docs/sensor-catalog.zh-CN.md)。证据等级表示实际跑过的路径；成熟度是另一项发布决策。
 
+<!-- section:companion-tools -->
 ### 配套处理工具
 
 | Tool | 用途 | 语言 | 状态 | 示例 | 文档 |
@@ -82,34 +83,16 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 
 Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle、`release-manifest.json` 和 `SHA256SUMS`。Sensor Bundle 是便于阅读的文档/示例包，不复制公共 core。参阅[下载传感器](docs/downloading-sensors.zh-CN.md)和[安装](docs/installation.zh-CN.md)。
 
-<!-- section:demonstrations -->
-## 能力展示
+<!-- section:capability-showcase -->
+## 能力总览
 
-### 软件传感器
+[![Physics Software Sensors：7 个软件传感器和 1 个配套处理工具](docs/assets/capability-showcase.png)](docs/capability-showcase.zh-CN.md)
 
-| 摄像头采集 | 屏幕采集 | 数字 OCR |
-| --- | --- | --- |
-| [![合成录制摄像头帧](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.zh-CN.md) | [![合成共享窗口像素](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.zh-CN.md) | [![数字 OCR 回放](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.zh-CN.md) |
-| 帧 + 时间元数据 | 用户授权的屏幕像素 | ROI 文本 → 数值 |
+图中汇总了 standalone、synthetic 和 replay 演示，各能力的证据等级并不相同；YOLO tile 明确是 **recorded detector replay**，不是真实 YOLO inference。图片只是增强展示；即使图片服务不可用，下面的文字链接仍是可靠入口。
 
-| 颜色标记 | 光斑重心 | 模板 / 单目标追踪 |
-| --- | --- | --- |
-| [![颜色标记回放](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.zh-CN.md) | [![光斑重心回放](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.zh-CN.md) | [![单目标追踪回放](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.zh-CN.md) |
-| HSV 标记 → 像素中心 | 光斑 → 图像重心 | 初始化 ROI → bbox/lost |
+[摄像头采集](sensors/camera.capture/README.zh-CN.md) · [屏幕采集](sensors/screen.capture/README.zh-CN.md) · [数字 OCR](sensors/ocr.number/README.zh-CN.md) · [颜色标记追踪](sensors/tracker.color-marker/README.zh-CN.md) · [光斑重心](sensors/tracker.spot-centroid/README.zh-CN.md) · [模板 / 单目标追踪](sensors/tracker.template/README.zh-CN.md) · [YOLO 追踪](sensors/tracker.yolo/README.zh-CN.md) · [三维矢量合成](processing/vector.compose-3d/README.zh-CN.md)
 
-| YOLO 追踪 |
-| --- |
-| [![Recorded detector replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.zh-CN.md) |
-| Recorded detector replay → 检测与 track ID |
-
-### 配套处理工具
-
-| 三维矢量合成 |
-| --- |
-| [![录制 OCR 分量合成为三维合矢量](processing/vector.compose-3d/assets/overview.png)](processing/vector.compose-3d/README.zh-CN.md) |
-| 标量 x/y/z 分量 → 模长、方向和与渲染器无关的合矢量 |
-
-这些图片分别属于对应能力页面声明的 synthetic、recorded、replay 或 standalone-runtime 证据，不会自动成为真实设备精度或计量证据。YOLO 图片明确是 **recorded detector replay**，不是真实 YOLO inference。展示覆盖：**7/7 个 Sensor + 1/1 个配套工具 = 8/8 项公开能力**。
+覆盖：**7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力**。进入三语[能力展示详情页](docs/capability-showcase.zh-CN.md)可查看八张独立 demo 图及其证据边界。
 
 <!-- section:principles -->
 ## 核心原则
@@ -144,6 +127,7 @@ Experimental / Validation / Release
 
 - [传感器目录](docs/sensor-catalog.zh-CN.md)
 - [配套工具目录](docs/tool-catalog.zh-CN.md)
+- [能力展示详情](docs/capability-showcase.zh-CN.md)
 - [快速开始](docs/getting-started.zh-CN.md)
 - [证据与成熟度](docs/evidence-and-maturity.zh-CN.md)
 - [Sensor 接入流程](docs/sensor-intake.zh-CN.md)

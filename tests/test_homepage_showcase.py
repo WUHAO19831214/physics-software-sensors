@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -33,5 +34,23 @@ def test_public_capability_counts_do_not_turn_tool_into_sensor() -> None:
         "sensors": "7/7",
         "companion_tools": "1/1",
         "total": "8/8",
+        "aggregate_image": "docs/assets/capability-showcase.png",
+        "homepage_image_requests": 1,
+        "detailed_demo_assets": "8/8",
         "broken_demo_links": 0,
     }
+
+
+def test_capability_showcase_is_reproducible_and_decodable(tmp_path: Path) -> None:
+    generated = tmp_path / "capability-showcase.png"
+    subprocess.run(
+        [sys.executable, str(ROOT / "tools/build_capability_showcase.py"), "--output", str(generated)],
+        check=True,
+        cwd=ROOT,
+    )
+    subprocess.run(
+        [sys.executable, str(ROOT / "tools/build_capability_showcase.py"), "--output", str(generated), "--check"],
+        check=True,
+        cwd=ROOT,
+    )
+    assert generated.read_bytes() == (ROOT / "docs/assets/capability-showcase.png").read_bytes()

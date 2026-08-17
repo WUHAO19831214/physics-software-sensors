@@ -16,7 +16,8 @@ createVector3RenderModel canvas projection
 
 - Runtime page: [`../../../examples/web-vector-compose-3d/`](../../../examples/web-vector-compose-3d/README.md)
 - Size: 1112 × 720 px
-- SHA-256: `8ddeafac006676affbb26828e72019a0a890cd2efbde67367d9f13daa757d9c2`
+- Format: PNG (the original browser capture was losslessly normalized from JPEG bytes so the `.png` extension and served media type agree)
+- SHA-256: `acdf56337794a4513a4869b148beed6a77d15d294cd1e8171fae0a75e0fc7353`
 - Evidence: standalone-runtime recorded OCR replay
 - License: repository-owned MIT asset
 

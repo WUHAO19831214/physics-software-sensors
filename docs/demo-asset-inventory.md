@@ -1,8 +1,8 @@
 # Demo Asset Inventory
 
-Scan scope: `sensors/*/assets/`, `processing/*/assets/`, and `examples/`; extensions `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`. Scan date: 2026-08-17. A **Yes** homepage candidate is used by all three root README galleries. Generated `examples/*/output/` files are local ignored output and are recorded here for completeness, not committed as public assets.
+Scan scope: `sensors/*/assets/`, `processing/*/assets/`, and `examples/`; extensions `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`. Scan date: 2026-08-17. A **Yes** showcase source is included in the generated aggregate and displayed individually on the trilingual Capability Showcase pages. Generated `examples/*/output/` files are local ignored output and are recorded here for completeness, not committed as public assets.
 
-| Capability | Asset | Kind | Evidence | Homepage candidate |
+| Capability | Asset | Kind | Evidence | Showcase source |
 | --- | --- | --- | --- | --- |
 | `camera.capture` | `sensors/camera.capture/assets/captured-frame.png` | Public overview | Actual deterministic CameraSource replay on synthetic input | **Yes** |
 | `camera.capture` | `sensors/camera.capture/assets/frame-packet-metadata.png` | Public detail | Serialized replay metadata | No |
@@ -62,9 +62,11 @@ Scan scope: `sensors/*/assets/`, `processing/*/assets/`, and `examples/`; extens
 
 ## Homepage result
 
-- Reused existing reviewed assets: **7**.
-- Newly generated runtime assets: **1** (`vector.compose-3d/assets/overview.png`).
-- Public capability visual coverage: **8/8**.
+- Reused existing reviewed Sensor assets: **7**.
+- Newly generated Tool runtime asset: **1** (`vector.compose-3d/assets/overview.png`).
+- Aggregate homepage asset: **1** (`docs/assets/capability-showcase.png`), generated offline from the 8 reviewed sources by `tools/build_capability_showcase.py`.
+- Root README image requests: **1** instead of 8; detailed trilingual pages retain all 8 individual images.
+- Public capability visual and text-link coverage: **8/8**.
 - Third-party/source-project images copied: **0**.
 - Homepage YOLO evidence: recorded detector replay only.
 

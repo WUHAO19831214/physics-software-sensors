@@ -36,6 +36,7 @@ yolo-runtime = [
 ]
 dev = [
   "jsonschema>=4.23,<5",
+  "Pillow>=11,<12",
   "pytest>=8,<9",
 ]
 

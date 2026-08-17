@@ -40,7 +40,7 @@ For example: `screen.capture → ocr.number → vector.compose-3d → 3D resulta
 <!-- section:project-status -->
 ## Project status
 
-**7 Software Sensors · 1 Companion Processing Tool** · English / 简体中文 / 日本語
+**7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities** · English / 简体中文 / 日本語
 
 All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.
 
@@ -59,6 +59,7 @@ All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contai
 
 See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exercised paths; maturity is a separate release decision.
 
+<!-- section:companion-tools -->
 ### Companion Processing Tools
 
 | Tool | Purpose | Language | Status | Example | Documentation |
@@ -82,34 +83,16 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 
 The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, `release-manifest.json` and `SHA256SUMS`. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read [Downloading Sensors](docs/downloading-sensors.md) and [Installation](docs/installation.md).
 
-<!-- section:demonstrations -->
-## Capability gallery
+<!-- section:capability-showcase -->
+## Capability Showcase
 
-### Software Sensors
+[![Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.md)
 
-| Camera Capture | Screen Capture | Number OCR |
-| --- | --- | --- |
-| [![Synthetic recorded camera frame](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.md) | [![Synthetic shared-window pixels](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.md) | [![Numeric OCR replay](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.md) |
-| Frames + timing metadata | Authorized screen pixels | ROI text → numeric value |
+Representative standalone, synthetic and replay demonstrations. Evidence level varies by capability; the YOLO tile is **recorded detector replay**, not real YOLO inference. The image is an enhancement, while the text links below remain the canonical navigation when image delivery is unavailable.
 
-| Color Marker | Spot Centroid | Template Tracker |
-| --- | --- | --- |
-| [![Color marker replay](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.md) | [![Spot centroid replay](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.md) | [![Single-object tracker replay](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.md) |
-| HSV marker → pixel center | Light spot → image centroid | Initialized ROI → bbox/lost |
+[Camera Capture](sensors/camera.capture/README.md) · [Screen Capture](sensors/screen.capture/README.md) · [Number OCR](sensors/ocr.number/README.md) · [Color Marker](sensors/tracker.color-marker/README.md) · [Spot Centroid](sensors/tracker.spot-centroid/README.md) · [Template Tracker](sensors/tracker.template/README.md) · [YOLO Tracker](sensors/tracker.yolo/README.md) · [3D Vector Composition](processing/vector.compose-3d/README.md)
 
-| YOLO Tracker |
-| --- |
-| [![Recorded detector replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.md) |
-| Recorded detector replay → detections and track IDs |
-
-### Companion Processing Tools
-
-| 3D Vector Composition |
-| --- |
-| [![Recorded OCR components composed into a 3D resultant vector](processing/vector.compose-3d/assets/overview.png)](processing/vector.compose-3d/README.md) |
-| Scalar x/y/z components → magnitude, direction and renderer-neutral resultant |
-
-These demonstrations are synthetic, recorded, replay, or standalone-runtime evidence as stated on each capability page. They are not automatically real-device accuracy or metrology evidence. The YOLO image is **recorded detector replay**, not real YOLO inference. Gallery coverage: **7/7 Sensors + 1/1 Companion Tool = 8/8 public capabilities**.
+Coverage: **7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities**. Open the trilingual [Capability Showcase](docs/capability-showcase.md) for all eight detailed demo images and evidence boundaries.
 
 <!-- section:principles -->
 ## Core principles
@@ -144,6 +127,7 @@ Future work enters through [Sensor Intake](docs/sensor-intake.md), the [Add New 
 
 - [Sensor Catalog](docs/sensor-catalog.md)
 - [Companion Tool Catalog](docs/tool-catalog.md)
+- [Capability Showcase](docs/capability-showcase.md)
 - [Getting Started](docs/getting-started.md)
 - [Evidence and Maturity](docs/evidence-and-maturity.md)
 - [Sensor Intake](docs/sensor-intake.md)

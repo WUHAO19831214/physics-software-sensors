@@ -40,7 +40,7 @@ Processor Sensor → SensorEvent / スカラー測定値
 <!-- section:project-status -->
 ## Project status
 
-**7 Software Sensor · 1 Companion Processing Tool** · English / 简体中文 / 日本語
+**7 Software Sensor · 1 Companion Processing Tool · 再利用可能な公開 capability 全 8 項** · English / 简体中文 / 日本語
 
 7 個の adapter と本ツールはすべて experimental です。公開 `v0.6.0` Release には 7 個の Sensor Bundle が含まれ、本ツールは未リリースです。最初の E5 downstream reuse は完了していますが、すべての Sensor が validated であるとは主張しません。
 
@@ -59,6 +59,7 @@ Processor Sensor → SensorEvent / スカラー測定値
 
 詳細は[センサーカタログ](docs/sensor-catalog.ja.md)を参照してください。エビデンスレベルと成熟度は別の概念です。
 
+<!-- section:companion-tools -->
 ### Companion Processing Tools
 
 | Tool | 用途 | 言語 | 状態 | Example | 文書 |
@@ -82,34 +83,16 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 
 Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release-manifest.json`、`SHA256SUMS` が含まれます。Sensor Bundle は文書・example 用であり、共通 core を複製しません。[Downloading Sensors](docs/downloading-sensors.ja.md) と [Installation](docs/installation.ja.md) を参照してください。
 
-<!-- section:demonstrations -->
-## 機能ギャラリー
+<!-- section:capability-showcase -->
+## Capability Showcase
 
-### Software Sensor
+[![Physics Software Sensors：7 個の Software Sensor と 1 個の Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.ja.md)
 
-| Camera Capture | Screen Capture | Number OCR |
-| --- | --- | --- |
-| [![合成 recorded camera frame](sensors/camera.capture/assets/captured-frame.png)](sensors/camera.capture/README.ja.md) | [![合成 shared-window pixel](sensors/screen.capture/assets/captured-screen-frame.png)](sensors/screen.capture/README.ja.md) | [![数値 OCR replay](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.ja.md) |
-| frame + 時刻 metadata | 許可された画面 pixel | ROI text → 数値 |
+standalone、synthetic、replay の代表的なデモを 1 枚にまとめています。エビデンスレベルは capability ごとに異なり、YOLO tile は **recorded detector replay** であって実 YOLO inference ではありません。画像は補助表示であり、配信できない場合も下記のテキストリンクから全項目へ移動できます。
 
-| Color Marker | 光スポット重心 | Template / Single-object Tracker |
-| --- | --- | --- |
-| [![カラーマーカー replay](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.ja.md) | [![光スポット重心 replay](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.ja.md) | [![単一物体 tracker replay](sensors/tracker.template/assets/overview.png)](sensors/tracker.template/README.ja.md) |
-| HSV marker → pixel center | 光スポット → 画像重心 | 初期 ROI → bbox/lost |
+[Camera Capture](sensors/camera.capture/README.ja.md) · [Screen Capture](sensors/screen.capture/README.ja.md) · [Number OCR](sensors/ocr.number/README.ja.md) · [Color Marker](sensors/tracker.color-marker/README.ja.md) · [光スポット重心](sensors/tracker.spot-centroid/README.ja.md) · [Template / Single-object Tracker](sensors/tracker.template/README.ja.md) · [YOLO Tracker](sensors/tracker.yolo/README.ja.md) · [3次元ベクトル合成](processing/vector.compose-3d/README.ja.md)
 
-| YOLO Tracker |
-| --- |
-| [![Recorded detector replay](sensors/tracker.yolo/assets/overview.png)](sensors/tracker.yolo/README.ja.md) |
-| Recorded detector replay → detection と track ID |
-
-### Companion Processing Tools
-
-| 3次元ベクトル合成 |
-| --- |
-| [![recorded OCR 成分から3次元合成ベクトルを構成](processing/vector.compose-3d/assets/overview.png)](processing/vector.compose-3d/README.ja.md) |
-| スカラー x/y/z 成分 → 大きさ、方向、renderer-neutral な合成ベクトル |
-
-各画像は capability page に記載した synthetic、recorded、replay、standalone-runtime のいずれかのエビデンスであり、自動的に実機精度や計量の根拠にはなりません。YOLO 画像は **recorded detector replay** であり、実 YOLO inference ではありません。表示範囲：**7/7 Sensor + 1/1 Companion Tool = 8/8 公開 capability**。
+範囲：**7/7 Software Sensor + 1/1 Companion Processing Tool = 再利用可能な公開 capability 8/8 項**。8 枚の詳細 demo とエビデンス境界は、3 言語の [Capability Showcase](docs/capability-showcase.ja.md) に掲載しています。
 
 <!-- section:principles -->
 ## 基本原則
@@ -144,6 +127,7 @@ Experimental / Validation / Release
 
 - [センサーカタログ](docs/sensor-catalog.ja.md)
 - [Companion Tool カタログ](docs/tool-catalog.ja.md)
+- [Capability Showcase](docs/capability-showcase.ja.md)
 - [Getting Started](docs/getting-started.ja.md)
 - [エビデンスと成熟度](docs/evidence-and-maturity.ja.md)
 - [Sensor Intake](docs/sensor-intake.ja.md)

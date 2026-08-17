@@ -8,7 +8,9 @@ import hashlib
 import os
 import re
 import subprocess
+import struct
 import sys
+import zlib
 from pathlib import Path
 
 from validate_i18n import validate_i18n
@@ -72,7 +74,7 @@ HOMEPAGE_FILES = {
     "zh_CN": ROOT / "README.zh-CN.md",
     "ja": ROOT / "README.ja.md",
 }
-HOMEPAGE_DEMO_IMAGES = {
+DETAILED_DEMO_IMAGES = {
     "sensors/camera.capture/assets/captured-frame.png",
     "sensors/screen.capture/assets/captured-screen-frame.png",
     "sensors/ocr.number/assets/overview.png",
@@ -81,6 +83,44 @@ HOMEPAGE_DEMO_IMAGES = {
     "sensors/tracker.template/assets/overview.png",
     "sensors/tracker.yolo/assets/overview.png",
     "processing/vector.compose-3d/assets/overview.png",
+}
+HOMEPAGE_SHOWCASE_IMAGE = "docs/assets/capability-showcase.png"
+HOMEPAGE_SHOWCASE_PAGES = {
+    "en": "docs/capability-showcase.md",
+    "zh_CN": "docs/capability-showcase.zh-CN.md",
+    "ja": "docs/capability-showcase.ja.md",
+}
+HOMEPAGE_CAPABILITY_LINKS = {
+    "en": {
+        "sensors/camera.capture/README.md",
+        "sensors/screen.capture/README.md",
+        "sensors/ocr.number/README.md",
+        "sensors/tracker.color-marker/README.md",
+        "sensors/tracker.spot-centroid/README.md",
+        "sensors/tracker.template/README.md",
+        "sensors/tracker.yolo/README.md",
+        "processing/vector.compose-3d/README.md",
+    },
+    "zh_CN": {
+        "sensors/camera.capture/README.zh-CN.md",
+        "sensors/screen.capture/README.zh-CN.md",
+        "sensors/ocr.number/README.zh-CN.md",
+        "sensors/tracker.color-marker/README.zh-CN.md",
+        "sensors/tracker.spot-centroid/README.zh-CN.md",
+        "sensors/tracker.template/README.zh-CN.md",
+        "sensors/tracker.yolo/README.zh-CN.md",
+        "processing/vector.compose-3d/README.zh-CN.md",
+    },
+    "ja": {
+        "sensors/camera.capture/README.ja.md",
+        "sensors/screen.capture/README.ja.md",
+        "sensors/ocr.number/README.ja.md",
+        "sensors/tracker.color-marker/README.ja.md",
+        "sensors/tracker.spot-centroid/README.ja.md",
+        "sensors/tracker.template/README.ja.md",
+        "sensors/tracker.yolo/README.ja.md",
+        "processing/vector.compose-3d/README.ja.md",
+    },
 }
 
 
@@ -201,32 +241,121 @@ def check_homepage_showcase() -> list[str]:
         errors.append("docs/project-status.json: companion_tool_count must be 1")
     if status.get("public_capability_count") != 8:
         errors.append("docs/project-status.json: public_capability_count must be 8")
+    sensor_manifests = list((ROOT / "sensors").glob("*/sensor.json"))
+    tool_manifests = list((ROOT / "processing").glob("*/tool.json"))
+    if len(sensor_manifests) != 7 or len(tool_manifests) != 1:
+        errors.append("homepage inventory must resolve to exactly 7 Sensors and 1 Companion Tool")
+    showcase_path = ROOT / HOMEPAGE_SHOWCASE_IMAGE
+    if not showcase_path.is_file():
+        errors.append(f"missing homepage aggregate image {HOMEPAGE_SHOWCASE_IMAGE}")
+    else:
+        errors.extend(validate_png(showcase_path, expected_size=(1200, 1458)))
+        if showcase_path.stat().st_size >= 1_500_000:
+            errors.append(f"{HOMEPAGE_SHOWCASE_IMAGE}: must remain below 1.5 MB")
+    for asset in sorted(DETAILED_DEMO_IMAGES):
+        asset_path = ROOT / asset
+        if not asset_path.is_file() or asset_path.stat().st_size <= 0:
+            errors.append(f"missing or empty detailed demo asset {asset}")
+        else:
+            errors.extend(validate_png(asset_path))
+    for language, raw_path in HOMEPAGE_SHOWCASE_PAGES.items():
+        detail_path = ROOT / raw_path
+        detail_text = detail_path.read_text(encoding="utf-8")
+        detail_images = {
+            str((detail_path.parent / image).resolve().relative_to(ROOT))
+            for image, _target in LINKED_IMAGE.findall(detail_text)
+            if image != "assets/capability-showcase.png"
+        }
+        if detail_images != DETAILED_DEMO_IMAGES:
+            errors.append(f"{raw_path}: detailed demo image coverage must be exactly 8/8")
     expected_pages = set(EXPECTED_SENSOR_IDS) | {"vector.compose-3d"}
     for language, path in HOMEPAGE_FILES.items():
         text = path.read_text(encoding="utf-8")
         try:
-            gallery = text.split("<!-- section:demonstrations -->", 1)[1].split("<!-- section:principles -->", 1)[0]
+            gallery = text.split("<!-- section:capability-showcase -->", 1)[1].split("<!-- section:principles -->", 1)[0]
         except IndexError:
-            errors.append(f"{path.name}: missing demonstrations/principles section boundary")
+            errors.append(f"{path.name}: missing capability-showcase/principles section boundary")
             continue
         linked_images = LINKED_IMAGE.findall(gallery)
-        image_targets = {image for image, _ in linked_images}
-        if len(linked_images) != 8 or image_targets != HOMEPAGE_DEMO_IMAGES:
-            errors.append(f"{path.name}: homepage gallery must contain the exact 8 capability images")
+        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, HOMEPAGE_SHOWCASE_PAGES[language])]
+        if linked_images != expected_linked_image:
+            errors.append(f"{path.name}: homepage must contain exactly one linked aggregate image")
         for image, target in linked_images:
             if not (ROOT / image).is_file():
                 errors.append(f"{path.name}: missing homepage image {image}")
             if not (ROOT / target).is_file():
                 errors.append(f"{path.name}: missing homepage capability link {target}")
+        local_targets = {
+            raw_target.strip().strip("<>").split("#", 1)[0]
+            for raw_target in MARKDOWN_LINK.findall(gallery)
+            if not raw_target.startswith(("http://", "https://", "mailto:"))
+        }
+        missing_links = HOMEPAGE_CAPABILITY_LINKS[language] - local_targets
+        if missing_links:
+            errors.append(f"{path.name}: missing homepage capability text links {sorted(missing_links)}")
+        for target in HOMEPAGE_CAPABILITY_LINKS[language]:
+            if not (ROOT / target).is_file():
+                errors.append(f"{path.name}: invalid homepage capability target {target}")
         if "Companion Processing Tools" not in text and "配套处理工具" not in text:
             errors.append(f"{path.name}: missing separate Companion Processing Tools section")
         for capability_id in expected_pages:
             if capability_id not in text:
                 errors.append(f"{path.name}: missing homepage capability {capability_id}")
         if "8/8" not in gallery:
-            errors.append(f"{path.name}: missing 8/8 visual coverage statement")
+            errors.append(f"{path.name}: missing 8/8 capability coverage statement")
         if "recorded detector replay" not in gallery.lower():
             errors.append(f"{path.name}: missing recorded detector replay boundary")
+    return errors
+
+
+def validate_png(path: Path, expected_size: tuple[int, int] | None = None) -> list[str]:
+    """Validate and decompress a non-interlaced 8-bit RGB/RGBA PNG offline."""
+
+    errors: list[str] = []
+    relative = path.relative_to(ROOT)
+    data = path.read_bytes()
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return [f"{relative}: invalid PNG signature"]
+    offset = 8
+    idat = bytearray()
+    width = height = channels = None
+    saw_iend = False
+    while offset + 12 <= len(data):
+        length = struct.unpack(">I", data[offset : offset + 4])[0]
+        chunk_type = data[offset + 4 : offset + 8]
+        payload_start = offset + 8
+        payload_end = payload_start + length
+        crc_end = payload_end + 4
+        if crc_end > len(data):
+            return [f"{relative}: truncated PNG chunk"]
+        payload = data[payload_start:payload_end]
+        expected_crc = struct.unpack(">I", data[payload_end:crc_end])[0]
+        actual_crc = zlib.crc32(chunk_type + payload) & 0xFFFFFFFF
+        if actual_crc != expected_crc:
+            errors.append(f"{relative}: invalid CRC in {chunk_type.decode('ascii', 'replace')} chunk")
+        if chunk_type == b"IHDR":
+            width, height, bit_depth, color_type, _compression, _filter, interlace = struct.unpack(">IIBBBBB", payload)
+            channels = {2: 3, 6: 4}.get(color_type)
+            if bit_depth != 8 or channels is None or interlace != 0:
+                errors.append(f"{relative}: expected non-interlaced 8-bit RGB/RGBA PNG")
+        elif chunk_type == b"IDAT":
+            idat.extend(payload)
+        elif chunk_type == b"IEND":
+            saw_iend = True
+            break
+        offset = crc_end
+    if not saw_iend or width is None or height is None or channels is None or not idat:
+        return errors + [f"{relative}: incomplete PNG structure"]
+    if expected_size is not None and (width, height) != expected_size:
+        errors.append(f"{relative}: dimensions {(width, height)} != {expected_size}")
+    try:
+        decoded = zlib.decompress(bytes(idat))
+    except zlib.error as exc:
+        errors.append(f"{relative}: PNG image data cannot be decompressed: {exc}")
+    else:
+        expected_length = height * (1 + width * channels)
+        if len(decoded) != expected_length:
+            errors.append(f"{relative}: decoded scanline length {len(decoded)} != {expected_length}")
     return errors
 
 
@@ -426,7 +555,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, 1 trilingual Companion Tool, 8/8 homepage visuals, i18n parity, pilot demos, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, 1 trilingual Companion Tool, 1 decoded homepage aggregate with 8/8 capability links, i18n parity, pilot demos, and local Markdown links")
     return 0
 
 
