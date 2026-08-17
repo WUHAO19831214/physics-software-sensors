@@ -7,6 +7,8 @@
 
 **物理実験のための再利用可能なソフトウェアセンサー基盤です。** カメラフレーム、画面ピクセル、画像処理による観測を、来歴を追跡できる `FramePacket` と `SensorEvent` に統一し、将来の物理実験プロジェクトから再利用できるようにします。
 
+Sensor の出力を処理する再利用可能な補助処理ツールも収録します。これらのツールを、新しい直接観測を行う Sensor とは扱いません。
+
 新しい実験アプリケーションではなく、長期的に保守する基盤ライブラリです。ソースプロジェクトは変更せず、過去の実装と利用状況の事実源として維持します。
 
 ```text
@@ -21,10 +23,26 @@ Physics Software Sensors
 
 成熟した機能を adapter として段階的に抽出し、固定 commit に対するテスト、文書化、ベンチマークを経て再利用します。ピクセル位置、OCR 文字列、信頼度、バウンディングボックスは直接観測であり、自動的に校正済み物理量になるわけではありません。
 
+```text
+物理的／ソフトウェア source
+        ↓
+Capture Sensor → FramePacket
+        ↓
+Processor Sensor → SensorEvent / スカラー測定値
+        ↓
+補助処理ツール
+        ↓
+物理実験アプリケーション
+```
+
+例：`screen.capture → ocr.number → vector.compose-3d → 3次元合成ベクトル`。最後の段階は既存のスカラー測定値を再構成するもので、新しい量を観測しません。
+
 <!-- section:project-status -->
 ## Project status
 
-7 software Sensor · 7 experimental adapter · English / 简体中文 / 日本語 · 公開 experimental `v0.6.0` Release · 7 Sensor Bundle · new-Sensor scaffold ready · 最初の E5 downstream reuse 完了。すべての Sensor が validated であるとは主張しません。
+**7 Software Sensor · 1 Companion Processing Tool · 再利用可能な公開 capability 全 8 項** · English / 简体中文 / 日本語
+
+7 個の adapter と本ツールはすべて experimental です。公開 `v0.6.0` Release には 7 個の Sensor Bundle が含まれ、本ツールは未リリースです。最初の E5 downstream reuse は完了していますが、すべての Sensor が validated であるとは主張しません。
 
 <!-- section:catalog -->
 ## センサーカタログ
@@ -41,6 +59,15 @@ Physics Software Sensors
 
 詳細は[センサーカタログ](docs/sensor-catalog.ja.md)を参照してください。エビデンスレベルと成熟度は別の概念です。
 
+<!-- section:companion-tools -->
+### Companion Processing Tools
+
+| Tool | 用途 | 言語 | 状態 | Example | 文書 |
+| --- | --- | --- | --- | --- | --- |
+| [`vector.compose-3d`](processing/vector.compose-3d/README.ja.md) | スカラー成分から3次元ベクトルを合成・再構成 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.ja.md) |
+
+詳細は [Companion Tool Catalog](docs/tool-catalog.ja.md)を参照してください。Companion Tool は拡張可能な測定処理 layer であり、Sensor 数には含めません。
+
 <!-- section:quick-start -->
 ## クイックスタート
 
@@ -56,14 +83,16 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 
 Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release-manifest.json`、`SHA256SUMS` が含まれます。Sensor Bundle は文書・example 用であり、共通 core を複製しません。[Downloading Sensors](docs/downloading-sensors.ja.md) と [Installation](docs/installation.ja.md) を参照してください。
 
-<!-- section:demonstrations -->
-## デモ
+<!-- section:capability-showcase -->
+## Capability Showcase
 
-| カラーマーカー | 数値 OCR | 光スポット重心 |
-| --- | --- | --- |
-| [![カラーマーカーのリプレイ](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.ja.md) | [![OCR synthetic pixels](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.ja.md) | [![光スポット重心のリプレイ](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.ja.md) |
+[![Physics Software Sensors：7 個の Software Sensor と 1 個の Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.ja.md)
 
-これらは standalone synthetic/replay デモであり、実機精度や計量の根拠ではありません。YOLO の公開デモは recorded detector replay で、実モデル推論ではありません。
+standalone、synthetic、replay の代表的なデモを 1 枚にまとめています。エビデンスレベルは capability ごとに異なり、YOLO tile は **recorded detector replay** であって実 YOLO inference ではありません。画像は補助表示であり、配信できない場合も下記のテキストリンクから全項目へ移動できます。
+
+[Camera Capture](sensors/camera.capture/README.ja.md) · [Screen Capture](sensors/screen.capture/README.ja.md) · [Number OCR](sensors/ocr.number/README.ja.md) · [Color Marker](sensors/tracker.color-marker/README.ja.md) · [光スポット重心](sensors/tracker.spot-centroid/README.ja.md) · [Template / Single-object Tracker](sensors/tracker.template/README.ja.md) · [YOLO Tracker](sensors/tracker.yolo/README.ja.md) · [3次元ベクトル合成](processing/vector.compose-3d/README.ja.md)
+
+範囲：**7/7 Software Sensor + 1/1 Companion Processing Tool = 再利用可能な公開 capability 8/8 項**。8 枚の詳細 demo とエビデンス境界は、3 言語の [Capability Showcase](docs/capability-showcase.ja.md) に掲載しています。
 
 <!-- section:principles -->
 ## 基本原則
@@ -97,12 +126,15 @@ Experimental / Validation / Release
 ## ドキュメント
 
 - [センサーカタログ](docs/sensor-catalog.ja.md)
+- [Companion Tool カタログ](docs/tool-catalog.ja.md)
+- [Capability Showcase](docs/capability-showcase.ja.md)
 - [Getting Started](docs/getting-started.ja.md)
 - [エビデンスと成熟度](docs/evidence-and-maturity.ja.md)
 - [Sensor Intake](docs/sensor-intake.ja.md)
 - [最初の完全な再利用ループ](docs/first-reuse-loop.ja.md) と [Maintenance Guide](docs/maintenance.md)
 - [Current Project Status](docs/project-status.md)
 - [用語](docs/i18n/terminology.md) と [i18n Style Guide](docs/i18n/style-guide.md)
+- [Demo Asset Inventory](docs/demo-asset-inventory.md)
 - [Architecture](docs/architecture.md)、[Data Format](docs/data-format.md)、[Benchmarking](docs/benchmarking.md)
 - [v0.6.0 Release](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
 

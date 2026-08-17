@@ -108,6 +108,32 @@ def validate_i18n(root: Path = ROOT) -> list[str]:
             if RELEASE_URL not in text and "/releases/download/v0.6.0/" not in text:
                 errors.append(f"{raw_path}: missing v0.6.0 release link")
 
+    tool_sections = document_map.get("tool_sections")
+    tools = document_map.get("tools")
+    if not isinstance(tool_sections, list) or not isinstance(tools, dict):
+        return errors + ["document-map.json: tools/tool_sections must be present"]
+    directory_ids = {path.parent.name for path in (root / "processing").glob("*/tool.json")}
+    if set(tools) != directory_ids:
+        errors.append(f"document-map.json: tool IDs do not match directories: {sorted(set(tools) ^ directory_ids)}")
+    for tool_id, spec in tools.items():
+        if not isinstance(spec, dict):
+            errors.append(f"document-map.json: invalid tool {tool_id}")
+            continue
+        errors.extend(validate_set(root, tool_id, spec, tool_sections))
+        manifest = load_object(root / "processing" / tool_id / "tool.json")
+        expected = {"version": manifest.get("version"), "status": manifest.get("status")}
+        for field, value in expected.items():
+            if spec.get(field) != value:
+                errors.append(f"document-map.json: {tool_id} {field} {spec.get(field)!r} != {value!r}")
+        for language in LANGUAGES:
+            raw_path = spec.get(language)
+            if not isinstance(raw_path, str) or not (root / raw_path).is_file():
+                continue
+            text = (root / raw_path).read_text(encoding="utf-8")
+            for literal in (tool_id, str(expected["version"]), str(expected["status"])):
+                if literal not in text:
+                    errors.append(f"{raw_path}: missing tool parity fact {literal}")
+
     entries = terminology.get("entries")
     if not isinstance(entries, list) or len(entries) < 40:
         errors.append("terminology.json: at least 40 entries are required")
@@ -143,7 +169,7 @@ def main() -> int:
         return 1
     document_map = load_object(ROOT / "docs/i18n/document-map.json")
     terms = load_object(ROOT / "docs/i18n/terminology.json")["entries"]
-    print(f"OK: i18n parity {len(document_map['documents'])} public document sets, {len(document_map['sensors'])} Sensor Pages x 3, {len(terms)} terms")
+    print(f"OK: i18n parity {len(document_map['documents'])} public document sets, {len(document_map['sensors'])} Sensor Pages x 3, {len(document_map['tools'])} Tool Page x 3, {len(terms)} terms")
     return 0
 
 

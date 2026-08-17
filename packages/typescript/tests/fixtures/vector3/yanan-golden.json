@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "source_repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+  "historical_commit": "ac46ed58ed020c96e75d34d70759477ef898bbef",
+  "current_commit": "cb073e89d6d87129287030f1df08bd540504eb39",
+  "transition_commit": "ed33d00774cd7eedf1ff4c3bd9a2cf9225410cf5",
+  "tolerance": 1e-12,
+  "cases": [
+    {
+      "id": "positive-x-only",
+      "meaning": "General historical x-axis component behavior",
+      "components": {"x": 2, "y": 0, "z": 0},
+      "expected_magnitude": 2,
+      "expected_direction": {"azimuth_deg": 0, "elevation_deg": 0},
+      "expected_scene": {"x": -2, "y": 0, "z": 0}
+    },
+    {
+      "id": "positive-y-only",
+      "meaning": "General historical y-axis component behavior",
+      "components": {"x": 0, "y": 3, "z": 0},
+      "expected_magnitude": 3,
+      "expected_direction": {"azimuth_deg": 90, "elevation_deg": 0},
+      "expected_scene": {"x": 0, "y": 0, "z": 3}
+    },
+    {
+      "id": "positive-z-only",
+      "meaning": "General historical z-axis component behavior",
+      "components": {"x": 0, "y": 0, "z": 4},
+      "expected_magnitude": 4,
+      "expected_direction": {"azimuth_deg": 0, "elevation_deg": 90},
+      "expected_scene": {"x": 0, "y": 4, "z": 0}
+    },
+    {
+      "id": "xy-plane",
+      "meaning": "General historical x-y component behavior",
+      "components": {"x": 3, "y": 4, "z": 0},
+      "expected_magnitude": 5,
+      "expected_direction": {"azimuth_deg": 53.13010235415598, "elevation_deg": 0},
+      "expected_scene": {"x": -3, "y": 0, "z": 4}
+    },
+    {
+      "id": "yz-plane",
+      "meaning": "General historical y-z component behavior",
+      "components": {"x": 0, "y": 3, "z": 4},
+      "expected_magnitude": 5,
+      "expected_direction": {"azimuth_deg": 90, "elevation_deg": 53.13010235415598},
+      "expected_scene": {"x": 0, "y": 4, "z": 3}
+    },
+    {
+      "id": "general-xyz",
+      "meaning": "General historical three-component behavior",
+      "components": {"x": 2, "y": 3, "z": 6},
+      "expected_magnitude": 7,
+      "expected_direction": {"azimuth_deg": 56.309932474020215, "elevation_deg": 58.99728086612601},
+      "expected_scene": {"x": -2, "y": 6, "z": 3}
+    },
+    {
+      "id": "negative-components",
+      "meaning": "Signs are preserved for negative historical components",
+      "components": {"x": -2, "y": -3, "z": -6},
+      "expected_magnitude": 7,
+      "expected_direction": {"azimuth_deg": 236.3099324740202, "elevation_deg": -58.99728086612601},
+      "expected_scene": {"x": 2, "y": -6, "z": -3}
+    },
+    {
+      "id": "zero-vector",
+      "meaning": "Zero has a magnitude but no defined direction",
+      "components": {"x": 0, "y": 0, "z": 0},
+      "expected_magnitude": 0,
+      "expected_direction": null,
+      "expected_scene": {"x": 0, "y": 0, "z": 0}
+    },
+    {
+      "id": "historical-f1-f2-f3",
+      "meaning": "F1/F2/F3 treated as classroom x/y/z orthogonal scalar components",
+      "components": {"x": 3, "y": 4, "z": 12},
+      "expected_magnitude": 13,
+      "expected_direction": {"azimuth_deg": 53.13010235415598, "elevation_deg": 67.38013505195957},
+      "expected_scene": {"x": -3, "y": 12, "z": 4}
+    },
+    {
+      "id": "current-fy-fz-fx-constrained",
+      "meaning": "Fy/Fz observed by OCR; Fx explicitly constrained to zero",
+      "components": {"x": 0, "y": -2.33, "z": 0.5},
+      "expected_magnitude": 2.383044271514063,
+      "expected_direction": {"azimuth_deg": 270, "elevation_deg": 12.111549508979438},
+      "expected_scene": {"x": 0, "y": 0.5, "z": -2.33}
+    }
+  ]
+}

@@ -17,6 +17,10 @@ pixel には camera/screen capture、表示文字列には OCR、画像上の位
 
 対象の [Sensor Page](sensor-catalog.ja.md) を開き、宣言された依存関係だけを導入して小さな example を実行します。Recorded/synthetic example は元アプリからの分離を示しますが、実機精度の証拠ではありません。
 
+### センシング後：測定値を処理する
+
+導出表現が必要な場合は、独立した [Companion Tool Catalog](tool-catalog.ja.md)へ進みます。例として、`screen.capture → ocr.number → vector.compose-3d` は画面表示のスカラー成分から追跡可能な3次元合成ベクトルを構成します。この Tool は新しい観測を作らず、現在の未リリース Tool source は `v0.6.0` に含まれません。
+
 <!-- section:interpret -->
 ## 4. 保守的に解釈する
 

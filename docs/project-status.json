@@ -10,6 +10,17 @@
     "immutable": true
   },
   "sensor_count": 7,
+  "companion_tool_count": 1,
+  "public_capability_count": 8,
+  "homepage_visual_coverage": {
+    "sensors": "7/7",
+    "companion_tools": "1/1",
+    "total": "8/8",
+    "aggregate_image": "docs/assets/capability-showcase.png",
+    "homepage_image_requests": 1,
+    "detailed_demo_assets": "8/8",
+    "broken_demo_links": 0
+  },
   "implemented_adapter_count": 7,
   "languages": ["en", "zh-CN", "ja"],
   "distribution": {"python_wheel": true, "typescript_tgz": true, "sensor_bundles": 7, "pypi": false, "npm_registry": false},
@@ -22,6 +33,9 @@
     "tracker.template": {"maturity": "experimental", "evidence": "E3", "version": "0.4.0"},
     "tracker.yolo": {"maturity": "experimental", "evidence": "E2", "version": "0.5.0"}
   },
+  "companion_tools": {
+    "vector.compose-3d": {"status": "experimental", "version": "0.1.0", "language": "typescript", "released": false}
+  },
   "downstream_integrations": [
     {
       "repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
@@ -33,7 +47,7 @@
       "realtime_bridge": false
     }
   ],
-  "workflows": {"sensor_intake": "ready", "sensor_upgrade": "ready", "downstream_reuse": "ready", "release": "ready"},
+  "workflows": {"sensor_intake": "ready", "companion_tool_intake": "ready", "sensor_upgrade": "ready", "downstream_reuse": "ready", "release": "ready"},
   "ci": {"enabled": false, "templates_available": true, "validation_mode": "local fixed-SHA and clean-install evidence"},
   "known_gaps": ["E4 real camera/optical validation", "controlled physical movement", "repeatability and uncertainty", "cross-platform runtime coverage", "historical source license resolution"]
 }

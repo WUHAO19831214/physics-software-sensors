@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "id": "vector.compose-3d",
+  "name": "3D Vector Composition & Reconstruction",
+  "type": "companion-processing-tool",
+  "status": "experimental",
+  "version": "0.1.0",
+  "language": "typescript",
+  "implementation": "packages/typescript/src/processing/vector3",
+  "inputs": ["scalar-component.x", "scalar-component.y", "scalar-component.z"],
+  "outputs": ["vector3-measurement", "vector3-render-model"],
+  "component_sources": ["observed", "derived", "constrained", "default", "missing"],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+      "commit": "ac46ed58ed020c96e75d34d70759477ef898bbef",
+      "path": "src/visualization/ForceVisualization3D.tsx",
+      "symbols": ["ForceTriplet", "readTesseractForces"]
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+      "commit": "cb073e89d6d87129287030f1df08bd540504eb39",
+      "path": "src/visualization/ForceVisualization3D.tsx",
+      "symbols": ["ForceTriplet", "readTesseractForces", "createSceneForceVectors"]
+    }
+  ],
+  "license_review": "clean-rewrite-no-source-code-or-assets-copied"
+}

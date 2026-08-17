@@ -7,6 +7,8 @@ Machine-readable facts are in [`project-status.json`](project-status.json).
 | Project mode | Long-term maintenance |
 | Baseline public Release | `v0.6.0` Experimental |
 | Sensors | 7 |
+| Companion Tools | 1 (`vector.compose-3d`, experimental, unreleased) |
+| Public capabilities | 8 total; 7/7 Sensor + 1/1 Tool; one aggregate homepage image with 8/8 text links |
 | Implemented adapters | 7, all `experimental` |
 | Public languages | English / 简体中文 / 日本語 |
 | Distribution | Python wheel, TypeScript tgz, 7 Sensor Bundles on GitHub Release |

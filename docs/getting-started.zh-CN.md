@@ -17,6 +17,10 @@
 
 打开对应 [Sensor Page](sensor-catalog.zh-CN.md)，只安装它声明的依赖并运行小型示例。Recorded/synthetic 示例证明它能离开来源应用运行，但不证明真实设备精度。
 
+### 感知之后：处理测量值
+
+实验需要派生表示时，再进入独立的[配套工具目录](tool-catalog.zh-CN.md)。例如，`screen.capture → ocr.number → vector.compose-3d` 把屏幕显示的标量分量重建为可追溯三维合矢量。该工具不产生新的观测，而且当前未发布的工具源码不属于 `v0.6.0`。
+
 <!-- section:interpret -->
 ## 4. 保守解释结果
 

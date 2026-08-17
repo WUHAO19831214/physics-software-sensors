@@ -18,7 +18,8 @@ flowchart LR
     Template --> Events
     Yolo --> Events
     OCR --> Events
-    Events --> Experiment["Physics experiment application"]
+    Events --> Processing["Measurement Processing / Companion Tools"]
+    Processing --> Experiment["Physics experiment application"]
     CameraSource -. HealthSnapshot .-> Evidence["Validation / benchmark evidence"]
     ScreenSource -. HealthSnapshot .-> Evidence
     Events -. metrics .-> Evidence
@@ -34,6 +35,7 @@ flowchart LR
 | `sensors` | 能力清单、来源锚点、成熟度 | 大文件、模型权重 |
 | `packages/*` | 各语言接口和未来适配器 | 实验专用页面 |
 | `benchmarks` | 数据集卡、协议、结果与验收门槛 | 未脱敏原始数据 |
+| `processing` | 处理已有观测/测量的数学、标定、派生和 renderer-neutral 工具 | 新的直接观测、实验 UI |
 | 下游应用 | UI、实验流程、可视化、导出 | 私自改变事件语义 |
 
 ## 3. 两类统一组件
@@ -47,6 +49,10 @@ flowchart LR
 消费 `FramePacket`，产生 `SensorEvent`，例如 OCR、颜色追踪、YOLO、模板追踪和光斑重心。它必须说明需要的颜色空间、ROI、模型/模板版本和坐标系。
 
 两类组件共享相同生命周期和健康状态，差别只体现在输入输出声明中。
+
+### Companion Processing Tool
+
+处理已有 SensorEvent 或标量 measurement，不实现 Sensor 生命周期，也不产生新的直接观测。首个工具 `vector.compose-3d` 保留分量来源/质量/时间，数学 core 与坐标渲染映射分离。工具使用独立 `tool.json` 和 Tool Catalog，不能计入 Sensor 数量。
 
 ## 4. 数据流约束
 

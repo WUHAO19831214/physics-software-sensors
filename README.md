@@ -7,6 +7,8 @@
 
 **A reusable software sensing layer for physics experiments.** It turns camera frames, screen pixels and image-processing observations into traceable `FramePacket` and `SensorEvent` records that future physics projects can reuse.
 
+The repository also hosts reusable Companion Processing Tools that operate on Sensor outputs without pretending to create new direct observations.
+
 This is a long-lived capability library, not a new experiment application. Source projects remain unchanged and continue to be the historical source of truth.
 
 ```text
@@ -21,10 +23,26 @@ Future Physics Projects
 
 Mature capabilities are extracted through adapters, tested against fixed source commits, documented, benchmarked and then reused. Pixel position, OCR text, confidence and bounding boxes are direct software observations—not automatically calibrated physical quantities.
 
+```text
+Physical / Software Source
+        ↓
+Capture Sensors → FramePacket
+        ↓
+Processor Sensors → SensorEvent / scalar measurements
+        ↓
+Companion Processing Tools
+        ↓
+Physics Application
+```
+
+For example: `screen.capture → ocr.number → vector.compose-3d → 3D resultant vector`. The final step reconstructs existing scalar measurements; it does not sense a new quantity.
+
 <!-- section:project-status -->
 ## Project status
 
-7 software Sensors · 7 experimental adapters · English / 简体中文 / 日本語 · public experimental `v0.6.0` Release · 7 Sensor Bundles · new-Sensor scaffold ready · first E5 downstream reuse completed. No Sensor is claimed as fully validated.
+**7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities** · English / 简体中文 / 日本語
+
+All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.
 
 <!-- section:catalog -->
 ## Sensor catalog
@@ -41,6 +59,15 @@ Mature capabilities are extracted through adapters, tested against fixed source 
 
 See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exercised paths; maturity is a separate release decision.
 
+<!-- section:companion-tools -->
+### Companion Processing Tools
+
+| Tool | Purpose | Language | Status | Example | Documentation |
+| --- | --- | --- | --- | --- | --- |
+| [`vector.compose-3d`](processing/vector.compose-3d/README.md) | 3D vector composition and reconstruction from scalar components | TypeScript | experimental | [web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.md) |
+
+See the full [Tool Catalog](docs/tool-catalog.md). Companion Tools form an extensible processing layer and are not counted as Sensors.
+
 <!-- section:quick-start -->
 ## Quick start
 
@@ -56,14 +83,16 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 
 The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, `release-manifest.json` and `SHA256SUMS`. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read [Downloading Sensors](docs/downloading-sensors.md) and [Installation](docs/installation.md).
 
-<!-- section:demonstrations -->
-## Demonstrations
+<!-- section:capability-showcase -->
+## Capability Showcase
 
-| Color Marker | Number OCR | Spot Centroid |
-| --- | --- | --- |
-| [![Color marker replay](sensors/tracker.color-marker/assets/overview.png)](sensors/tracker.color-marker/README.md) | [![OCR synthetic pixels](sensors/ocr.number/assets/overview.png)](sensors/ocr.number/README.md) | [![Spot centroid replay](sensors/tracker.spot-centroid/assets/overview.png)](sensors/tracker.spot-centroid/README.md) |
+[![Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.md)
 
-These are standalone synthetic/replay demonstrations, not real-device accuracy or metrology evidence. The YOLO public demo is recorded detector replay, not real model inference.
+Representative standalone, synthetic and replay demonstrations. Evidence level varies by capability; the YOLO tile is **recorded detector replay**, not real YOLO inference. The image is an enhancement, while the text links below remain the canonical navigation when image delivery is unavailable.
+
+[Camera Capture](sensors/camera.capture/README.md) · [Screen Capture](sensors/screen.capture/README.md) · [Number OCR](sensors/ocr.number/README.md) · [Color Marker](sensors/tracker.color-marker/README.md) · [Spot Centroid](sensors/tracker.spot-centroid/README.md) · [Template Tracker](sensors/tracker.template/README.md) · [YOLO Tracker](sensors/tracker.yolo/README.md) · [3D Vector Composition](processing/vector.compose-3d/README.md)
+
+Coverage: **7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities**. Open the trilingual [Capability Showcase](docs/capability-showcase.md) for all eight detailed demo images and evidence boundaries.
 
 <!-- section:principles -->
 ## Core principles
@@ -97,12 +126,15 @@ Future work enters through [Sensor Intake](docs/sensor-intake.md), the [Add New 
 ## Documentation
 
 - [Sensor Catalog](docs/sensor-catalog.md)
+- [Companion Tool Catalog](docs/tool-catalog.md)
+- [Capability Showcase](docs/capability-showcase.md)
 - [Getting Started](docs/getting-started.md)
 - [Evidence and Maturity](docs/evidence-and-maturity.md)
 - [Sensor Intake](docs/sensor-intake.md)
 - [First Complete Reuse Loop](docs/first-reuse-loop.md) and [Maintenance Guide](docs/maintenance.md)
 - [Current Project Status](docs/project-status.md)
 - [Terminology](docs/i18n/terminology.md) and [i18n Style Guide](docs/i18n/style-guide.md)
+- [Demo Asset Inventory](docs/demo-asset-inventory.md)
 - [Architecture](docs/architecture.md), [data format](docs/data-format.md), [benchmarking](docs/benchmarking.md)
 - [Release v0.6.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
 

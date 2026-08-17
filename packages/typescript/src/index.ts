@@ -4,3 +4,4 @@ export * from './capture/screen.js';
 export * from './ocr/number.js';
 export * from './ocr/preprocess.js';
 export * from './ocr/tesseract.js';
+export * from './processing/vector3/index.js';
