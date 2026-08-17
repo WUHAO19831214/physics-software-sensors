@@ -16,7 +16,7 @@
 - [x] Two consecutive builds are compared and reproducibility is recorded honestly.
 - [x] Dependency/license and historical source-license boundaries are reviewed.
 - [x] No `.pt`, `.onnx`, `.engine` or third-party weight is tracked or packaged.
-- [ ] Release Notes, download/install docs, seven Distribution sections and Agent Handoff are complete.
+- [x] Release Notes, download/install docs, seven Distribution sections and Agent Handoff are complete.
 - [x] Five fixed source repository commits are clean.
 
 ## Publication actions — intentionally unchecked in the Draft PR
