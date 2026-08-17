@@ -1,6 +1,6 @@
 # Phase 4B planning scaffold: i18n and future Sensor intake
 
-Status: **planning only**. This document defines the next review surface; it does not authorize bulk translation, a new Sensor, package/API changes or source-project migration.
+Status: **implemented in Draft PR #7; awaiting review**. No eighth Sensor, package/API change or source-project migration was performed.
 
 ## A. Internationalization / 国际化 / 国際化
 
@@ -21,13 +21,13 @@ Planned coverage:
 
 Planning decisions still required:
 
-- [ ] Select canonical source language and translation ownership rules.
-- [ ] Choose file layout without changing existing stable URLs unnecessarily.
-- [ ] Define what must remain byte-identical across languages: Sensor IDs, JSON field names, versions, units, coordinates, maturity and evidence levels.
-- [ ] Define a terminology review workflow for physics, measurement and computer-vision terms.
-- [ ] Define parity metadata and validation without treating machine translation as reviewed publication.
-- [ ] Pilot one repository page and one Sensor Page before translating all pages.
-- [ ] Specify fallback and language-switch behavior on GitHub.
+- [x] Select English as canonical prose while machine JSON remains the technical fact source.
+- [x] Use `README.md`, `README.zh-CN.md`, `README.ja.md` and preserve default English URLs.
+- [x] Keep Sensor IDs, JSON fields, versions, units, coordinates, maturity and evidence unchanged.
+- [x] Define terminology and review rules for physics, measurement and computer vision.
+- [x] Add document-map metadata and an executable parity validator.
+- [x] Apply the structure to root/public docs and all seven Sensor Pages.
+- [x] Use explicit GitHub Markdown language links; English is fallback/default.
 
 ## B. Future Sensor intake workflow / 新 Sensor 长期接入
 
@@ -55,21 +55,20 @@ validated / stable gates
 
 Planning decisions still required:
 
-- [ ] Define candidate nomination and rejection criteria.
-- [ ] Require repository, full commit SHA, file, symbol, use case, license state and source-output comparison before intake.
-- [ ] Define adapter isolation checks that prohibit UI/business-store/source-project coupling.
-- [ ] Design reusable Sensor Page, SOURCE, benchmark, golden-data and upgrade-record templates.
-- [ ] Design a machine-readable intake record and validation command.
-- [ ] Define privacy, model-artifact, dataset and third-party license gates.
-- [ ] Define experimental→validated→stable promotion and rollback evidence.
-- [ ] Define how downstream projects retain old paths until comparison succeeds.
+- [x] Define candidate qualification, exclusions and ACCEPT/DEFER/REJECT.
+- [x] Require repository, full SHA, file/symbol, use case, license and source comparison.
+- [x] Require adapter isolation from UI/business/source-project coupling.
+- [x] Add proposal/prompt/recipe and truthful trilingual scaffold templates.
+- [x] Add document-map integration, i18n validation and optional handoff `sensor_intake` record.
+- [x] Define privacy/model/dataset/license review gates.
+- [x] Map intake lifecycle to existing evidence/maturity without changing contracts.
+- [x] Require downstream old path and rollback until comparison succeeds.
 
 ## Explicit non-goals for this scaffold PR
 
-- No bulk English or Japanese translation.
 - No eighth Sensor or candidate implementation.
 - No contract redesign, package version bump or registry publication.
 - No changes to the five historical source repositories.
 - No movement of the immutable `v0.6.0` tag.
 
-The next task must review and approve the above decisions before implementation begins.
+Implementation is complete for review. Phase 5 and downstream reuse validation remain out of scope.

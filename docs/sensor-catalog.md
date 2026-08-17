@@ -1,24 +1,28 @@
-# 软件传感器目录
+# Sensor Catalog
 
-本页是仓库级入口。状态描述的是 **physics-software-sensors 中的实现**，不是来源项目的成熟度。
+**English** | [简体中文](sensor-catalog.zh-CN.md) | [日本語](sensor-catalog.ja.md)
 
-| Sensor | 中文名称 | 类型 | 主要来源 | 状态 | Demo | Python | TypeScript |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| [`camera.capture`](../sensors/camera.capture/README.md) | 摄像头采集 | source | 声音—视觉稳定版等五仓 | experimental | [synthetic replay](../sensors/camera.capture/assets/captured-frame.png) | CameraSource + OpenCV/replay | browser contract planned |
-| [`screen.capture`](../sensors/screen.capture/README.md) | 屏幕/窗口采集 | source | 多源实验桥、安培力教师端 | experimental | [synthetic replay](../sensors/screen.capture/assets/captured-screen-frame.png) | planned | browser + replay source |
-| [`ocr.number`](../sensors/ocr.number/README.md) | 数字 OCR | processor | 多源实验桥、安培力教师端 | experimental | [synthetic pixel demo](../sensors/ocr.number/assets/overview.png) | planned | Tesseract/replay adapter |
-| [`tracker.color-marker`](../sensors/tracker.color-marker/README.md) | 颜色标记追踪 | processor | 声音—视觉稳定版、多源实验桥 | experimental | [synthetic standalone demo](../sensors/tracker.color-marker/assets/overview.png) | adapter | planned |
-| [`tracker.spot-centroid`](../sensors/tracker.spot-centroid/README.md) | 光斑重心识别 | processor | 光斑追踪系统、受迫振动系统 | experimental | [synthetic centroid replay](../sensors/tracker.spot-centroid/assets/overview.png) | adapter | planned |
-| [`tracker.template`](../sensors/tracker.template/README.md) | 模板/单目标追踪 | processor | 声音—视觉稳定版 | experimental | [real OpenCV synthetic replay](../sensors/tracker.template/assets/overview.png) | adapter | planned |
-| [`tracker.yolo`](../sensors/tracker.yolo/README.md) | YOLO 检测与追踪 | processor | 声音—视觉稳定版 | experimental | [recorded multi-target replay](../sensors/tracker.yolo/assets/overview.png) | adapter + recorded/HOG/optional YOLO | planned |
+<!-- section:catalog -->
+## Available Sensors
 
-## 状态含义
+Status describes the implementation in this repository, not the historical source project's maturity.
 
-- `contract-only`：只有页面、manifest 和契约，没有本仓库实现；
-- `experimental`：已有独立适配器和离线测试，但未完成真实设备/课堂验证；
-- `validated`：完成规定的 L1/L2 基准和来源兼容验证；
-- `stable`：公开 API、下游试点、版本兼容和回退均已验证。
+| Sensor | Purpose | Language | Maturity | Evidence | Example | Download |
+| --- | --- | --- | --- | --- | --- | --- |
+| [`camera.capture`](../sensors/camera.capture/README.md) | Camera frames and capture metadata | Python | experimental | E1 | [run](../examples/python-camera-capture/README.md) | [0.3.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/camera.capture-0.3.0.zip) |
+| [`screen.capture`](../sensors/screen.capture/README.md) | User-authorized screen/window pixels | TypeScript | experimental | E1 | [run](../examples/web-screen-capture/README.md) | [0.3.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
+| [`ocr.number`](../sensors/ocr.number/README.md) | Numeric OCR from an ROI | TypeScript | experimental | E3 | [run](../examples/web-number-ocr/README.md) | [0.2.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
+| [`tracker.color-marker`](../sensors/tracker.color-marker/README.md) | Color marker position/lost state | Python | experimental | E2 | [run](../examples/python-color-marker/README.md) | [0.2.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
+| [`tracker.spot-centroid`](../sensors/tracker.spot-centroid/README.md) | Light-spot weighted centroid | Python | experimental | E2 | [run](../examples/spot-centroid/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
+| [`tracker.template`](../sensors/tracker.template/README.md) | ROI-initialized single-object tracker | Python | experimental | E3 | [run](../examples/python-template-tracker/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
+| [`tracker.yolo`](../sensors/tracker.yolo/README.md) | Multi-target detector/tracker adapter | Python | experimental | E2 | [run](../examples/python-yolo-tracker/README.md) | [0.5.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
-完整成熟度流程见 [版本与升级流程](versioning-and-upgrades.md)。图片可用性与版权判断见 [资产盘点](asset-inventory.md)。
+<!-- section:status -->
+## Status meaning
 
-Phase 3C 完成后为 **7 / 7 experimental adapters**。`tracker.yolo` 的 adapter/recorded/HOG/optional YOLO backend 已建立，但真实 inference 仍为 `not executed`；模型 artifact 和运行时许可边界见 [专项审查](yolo-model-and-license-review.md)。
+- `contract-only`: contract and documentation, no repository implementation.
+- `experimental`: standalone adapter and offline evidence; real-device/downstream validation may be missing.
+- `validated`: applicable real runtime/device, metrics and licensing gates have passed.
+- `stable`: validated public API plus downstream pinned reuse and rollback evidence.
+
+Evidence is not maturity. See [Evidence and Maturity](evidence-and-maturity.md). All seven Sensors remain experimental; no Sensor has E4 or E5 evidence. Real YOLO inference remains not measured and no model weight is distributed.

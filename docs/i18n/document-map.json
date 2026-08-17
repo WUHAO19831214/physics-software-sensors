@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "languages": ["en", "zh_CN", "ja"],
+  "documents": {
+    "root_readme": {"en": "README.md", "zh_CN": "README.zh-CN.md", "ja": "README.ja.md", "sections": ["introduction", "catalog", "quick-start", "download", "demonstrations", "principles", "documentation", "development", "non-goals", "license"]},
+    "sensor_catalog": {"en": "docs/sensor-catalog.md", "zh_CN": "docs/sensor-catalog.zh-CN.md", "ja": "docs/sensor-catalog.ja.md", "sections": ["catalog", "status"]},
+    "installation": {"en": "docs/installation.md", "zh_CN": "docs/installation.zh-CN.md", "ja": "docs/installation.ja.md", "sections": ["prerequisites", "python", "typescript", "verification"]},
+    "downloading": {"en": "docs/downloading-sensors.md", "zh_CN": "docs/downloading-sensors.zh-CN.md", "ja": "docs/downloading-sensors.ja.md", "sections": ["release", "packages", "bundles", "integrity"]},
+    "getting_started": {"en": "docs/getting-started.md", "zh_CN": "docs/getting-started.zh-CN.md", "ja": "docs/getting-started.ja.md", "sections": ["choose", "download", "run", "interpret"]},
+    "evidence_and_maturity": {"en": "docs/evidence-and-maturity.md", "zh_CN": "docs/evidence-and-maturity.zh-CN.md", "ja": "docs/evidence-and-maturity.ja.md", "sections": ["evidence", "maturity", "separation"]},
+    "sensor_intake": {"en": "docs/sensor-intake.md", "zh_CN": "docs/sensor-intake.zh-CN.md", "ja": "docs/sensor-intake.ja.md", "sections": ["purpose", "qualification", "decision", "lifecycle", "workflow", "observation-boundary", "required-deliverables", "handoff"]}
+  },
+  "sensors": {
+    "camera.capture": {"en": "sensors/camera.capture/README.md", "zh_CN": "sensors/camera.capture/README.zh-CN.md", "ja": "sensors/camera.capture/README.ja.md", "version": "0.3.0", "maturity": "experimental", "evidence": "E1", "release": "v0.6.0"},
+    "screen.capture": {"en": "sensors/screen.capture/README.md", "zh_CN": "sensors/screen.capture/README.zh-CN.md", "ja": "sensors/screen.capture/README.ja.md", "version": "0.3.0", "maturity": "experimental", "evidence": "E1", "release": "v0.6.0"},
+    "ocr.number": {"en": "sensors/ocr.number/README.md", "zh_CN": "sensors/ocr.number/README.zh-CN.md", "ja": "sensors/ocr.number/README.ja.md", "version": "0.2.0", "maturity": "experimental", "evidence": "E3", "release": "v0.6.0"},
+    "tracker.color-marker": {"en": "sensors/tracker.color-marker/README.md", "zh_CN": "sensors/tracker.color-marker/README.zh-CN.md", "ja": "sensors/tracker.color-marker/README.ja.md", "version": "0.2.0", "maturity": "experimental", "evidence": "E2", "release": "v0.6.0"},
+    "tracker.spot-centroid": {"en": "sensors/tracker.spot-centroid/README.md", "zh_CN": "sensors/tracker.spot-centroid/README.zh-CN.md", "ja": "sensors/tracker.spot-centroid/README.ja.md", "version": "0.4.0", "maturity": "experimental", "evidence": "E2", "release": "v0.6.0"},
+    "tracker.template": {"en": "sensors/tracker.template/README.md", "zh_CN": "sensors/tracker.template/README.zh-CN.md", "ja": "sensors/tracker.template/README.ja.md", "version": "0.4.0", "maturity": "experimental", "evidence": "E3", "release": "v0.6.0"},
+    "tracker.yolo": {"en": "sensors/tracker.yolo/README.md", "zh_CN": "sensors/tracker.yolo/README.zh-CN.md", "ja": "sensors/tracker.yolo/README.ja.md", "version": "0.5.0", "maturity": "experimental", "evidence": "E2", "release": "v0.6.0"}
+  },
+  "sensor_sections": ["name", "description", "physics-use", "measurement", "sources", "how-it-works", "input", "output", "demo", "example", "distribution", "evidence", "maturity", "limitations", "benchmark", "provenance"]
+}

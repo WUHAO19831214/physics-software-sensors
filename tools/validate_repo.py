@@ -11,6 +11,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from validate_i18n import validate_i18n
+
 
 ROOT = Path(__file__).resolve().parents[1]
 HEX40 = re.compile(r"^[a-f0-9]{40}$")
@@ -328,6 +330,7 @@ def main() -> int:
         + check_composition_matrix()
         + check_release_candidate()
         + check_handoff()
+        + validate_i18n(ROOT)
     )
     if errors:
         for error in errors:
@@ -338,7 +341,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 7 Sensor Pages/manifests, pilot demos, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, i18n parity, pilot demos, and local Markdown links")
     return 0
 
 
