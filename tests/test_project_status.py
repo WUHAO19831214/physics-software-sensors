@@ -16,6 +16,7 @@ def test_project_status_matches_sensor_registry_and_maintenance_baseline() -> No
     benchmark = load("benchmarks/results/index.json")
     document_map = load("docs/i18n/document-map.json")
     assert status["project_state"] == "maintenance"
+    assert status["phase_5_library_merge_sha"] == "2c3e91ed3c36f23b82c76cfd70076807adc1f891"
     assert status["baseline_release"]["tag"] == "v0.6.0"
     assert status["baseline_release"]["immutable"] is True
     assert status["sensor_count"] == status["implemented_adapter_count"] == 7

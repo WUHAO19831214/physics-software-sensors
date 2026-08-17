@@ -1,82 +1,88 @@
 {
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
-  "phase": "5",
+  "phase": "5 COMPLETE",
   "phase_name": "Downstream Reuse Validation",
-  "status": "READY_FOR_REVIEW",
+  "status": "MAINTENANCE_READY",
+  "project_state": "maintenance",
+  "baseline_release": "v0.6.0",
+  "sensor_count": 7,
+  "languages": ["en", "zh-CN", "ja"],
   "git": {
     "base_branch": "main",
-    "working_branch": "agent/phase5-downstream-reuse",
+    "working_branch": "main",
     "base_sha": "09e421755af50430af5753cbadf25e21cce9cd6c",
-    "tested_sha": "d9ea8f91bf2cb35c4eaf39ffd719ffe0ed6a3a69",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/agent/phase5-downstream-reuse"},
+    "tested_sha": "2c3e91ed3c36f23b82c76cfd70076807adc1f891",
+    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
     "handoff_commit_sha": {"resolution": "containing-commit"},
     "working_tree_clean": true
   },
-  "pull_request": {"number": 8, "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/8", "draft": true, "state": "OPEN"},
-  "phase_4b": {
-    "pull_request": "https://github.com/WUHAO19831214/physics-software-sensors/pull/7",
-    "merge_sha": "09e421755af50430af5753cbadf25e21cce9cd6c",
-    "merge_method": "squash",
-    "final_repository_validation": true,
-    "final_i18n_validation": true
+  "pull_request": {
+    "number": 8,
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/8",
+    "draft": false,
+    "state": "MERGED",
+    "merge_sha": "2c3e91ed3c36f23b82c76cfd70076807adc1f891"
   },
-  "pilot": {
-    "repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
-    "sensor_id": "tracker.spot-centroid",
-    "reason": "The preferred source project directly owns the extracted red weighted-centroid and downstream y-range logic. Its browser/Python runtime mismatch is contained by a low-risk offline replay adapter rather than a realtime rewrite.",
-    "fixed_base_sha": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
-    "main_sha_at_audit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
-    "integration_branch": "agent/physics-sensors-spot-integration",
-    "integration_sha": "6d2a1b8c79bd6b0400c596db9b989235f3637ba3",
-    "pull_request": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1",
-    "pull_request_draft": true,
+  "phase_4b": {"merge_sha": "09e421755af50430af5753cbadf25e21cce9cd6c"},
+  "phase_5": {
+    "status": "COMPLETE",
+    "library_merge_sha": "2c3e91ed3c36f23b82c76cfd70076807adc1f891",
+    "downstream_repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+    "downstream_historical_source_sha": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+    "downstream_integration_branch_sha": "6d2a1b8c79bd6b0400c596db9b989235f3637ba3",
+    "downstream_merge_sha": "172429fae463274ee354e54d56400096c2c6d375",
+    "downstream_pull_request": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1"
+  },
+  "first_downstream_reuse": {
+    "sensor": "tracker.spot-centroid",
+    "status": "E5",
+    "maturity": "experimental",
     "integration_kind": "offline-replay-project-adapter",
-    "realtime_browser_bridge": "deferred"
+    "feature_flag": "SPOT_SENSOR_BACKEND",
+    "modes": ["legacy", "library", "compare"],
+    "default_backend": "legacy",
+    "same_frame_cases": "7/7",
+    "maximum_delta_px": 7.105427357601002e-15,
+    "tolerance_px": 1e-09,
+    "derived_regression": {"legacy_px": 28.0, "library_px": 28.0, "legacy_cm": 0.56, "library_cm": 0.56},
+    "rollback_tested": true,
+    "post_merge_main_verified": true,
+    "e4_achieved": false,
+    "realtime_browser_bridge": false
   },
   "release": {
     "tag": "v0.6.0",
     "tag_object": "c067c6c0e8196a284d6cba618a9fac5923bce8f7",
     "tag_target": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
-    "github_prerelease": true,
     "attachment_count": 11,
     "mutated": false,
-    "python_package_version": "0.5.0",
-    "sensor_version": "0.4.0",
-    "wheel_sha256": "191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9",
+    "v0_7_0_published": false,
     "pypi_published": false,
-    "npm_registry_published": false,
-    "v0_7_0_published": false
+    "npm_registry_published": false
   },
-  "integration": {
-    "record": "integrations/spot-vibration/integration.json",
-    "feature_flag": "SPOT_SENSOR_BACKEND",
-    "feature_flag_values": ["legacy", "library", "compare"],
-    "default_backend": "legacy",
-    "comparison_cases": ["normal", "horizontal", "vertical", "intensity", "blank", "roi-edge", "overexposed"],
-    "comparison_cases_passed": "7/7",
-    "comparison_tolerance_px": 1e-09,
-    "maximum_absolute_delta": 7.105427357601002e-15,
-    "derived_regression": {"legacy_px": 28.0, "library_px": 28.0, "legacy_cm": 0.56, "library_cm": 0.56, "passed": true},
-    "app_smoke": {"static_server": true, "javascript_syntax": true, "live_camera_permission": "not exercised"},
-    "rollback": {"tested": true, "legacy_retained": true, "browser_app_independent_of_python_dependency": true},
-    "e5_achieved": true,
-    "e5_scope": "Pinned offline downstream reuse; not E4 optical/device or metrology evidence",
-    "maturity": "experimental"
+  "maintenance": {
+    "guide": "docs/maintenance.md",
+    "project_status": "docs/project-status.json",
+    "first_reuse_loop": "docs/first-reuse-loop.md",
+    "sensor_intake": "ready",
+    "sensor_upgrade_workflow": "ready",
+    "downstream_reuse_workflow": "ready",
+    "task_types": ["NEW_SENSOR", "SENSOR_UPGRADE", "VALIDATION", "DOWNSTREAM_INTEGRATION", "RELEASE", "MAINTENANCE"]
   },
   "tests": {
-    "repository_validation": {"passed": true, "json_files": 42, "sensor_pages": 7, "languages": 3},
-    "i18n": {"passed": true, "public_document_sets": 7, "sensor_pages": 21, "terminology_entries": 46},
-    "python": {"passed": 84, "failed": 0},
+    "repository_validation": {"passed": true, "json_files": 43},
+    "i18n": {"passed": true, "public_document_sets": 8, "sensor_pages": 21, "terminology_entries": 46},
+    "python": {"passed": 86, "failed": 0},
     "typescript": {"offline_passed": 15, "full_passed": 18, "failed": 0},
     "composition": {"passed": 5, "failed": 0},
     "package_build": {"wheel": 1, "typescript_tgz": 1},
-    "sensor_bundle_build": {"passed": 7, "failed": 0},
-    "downstream_clean_release_install": true,
+    "sensor_bundle_build": {"passed": 7, "failed": 0, "trilingual": 7},
+    "tracked_model_weights": 0,
     "downstream_integration": {"passed": 3, "failed": 0},
     "downstream_modes": {"legacy": true, "library": true, "compare": true},
-    "downstream_static_app_smoke": true,
-    "downstream_rollback": true
+    "downstream_rollback": true,
+    "downstream_static_app_smoke": true
   },
   "sensors": {
     "camera.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
@@ -89,16 +95,12 @@
   },
   "source_repositories": [
     {"repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable", "commit": "85740d686c67452a057540edb564d713e01ccc51", "state": "remote main unchanged"},
-    {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "state": "historical main unchanged; integration changes isolated in Draft PR #1"},
+    {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "state": "historical source fixed; downstream reuse merged separately at 172429fae463274ee354e54d56400096c2c6d375"},
     {"repository": "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715", "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619", "state": "remote main unchanged"},
     {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "remote main unchanged"},
     {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "remote main unchanged"}
   ],
   "blockers": [],
-  "known_constraints": [
-    "Realtime browser-to-Python integration was deliberately deferred because it would materially change the downstream runtime.",
-    "Downstream fixtures are synthetic and do not establish E4 real optical/device or metrology evidence.",
-    "Historical source license NOASSERTION boundaries remain where previously documented."
-  ],
-  "final_recommendation": "Review both Draft PRs together. If accepted, plan a controlled E4 optical/device study and a second independent downstream pilot before considering validated/stable maturity or a v0.7.0 release."
+  "known_gaps": ["E4 real camera/optical validation", "controlled physical movement", "repeatability and uncertainty", "realtime browser-to-Python bridge", "cross-platform runtime coverage", "historical source license resolution"],
+  "next_action": "Use a maintenance task type; do not create Phase 6 by default and do not publish v0.7.0 without a separate release decision."
 }

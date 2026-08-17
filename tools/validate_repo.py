@@ -258,7 +258,7 @@ def check_handoff() -> list[str]:
         errors.append(".agent-handoff/latest.json: schema_version must be 1.1.0")
     if handoff.get("repository") != "WUHAO19831214/physics-software-sensors":
         errors.append(".agent-handoff/latest.json: repository mismatch")
-    if handoff.get("status") not in {"IN_PROGRESS", "BLOCKED", "READY_FOR_REVIEW", "MERGED", "RELEASED"}:
+    if handoff.get("status") not in {"IN_PROGRESS", "BLOCKED", "READY_FOR_REVIEW", "MERGED", "RELEASED", "MAINTENANCE_READY"}:
         errors.append(".agent-handoff/latest.json: invalid status")
     git_value = handoff.get("git", {})
     if not isinstance(git_value, dict):
