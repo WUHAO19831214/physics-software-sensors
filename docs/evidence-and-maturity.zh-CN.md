@@ -27,6 +27,6 @@ Recorded output 不是真实 runtime；synthetic pixels 不是真实设备。缺
 <!-- section:separation -->
 ## 证据等级 ≠ 成熟度
 
-证据记录“实际跑过什么”；成熟度是实现、可复现性、指标、许可证、文档和复用共同形成的发布决策。E3 不会自动变成 validated。当前七项 Sensor 均为 experimental，且都没有 E4/E5。
+证据记录“实际跑过什么”；成熟度是实现、可复现性、指标、许可证、文档和复用共同形成的发布决策。E3 或 E5 都不会自动变成 validated。当前七项 Sensor 均为 experimental；`tracker.spot-centroid` 已有 E5 下游复用证据，但所有 Sensor 都还没有 E4 真实设备/实验室证据。
 
 维护者详版：[证据等级](evidence-levels.md) · [成熟度门禁](maturity-gates.md)。

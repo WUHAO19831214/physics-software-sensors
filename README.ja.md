@@ -30,7 +30,7 @@ Physics Software Sensors
 | [`screen.capture`](sensors/screen.capture/README.ja.md) | ユーザー許可済みの画面ピクセル | TypeScript | experimental | E1 | [example](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
 | [`ocr.number`](sensors/ocr.number/README.ja.md) | ROI から数値を OCR | TypeScript | experimental | E3 | [example](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
 | [`tracker.color-marker`](sensors/tracker.color-marker/README.ja.md) | HSV・輪郭によるカラーマーカー追跡 | Python | experimental | E2 | [example](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E2 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
+| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.ja.md) | ROI 初期化型の単一物体追跡 | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.ja.md) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
@@ -97,7 +97,7 @@ npm --prefix packages/typescript test
 - stable、production-ready、measurement-grade、metrology-ready とは主張しない。
 - YOLO モデルを自動取得せず、weight を同梱しない。
 - 過去の実験プロジェクトに移行を強制しない。
-- この Phase では PyPI/npm 公開や Phase 5 の下流統合を行わない。
+- PyPI/npm には公開しません。最初の Phase 5 統合は Draft の offline replay 経路であり、下流の live-camera 実装を置き換えません。
 
 <!-- section:license -->
 ## ライセンス

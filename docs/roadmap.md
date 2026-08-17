@@ -96,7 +96,6 @@ Phase 2 仍只选择两个实现试点：
 - [x] Python wheel、npm tgz 与七个单传感器文档 bundle 的不发布 dry-run 工具；
 - [x] package dependency/license boundary audit 和最小离线 CI 模板；当前 OAuth 缺少 `workflow` scope，尚未启用；
 - [ ] 真实 camera/browser/device/YOLO artifact 的 E4 数据；
-- [ ] 任一来源项目的 pinned、可回退 E5 灰度接入（属于 Phase 4）。
 
 退出边界：Phase 3D 只提高证据透明度和发布准备度，不提升七个 sensor 的 experimental 成熟度，不发布 package/Release，不修改来源仓库。
 
@@ -114,7 +113,15 @@ Phase 2 仍只选择两个实现试点：
 
 Phase 4A 是公开分发准备，不是下游 feature-flag migration；后者仍需单独授权。
 
-## Phase 5 — 稳定发布
+## Phase 5 — Downstream Reuse Validation（当前）
+
+- [x] `tracker.spot-centroid` 在光斑振动项目中使用公开、SHA-256 固定的 `v0.6.0` wheel；
+- [x] `legacy/library/compare` feature flag、七类同帧结构化比较和下游 `y` 范围回归；
+- [x] legacy 默认路径、静态应用 smoke 与真实回退测试；
+- [x] 下游 Draft PR 与库内 E5 record；成熟度仍为 `experimental`；
+- [ ] 实时 browser→Python bridge、真实光斑/设备 E4 和计量验证（本轮明确不做）。
+
+## Future stable release
 
 - 契约 `1.0.0`；
 - 可安装 Python/TypeScript 包；

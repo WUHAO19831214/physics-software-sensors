@@ -30,7 +30,7 @@
 | [`screen.capture`](sensors/screen.capture/README.zh-CN.md) | 用户授权的屏幕/窗口像素 | TypeScript | experimental | E1 | [示例](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
 | [`ocr.number`](sensors/ocr.number/README.zh-CN.md) | 从图像 ROI 读取数字 | TypeScript | experimental | E3 | [示例](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
 | [`tracker.color-marker`](sensors/tracker.color-marker/README.zh-CN.md) | HSV/轮廓颜色标记追踪 | Python | experimental | E2 | [示例](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.zh-CN.md) | 光斑亮度加权重心 | Python | experimental | E2 | [示例](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
+| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.zh-CN.md) | 光斑亮度加权重心 | Python | experimental | E5 | [示例](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.zh-CN.md) | ROI 初始化的单目标追踪 | Python | experimental | E3 | [示例](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.zh-CN.md) | 多目标检测/追踪 adapter | Python | experimental | E2 | [示例](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
@@ -97,7 +97,7 @@ npm --prefix packages/typescript test
 - 不声称 stable、production-ready、measurement-grade 或 metrology-ready。
 - 不自动下载 YOLO 模型，也不捆绑模型权重。
 - 不强制来源实验项目迁移。
-- 本阶段不发布 PyPI/npm，也不进行 Phase 5 下游集成。
+- 不发布 PyPI/npm；首次 Phase 5 接入仍是 Draft 离线回放路径，不替换下游实时摄像头实现。
 
 <!-- section:license -->
 ## 许可

@@ -30,7 +30,7 @@ Mature capabilities are extracted through adapters, tested against fixed source 
 | [`screen.capture`](sensors/screen.capture/README.md) | User-authorized screen/window pixels | TypeScript | experimental | E1 | [example](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
 | [`ocr.number`](sensors/ocr.number/README.md) | Numeric OCR from an image ROI | TypeScript | experimental | E3 | [example](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
 | [`tracker.color-marker`](sensors/tracker.color-marker/README.md) | HSV/contour color-marker tracking | Python | experimental | E2 | [example](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.md) | Brightness-weighted light-spot centroid | Python | experimental | E2 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
+| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.md) | Brightness-weighted light-spot centroid | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.md) | ROI-initialized single-object tracking | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.md) | Multi-target detection/tracking adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
@@ -97,7 +97,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). A new Sensor or major capability follows
 - No stable, production-ready, measurement-grade or metrology claim.
 - No automatic YOLO model download or bundled model weight.
 - No forced migration of historical experiment projects.
-- No PyPI/npm registry publication and no Phase 5 downstream integration in this phase.
+- No PyPI/npm registry publication; the first Phase 5 integration is a Draft, offline replay path and does not replace the downstream live-camera implementation.
 
 <!-- section:license -->
 ## License

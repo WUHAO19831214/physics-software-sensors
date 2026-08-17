@@ -2,7 +2,7 @@
 
 **English** | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
 
-Sensor ID: `tracker.spot-centroid` · Implementation version: `0.4.0` · Maturity: `experimental` · Evidence: `E2` · Release: `v0.6.0`
+Sensor ID: `tracker.spot-centroid` · Implementation version: `0.4.0` · Maturity: `experimental` · Evidence: `E5` · Release: `v0.6.0`
 
 <!-- section:name -->
 ## Name
@@ -42,7 +42,11 @@ Run [spot-centroid](../../examples/spot-centroid/README.md) with `SpotCentroidSe
 Python package `0.5.0` with `classical-trackers`; [tracker.spot-centroid-0.4.0.zip](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip).
 <!-- section:evidence -->
 ## Evidence level
-`E2`: source formula comparison and golden replay for centroid/lost/quality paths.
+`E5`: source-compatible golden replay plus a pinned downstream project integration with comparison and rollback. The Release manifest retains its historical E2-at-publication record; E5 was established by post-release reuse.
+
+### Downstream reuse
+
+The browser-only [Spot Vibration Tracking System](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952) uses the public `v0.6.0` wheel in an offline replay adapter behind `legacy/library/compare`. Seven same-frame cases matched within `1e-9 px`, downstream `y` range matched at `28 px / 0.56 cm`, and rollback passed. See the [integration record](../../integrations/spot-vibration/README.md). This does not claim realtime browser integration or real optical accuracy.
 <!-- section:maturity -->
 ## Maturity
 `experimental`; manifest `incubating/adapter-present`.
