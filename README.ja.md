@@ -21,6 +21,11 @@ Physics Software Sensors
 
 成熟した機能を adapter として段階的に抽出し、固定 commit に対するテスト、文書化、ベンチマークを経て再利用します。ピクセル位置、OCR 文字列、信頼度、バウンディングボックスは直接観測であり、自動的に校正済み物理量になるわけではありません。
 
+<!-- section:project-status -->
+## Project status
+
+7 software Sensor · 7 experimental adapter · English / 简体中文 / 日本語 · 公開 experimental `v0.6.0` Release · 7 Sensor Bundle · new-Sensor scaffold ready · 最初の E5 downstream reuse 完了。すべての Sensor が validated であるとは主張しません。
+
 <!-- section:catalog -->
 ## センサーカタログ
 
@@ -30,7 +35,7 @@ Physics Software Sensors
 | [`screen.capture`](sensors/screen.capture/README.ja.md) | ユーザー許可済みの画面ピクセル | TypeScript | experimental | E1 | [example](examples/web-screen-capture/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/screen.capture-0.3.0.zip) |
 | [`ocr.number`](sensors/ocr.number/README.ja.md) | ROI から数値を OCR | TypeScript | experimental | E3 | [example](examples/web-number-ocr/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/ocr.number-0.2.0.zip) |
 | [`tracker.color-marker`](sensors/tracker.color-marker/README.ja.md) | HSV・輪郭によるカラーマーカー追跡 | Python | experimental | E2 | [example](examples/python-color-marker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.color-marker-0.2.0.zip) |
-| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E2 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
+| [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.ja.md) | ROI 初期化型の単一物体追跡 | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.ja.md) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
 
@@ -69,6 +74,25 @@ Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release
 4. 時刻、座標、単位、信頼度、不確かさを明示する。
 5. エビデンス、成熟度、ライセンス、モデル境界を保守的に記述する。
 
+<!-- section:long-term-workflow -->
+## 長期 workflow
+
+```text
+新しい物理実験 project
+      ↓
+再利用可能な成熟機能
+      ↓
+Sensor Intake
+      ↓
+Physics Software Sensors
+      ↓
+Experimental / Validation / Release
+      ↓
+将来の物理実験 project
+```
+
+今後の作業は [Sensor Intake](docs/sensor-intake.ja.md)、[Add New Sensor recipe](docs/agent-recipes/add-new-sensor.md)、または既存 Sensor の maintenance track から開始し、新しい Phase を自動的に作りません。最初の抽出から再利用までの完全な cycle は[最初の完全な再利用ループ](docs/first-reuse-loop.ja.md)に記録しています。
+
 <!-- section:documentation -->
 ## ドキュメント
 
@@ -76,6 +100,8 @@ Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release
 - [Getting Started](docs/getting-started.ja.md)
 - [エビデンスと成熟度](docs/evidence-and-maturity.ja.md)
 - [Sensor Intake](docs/sensor-intake.ja.md)
+- [最初の完全な再利用ループ](docs/first-reuse-loop.ja.md) と [Maintenance Guide](docs/maintenance.md)
+- [Current Project Status](docs/project-status.md)
 - [用語](docs/i18n/terminology.md) と [i18n Style Guide](docs/i18n/style-guide.md)
 - [Architecture](docs/architecture.md)、[Data Format](docs/data-format.md)、[Benchmarking](docs/benchmarking.md)
 - [v0.6.0 Release](https://github.com/WUHAO19831214/physics-software-sensors/releases/tag/v0.6.0)
@@ -97,7 +123,7 @@ npm --prefix packages/typescript test
 - stable、production-ready、measurement-grade、metrology-ready とは主張しない。
 - YOLO モデルを自動取得せず、weight を同梱しない。
 - 過去の実験プロジェクトに移行を強制しない。
-- この Phase では PyPI/npm 公開や Phase 5 の下流統合を行わない。
+- PyPI/npm には公開しません。最初に merge された E5 統合は offline replay 経路であり、下流の live-camera 実装を置き換えません。
 
 <!-- section:license -->
 ## ライセンス

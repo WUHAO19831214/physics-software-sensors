@@ -27,6 +27,6 @@ Recorded output is not a real runtime. Synthetic pixels are not a real device. M
 <!-- section:separation -->
 ## Evidence Level ≠ Maturity
 
-Evidence records what ran. Maturity is a release decision across implementation, reproducibility, metrics, licensing, documentation and reuse. E3 does not automatically mean validated. All seven current Sensors remain experimental; none has E4 or E5.
+Evidence records what ran. Maturity is a release decision across implementation, reproducibility, metrics, licensing, documentation and reuse. E3 or E5 does not automatically mean validated. All seven current Sensors remain experimental. `tracker.spot-centroid` has E5 downstream reuse evidence, but no Sensor has E4 real-device/lab evidence.
 
 Maintainer details: [evidence levels](evidence-levels.md) · [maturity gates](maturity-gates.md).

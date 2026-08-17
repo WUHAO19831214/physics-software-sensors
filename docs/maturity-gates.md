@@ -22,4 +22,4 @@ Maturity is a release decision layered on top of evidence. Passing a higher evid
 - A regression, dependency/license change or lost reproducibility can demote maturity without changing the SensorEvent contract.
 - Contract and implementation versions remain separate.
 
-Current decision: all seven implementations stay `experimental`; none has E4 or E5 evidence.
+Current decision: all seven implementations stay `experimental`. `tracker.spot-centroid` has E5 offline downstream-reuse evidence, but still lacks E4 real optical/device evidence and other applicable validation gates. No other Sensor has E5.

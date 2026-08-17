@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_date": "2026-08-16",
+  "generated_date": "2026-08-17",
   "policy": "Existing evidence only; missing measurements are strings reading not measured, never numeric zero.",
   "entries": [
     {
@@ -50,13 +50,15 @@
     {
       "sensor_id": "tracker.spot-centroid",
       "implementation_version": "0.4.0",
-      "benchmark_type": "source-compatible synthetic centroid replay",
-      "evidence_level": "E2",
-      "environment": {"python": "3.12.13", "platform": "macOS 26.3.1 arm64", "opencv": "4.14.0", "numpy": "2.5.2"},
+      "benchmark_type": "source-compatible replay plus pinned downstream comparison",
+      "evidence_level": "E5",
+      "environment": {"python": "3.12", "platform": "macOS arm64", "opencv": "4.14.0", "numpy": "2.5.2", "package": "physics-software-sensors 0.5.0", "release": "v0.6.0"},
       "dataset": "benchmarks/datasets/spot-centroid-synthetic-source-golden/dataset-card.md",
-      "source_report": "benchmarks/results/phase3b-classical-trackers-2026-08-16.md",
-      "metrics": {"detection_lost_agreement": "6/6", "maximum_centroid_error_px": 0.0, "comparison_tolerance_px": 1e-09, "median_latency_ms": 0.793, "p95_latency_ms": 0.875, "median_derived_throughput_fps": 1260},
-      "limitations": ["160x120 synthetic red-spot frames only.", "No real laser, exposure, saturation, ROI or optical calibration evidence.", "Image centroid is not mechanical displacement."]
+      "source_report": "integrations/spot-vibration/comparison-summary.md",
+      "prior_source_report": "benchmarks/results/phase3b-classical-trackers-2026-08-16.md",
+      "metrics": {"source_detection_lost_agreement": "6/6", "source_maximum_centroid_error_px": 0.0, "downstream_case_agreement": "7/7", "downstream_maximum_absolute_delta": 7.105427357601002e-15, "comparison_tolerance_px": 1e-09, "derived_pixel_range_legacy": 28.0, "derived_pixel_range_library": 28.0, "derived_range_cm_legacy": 0.56, "derived_range_cm_library": 0.56, "median_latency_ms": 0.793, "p95_latency_ms": 0.875, "median_derived_throughput_fps": 1260},
+      "downstream_integration": {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "base_sha": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "integration_sha": "6d2a1b8c79bd6b0400c596db9b989235f3637ba3", "merge_sha": "172429fae463274ee354e54d56400096c2c6d375", "pull_request": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1", "pull_request_state": "MERGED", "feature_flag": "SPOT_SENSOR_BACKEND", "rollback_tested": true, "post_merge_main_verified": true},
+      "limitations": ["Source and downstream cases use synthetic red-spot frames.", "The downstream path is offline replay because the live app is browser JavaScript and the released Sensor is Python.", "No real laser, exposure, saturation, ROI or optical calibration evidence.", "Image centroid and downstream fixture range are not mechanical displacement accuracy evidence."]
     },
     {
       "sensor_id": "tracker.template",

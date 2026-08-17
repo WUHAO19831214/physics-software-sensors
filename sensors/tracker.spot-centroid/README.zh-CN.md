@@ -2,7 +2,7 @@
 
 [English](README.md) | **简体中文** | [日本語](README.ja.md)
 
-Sensor ID: `tracker.spot-centroid` · Implementation version: `0.4.0` · Maturity: `experimental` · Evidence: `E2` · Release: `v0.6.0`
+Sensor ID: `tracker.spot-centroid` · Implementation version: `0.4.0` · Maturity: `experimental` · Evidence: `E5` · Release: `v0.6.0`
 
 <!-- section:name -->
 ## 名称
@@ -42,7 +42,11 @@ Centroid/tracking `SensorEvent`：像素/归一化重心、bbox、候选/权重�
 Python package `0.5.0` + `classical-trackers`；[tracker.spot-centroid-0.4.0.zip](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip)。
 <!-- section:evidence -->
 ## 证据等级
-`E2`：来源公式比较与 centroid/lost/quality 路径 golden replay。
+`E5`：来源兼容 golden replay，以及固定版本、可比较、可回退的下游项目接入。Release manifest 保留发布时 E2 的历史记录；E5 来自发布后的真实复用流程。
+
+### 下游复用
+
+纯浏览器项目[光斑振动追踪系统](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952)通过 `legacy/library/compare` 离线回放适配器使用公开 `v0.6.0` wheel。[集成 PR](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1) 已合并为 [`172429fae463274ee354e54d56400096c2c6d375`](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375)。七个同帧场景在 `1e-9 px` 容差内一致，下游 `y` 范围两条路径均为 `28 px / 0.56 cm`，合并后的 `main` 再次通过回退测试。详见[集成记录](../../integrations/spot-vibration/README.md)。E5 已达到但成熟度仍是 `experimental`；实时浏览器接入和 E4 真实光学/设备证据仍未完成。
 <!-- section:maturity -->
 ## 成熟度
 `experimental`；manifest 为 `incubating/adapter-present`。

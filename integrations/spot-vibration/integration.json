@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_date": "2026-08-17",
+  "downstream_repository": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+  "downstream_base_sha": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+  "downstream_main_sha_at_audit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+  "downstream_integration_branch": "agent/physics-sensors-spot-integration",
+  "downstream_integration_sha": "6d2a1b8c79bd6b0400c596db9b989235f3637ba3",
+  "downstream_pull_request": "https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1",
+  "downstream_pull_request_state": "MERGED",
+  "downstream_merge_sha": "172429fae463274ee354e54d56400096c2c6d375",
+  "sensor_id": "tracker.spot-centroid",
+  "sensor_version": "0.4.0",
+  "library_release": "v0.6.0",
+  "package_name": "physics-software-sensors",
+  "package_version": "0.5.0",
+  "artifact": {
+    "filename": "physics_software_sensors-0.5.0-py3-none-any.whl",
+    "sha256": "191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9",
+    "install_source": "https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/physics_software_sensors-0.5.0-py3-none-any.whl"
+  },
+  "integration_kind": "offline-replay-project-adapter",
+  "feature_flag": "SPOT_SENSOR_BACKEND",
+  "feature_flag_values": ["legacy", "library", "compare"],
+  "default_backend": "legacy",
+  "comparison": {
+    "cases": ["normal", "horizontal", "vertical", "intensity", "blank", "roi-edge", "overexposed"],
+    "continuous_sequence": ["normal", "vertical", "horizontal"],
+    "direct_observations": ["locked", "centroid_x_px", "centroid_y_px", "radius_px", "weight_sum"],
+    "case_matches": "7/7",
+    "tolerance_px": 1e-09,
+    "maximum_absolute_delta": 7.105427357601002e-15,
+    "structured_result_sha256": "229e1d86c23590752a34492f18f8c80845947335d45d29f0f6717f7edd301f6e",
+    "structured_result_path": "integration/spot_sensor/results/comparison.json"
+  },
+  "downstream_regression": {
+    "formula": "(max(centroid_y)-min(centroid_y))*cm_per_pixel",
+    "cm_per_pixel_fixture": 0.02,
+    "legacy_pixel_range": 28.0,
+    "library_pixel_range": 28.0,
+    "legacy_range_cm": 0.56,
+    "library_range_cm": 0.56,
+    "passed": true
+  },
+  "tests": {
+    "clean_release_wheel_install": true,
+    "downstream_integration_tests": {"passed": 3, "failed": 0},
+    "legacy_mode": true,
+    "library_mode": true,
+    "compare_mode": true,
+    "javascript_syntax": true,
+    "static_app_start": true,
+    "post_merge_main_verified": true
+  },
+  "rollback_tested": true,
+  "legacy_implementation_retained": true,
+  "realtime_browser_library_backend": "deferred",
+  "evidence_level": "E5",
+  "maturity": "experimental",
+  "limitations": [
+    "The downstream adapter is an offline replay seam because the application is browser-only and the released Sensor is Python.",
+    "Fixtures are project-owned and deterministic but synthetic, not captured laboratory frames.",
+    "E5 reuse evidence does not establish E4 real-device performance, metrological accuracy, calibration or uncertainty."
+  ]
+}

@@ -8,7 +8,7 @@ These are the measurements currently supported by committed reports. A low synth
 | Screen | capture synthetic replay | 2/2 frames; drop preserved | not measured | interval 250 ms | E1 | no browser runtime |
 | Number OCR | OCR synthetic pixels | exact numeric 3/3 | not measured | parse failures 2/2 | E3 | samples 224/65/63 ms are not a distribution |
 | Color marker | color synthetic golden | source match 4/4 | not measured | tolerance `1e-6`; center error not measured | E2 | no illumination set |
-| Spot centroid | source centroid golden | source match 6/6 | 0.793 ms | max error 0 px | E2 | no real spot/exposure set |
+| Spot centroid | source golden + downstream comparison | source 6/6; downstream 7/7 | 0.793 ms source replay | downstream max delta `7.1e-15`; derived range match | E5 | downstream replay is synthetic; no E4 optical/device set |
 | Template | scripted + synthetic replay | moving 3/3; lost asserted | 7.722 ms | max center error 1 px | E3 | no blur/occlusion/platform set |
 | YOLO | source-recorded replay | filters 3/3; states 10/10 | mapping 0.099937/0.110354 ms | inference accuracy not measured | E2 | mapping is not inference |
 

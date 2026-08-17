@@ -96,7 +96,6 @@ Phase 2 仍只选择两个实现试点：
 - [x] Python wheel、npm tgz 与七个单传感器文档 bundle 的不发布 dry-run 工具；
 - [x] package dependency/license boundary audit 和最小离线 CI 模板；当前 OAuth 缺少 `workflow` scope，尚未启用；
 - [ ] 真实 camera/browser/device/YOLO artifact 的 E4 数据；
-- [ ] 任一来源项目的 pinned、可回退 E5 灰度接入（属于 Phase 4）。
 
 退出边界：Phase 3D 只提高证据透明度和发布准备度，不提升七个 sensor 的 experimental 成熟度，不发布 package/Release，不修改来源仓库。
 
@@ -104,23 +103,47 @@ Phase 2 仍只选择两个实现试点：
 
 先选一个低风险下游仓库，以版本固定和 feature flag 接入。验证无回归后，再逐个接入其他项目；不同时修改五个来源仓库。
 
-### Phase 4A — Experimental Public Distribution（本轮）
+### Phase 4A — Experimental Public Distribution（已完成）
 
 - [x] 规划 GitHub-only `v0.6.0` Experimental Release；
 - [x] 建立 wheel/tgz/七 bundle、manifest 与 SHA256SUMS 构建路径；
 - [x] 增加下载、安装、License、Release Notes 与 Checklist；
-- [ ] 完成双构建、clean-room、全测试和 Draft PR 审核；
-- [ ] 合并、tag、GitHub Release 和 post-release 校验（本轮禁止执行）。
+- [x] 完成双构建、clean-room、全测试和 PR 审核；
+- [x] 合并并发布不可变的 `v0.6.0` Experimental GitHub Release，完成 post-release 校验。
 
-Phase 4A 是公开分发准备，不是下游 feature-flag migration；后者仍需单独授权。
+### Phase 4B — Multilingual Docs & Sensor Intake（已完成）
 
-## Phase 5 — 稳定发布
+- [x] English / 简体中文 / 日本語 用户文档、术语与 parity validator；
+- [x] Sensor Proposal、Intake、命名、scaffold 和 Agent recipe。
+
+## Phase 5 — Downstream Reuse Validation（已完成）
+
+- [x] `tracker.spot-centroid` 在光斑振动项目中使用公开、SHA-256 固定的 `v0.6.0` wheel；
+- [x] `legacy/library/compare` feature flag、七类同帧结构化比较和下游 `y` 范围回归；
+- [x] legacy 默认路径、静态应用 smoke 与真实回退测试；
+- [x] 下游 PR 已合并，库内 E5 record 固定历史来源 SHA 与 reuse merge SHA；成熟度仍为 `experimental`；
+- [ ] 实时 browser→Python bridge、真实光斑/设备 E4 和计量验证（本轮明确不做）。
+
+## Future stable release
 
 - 契约 `1.0.0`；
 - 可安装 Python/TypeScript 包；
 - 至少一个 `stable` 传感器；
 - 两个下游项目使用统一事件；
 - 发布兼容矩阵、基准结果与升级/回退记录。
+
+## Maintenance Era
+
+Phase 1–5 保留为项目建立过程的历史记录。从首次 E5 下游复用闭环完成后，仓库不再默认推进 Phase 6 / Phase 7，而按以下持续轨道维护：
+
+- **Sensor Intake**：从真实项目评估、接收或拒绝新的可复用能力；
+- **Real-world Validation**：补充设备、数据集、物理实验条件和不确定度证据；
+- **Downstream Reuse**：固定版本接入、同输入比较、回归与 rollback；
+- **Compatibility**：维护 Contract、implementation 和下游兼容矩阵；
+- **Release**：按实际需要构建、审计、发布并保持 tag/artifact 不可变；
+- **Deprecation / Upgrade**：记录替代方案、兼容期、golden 和 benchmark 差异。
+
+任务入口、升级和弃用规则见 [Maintenance Guide](maintenance.md)，当前事实见 [Current Project Status](project-status.md)。
 
 ## 暂不承诺
 

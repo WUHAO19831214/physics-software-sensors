@@ -22,4 +22,4 @@ Evidence level describes **what has actually been exercised**, not how complete 
 
 ## Current result
 
-`camera.capture` and `screen.capture` are E1; `tracker.color-marker`, `tracker.spot-centroid` and `tracker.yolo` are E2; `ocr.number` and `tracker.template` are E3. No sensor has E4 or E5 evidence in this repository today.
+`camera.capture` and `screen.capture` are E1; `tracker.color-marker` and `tracker.yolo` are E2; `ocr.number` and `tracker.template` are E3. `tracker.spot-centroid` is E5 through the pinned offline-replay integration recorded in [`integrations/spot-vibration`](../integrations/spot-vibration/README.md). No Sensor has E4 real-device/lab evidence, and E5 does not change its `experimental` maturity.

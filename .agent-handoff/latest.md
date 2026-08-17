@@ -3,59 +3,61 @@
 ## Current state
 
 - Status: **READY_FOR_REVIEW**
-- Phase: **4B — Multilingual Docs & Sensor Intake**
-- Draft PR: [#7](https://github.com/WUHAO19831214/physics-software-sensors/pull/7), remains Draft and unmerged
-- Branch: `agent/phase4b-i18n-sensor-intake`
-- Tested implementation SHA: `8d671722535440e1f6f0c3f9dc85689f0e00ef6b`
-- Languages: English / 简体中文 / 日本語
-- No eighth Sensor, algorithm change, source-project change, maturity promotion or registry publication
+- Phase: **5 — Downstream Reuse Validation**
+- Library Draft PR: [#8](https://github.com/WUHAO19831214/physics-software-sensors/pull/8)
+- Downstream Draft PR: [spot-vibration #1](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1)
+- Library branch: `agent/phase5-downstream-reuse`
+- Tested implementation SHA: `d9ea8f91bf2cb35c4eaf39ffd719ffe0ed6a3a69`
+- No Sensor algorithm/API change, source-main rewrite, maturity promotion, `v0.7.0` release, PyPI/npm publication or `v0.6.0` mutation
 
-## Multilingual public documentation
+## Phase 4B closure
 
-| Surface | Coverage |
-| --- | ---: |
-| Root README | 3 / 3 |
-| Sensor Catalog | 3 / 3 |
-| Seven Sensor Pages | 7 × 3 = 21 |
-| Installation | 3 / 3 |
-| Downloading Sensors | 3 / 3 |
-| Getting Started | 3 / 3 |
-| Evidence & Maturity | 3 / 3 |
-| Sensor Intake | 3 / 3 |
+PR [#7](https://github.com/WUHAO19831214/physics-software-sensors/pull/7) passed the final repository, i18n, Python, TypeScript, composition, package and bundle checks, was moved out of Draft, and was squash-merged as `09e421755af50430af5753cbadf25e21cce9cd6c`. Post-merge repository/i18n smoke passed after replacing the stale Phase 4B handoff on this Phase 5 branch.
 
-English is the default prose language. Machine facts remain single-source in manifests, benchmark registry, release manifest and [`terminology.json`](../docs/i18n/terminology.json). [`document-map.json`](../docs/i18n/document-map.json) records the seven Tier A document sets and seven Sensor sets. All Sensor pages have the same 16 section markers.
+## Selected pilot and runtime decision
 
-The glossary has **46** entries. Sensitive decisions include `Software Sensor` / 软件传感器 / ソフトウェアセンサー; `FramePacket` and `SensorEvent` remain API identifiers; Japanese Spot Centroid is 光スポット重心; `tracker.template` is テンプレート／単一物体トラッカー and explicitly not static template matching.
+The pilot is `WUHAO19831214/spot-vibration-tracking-system-20260508-171952` with `tracker.spot-centroid`. Its fixed historical base and remote `main` at audit were both `7f0d91cc73afafaecc54acc46b2b9d69375d994a`; no silent rebase occurred.
 
-## i18n validation
+The project is browser JavaScript while the released Sensor is Python. A realtime process bridge would change deployment, permissions and timing, so the low-risk integration is an offline project-side replay adapter. The downstream browser app and `app.js::trackRedSpot/rgbToHsv` remain unchanged. Integration commit `6d2a1b8c79bd6b0400c596db9b989235f3637ba3` exists only on `agent/physics-sensors-spot-integration` and Draft PR #1.
 
-`python3 tools/validate_i18n.py` checks file/language navigation, section order, Sensor ID, implementation version, experimental maturity, E-level, v0.6.0 link and glossary structure. Result: **PASS**, 7 public document sets, 7 Sensor Pages × 3, 46 terms, 0 parity errors. The repository validator now includes this check.
+## Pinned dependency and modes
 
-## Future Sensor intake
+The downstream requirement uses the public `v0.6.0` Release wheel, package `physics-software-sensors==0.5.0`, Sensor `tracker.spot-centroid@0.4.0`, and artifact SHA-256 `191258d71e036d5f7b9b2ef3b43c2a70d6a6058af984ce65ea39ddb23db573c9`. No editable path, local workspace package or moving `main` is used.
 
-- Workflow and ACCEPT/DEFER/REJECT: [`docs/sensor-intake.md`](../docs/sensor-intake.md)
-- Stable ID rules and alias/deprecation boundary: [`docs/sensor-naming.md`](../docs/sensor-naming.md)
-- Proposal: [`templates/SENSOR_PROPOSAL.md`](../templates/SENSOR_PROPOSAL.md)
-- Generator: [`tools/new_sensor.py`](../tools/new_sensor.py)
-- Agent recipe: [`docs/agent-recipes/add-new-sensor.md`](../docs/agent-recipes/add-new-sensor.md)
-- Reusable prompt: [`templates/ADD_SENSOR_PROMPT.md`](../templates/ADD_SENSOR_PROMPT.md)
+`SPOT_SENSOR_BACKEND` accepts `legacy`, `library` and `compare`, defaulting to `legacy`. Compare mode sends identical in-memory BGR pixels to both implementations and writes a per-frame JSON record containing legacy output, library output and deltas. It does not change browser experiment output.
 
-The generator accepts ID/name/language/category, refuses invalid IDs and overwrite, creates EN/ZH/JA pages plus manifest/SOURCE/CHANGELOG/assets/benchmarks/examples/implementation TODO, and updates the document map. Its default output is explicitly `contract-only` / manifest `planned`, E0, source/license/provenance pending. It does not invent a source SHA, benchmark, demo or implementation. Temporary generation and no-write dry-run both passed; no eighth formal Sensor was created.
+## Comparison and downstream regression
 
-## Verification at tested SHA
+Normal, horizontal movement, vertical movement, lower intensity, blank/lost, ROI edge and overexposure cases passed 7/7. Detection/lost agreed for every frame. The maximum direct numeric delta was `7.105427357601002e-15`, below the fixed `1e-9 px` tolerance; blank output contained no stale centroid.
 
-- Repository validation: **PASS** — 41 JSON files, 7 trilingual Sensor Pages, i18n parity and local links.
-- Python: **82 passed, 0 failed** (includes composition 5/5 and 7 new i18n/intake/scaffold tests).
-- TypeScript: **15/15 offline**, **18/18 full**, including real Tesseract.js synthetic-pixel integration.
-- Package build: wheel **1/1**, tgz **1/1**.
-- Sensor Bundle dry build: **7/7**; every bundle contains EN/ZH-CN/JA Sensor Pages.
-- Tracked `.pt`/`.onnx`/`.engine`: **0**.
-- Five fixed source commit URLs resolve exactly; no source repository was modified.
+For the project-owned `normal → vertical → horizontal` sequence and fixture scale `0.02 cm/px`, legacy and library paths both produced `28 px` and `0.56 cm`. This is a regression of downstream `max(y)-min(y)` and calibration multiplication, not a new Sensor measurement or mechanical-amplitude accuracy claim.
 
-## Immutable release and boundaries
+## Smoke and rollback
 
-`v0.6.0` remains unchanged. Annotated tag object `c067c6c0e8196a284d6cba618a9fac5923bce8f7` still peels to `1a4a3fe45c1eaafe06c7e053644188b7abba8c62`; Release attachments were not replaced. All seven Sensors remain experimental with E1–E3 only. There is no E4/E5 evidence, PyPI/npm publication or Phase 5 integration. GitHub Actions remains disabled because the credential lacks `workflow` scope.
+The public wheel installed in a clean Python 3.12 environment. Downstream tests passed 3/3, all three modes exited successfully, `node --check app.js` passed, and a local static HTTP request loaded the existing app. Camera permission and physical hardware were not exercised.
 
-## Recommended next action
+Validation executed `legacy → library → compare → legacy`. Leaving the flag unset or selecting `legacy` rolls back; the optional Python environment can be removed because the browser app imports none of it. The legacy implementation was not deleted.
 
-Independently review Phase 4B and keep PR #7 Draft. After review and an explicit merge decision, plan Phase 5 downstream reuse validation with pinned versions and rollback; do not start it automatically from this handoff.
+## Evidence decision
+
+The seven E5 conditions are satisfied: real downstream repository reference, pinned public dependency, feature flag, same-input old/new comparison, downstream regression, tested rollback and integration documentation. Therefore only `tracker.spot-centroid` advances to **E5**. It remains **experimental** because the replay fixtures are synthetic and no E4 real optical/device, controlled movement, repeatability or uncertainty evidence exists. The detailed record is [`integrations/spot-vibration`](../integrations/spot-vibration/README.md).
+
+## Verification
+
+- Repository validation: **PASS** — 42 JSON files, 7 trilingual Sensor Pages, local links and evidence registry.
+- i18n: **PASS** — 7 public document sets, 7 × 3 Sensor Pages, 46 terminology entries.
+- Python: **84 passed, 0 failed**, including two downstream-record consistency tests and composition 5/5.
+- TypeScript: **15/15 offline**, **18/18 full**.
+- Package build: wheel **1/1**, TypeScript tgz **1/1**.
+- Sensor Bundle build: **7/7**.
+- Downstream: clean public-wheel install, integration **3/3**, all modes, structured comparison, static app smoke and rollback **PASS**.
+
+## Immutable release and repository boundaries
+
+`v0.6.0` remains the same annotated tag object `c067c6c0e8196a284d6cba618a9fac5923bce8f7`, peeling to `1a4a3fe45c1eaafe06c7e053644188b7abba8c62`, with the same 11 Release attachments. Its manifest correctly retains publication-time E1–E3 evidence; E5 is a post-release integration record. No `v0.7.0` was created.
+
+The other four historical source repositories still have the fixed remote-main SHAs recorded in Phase 4B. The Spot project historical `main` is also unchanged; only its dedicated Draft integration branch is intentionally modified.
+
+## Blockers and recommendation
+
+There is no blocker for review. Realtime browser/library operation and E4 physical validation are deliberately deferred, not hidden. Review both Draft PRs together. If accepted, next plan a controlled E4 optical/device study and a second independent downstream pilot before considering `validated`/`stable` maturity or deciding on `v0.7.0`.

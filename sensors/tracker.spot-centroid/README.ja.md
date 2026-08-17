@@ -2,7 +2,7 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md) | **日本語**
 
-Sensor ID: `tracker.spot-centroid` · Implementation version: `0.4.0` · Maturity: `experimental` · Evidence: `E2` · Release: `v0.6.0`
+Sensor ID: `tracker.spot-centroid` · Implementation version: `0.4.0` · Maturity: `experimental` · Evidence: `E5` · Release: `v0.6.0`
 
 <!-- section:name -->
 ## 名称
@@ -42,7 +42,11 @@ Pixel/normalized centroid、bbox、candidate/weight evidence、`spot-lost`、`lo
 Python package `0.5.0` + `classical-trackers`; [tracker.spot-centroid-0.4.0.zip](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip)。
 <!-- section:evidence -->
 ## エビデンスレベル
-`E2`: source 式比較と centroid/lost/quality path の golden replay。
+`E5`: source-compatible golden replay に加え、version 固定、比較可能、rollback 可能な下流 project 統合を確認しました。Release manifest は公開時点の E2 履歴を保持し、E5 は公開後の再利用で成立しています。
+
+### 下流での再利用
+
+Browser-only の[光スポット振動追跡システム](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952)が、`legacy/library/compare` の offline replay adapter から公開 `v0.6.0` wheel を使用します。[統合 PR](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/pull/1) は [`172429fae463274ee354e54d56400096c2c6d375`](https://github.com/WUHAO19831214/spot-vibration-tracking-system-20260508-171952/commit/172429fae463274ee354e54d56400096c2c6d375) として merge 済みです。同一 frame の 7 case は `1e-9 px` の許容差内で一致し、下流の `y` range は両経路とも `28 px / 0.56 cm`、merge 後の `main` でも rollback を再確認しました。[統合記録](../../integrations/spot-vibration/README.md)を参照してください。E5 は達成済みですが maturity は `experimental` のままで、realtime browser 統合と E4 の実光学・実機エビデンスは未完です。
 <!-- section:maturity -->
 ## 成熟度
 `experimental`; manifest は `incubating/adapter-present`。

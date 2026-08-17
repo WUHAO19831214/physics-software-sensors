@@ -27,6 +27,6 @@ Recorded output は実 runtime ではなく、synthetic pixels は実機では�
 <!-- section:separation -->
 ## Evidence Level ≠ Maturity
 
-エビデンスは「実行した経路」、成熟度は実装・再現性・指標・ライセンス・文書・再利用を含む release 判断です。E3 だけで validated にはなりません。現在の 7 Sensor はすべて experimental で E4/E5 はありません。
+エビデンスは「実行した経路」、成熟度は実装・再現性・指標・ライセンス・文書・再利用を含む release 判断です。E3 や E5 だけで validated にはなりません。現在の 7 Sensor はすべて experimental のままです。`tracker.spot-centroid` には E5 の下流再利用エビデンスがありますが、E4 の実機・実験室エビデンスを持つ Sensor はありません。
 
 保守者向け詳細: [Evidence Levels](evidence-levels.md) · [Maturity Gates](maturity-gates.md)。
