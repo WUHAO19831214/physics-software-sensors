@@ -141,3 +141,11 @@ await sensor.stop();
 - [SOURCE.md](SOURCE.md)
 - [sensor.json](sensor.json)
 - [仓库级来源盘点](../../docs/source-inventory.md)
+
+## Distribution
+
+- Maturity/evidence: `experimental / E3` (real Tesseract.js on synthetic pixels, not a real instrument display).
+- Implementation: `NumberOCRSensor` in TypeScript package `0.3.0`.
+- Proposed bundle: `ocr.number-0.2.0.zip`; requires the shared tgz and does not copy core.
+- Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
+- Minimal runnable example: [web-number-ocr](../../examples/web-number-ocr/README.md).

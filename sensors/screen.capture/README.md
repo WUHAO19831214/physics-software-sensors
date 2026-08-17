@@ -116,3 +116,11 @@ button.onclick = async () => {
 ## Provenance
 
 [SOURCE.md](SOURCE.md) · [sensor.json](sensor.json) · [CHANGELOG.md](CHANGELOG.md)
+
+## Distribution
+
+- Maturity/evidence: `experimental / E1`.
+- Implementation: `ScreenCaptureSource` in TypeScript package `0.3.0`.
+- Proposed bundle: `screen.capture-0.3.0.zip`; requires the shared tgz and does not copy core.
+- Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
+- Minimal runnable example: [web-screen-capture](../../examples/web-screen-capture/README.md).

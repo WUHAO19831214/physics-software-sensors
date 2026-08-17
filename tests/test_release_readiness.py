@@ -63,7 +63,7 @@ def test_all_sensor_bundles_are_self_describing_without_core_copy(tmp_path: Path
         assert hashlib.sha256(archive_path.read_bytes()).hexdigest() == entry["sha256"]
         with zipfile.ZipFile(archive_path) as archive:
             names = set(archive.namelist())
-            assert {"BUNDLE.json", "DEPENDENCIES.json", "INSTALL.md", "sensor/README.md", "sensor/SOURCE.md"} <= names
+            assert {"README.md", "BUNDLE.json", "DEPENDENCIES.json", "INSTALL.md", "sensor/README.md", "sensor/SOURCE.md", "sensor/benchmarks/README.md", "example/README.md"} <= names
             assert not any(name.startswith(("packages/", "physics_sensors/", "src/core/")) for name in names)
             bundle = json.loads(archive.read("BUNDLE.json"))
             dependencies = json.loads(archive.read("DEPENDENCIES.json"))

@@ -21,7 +21,7 @@ CONFIG = {
     "tracker.color-marker": {"language": "python", "entrypoint": "physics_sensors.tracking.ColorMarkerSensor", "example": "examples/python-color-marker", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors[color-marker]==0.5.0"},
     "tracker.spot-centroid": {"language": "python", "entrypoint": "physics_sensors.tracking.SpotCentroidSensor", "example": "examples/spot-centroid", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors[classical-trackers]==0.5.0"},
     "tracker.template": {"language": "python", "entrypoint": "physics_sensors.tracking.TemplateTrackerSensor", "example": "examples/python-template-tracker", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors[classical-trackers]==0.5.0"},
-    "tracker.yolo": {"language": "python", "entrypoint": "physics_sensors.tracking.YoloTrackerSensor", "example": "examples/python-yolo-tracker", "requires": ["physics-software-sensors==0.5.0"], "install": "physics-software-sensors==0.5.0 (recorded); physics-software-sensors[yolo-runtime]==0.5.0 only with reviewed local artifact"},
+    "tracker.yolo": {"language": "python", "entrypoint": "physics_sensors.tracking.YoloTrackerSensor", "example": "examples/python-yolo-tracker", "requires": ["physics-software-sensors[yolo-recorded]==0.5.0"], "install": "physics-software-sensors[yolo-recorded]==0.5.0 (recorded); physics-software-sensors[yolo-runtime]==0.5.0 only with reviewed local artifact"},
 }
 
 
@@ -68,6 +68,21 @@ def build_bundle(sensor_id: str, output: Path, git_sha: str, evidence: str) -> d
         f"It requires `{config['install']}`. Install the wheel/tgz produced by the same release dry run, "
         "then follow `example/README.md`. Public core code is intentionally not copied into this bundle.\n"
     ).encode()
+    readme = (
+        f"# {sensor_id} Sensor Bundle\n\n"
+        "This is an experimental documentation/example bundle. It is not a standalone fork and does not copy package core.\n\n"
+        "## Start here\n\n"
+        "- [Sensor Page](sensor/README.md)\n"
+        "- [Provenance](sensor/SOURCE.md)\n"
+        "- [Sensor manifest](sensor/sensor.json)\n"
+        "- [Benchmark/evidence summary](sensor/benchmarks/README.md)\n"
+        "- [Minimal example](example/README.md)\n"
+        "- [Install instructions](INSTALL.md)\n"
+        "- [Dependencies](DEPENDENCIES.json)\n"
+        "- [Bundle manifest](BUNDLE.json)\n\n"
+        f"The canonical online Sensor Page for this snapshot is {bundle['source_page']}. "
+        "Repository-relative links inside the preserved Sensor Page should be opened from that canonical page.\n"
+    ).encode()
     dependencies = json.dumps({
         "sensor_id": sensor_id,
         "required_packages": config["requires"],
@@ -85,6 +100,7 @@ def build_bundle(sensor_id: str, output: Path, git_sha: str, evidence: str) -> d
             write_bytes(archive, f"sensor/{path.relative_to(sensor_root).as_posix()}", path.read_bytes())
         for path in tracked_files(str(config["example"])):
             write_bytes(archive, f"example/{path.relative_to(example_root).as_posix()}", path.read_bytes())
+        write_bytes(archive, "README.md", readme)
         write_bytes(archive, "INSTALL.md", install)
         write_bytes(archive, "DEPENDENCIES.json", dependencies)
         write_bytes(archive, "BUNDLE.json", manifest_bytes)

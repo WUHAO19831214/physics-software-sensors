@@ -145,3 +145,11 @@ python -m pip install -e 'packages/python[color-marker]'
 - [SOURCE.md](SOURCE.md)
 - [sensor.json](sensor.json)
 - [仓库级来源盘点](../../docs/source-inventory.md)
+
+## Distribution
+
+- Maturity/evidence: `experimental / E2`.
+- Implementation: `physics_sensors.tracking.ColorMarkerSensor` in Python package `0.5.0` with `color-marker` extra.
+- Proposed bundle: `tracker.color-marker-0.2.0.zip`; requires the wheel and does not copy core.
+- Install/download: [installation](../../docs/installation.md) · [downloading sensors](../../docs/downloading-sensors.md).
+- Minimal runnable example: [python-color-marker](../../examples/python-color-marker/README.md).

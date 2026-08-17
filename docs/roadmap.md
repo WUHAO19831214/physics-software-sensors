@@ -104,6 +104,16 @@ Phase 2 仍只选择两个实现试点：
 
 先选一个低风险下游仓库，以版本固定和 feature flag 接入。验证无回归后，再逐个接入其他项目；不同时修改五个来源仓库。
 
+### Phase 4A — Experimental Public Distribution（本轮）
+
+- [x] 规划 GitHub-only `v0.6.0` Experimental Release；
+- [x] 建立 wheel/tgz/七 bundle、manifest 与 SHA256SUMS 构建路径；
+- [x] 增加下载、安装、License、Release Notes 与 Checklist；
+- [ ] 完成双构建、clean-room、全测试和 Draft PR 审核；
+- [ ] 合并、tag、GitHub Release 和 post-release 校验（本轮禁止执行）。
+
+Phase 4A 是公开分发准备，不是下游 feature-flag migration；后者仍需单独授权。
+
 ## Phase 5 — 稳定发布
 
 - 契约 `1.0.0`；

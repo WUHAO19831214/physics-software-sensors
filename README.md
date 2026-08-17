@@ -2,7 +2,7 @@
 
 **Physics Software Sensors** (`physics-software-sensors`) 面向物理实验教学与研究，把摄像头、屏幕和算法产生的观测抽象成可复用、可升级、可测试的“软件传感器”。
 
-本仓库当前进入 **Phase 3D：跨传感器验证与发布准备**。七项传感器已有独立 adapter，并统一记录 E0–E5 证据、组合路径、benchmark、兼容性和真实世界缺口。它们仍全部是 **experimental**；来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
+本仓库当前进入 **Phase 4A：Experimental Public Distribution**，准备首个 GitHub-only `v0.6.0` Experimental Release。七项传感器仍全部是 **experimental**，证据仅为 E1–E3；这不是 stable、validated、production-ready 或 measurement-grade 发布。来源仓库仍是历史实现与实际使用场景的事实来源，不要求立即接入。
 
 ```text
 Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEvent → Physics Experiment
@@ -35,6 +35,17 @@ Camera / Screen → FramePacket → Software Sensor → Measurement / SensorEven
 | Track optical spots：亮斑重心 | `tracker.spot-centroid` | experimental / E2 source replay | [Docs](sensors/tracker.spot-centroid/README.md) / [Example](examples/spot-centroid/README.md) |
 
 像素位置、OCR 读数和检测置信度都不是自动得到的物理量或计量不确定度。选择后请同时查看 [证据等级](docs/evidence-levels.md)、[验证矩阵](docs/validation-matrix.md) 和对应限制。
+
+## Download / 获取
+
+Phase 4A 正在准备以下 GitHub Release 文件：
+
+- Python wheel：`physics_software_sensors-0.5.0-py3-none-any.whl`
+- TypeScript tgz：`physics-software-sensors-core-0.3.0.tgz`
+- 七个按 Sensor implementation version 命名的 zip bundle
+- `release-manifest.json` 与 `SHA256SUMS`
+
+当前尚未创建 tag 或 GitHub Release，因此不提供虚假的 Release URL。请先阅读 [下载与完整性校验](docs/downloading-sensors.md) 和 [本地 wheel/tgz 安装](docs/installation.md)。Phase 4A 审核通过前，不要从 PyPI/npm registry 安装本项目。
 
 ## Working demonstrations
 
@@ -89,6 +100,10 @@ YOLO 图来自固定来源执行输出的 recorded replay，不是真实模型�
 - [成熟度门禁](docs/maturity-gates.md)
 - [依赖与许可证审计](docs/package-dependency-audit.md)
 - [Release / sensor bundle dry run](docs/release-readiness.md)
+- [下载软件传感器](docs/downloading-sensors.md)
+- [安装指南](docs/installation.md)
+- [Experimental Release Notes](release/RELEASE_NOTES.md)
+- [第三方依赖声明](THIRD_PARTY_NOTICES.md)
 - [版本与升级流程](docs/versioning-and-upgrades.md)
 - [第一阶段路线图](docs/roadmap.md)
 - [机器可读契约](contracts/README.md)
@@ -107,6 +122,7 @@ physics-software-sensors/
 │   └── typescript/             # @physics-software-sensors/core
 ├── examples/                   # 脱离原实验项目的最小示例
 ├── benchmarks/                 # 数据集、协议与结果的边界
+├── release/                    # Experimental Release manifest、notes、checksums 与 checklist
 ├── docs/                       # 架构、接口、数据、盘点与路线图
 ├── templates/                  # 升级、基准和数据集记录模板
 ├── tests/                      # 契约与仓库一致性测试
@@ -140,7 +156,7 @@ npm --prefix packages/typescript test
 - 不承诺硬实时、硬件同步或计量精度；
 - 不提交摄像头原始视频、屏幕录制、个人图像、模型权重或未脱敏数据；
 - 不把屏幕 OCR 表述成对实验设备 SDK 或内部数据的直接读取；
-- 不把 `0.5.0` 实验性 source/adapter 描述为稳定、计量验证、真实设备兼容或模型准确率证据。
+- 不把 `v0.6.0` 仓库 Release、Python `0.5.0` 或任何实验性 adapter 描述为稳定、计量验证、真实设备兼容或模型准确率证据。
 
 ### Agent development handoff
 

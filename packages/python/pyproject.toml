@@ -25,6 +25,9 @@ classical-trackers = [
   "numpy>=1.26,<3",
   "opencv-contrib-python-headless>=4.9,<5",
 ]
+yolo-recorded = [
+  "numpy>=1.26,<3",
+]
 yolo-runtime = [
   "numpy>=1.26,<3",
   "opencv-contrib-python-headless>=4.9,<5",
