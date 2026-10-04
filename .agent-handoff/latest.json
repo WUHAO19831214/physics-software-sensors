@@ -4,7 +4,7 @@
   "phase": "MAINTENANCE",
   "phase_name": "FringeLab reusable toolkit collection",
   "task_type": "MAINTENANCE",
-  "status": "READY_FOR_REVIEW",
+  "status": "MAINTENANCE_READY",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 9,
@@ -17,12 +17,12 @@
   ],
   "git": {
     "base_branch": "main",
-    "working_branch": "codex/fringelab-toolkit",
+    "working_branch": "main",
     "base_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
-    "tested_sha": "242e5120e290eddbd2e36b1d73857f1042fbf110",
+    "tested_sha": "7ac09a3d4e1361bbb5a521bb044761fd62435df4",
     "published_head_sha": {
       "resolution": "branch-ref",
-      "ref": "refs/heads/codex/fringelab-toolkit"
+      "ref": "refs/heads/main"
     },
     "handoff_commit_sha": {
       "resolution": "containing-commit"
@@ -33,8 +33,9 @@
     "number": 12,
     "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/12",
     "draft": false,
-    "state": "OPEN",
-    "title": "Collect FringeLab reusable measurement toolkit"
+    "state": "MERGED",
+    "title": "Collect FringeLab reusable measurement toolkit",
+    "merge_sha": "7ac09a3d4e1361bbb5a521bb044761fd62435df4"
   },
   "public_document_delivery": {
     "repository_content_integrity": "PASS",
@@ -112,7 +113,8 @@
       "local_languages": "3/3",
       "images": "2/2",
       "catalog": "13/13",
-      "online": "pending merge and live verification"
+      "online": "PASS: 3/3 languages, latest README hashes, 2/2 images, GitHub default-branch component heading",
+      "report": "benchmarks/results/fringelab-publication.json"
     }
   },
   "release": {
@@ -210,5 +212,5 @@
     "Browser OCR completed with zero usable anchors on default synthetic selected region",
     "HEIC device-photo runtime not measured"
   ],
-  "next_action": "Publish PR #12 to main and verify the expanded Capability Showcase and GitHub Pages."
+  "next_action": "Collection and public showcase are published on main; reuse the toolkit package or standalone example. Add real-device datasets as a future validation task."
 }

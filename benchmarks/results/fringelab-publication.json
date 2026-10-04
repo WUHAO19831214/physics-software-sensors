@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-10-04T23:00:36.831Z",
+  "base": "https://wuhao19831214.github.io/physics-software-sensors",
+  "checks": [
+    {
+      "language": "en",
+      "url": "https://wuhao19831214.github.io/physics-software-sensors/",
+      "capabilities": "13/13",
+      "images": "2/2 loaded",
+      "componentTable": "present",
+      "source_readme_sha256": "77970a2a5f4dc55199c4bbb4fdc39d02e1424a300a710a7ddc809a6c585a2b2c"
+    },
+    {
+      "language": "zh-CN",
+      "url": "https://wuhao19831214.github.io/physics-software-sensors/zh-CN/",
+      "capabilities": "13/13",
+      "images": "2/2 loaded",
+      "componentTable": "present",
+      "source_readme_sha256": "8dd3bbf36ef3681c862c734c45ed4c2d840f27292cf17df53176ff3ea4ed1ad1"
+    },
+    {
+      "language": "ja",
+      "url": "https://wuhao19831214.github.io/physics-software-sensors/ja/",
+      "capabilities": "13/13",
+      "images": "2/2 loaded",
+      "componentTable": "present",
+      "source_readme_sha256": "496a624e216ef4c9e5dd654496a78f0dfd576619c1e70bd9353769a315b51408"
+    },
+    {
+      "github": "https://github.com/WUHAO19831214/physics-software-sensors",
+      "componentHeading": "visible"
+    }
+  ],
+  "merge_commit": "7ac09a3d4e1361bbb5a521bb044761fd62435df4",
+  "pull_request": "https://github.com/WUHAO19831214/physics-software-sensors/pull/12",
+  "pull_request_state": "MERGED"
+}

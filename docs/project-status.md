@@ -24,3 +24,5 @@ Machine-readable facts are in [`project-status.json`](project-status.json).
 Current work should enter through one of the maintenance tracks in [Maintenance Guide](maintenance.md). No Phase 6 is implied.
 
 FringeLab both extraction batches: [toolkit guide](fringelab-toolkit.md), [package](../packages/fringelab/README.md), [verified runnable example](../examples/web-fringelab-toolkit/README.md), [evidence report](../benchmarks/results/fringelab-extraction-2026-10-05.md). The source application and v0.6.0 artifacts stay unchanged. Browser camera and ruler OCR are additional toolkit backends, not duplicate catalog Sensor identities.
+
+FringeLab collection PR [#12](https://github.com/WUHAO19831214/physics-software-sensors/pull/12) merged at `7ac09a3d4e1361bbb5a521bb044761fd62435df4`. Homepage and trilingual Pages now show the component table and runtime screenshot; [online verification](../benchmarks/results/fringelab-publication.json) passed for all languages and image loads.
