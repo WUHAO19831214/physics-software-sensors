@@ -19,7 +19,7 @@
     "base_branch": "main",
     "working_branch": "codex/fringelab-toolkit",
     "base_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
-    "tested_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
+    "tested_sha": "242e5120e290eddbd2e36b1d73857f1042fbf110",
     "published_head_sha": {
       "resolution": "branch-ref",
       "ref": "refs/heads/codex/fringelab-toolkit"
@@ -27,13 +27,13 @@
     "handoff_commit_sha": {
       "resolution": "containing-commit"
     },
-    "working_tree_clean": false
+    "working_tree_clean": true
   },
   "pull_request": {
-    "number": null,
-    "url": null,
+    "number": 12,
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/12",
     "draft": false,
-    "state": "PENDING",
+    "state": "OPEN",
     "title": "Collect FringeLab reusable measurement toolkit"
   },
   "public_document_delivery": {
@@ -103,7 +103,10 @@
       "failed": 0,
       "schema_events": "5/5",
       "browser_flows": "7/7",
-      "source_equivalence": "18 fixed hashes and exact normalized outputs"
+      "source_equivalence": "18 fixed hashes and exact normalized outputs",
+      "clean_install": "PASS",
+      "bundle_example": "PASS: clean unzip and build",
+      "distribution_report": "benchmarks/results/fringelab-distribution.json"
     }
   },
   "release": {

@@ -1,0 +1,46 @@
+{
+  "status": "dry-run-not-published",
+  "git_sha": "242e5120e290eddbd2e36b1d73857f1042fbf110",
+  "artifacts": [
+    {
+      "filename": "physics-software-sensors-core-0.3.0.tgz",
+      "bytes": 17874,
+      "sha256": "1648bcd88fb72897400caf74d85950963e10e1b0f29f1bc16cdc07f6c4a9eee5"
+    },
+    {
+      "filename": "physics-software-sensors-fringelab-0.1.0.tgz",
+      "bytes": 68622,
+      "sha256": "0b758c66c28a1afd0261d6d737f1195557601ecb3c08112e05dc5eda3f48529c"
+    },
+    {
+      "filename": "image.strip-profile-0.1.0.zip",
+      "bytes": 20188,
+      "sha256": "4faa5c0f8d759e9c85112b717c12757a85d4603bc76b6a057599738b65809006"
+    },
+    {
+      "filename": "vision.ruler-ticks-0.1.0.zip",
+      "bytes": 20423,
+      "sha256": "69a6927e61a122a066d619e98ee5227bc53d45b8b5b6edfdb33195a8201c32c8"
+    }
+  ],
+  "clean_install": "PASS: clean tgz consumer, all entry points and SSR",
+  "types": "PASS",
+  "optional_heic_installed": false,
+  "registry_published": false,
+  "bundle_verification": [
+    {
+      "sensor_id": "image.strip-profile",
+      "bundle_contents": "PASS",
+      "git_sha": "242e5120e290eddbd2e36b1d73857f1042fbf110"
+    },
+    {
+      "sensor_id": "vision.ruler-ticks",
+      "bundle_contents": "PASS",
+      "git_sha": "242e5120e290eddbd2e36b1d73857f1042fbf110"
+    },
+    {
+      "shared_bundle_example": "PASS: clean unzip, local tgz install, production build and types"
+    }
+  ],
+  "date": "2026-10-05"
+}
