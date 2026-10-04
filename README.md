@@ -44,15 +44,15 @@ For example: `screen.capture → ocr.number → vector.compose-3d → 3D resulta
 
 Repository multilingual content integrity: **PASS**. English, Simplified Chinese and Japanese Markdown are maintained as complete source documents. If a regional GitHub file-view route fails, this repository still provides the following quick orientation from the root README:
 
-- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，当前有 7 个软件传感器和 1 个配套处理工具，共 8 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle；`vector.compose-3d` 仍是未发布的 experimental 工具。三语文档网站现已由 GitHub Pages 从 `main /docs` 提供。
-- **日本語クイックガイド：**これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。7 個の Software Sensor と 1 個の Companion Processing Tool、合計 8 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の静的 reader は GitHub Pages の `main /docs` から公開されています。
+- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，当前有 9 个软件传感器和 4 个配套处理工具，共 13 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle；`vector.compose-3d` 仍是未发布的 experimental 工具。三语文档网站现已由 GitHub Pages 从 `main /docs` 提供。
+- **日本語クイックガイド：**これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。9 個の Software Sensor と 4 個の Companion Processing Tool、合計 13 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の静的 reader は GitHub Pages の `main /docs` から公開されています。
 
 <!-- section:project-status -->
 ## Project status
 
-**7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities** · English / 简体中文 / 日本語
+**9 Software Sensors · 4 Companion Processing Tools · 13 reusable public capabilities** · English / 简体中文 / 日本語
 
-All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.
+All 9 adapters and 4 Tools are experimental. The public `v0.6.0` Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.
 
 <!-- section:catalog -->
 ## Sensor catalog
@@ -66,6 +66,8 @@ All 7 adapters and the Tool are experimental. The public `v0.6.0` Release contai
 | [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.md) | Brightness-weighted light-spot centroid | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.md) | ROI-initialized single-object tracking | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.md) | Multi-target detection/tracking adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`image.strip-profile`](sensors/image.strip-profile/README.md) | Rotated ROI strip profile with native RGBA channel and saturation metadata | TypeScript | experimental | E2 | [demo](examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
+| [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.md) | Automatic physical-ruler ticks and scale candidates | TypeScript | experimental | E2 | [demo](examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
 
 See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exercised paths; maturity is a separate release decision.
 
@@ -75,6 +77,9 @@ See the full [Sensor Catalog](docs/sensor-catalog.md). Evidence describes exerci
 | Tool | Purpose | Language | Status | Example | Documentation |
 | --- | --- | --- | --- | --- | --- |
 | [`vector.compose-3d`](processing/vector.compose-3d/README.md) | 3D vector composition and reconstruction from scalar components | TypeScript | experimental | [web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.md) |
+| [`calibration.scale-1d`](processing/calibration.scale-1d/README.md) | Confirmed two-point and piecewise multi-point 1D calibration | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/calibration.scale-1d/README.md) |
+| [`signal.profile-features`](processing/signal.profile-features/README.md) | Smoothing, background subtraction, peaks, widths and period | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/signal.profile-features/README.md) |
+| [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.md) | Slit/diffraction wavelength inversion, regression and uncertainty | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/optics.fringe-wavelength/README.md) |
 
 See the full [Tool Catalog](docs/tool-catalog.md). Companion Tools form an extensible processing layer and are not counted as Sensors.
 
@@ -87,6 +92,10 @@ Start with [Getting Started](docs/getting-started.md), then choose either the Py
 python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
 npm install ./physics-software-sensors-core-0.3.0.tgz
 ```
+
+
+
+FringeLab adds two Sensors, three processing Tools and reusable calculator/ROI/ruler UI. Both extraction batches are complete in a separate 0.1.0 package; the immutable v0.6.0 download still contains the original seven bundles. [FringeLab toolkit](docs/fringelab-toolkit.md) · [runnable demo](examples/web-fringelab-toolkit/README.md)
 
 <!-- section:download -->
 ## Download
@@ -102,7 +111,11 @@ Representative standalone, synthetic and replay demonstrations. Evidence level v
 
 [Camera Capture](sensors/camera.capture/README.md) · [Screen Capture](sensors/screen.capture/README.md) · [Number OCR](sensors/ocr.number/README.md) · [Color Marker](sensors/tracker.color-marker/README.md) · [Spot Centroid](sensors/tracker.spot-centroid/README.md) · [Template Tracker](sensors/tracker.template/README.md) · [YOLO Tracker](sensors/tracker.yolo/README.md) · [3D Vector Composition](processing/vector.compose-3d/README.md)
 
-Coverage: **7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities**. Open the trilingual [Capability Showcase](docs/capability-showcase.md) for all eight detailed demo images and evidence boundaries.
+Baseline image coverage: **7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities**. Open the trilingual [Capability Showcase](docs/capability-showcase.md) for all eight detailed demo images and evidence boundaries.
+
+FringeLab adds two Sensors, three processing Tools and reusable calculator/ROI/ruler UI. Both extraction batches are complete in a separate 0.1.0 package; the immutable v0.6.0 download still contains the original seven bundles.
+
+[`image.strip-profile`](sensors/image.strip-profile/README.md) · [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.md) · [`calibration.scale-1d`](processing/calibration.scale-1d/README.md) · [`signal.profile-features`](processing/signal.profile-features/README.md) · [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.md) · [FringeLab toolkit](docs/fringelab-toolkit.md)
 
 <!-- section:principles -->
 ## Core principles

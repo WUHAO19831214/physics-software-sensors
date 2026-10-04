@@ -73,3 +73,9 @@ Python package `0.5.0`；[camera.capture-0.3.0.zip](https://github.com/WUHAO1983
 <!-- section:provenance -->
 ## 来源追溯
 文件/符号级抽取与验证见 [SOURCE.md](SOURCE.md)，机器事实见 [sensor.json](sensor.json)。
+
+### FringeLab browser backend
+
+FringeLab 工具包新增浏览器后端 `BrowserCameraSource`（后端版本 0.3.1），通过 getUserMedia 提供原始 RGBA，保留帧身份和时间，停止/取消时释放摄像头。采样间隔与设备 FPS 分别记录。E4 实机验证仍未测量；已有 Python 0.3.0 和 v0.6.0 保持原样。
+
+[Toolkit](../../docs/fringelab-toolkit.zh-CN.md) · [example](../../examples/web-fringelab-toolkit/README.md) · [provenance](../../packages/fringelab/SOURCE.md)

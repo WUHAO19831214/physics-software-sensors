@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-readme-sha256" content="b1bd1860c18f4a5078306069eb10febc257878a46c4ad11ed80f3d4fcef31757">
-  <meta name="project-status-sha256" content="f2ad2dbd4d6a06ea2d0de54b59c2232ae1a92164bdb1596d147ef73efc669e8e">
+  <meta name="source-readme-sha256" content="57e6775f09dd346f26a7392bffdca58b96a97fbf186becf19eb5499bfc02f2d7">
+  <meta name="project-status-sha256" content="0b64b5178892b04d0c8c5299a7ab0a1db698df828825f30929f913cab699c46f">
   <title>Physics Software Sensors</title>
   <link rel="stylesheet" href="site.css">
 </head>
@@ -12,7 +12,7 @@
   <header class="site-header">
     <a class="repository-link" href="https://github.com/WUHAO19831214/physics-software-sensors">Physics Software Sensors on GitHub</a>
     <nav class="language-nav" aria-label="Language navigation"><strong lang="en">English</strong> <span>|</span> <a lang="zh_CN" href="zh-CN/">简体中文</a> <span>|</span> <a lang="ja" href="ja/">日本語</a></nav>
-    <p class="status-banner">7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities</p>
+    <p class="status-banner">9 Software Sensors · 4 Companion Processing Tool · 13 reusable public capabilities</p>
     <p class="source-link">Markdown source: <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/README.md">README.md</a></p>
   </header>
   <main>
@@ -47,13 +47,13 @@ Physics Application
 <h2>Language access</h2>
 <p>Repository multilingual content integrity: <strong>PASS</strong>. English, Simplified Chinese and Japanese Markdown are maintained as complete source documents. If a regional GitHub file-view route fails, this repository still provides the following quick orientation from the root README:</p>
 <ul>
-<li><strong>简体中文快速说明：</strong>这是面向物理实验的可复用软件传感器基础层，当前有 7 个软件传感器和 1 个配套处理工具，共 8 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 <code>v0.6.0</code> 包含 7 个 Sensor Bundle；<code>vector.compose-3d</code> 仍是未发布的 experimental 工具。三语文档网站现已由 GitHub Pages 从 <code>main /docs</code> 提供。</li>
-<li><strong>日本語クイックガイド：</strong>これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。7 個の Software Sensor と 1 個の Companion Processing Tool、合計 8 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 <code>v0.6.0</code> には 7 個の Sensor Bundle が含まれ、<code>vector.compose-3d</code> は未リリースの experimental Tool です。3 言語の静的 reader は GitHub Pages の <code>main /docs</code> から公開されています。</li>
+<li><strong>简体中文快速说明：</strong>这是面向物理实验的可复用软件传感器基础层，当前有 9 个软件传感器和 4 个配套处理工具，共 13 项公开能力。它记录图像/屏幕/OCR/追踪的直接观测，不把像素或 OCR 数值自动说成物理量。公开 <code>v0.6.0</code> 包含 7 个 Sensor Bundle；<code>vector.compose-3d</code> 仍是未发布的 experimental 工具。三语文档网站现已由 GitHub Pages 从 <code>main /docs</code> 提供。</li>
+<li><strong>日本語クイックガイド：</strong>これは物理実験向けの再利用可能なソフトウェアセンサー基盤です。9 個の Software Sensor と 4 個の Companion Processing Tool、合計 13 項目の公開 capability があります。画像・画面・OCR・追跡の直接観測と、下流の物理量を区別します。公開 <code>v0.6.0</code> には 7 個の Sensor Bundle が含まれ、<code>vector.compose-3d</code> は未リリースの experimental Tool です。3 言語の静的 reader は GitHub Pages の <code>main /docs</code> から公開されています。</li>
 </ul>
 <!-- section:project-status -->
 <h2>Project status</h2>
-<p><strong>7 Software Sensors · 1 Companion Processing Tool · 8 reusable public capabilities</strong> · English / 简体中文 / 日本語</p>
-<p>All 7 adapters and the Tool are experimental. The public <code>v0.6.0</code> Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.</p>
+<p><strong>9 Software Sensors · 4 Companion Processing Tools · 13 reusable public capabilities</strong> · English / 简体中文 / 日本語</p>
+<p>All 9 adapters and 4 Tools are experimental. The public <code>v0.6.0</code> Release contains 7 Sensor Bundles; the Tool is unreleased. The first E5 downstream reuse is complete, but no Sensor is claimed as fully validated.</p>
 <!-- section:catalog -->
 <h2>Sensor catalog</h2>
 <table>
@@ -132,6 +132,24 @@ Physics Application
 <td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/python-yolo-tracker/README.md">example</a></td>
 <td><a href="https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip">bundle</a></td>
 </tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/image.strip-profile/README.md"><code>image.strip-profile</code></a></td>
+<td>Rotated ROI strip profile with native RGBA channel and saturation metadata</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">demo</a></td>
+<td>unreleased 0.1.0</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/vision.ruler-ticks/README.md"><code>vision.ruler-ticks</code></a></td>
+<td>Automatic physical-ruler ticks and scale candidates</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td>E2</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">demo</a></td>
+<td>unreleased 0.1.0</td>
+</tr>
 </tbody>
 </table>
 <p>See the full <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/sensor-catalog.md">Sensor Catalog</a>. Evidence describes exercised paths; maturity is a separate release decision.</p>
@@ -157,6 +175,30 @@ Physics Application
 <td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-vector-compose-3d/README.md">web demo</a></td>
 <td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.md">Tool Page</a></td>
 </tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/calibration.scale-1d/README.md"><code>calibration.scale-1d</code></a></td>
+<td>Confirmed two-point and piecewise multi-point 1D calibration</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">Web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/calibration.scale-1d/README.md">Tool Page</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/signal.profile-features/README.md"><code>signal.profile-features</code></a></td>
+<td>Smoothing, background subtraction, peaks, widths and period</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">Web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/signal.profile-features/README.md">Tool Page</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/optics.fringe-wavelength/README.md"><code>optics.fringe-wavelength</code></a></td>
+<td>Slit/diffraction wavelength inversion, regression and uncertainty</td>
+<td>TypeScript</td>
+<td>experimental</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">Web demo</a></td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/optics.fringe-wavelength/README.md">Tool Page</a></td>
+</tr>
 </tbody>
 </table>
 <p>See the full <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/tool-catalog.md">Tool Catalog</a>. Companion Tools form an extensible processing layer and are not counted as Sensors.</p>
@@ -166,6 +208,7 @@ Physics Application
 <pre><code class="language-bash">python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classical-trackers]'
 npm install ./physics-software-sensors-core-0.3.0.tgz
 </code></pre>
+<p>FringeLab adds two Sensors, three processing Tools and reusable calculator/ROI/ruler UI. Both extraction batches are complete in a separate 0.1.0 package; the immutable v0.6.0 download still contains the original seven bundles. <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.md">FringeLab toolkit</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">runnable demo</a></p>
 <!-- section:download -->
 <h2>Download</h2>
 <p>The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles, <code>release-manifest.json</code> and <code>SHA256SUMS</code>. A Sensor Bundle is a readable documentation/example package; it does not duplicate the shared core. Read <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/downloading-sensors.md">Downloading Sensors</a> and <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.md">Installation</a>.</p>
@@ -174,7 +217,9 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 <p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md"><img alt="Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool" src="assets/capability-showcase.png" /></a></p>
 <p>Representative standalone, synthetic and replay demonstrations. Evidence level varies by capability; the YOLO tile is <strong>recorded detector replay</strong>, not real YOLO inference. The image is an enhancement, while the text links below remain the canonical navigation when image delivery is unavailable.</p>
 <p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.md">Camera Capture</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.md">Screen Capture</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.md">Number OCR</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.md">Color Marker</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.md">Spot Centroid</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.md">Template Tracker</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.md">YOLO Tracker</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.md">3D Vector Composition</a></p>
-<p>Coverage: <strong>7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities</strong>. Open the trilingual <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md">Capability Showcase</a> for all eight detailed demo images and evidence boundaries.</p>
+<p>Baseline image coverage: <strong>7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities</strong>. Open the trilingual <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.md">Capability Showcase</a> for all eight detailed demo images and evidence boundaries.</p>
+<p>FringeLab adds two Sensors, three processing Tools and reusable calculator/ROI/ruler UI. Both extraction batches are complete in a separate 0.1.0 package; the immutable v0.6.0 download still contains the original seven bundles.</p>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/image.strip-profile/README.md"><code>image.strip-profile</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/vision.ruler-ticks/README.md"><code>vision.ruler-ticks</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/calibration.scale-1d/README.md"><code>calibration.scale-1d</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/signal.profile-features/README.md"><code>signal.profile-features</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/optics.fringe-wavelength/README.md"><code>optics.fringe-wavelength</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.md">FringeLab toolkit</a></p>
 <!-- section:principles -->
 <h2>Core principles</h2>
 <ol>

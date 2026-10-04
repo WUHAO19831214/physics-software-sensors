@@ -16,6 +16,8 @@
 | [`tracker.spot-centroid`](../sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E5 | [実行](../examples/spot-centroid/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](../sensors/tracker.template/README.ja.md) | ROI 初期化型単一物体トラッカー | Python | experimental | E3 | [実行](../examples/python-template-tracker/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](../sensors/tracker.yolo/README.ja.md) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [実行](../examples/python-yolo-tracker/README.md) | [0.5.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`image.strip-profile`](../sensors/image.strip-profile/README.ja.md) | 回転 ROI の断面プロファイルと飽和メタデータ | TypeScript | experimental | E2 | [demo](../examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
+| [`vision.ruler-ticks`](../sensors/vision.ruler-ticks/README.ja.md) | 実物定規の目盛り検出と未確認スケール候補 | TypeScript | experimental | E2 | [demo](../examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
 
 <!-- section:status -->
 ## 状態の意味
@@ -25,4 +27,4 @@
 - `validated`: 対象 runtime/device、指標、ライセンスの gate を通過している。
 - `stable`: validated API に加え、下流での固定 version 再利用と rollback が検証済み。
 
-エビデンスレベルと成熟度は別です。[エビデンスと成熟度](evidence-and-maturity.ja.md)を参照してください。7 Sensor はすべて experimental のままです。E5 の下流再利用エビデンスがあるのは `tracker.spot-centroid` のみで、E4 の実光学・実機エビデンスはまだありません。実 YOLO inference は not measured で、モデル weight は配布しません。
+エビデンスレベルと成熟度は別です。[エビデンスと成熟度](evidence-and-maturity.ja.md)を参照してください。9 Sensor はすべて experimental のままです。E5 の下流再利用エビデンスがあるのは `tracker.spot-centroid` のみで、E4 の実光学・実機エビデンスはまだありません。実 YOLO inference は not measured で、モデル weight は配布しません。

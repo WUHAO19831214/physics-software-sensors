@@ -91,7 +91,7 @@ def validate_i18n(root: Path = ROOT) -> list[str]:
             "version": manifest.get("version"),
             "maturity": "experimental",
             "evidence": evidence_by_id.get(sensor_id),
-            "release": "v0.6.0",
+            "release": "unreleased" if load_object(root / "docs/project-status.json")["sensors"][sensor_id].get("released") is False else "v0.6.0",
         }
         for field, value in expected.items():
             if spec.get(field) != value:
@@ -101,11 +101,11 @@ def validate_i18n(root: Path = ROOT) -> list[str]:
             if not isinstance(raw_path, str) or not (root / raw_path).is_file():
                 continue
             text = (root / raw_path).read_text(encoding="utf-8")
-            required_literals = (sensor_id, str(expected["version"]), "experimental", str(expected["evidence"]), "v0.6.0")
+            required_literals = (sensor_id, str(expected["version"]), "experimental", str(expected["evidence"]), str(expected["release"]))
             for literal in required_literals:
                 if literal not in text:
                     errors.append(f"{raw_path}: missing parity fact {literal}")
-            if RELEASE_URL not in text and "/releases/download/v0.6.0/" not in text:
+            if expected["release"] == "v0.6.0" and RELEASE_URL not in text and "/releases/download/v0.6.0/" not in text:
                 errors.append(f"{raw_path}: missing v0.6.0 release link")
 
     tool_sections = document_map.get("tool_sections")

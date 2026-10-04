@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_date": "2026-08-17",
+  "updated_date": "2026-10-05",
   "project_state": "maintenance",
   "phase_5_library_merge_sha": "2c3e91ed3c36f23b82c76cfd70076807adc1f891",
   "homepage_showcase_merge_sha": "ff0906835d7f81cbb01e756931ed455f4b5c43e6",
@@ -12,7 +12,11 @@
     "provider": "github-pages",
     "pages_source": "main /docs",
     "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
-    "languages": ["en", "zh-CN", "ja"]
+    "languages": [
+      "en",
+      "zh-CN",
+      "ja"
+    ]
   },
   "baseline_release": {
     "tag": "v0.6.0",
@@ -20,9 +24,9 @@
     "tag_target": "1a4a3fe45c1eaafe06c7e053644188b7abba8c62",
     "immutable": true
   },
-  "sensor_count": 7,
-  "companion_tool_count": 1,
-  "public_capability_count": 8,
+  "sensor_count": 9,
+  "companion_tool_count": 4,
+  "public_capability_count": 13,
   "homepage_visual_coverage": {
     "sensors": "7/7",
     "companion_tools": "1/1",
@@ -32,20 +36,94 @@
     "detailed_demo_assets": "8/8",
     "broken_demo_links": 0
   },
-  "implemented_adapter_count": 7,
-  "languages": ["en", "zh-CN", "ja"],
-  "distribution": {"python_wheel": true, "typescript_tgz": true, "sensor_bundles": 7, "pypi": false, "npm_registry": false},
+  "implemented_adapter_count": 9,
+  "languages": [
+    "en",
+    "zh-CN",
+    "ja"
+  ],
+  "distribution": {
+    "python_wheel": true,
+    "typescript_tgz": true,
+    "sensor_bundles": 7,
+    "pypi": false,
+    "npm_registry": false
+  },
   "sensors": {
-    "camera.capture": {"maturity": "experimental", "evidence": "E1", "version": "0.3.0"},
-    "screen.capture": {"maturity": "experimental", "evidence": "E1", "version": "0.3.0"},
-    "ocr.number": {"maturity": "experimental", "evidence": "E3", "version": "0.2.0"},
-    "tracker.color-marker": {"maturity": "experimental", "evidence": "E2", "version": "0.2.0"},
-    "tracker.spot-centroid": {"maturity": "experimental", "evidence": "E5", "version": "0.4.0", "e4_real_device": false},
-    "tracker.template": {"maturity": "experimental", "evidence": "E3", "version": "0.4.0"},
-    "tracker.yolo": {"maturity": "experimental", "evidence": "E2", "version": "0.5.0"}
+    "camera.capture": {
+      "maturity": "experimental",
+      "evidence": "E1",
+      "version": "0.3.0"
+    },
+    "screen.capture": {
+      "maturity": "experimental",
+      "evidence": "E1",
+      "version": "0.3.0"
+    },
+    "ocr.number": {
+      "maturity": "experimental",
+      "evidence": "E3",
+      "version": "0.2.0"
+    },
+    "tracker.color-marker": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "version": "0.2.0"
+    },
+    "tracker.spot-centroid": {
+      "maturity": "experimental",
+      "evidence": "E5",
+      "version": "0.4.0",
+      "e4_real_device": false
+    },
+    "tracker.template": {
+      "maturity": "experimental",
+      "evidence": "E3",
+      "version": "0.4.0"
+    },
+    "tracker.yolo": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "version": "0.5.0"
+    },
+    "image.strip-profile": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "version": "0.1.0",
+      "released": false
+    },
+    "vision.ruler-ticks": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "version": "0.1.0",
+      "released": false
+    }
   },
   "companion_tools": {
-    "vector.compose-3d": {"status": "experimental", "version": "0.1.0", "language": "typescript", "released": false}
+    "vector.compose-3d": {
+      "status": "experimental",
+      "version": "0.1.0",
+      "language": "typescript",
+      "released": false
+    },
+    "calibration.scale-1d": {
+      "status": "experimental",
+      "version": "0.1.0",
+      "language": "typescript",
+      "released": false
+    },
+    "signal.profile-features": {
+      "status": "experimental",
+      "version": "0.1.0",
+      "language": "typescript",
+      "released": false
+    },
+    "optics.fringe-wavelength": {
+      "status": "experimental",
+      "version": "0.1.0",
+      "language": "typescript",
+      "released": false
+    }
   },
   "downstream_integrations": [
     {
@@ -58,7 +136,35 @@
       "realtime_bridge": false
     }
   ],
-  "workflows": {"sensor_intake": "ready", "companion_tool_intake": "ready", "sensor_upgrade": "ready", "downstream_reuse": "ready", "release": "ready"},
-  "ci": {"enabled": false, "templates_available": true, "validation_mode": "local fixed-SHA and clean-install evidence"},
-  "known_gaps": ["E4 real camera/optical validation", "controlled physical movement", "repeatability and uncertainty", "cross-platform runtime coverage", "historical source license resolution"]
+  "workflows": {
+    "sensor_intake": "ready",
+    "companion_tool_intake": "ready",
+    "sensor_upgrade": "ready",
+    "downstream_reuse": "ready",
+    "release": "ready"
+  },
+  "ci": {
+    "enabled": false,
+    "templates_available": true,
+    "validation_mode": "local fixed-SHA and clean-install evidence"
+  },
+  "known_gaps": [
+    "E4 real camera/optical validation",
+    "controlled physical movement",
+    "repeatability and uncertainty",
+    "cross-platform runtime coverage",
+    "historical source license resolution"
+  ],
+  "homepage_visual_coverage_scope": "Original eight capabilities; FringeLab additions have a separate runnable toolkit and shared verified screenshot.",
+  "fringelab_toolkit": {
+    "version": "0.1.0",
+    "source_sha": "37a8b3996791790a22980b0d562996a65a3a65ef",
+    "source_unchanged": true,
+    "package": "packages/fringelab",
+    "example": "examples/web-fringelab-toolkit",
+    "demo_asset": "docs/assets/fringelab-toolkit.png",
+    "distribution": "local tgz and two Sensor Bundles, unreleased",
+    "browser_camera_backend": "camera.capture 0.3.1 in toolkit; baseline Python 0.3.0 unchanged",
+    "hardware_validation": "not measured"
+  }
 }

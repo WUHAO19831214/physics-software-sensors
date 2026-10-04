@@ -73,3 +73,9 @@ See [capture replay benchmark](benchmarks/README.md) and the repository [benchma
 <!-- section:provenance -->
 ## Provenance
 File/symbol-level extraction and validation are recorded in [SOURCE.md](SOURCE.md); machine facts are in [sensor.json](sensor.json).
+
+### FringeLab browser backend
+
+An additional browser backend is available in the FringeLab toolkit (`BrowserCameraSource`, backend version 0.3.1). It uses original RGBA pixels and getUserMedia, retains frame identity and timing, and releases tracks on stop/abort. Requested sampling interval is separate from device FPS. E4 physical-camera validation remains not measured; existing Python 0.3.0 and v0.6.0 are unchanged.
+
+[Toolkit](../../docs/fringelab-toolkit.md) · [example](../../examples/web-fringelab-toolkit/README.md) · [provenance](../../packages/fringelab/SOURCE.md)

@@ -1,0 +1,9 @@
+.fl-surface{box-sizing:border-box;background:#fff;color:#17332f;border:1px solid #c9dbd5;border-radius:14px;box-shadow:0 12px 35px #143c3020;font-family:system-ui,sans-serif;font-size:16px}
+.fl-floating{position:fixed;z-index:1000;padding:16px;width:min(320px,calc(100vw - 16px));max-height:calc(100dvh - 16px);overflow:auto}
+.fl-floating-header,.fl-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.fl-floating-header>span{font-weight:700;cursor:move;touch-action:none}
+.fl-button{font:inherit;color:inherit;border:1px solid #c3d7ce;border-radius:8px;padding:7px 11px;background:#f7fbf9;cursor:pointer}
+.fl-button:disabled{cursor:default;opacity:.5}.fl-button:focus-visible,.fl-field input:focus-visible{outline:3px solid #19a185;outline-offset:2px}.fl-primary{background:#0d705c;color:#fff}
+.fl-field{display:grid;gap:6px}.fl-field input{box-sizing:border-box;width:100%;min-width:0;border:1px solid #bccfc6;border-radius:8px;padding:9px;font:inherit}
+.fl-note{font-size:14px;color:#516c63}.fl-calculator-output{display:block;min-height:30px;margin:12px 0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.fl-calculator-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}.fl-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;touch-action:none;overflow:visible}

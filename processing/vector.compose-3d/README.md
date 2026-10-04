@@ -76,7 +76,7 @@ The image is an actual standalone-runtime screenshot; see the [asset evidence re
 <!-- section:status -->
 ## Status and distribution
 
-The tool is `experimental`, version `0.1.0`, and is available from the unreleased TypeScript source tree. It is not included in immutable Release `v0.6.0`, no `v0.7.0` has been published, and the repository still contains exactly seven Sensors.
+The tool is `experimental`, version `0.1.0`, and is available from the unreleased TypeScript source tree. It is not included in immutable Release `v0.6.0`, no `v0.7.0` has been published, and the current catalog contains nine Sensors; the baseline Release contains seven.
 
 <!-- section:limitations -->
 ## Known limitations

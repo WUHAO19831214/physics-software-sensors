@@ -1,0 +1,121 @@
+{
+  "repository": "https://github.com/WUHAO19831214/webcam-laser-fringelab",
+  "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
+  "files": [
+    {
+      "source_path": "lib/analysis.ts",
+      "destination": "src/core/analysis.ts",
+      "sha256": "d43c76a434d56fd2e46986b2c428e4573be43abe037ac888c13965d80f86181a",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/calculator.ts",
+      "destination": "src/core/calculator.ts",
+      "sha256": "ade711a56cd264194ce182f228a193c75e6f59ae034f9f8208b7844c52b7502a",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/chart.ts",
+      "destination": "src/core/chart.ts",
+      "sha256": "6eef8fe30e7ca0f123615e96186b45aa744e18de82ee45cd5725f96e3c4bd12c",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/fringe-selection.ts",
+      "destination": "src/core/fringe-selection.ts",
+      "sha256": "f0d298b5bd7c06627f0cd2d9be45a5ef40d82989112e328ee474382423142699",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/image-quality.ts",
+      "destination": "src/core/image-quality.ts",
+      "sha256": "f7611eea878199f94862fe0780ff1ca6be4c04e496987128f3fdd70e08e70537",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/lesson.ts",
+      "destination": "src/core/lesson.ts",
+      "sha256": "eb7bbd94c1175f3dc2e939f6c6c4e440e907f50815f4f3b21c27d5279889ef86",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/physics.ts",
+      "destination": "src/core/physics.ts",
+      "sha256": "346608e238cc693a498522cb64b0783f9805e6488c9992b280aaacf791340676",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/roi.ts",
+      "destination": "src/core/roi.ts",
+      "sha256": "cf6c1c769e650c7f135004029e23a7de8a3b728469fa13fa0076c94d3a11442f",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/ruler.ts",
+      "destination": "src/core/ruler.ts",
+      "sha256": "14ab06bf534299d17ac6687df47f9b056cbfc227101ecb3848fdbff311849559",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/ruler-detection.ts",
+      "destination": "src/core/ruler-detection.ts",
+      "sha256": "6b2fe5aa9bea1c82f23d52dc064808f4fb28179b69e4ab599fabaec613b67391",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/signal.ts",
+      "destination": "src/core/signal.ts",
+      "sha256": "b1672fef7cfab2ec0e3f58eece1e81f15b3d9c01d0182267f1eb1991255a52bf",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/simulator.ts",
+      "destination": "src/core/simulator.ts",
+      "sha256": "9796f0980feac89e75c2fcb5314f34c403486db8d646d281412f3078a804c839",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/spatial.ts",
+      "destination": "src/core/spatial.ts",
+      "sha256": "5685fc9240cdd1630b4778183fb399ce1f6c6e424d63c60cf4d7f0b34bba91c6",
+      "change": "relative module extensions only"
+    },
+    {
+      "source_path": "lib/camera.ts",
+      "destination": "src/browser/camera.ts",
+      "sha256": "a03c6c7ed52bc26538fa6d06798e4428408983f1700e9c5e01509064dd47a5e1",
+      "change": "relative module paths only"
+    },
+    {
+      "source_path": "lib/image-input.ts",
+      "destination": "src/browser/image-input.ts",
+      "sha256": "a5bbf7827ab52b5cee2b120f579d1393369fd945965c3abf385da86e3c7dadde",
+      "change": "relative module paths only"
+    },
+    {
+      "source_path": "lib/ruler-ocr.ts",
+      "destination": "src/browser/ruler-ocr.ts",
+      "sha256": "57c6cb0d912eb354919f218df8f602d60eac8f7f83e4c62242f4fd2fbc335581",
+      "change": "relative module paths only"
+    },
+    {
+      "source_path": "lib/ruler.worker.ts",
+      "destination": "src/browser/ruler.worker.ts",
+      "sha256": "e77a549519a74f33fb180597f7b9d5e35dac0d7c2ef20a6303de1a213afde879",
+      "change": "relative module paths only"
+    },
+    {
+      "source_path": "lib/export.ts",
+      "destination": "src/browser/export.ts",
+      "sha256": "2851355ca99f85fa74c8c57234b55a97460d1917c5d586ef8740e789e9e101a4",
+      "change": "relative module paths only"
+    }
+  ],
+  "fixtures": [
+    {
+      "source_path": "tests/ruler-detection.test.ts",
+      "sha256": "1849e6e668a8b4bc36dfbbfa99a714e86a4001198446e6d363dfa156ce1d192b",
+      "symbol": "syntheticRuler"
+    }
+  ]
+}

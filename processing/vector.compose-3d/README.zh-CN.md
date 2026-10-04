@@ -76,7 +76,7 @@ OCR 失败应转换为 `{ source: 'missing' }`；结果保持 `incomplete`，不
 <!-- section:status -->
 ## 状态与分发
 
-当前为 `experimental`、版本 `0.1.0`，只存在于尚未发布的 TypeScript 源码中。它不属于不可变的 `v0.6.0` Release，尚未发布 `v0.7.0`，仓库仍然只有 7 个 Sensor。
+当前为 `experimental`、版本 `0.1.0`，只存在于尚未发布的 TypeScript 源码中。它不属于不可变的 `v0.6.0` Release，尚未发布 `v0.7.0`，当前目录有 9 个 Sensor，基线 Release 包含原来的 7 个。
 
 <!-- section:limitations -->
 ## 已知限制

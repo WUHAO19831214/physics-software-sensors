@@ -22,3 +22,7 @@ No YOLO `.pt`, `.onnx`, `.engine`, third-party weight, Tesseract traineddata, ca
 The five source repositories document where behavior was historically used. Where those fixed repositories have no detected license file or GitHub reports `NOASSERTION`, their license state remains **pending/NOASSERTION**. This repository does not assign MIT to that historical source code. Extracted behavior, provenance method and modifications remain recorded per Sensor Page/SOURCE file.
 
 See [package dependency audit](docs/package-dependency-audit.md) and [licensing/provenance policy](docs/licensing-and-provenance.md) for links and detailed review notes.
+
+## FringeLab collection — 2026-10-05
+
+FringeLab owner-authorized extraction: see [package notices](packages/fringelab/THIRD_PARTY_NOTICES.md) and [source record](packages/fringelab/SOURCE.md). Existing source licenses are not silently changed; the source owner authorized the extracted TS modules under destination MIT. Tesseract.js 6 and optional heic-to retain their own licenses.

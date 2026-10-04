@@ -2,6 +2,11 @@
 
 本项目遵循 SemVer；传感器实现、契约和模型资产分别记录版本。
 
+## FringeLab collection — 2026-10-05
+
+FringeLab toolkit 0.1.0 (unreleased): both component batches, two Processor Sensors, three processing Tools, reusable React overlays/calculator, browser camera/OCR and fixed-source validation. v0.6.0 is unchanged. See [toolkit guide](docs/fringelab-toolkit.md).
+
+
 ## 0.6.0 — Experimental release candidate
 
 - 增加 GitHub-only experimental distribution：Python wheel、TypeScript tgz、七个 Sensor Bundle、release manifest 与 SHA256SUMS；

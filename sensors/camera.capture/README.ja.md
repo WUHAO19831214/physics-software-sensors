@@ -73,3 +73,9 @@ Python package `0.5.0`; [camera.capture-0.3.0.zip](https://github.com/WUHAO19831
 <!-- section:provenance -->
 ## 来歴
 File/symbol 単位の抽出・検証は [SOURCE.md](SOURCE.md)、machine facts は [sensor.json](sensor.json) にあります。
+
+### FringeLab browser backend
+
+FringeLab toolkit は追加のブラウザ backend `BrowserCameraSource`（backend version 0.3.1）を提供します。getUserMedia の元 RGBA、フレーム識別子と時刻を保持し、停止・中止時にトラックを解放します。要求サンプリング間隔と機器 FPS は別記します。E4 実機検証は未測定で、Python 0.3.0 と v0.6.0 は変更しません。
+
+[Toolkit](../../docs/fringelab-toolkit.ja.md) · [example](../../examples/web-fringelab-toolkit/README.md) · [provenance](../../packages/fringelab/SOURCE.md)

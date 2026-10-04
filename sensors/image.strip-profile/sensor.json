@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "id": "image.strip-profile",
+  "name_zh": "相对图像响应剖面",
+  "name_en": "Relative Image Strip Profile",
+  "category": "processor",
+  "maturity": "incubating",
+  "implementation_status": "adapter-present",
+  "version": "0.1.0",
+  "input_kinds": [
+    "frame-packet.image-frame",
+    "frame-packet.camera-frame",
+    "frame-packet.screen-frame"
+  ],
+  "output_kinds": [
+    "sensor-event.measurement"
+  ],
+  "capabilities": [
+    "rgba-pixel-input",
+    "source-frame-provenance",
+    "fixed-source-compatible",
+    "relative-strip-profile"
+  ],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/webcam-laser-fringelab",
+      "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
+      "paths": [
+        "lib/signal.ts"
+      ],
+      "notes": "Owner-authorized extraction; algorithm preserved, source application unchanged."
+    }
+  ],
+  "evidence_level": "source-tested",
+  "license_review": "approved",
+  "known_boundaries": [
+    "No lux/W/m². Keep channel, source clipping and sample coverage."
+  ],
+  "owners": [
+    "WUHAO19831214"
+  ]
+}

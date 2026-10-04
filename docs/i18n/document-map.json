@@ -1,30 +1,287 @@
 {
   "schema_version": "1.0.0",
-  "languages": ["en", "zh_CN", "ja"],
+  "languages": [
+    "en",
+    "zh_CN",
+    "ja"
+  ],
   "documents": {
-    "root_readme": {"en": "README.md", "zh_CN": "README.zh-CN.md", "ja": "README.ja.md", "sections": ["introduction", "language-access", "project-status", "catalog", "companion-tools", "quick-start", "download", "capability-showcase", "principles", "long-term-workflow", "documentation", "development", "non-goals", "license"]},
-    "sensor_catalog": {"en": "docs/sensor-catalog.md", "zh_CN": "docs/sensor-catalog.zh-CN.md", "ja": "docs/sensor-catalog.ja.md", "sections": ["catalog", "status"]},
-    "installation": {"en": "docs/installation.md", "zh_CN": "docs/installation.zh-CN.md", "ja": "docs/installation.ja.md", "sections": ["prerequisites", "python", "typescript", "verification"]},
-    "downloading": {"en": "docs/downloading-sensors.md", "zh_CN": "docs/downloading-sensors.zh-CN.md", "ja": "docs/downloading-sensors.ja.md", "sections": ["release", "packages", "bundles", "integrity"]},
-    "getting_started": {"en": "docs/getting-started.md", "zh_CN": "docs/getting-started.zh-CN.md", "ja": "docs/getting-started.ja.md", "sections": ["choose", "download", "run", "interpret"]},
-    "evidence_and_maturity": {"en": "docs/evidence-and-maturity.md", "zh_CN": "docs/evidence-and-maturity.zh-CN.md", "ja": "docs/evidence-and-maturity.ja.md", "sections": ["evidence", "maturity", "separation"]},
-    "sensor_intake": {"en": "docs/sensor-intake.md", "zh_CN": "docs/sensor-intake.zh-CN.md", "ja": "docs/sensor-intake.ja.md", "sections": ["purpose", "qualification", "decision", "lifecycle", "workflow", "observation-boundary", "required-deliverables", "handoff"]},
-    "first_reuse_loop": {"en": "docs/first-reuse-loop.md", "zh_CN": "docs/first-reuse-loop.zh-CN.md", "ja": "docs/first-reuse-loop.ja.md", "sections": ["loop", "meaning", "boundary"]},
-    "tool_catalog": {"en": "docs/tool-catalog.md", "zh_CN": "docs/tool-catalog.zh-CN.md", "ja": "docs/tool-catalog.ja.md", "sections": ["catalog", "status"]},
-    "capability_showcase": {"en": "docs/capability-showcase.md", "zh_CN": "docs/capability-showcase.zh-CN.md", "ja": "docs/capability-showcase.ja.md", "sections": ["overview", "software-sensors", "companion-tools", "evidence"]}
+    "root_readme": {
+      "en": "README.md",
+      "zh_CN": "README.zh-CN.md",
+      "ja": "README.ja.md",
+      "sections": [
+        "introduction",
+        "language-access",
+        "project-status",
+        "catalog",
+        "companion-tools",
+        "quick-start",
+        "download",
+        "capability-showcase",
+        "principles",
+        "long-term-workflow",
+        "documentation",
+        "development",
+        "non-goals",
+        "license"
+      ]
+    },
+    "sensor_catalog": {
+      "en": "docs/sensor-catalog.md",
+      "zh_CN": "docs/sensor-catalog.zh-CN.md",
+      "ja": "docs/sensor-catalog.ja.md",
+      "sections": [
+        "catalog",
+        "status"
+      ]
+    },
+    "installation": {
+      "en": "docs/installation.md",
+      "zh_CN": "docs/installation.zh-CN.md",
+      "ja": "docs/installation.ja.md",
+      "sections": [
+        "prerequisites",
+        "python",
+        "typescript",
+        "verification"
+      ]
+    },
+    "downloading": {
+      "en": "docs/downloading-sensors.md",
+      "zh_CN": "docs/downloading-sensors.zh-CN.md",
+      "ja": "docs/downloading-sensors.ja.md",
+      "sections": [
+        "release",
+        "packages",
+        "bundles",
+        "integrity"
+      ]
+    },
+    "getting_started": {
+      "en": "docs/getting-started.md",
+      "zh_CN": "docs/getting-started.zh-CN.md",
+      "ja": "docs/getting-started.ja.md",
+      "sections": [
+        "choose",
+        "download",
+        "run",
+        "interpret"
+      ]
+    },
+    "evidence_and_maturity": {
+      "en": "docs/evidence-and-maturity.md",
+      "zh_CN": "docs/evidence-and-maturity.zh-CN.md",
+      "ja": "docs/evidence-and-maturity.ja.md",
+      "sections": [
+        "evidence",
+        "maturity",
+        "separation"
+      ]
+    },
+    "sensor_intake": {
+      "en": "docs/sensor-intake.md",
+      "zh_CN": "docs/sensor-intake.zh-CN.md",
+      "ja": "docs/sensor-intake.ja.md",
+      "sections": [
+        "purpose",
+        "qualification",
+        "decision",
+        "lifecycle",
+        "workflow",
+        "observation-boundary",
+        "required-deliverables",
+        "handoff"
+      ]
+    },
+    "first_reuse_loop": {
+      "en": "docs/first-reuse-loop.md",
+      "zh_CN": "docs/first-reuse-loop.zh-CN.md",
+      "ja": "docs/first-reuse-loop.ja.md",
+      "sections": [
+        "loop",
+        "meaning",
+        "boundary"
+      ]
+    },
+    "tool_catalog": {
+      "en": "docs/tool-catalog.md",
+      "zh_CN": "docs/tool-catalog.zh-CN.md",
+      "ja": "docs/tool-catalog.ja.md",
+      "sections": [
+        "catalog",
+        "status"
+      ]
+    },
+    "capability_showcase": {
+      "en": "docs/capability-showcase.md",
+      "zh_CN": "docs/capability-showcase.zh-CN.md",
+      "ja": "docs/capability-showcase.ja.md",
+      "sections": [
+        "overview",
+        "software-sensors",
+        "companion-tools",
+        "evidence"
+      ]
+    },
+    "fringelab_toolkit": {
+      "en": "docs/fringelab-toolkit.md",
+      "zh_CN": "docs/fringelab-toolkit.zh-CN.md",
+      "ja": "docs/fringelab-toolkit.ja.md",
+      "sections": [
+        "overview",
+        "catalog",
+        "run",
+        "measurement",
+        "verification",
+        "provenance"
+      ]
+    }
   },
   "sensors": {
-    "camera.capture": {"en": "sensors/camera.capture/README.md", "zh_CN": "sensors/camera.capture/README.zh-CN.md", "ja": "sensors/camera.capture/README.ja.md", "version": "0.3.0", "maturity": "experimental", "evidence": "E1", "release": "v0.6.0"},
-    "screen.capture": {"en": "sensors/screen.capture/README.md", "zh_CN": "sensors/screen.capture/README.zh-CN.md", "ja": "sensors/screen.capture/README.ja.md", "version": "0.3.0", "maturity": "experimental", "evidence": "E1", "release": "v0.6.0"},
-    "ocr.number": {"en": "sensors/ocr.number/README.md", "zh_CN": "sensors/ocr.number/README.zh-CN.md", "ja": "sensors/ocr.number/README.ja.md", "version": "0.2.0", "maturity": "experimental", "evidence": "E3", "release": "v0.6.0"},
-    "tracker.color-marker": {"en": "sensors/tracker.color-marker/README.md", "zh_CN": "sensors/tracker.color-marker/README.zh-CN.md", "ja": "sensors/tracker.color-marker/README.ja.md", "version": "0.2.0", "maturity": "experimental", "evidence": "E2", "release": "v0.6.0"},
-    "tracker.spot-centroid": {"en": "sensors/tracker.spot-centroid/README.md", "zh_CN": "sensors/tracker.spot-centroid/README.zh-CN.md", "ja": "sensors/tracker.spot-centroid/README.ja.md", "version": "0.4.0", "maturity": "experimental", "evidence": "E5", "release": "v0.6.0"},
-    "tracker.template": {"en": "sensors/tracker.template/README.md", "zh_CN": "sensors/tracker.template/README.zh-CN.md", "ja": "sensors/tracker.template/README.ja.md", "version": "0.4.0", "maturity": "experimental", "evidence": "E3", "release": "v0.6.0"},
-    "tracker.yolo": {"en": "sensors/tracker.yolo/README.md", "zh_CN": "sensors/tracker.yolo/README.zh-CN.md", "ja": "sensors/tracker.yolo/README.ja.md", "version": "0.5.0", "maturity": "experimental", "evidence": "E2", "release": "v0.6.0"}
+    "camera.capture": {
+      "en": "sensors/camera.capture/README.md",
+      "zh_CN": "sensors/camera.capture/README.zh-CN.md",
+      "ja": "sensors/camera.capture/README.ja.md",
+      "version": "0.3.0",
+      "maturity": "experimental",
+      "evidence": "E1",
+      "release": "v0.6.0"
+    },
+    "screen.capture": {
+      "en": "sensors/screen.capture/README.md",
+      "zh_CN": "sensors/screen.capture/README.zh-CN.md",
+      "ja": "sensors/screen.capture/README.ja.md",
+      "version": "0.3.0",
+      "maturity": "experimental",
+      "evidence": "E1",
+      "release": "v0.6.0"
+    },
+    "ocr.number": {
+      "en": "sensors/ocr.number/README.md",
+      "zh_CN": "sensors/ocr.number/README.zh-CN.md",
+      "ja": "sensors/ocr.number/README.ja.md",
+      "version": "0.2.0",
+      "maturity": "experimental",
+      "evidence": "E3",
+      "release": "v0.6.0"
+    },
+    "tracker.color-marker": {
+      "en": "sensors/tracker.color-marker/README.md",
+      "zh_CN": "sensors/tracker.color-marker/README.zh-CN.md",
+      "ja": "sensors/tracker.color-marker/README.ja.md",
+      "version": "0.2.0",
+      "maturity": "experimental",
+      "evidence": "E2",
+      "release": "v0.6.0"
+    },
+    "tracker.spot-centroid": {
+      "en": "sensors/tracker.spot-centroid/README.md",
+      "zh_CN": "sensors/tracker.spot-centroid/README.zh-CN.md",
+      "ja": "sensors/tracker.spot-centroid/README.ja.md",
+      "version": "0.4.0",
+      "maturity": "experimental",
+      "evidence": "E5",
+      "release": "v0.6.0"
+    },
+    "tracker.template": {
+      "en": "sensors/tracker.template/README.md",
+      "zh_CN": "sensors/tracker.template/README.zh-CN.md",
+      "ja": "sensors/tracker.template/README.ja.md",
+      "version": "0.4.0",
+      "maturity": "experimental",
+      "evidence": "E3",
+      "release": "v0.6.0"
+    },
+    "tracker.yolo": {
+      "en": "sensors/tracker.yolo/README.md",
+      "zh_CN": "sensors/tracker.yolo/README.zh-CN.md",
+      "ja": "sensors/tracker.yolo/README.ja.md",
+      "version": "0.5.0",
+      "maturity": "experimental",
+      "evidence": "E2",
+      "release": "v0.6.0"
+    },
+    "image.strip-profile": {
+      "en": "sensors/image.strip-profile/README.md",
+      "zh_CN": "sensors/image.strip-profile/README.zh-CN.md",
+      "ja": "sensors/image.strip-profile/README.ja.md",
+      "version": "0.1.0",
+      "maturity": "experimental",
+      "evidence": "E2",
+      "release": "unreleased"
+    },
+    "vision.ruler-ticks": {
+      "en": "sensors/vision.ruler-ticks/README.md",
+      "zh_CN": "sensors/vision.ruler-ticks/README.zh-CN.md",
+      "ja": "sensors/vision.ruler-ticks/README.ja.md",
+      "version": "0.1.0",
+      "maturity": "experimental",
+      "evidence": "E2",
+      "release": "unreleased"
+    }
   },
-  "sensor_sections": ["name", "description", "physics-use", "measurement", "sources", "how-it-works", "input", "output", "demo", "example", "distribution", "evidence", "maturity", "limitations", "benchmark", "provenance"],
+  "sensor_sections": [
+    "name",
+    "description",
+    "physics-use",
+    "measurement",
+    "sources",
+    "how-it-works",
+    "input",
+    "output",
+    "demo",
+    "example",
+    "distribution",
+    "evidence",
+    "maturity",
+    "limitations",
+    "benchmark",
+    "provenance"
+  ],
   "tools": {
-    "vector.compose-3d": {"en": "processing/vector.compose-3d/README.md", "zh_CN": "processing/vector.compose-3d/README.zh-CN.md", "ja": "processing/vector.compose-3d/README.ja.md", "version": "0.1.0", "status": "experimental"}
+    "vector.compose-3d": {
+      "en": "processing/vector.compose-3d/README.md",
+      "zh_CN": "processing/vector.compose-3d/README.zh-CN.md",
+      "ja": "processing/vector.compose-3d/README.ja.md",
+      "version": "0.1.0",
+      "status": "experimental"
+    },
+    "calibration.scale-1d": {
+      "en": "processing/calibration.scale-1d/README.md",
+      "zh_CN": "processing/calibration.scale-1d/README.zh-CN.md",
+      "ja": "processing/calibration.scale-1d/README.ja.md",
+      "version": "0.1.0",
+      "status": "experimental"
+    },
+    "signal.profile-features": {
+      "en": "processing/signal.profile-features/README.md",
+      "zh_CN": "processing/signal.profile-features/README.zh-CN.md",
+      "ja": "processing/signal.profile-features/README.ja.md",
+      "version": "0.1.0",
+      "status": "experimental"
+    },
+    "optics.fringe-wavelength": {
+      "en": "processing/optics.fringe-wavelength/README.md",
+      "zh_CN": "processing/optics.fringe-wavelength/README.zh-CN.md",
+      "ja": "processing/optics.fringe-wavelength/README.ja.md",
+      "version": "0.1.0",
+      "status": "experimental"
+    }
   },
-  "tool_sections": ["name", "purpose", "boundary", "source", "input", "output", "example", "quality", "coordinates", "demo", "status", "limitations", "provenance"]
+  "tool_sections": [
+    "name",
+    "purpose",
+    "boundary",
+    "source",
+    "input",
+    "output",
+    "example",
+    "quality",
+    "coordinates",
+    "demo",
+    "status",
+    "limitations",
+    "provenance"
+  ]
 }
