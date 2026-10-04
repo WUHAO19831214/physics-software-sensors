@@ -1,52 +1,15 @@
-# Physics Software Sensors — Public Document Delivery Handoff
+# FringeLab collection handoff
 
-## Review state
+Status: READY_FOR_REVIEW. Branch: `codex/fringelab-toolkit`. Both component batches delivered; current catalog 9 Sensors + 4 Companion Tools. Source and immutable v0.6.0 stay unchanged.
 
-- Status: **MAINTENANCE_READY**
-- Task: **PUBLIC_DOCUMENT_DELIVERY**
-- Branch: `main`
-- Merged PR: [#10](https://github.com/WUHAO19831214/physics-software-sensors/pull/10)
-- PR #10 squash merge SHA: `c95474a26738d1d68174958ba8bb575948e76d90`
-- Tested implementation SHA: `c95474a26738d1d68174958ba8bb575948e76d90`
-- Sensors: **7**
-- Companion Processing Tools: **1**
-- Public capabilities: **8**
-- Baseline Release: immutable `v0.6.0`
+- [Toolkit guide](../docs/fringelab-toolkit.md)
+- [Package API](../packages/fringelab/README.md)
+- [Runnable browser example](../examples/web-fringelab-toolkit/README.md)
+- [Evidence report](../benchmarks/results/fringelab-extraction-2026-10-05.md)
+- [Machine-readable handoff](latest.json)
 
-## Multilingual content integrity and route diagnosis
+62 toolkit tests and 30 core tests passed; 7 browser flows, 5 event-schema checks and fixed-source output comparison passed. Synthetic/offline evidence; physical device and real-photo error remain not measured. Browser OCR completed with no usable anchor on the default synthetic crop. Automatic and OCR results remain drafts with full manual/multi-point fallback.
 
-1. `README.md`, `README.zh-CN.md` and `README.ja.md`: **3/3 exists, UTF-8 PASS, local render PASS**.
-2. Markdown language source navigation: **6/6 valid**.
-3. GitHub Contents API: **200** for EN/ZH/JA.
-4. GitHub Web blob delivery: **external error** (404/unavailable in the route probe).
-5. GitHub Raw delivery: **rate-limited** (429 in the route probe).
-6. Repository multilingual content integrity: **PASS**; no valid Markdown or encoding was rewritten to work around GitHub delivery.
+Build local tgz plus two new Sensor Bundles with `python3 tools/build_fringelab_artifacts.py`. The three languages document unreleased 0.1.0 separately from immutable v0.6.0. No registry publication or source application migration was performed.
 
-## Public GitHub Pages reader
-
-- `docs/index.html`, `docs/zh-CN/index.html` and `docs/ja/index.html` are generated from canonical READMEs and `project-status.json`.
-- The reader supplies 6/6 relative language routes and exposes **7 Sensors + 1 Companion Tool = 8 public capabilities**.
-- It reuses `docs/assets/capability-showcase.png`; no external host, duplicate image or base64 embedding was introduced.
-- `tools/build_multilingual_pages.py` records source SHA-256 values; `tools/validate_public_docs.py` verifies freshness, routes and capability inventory without network access.
-- GitHub Pages is **ENABLED** with branch-source `main /docs`; the API reports build status `built`.
-- English, 简体中文 and 日本語 routes each return **HTTP 200** at <https://wuhao19831214.github.io/physics-software-sensors/>.
-- Relative language navigation was verified **6/6 PASS**; the capability showcase is **PASS**.
-- This deployment does not use Actions and has no `gh-pages` branch.
-
-## Verification
-
-- Python: **100/100 PASS**.
-- TypeScript: **30/30 PASS**.
-- i18n: **PASS**, 10 public document sets, 7 Sensor Pages × 3, 1 Tool Page × 3, 54 terms.
-- Public document validation: **3/3 README sources, 3/3 Pages files, 6/6 language routes PASS**.
-- Local HTTP reader: `/`, `/zh-CN/`, `/ja/` all return **200**.
-- Repository validation: **PASS** before final handoff commit; rerun after the containing handoff commit.
-
-## Immutable state
-
-- PR #9 remains merged; this is a separate documentation-delivery maintenance branch.
-- Five historical source repositories, Sensor/Tool implementations, contracts and algorithms: unchanged.
-- `v0.6.0` tag and Release attachments: unchanged.
-- No `v0.7.0`, PyPI, npm, new Sensor or second Tool was published.
-
-Next action: continue normal maintenance. Direct public readers should use the GitHub Pages site; Markdown remains the version-controlled source.
+Collection PR: [#12](https://github.com/WUHAO19831214/physics-software-sensors/pull/12), OPEN. Tested implementation: `242e5120e290eddbd2e36b1d73857f1042fbf110`. [Distribution record](../benchmarks/results/fringelab-distribution.json) includes tgz/zip SHA-256 and successful clean consumer/SSR/type/unzipped-example builds.

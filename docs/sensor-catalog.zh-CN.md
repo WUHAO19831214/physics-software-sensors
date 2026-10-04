@@ -16,6 +16,8 @@
 | [`tracker.spot-centroid`](../sensors/tracker.spot-centroid/README.zh-CN.md) | 光斑亮度加权重心 | Python | experimental | E5 | [运行](../examples/spot-centroid/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](../sensors/tracker.template/README.zh-CN.md) | ROI 初始化单目标追踪 | Python | experimental | E3 | [运行](../examples/python-template-tracker/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](../sensors/tracker.yolo/README.zh-CN.md) | 多目标检测/追踪 adapter | Python | experimental | E2 | [运行](../examples/python-yolo-tracker/README.md) | [0.5.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`image.strip-profile`](../sensors/image.strip-profile/README.zh-CN.md) | 旋转 ROI 灰度/通道剖面及饱和质量记录 | TypeScript | experimental | E2 | [demo](../examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
+| [`vision.ruler-ticks`](../sensors/vision.ruler-ticks/README.zh-CN.md) | 实体尺刻线识别与待确认尺度候选 | TypeScript | experimental | E2 | [demo](../examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
 
 <!-- section:status -->
 ## 状态含义
@@ -25,4 +27,4 @@
 - `validated`：适用的真实 runtime/device、指标和许可证门禁已通过。
 - `stable`：validated API 已完成下游固定版本复用与回退验证。
 
-证据等级不等于成熟度，参阅[证据与成熟度](evidence-and-maturity.zh-CN.md)。七项 Sensor 仍全部为 experimental；只有 `tracker.spot-centroid` 具有 E5 下游复用证据，但仍没有 E4 真实光学/设备证据。真实 YOLO inference 仍是 not measured，且不分发模型权重。
+证据等级不等于成熟度，参阅[证据与成熟度](evidence-and-maturity.zh-CN.md)。九项 Sensor 仍全部为 experimental；只有 `tracker.spot-centroid` 具有 E5 下游复用证据，但仍没有 E4 真实光学/设备证据。真实 YOLO inference 仍是 not measured，且不分发模型权重。

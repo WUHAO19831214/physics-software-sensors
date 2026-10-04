@@ -19,12 +19,12 @@ def test_project_status_matches_sensor_registry_and_maintenance_baseline() -> No
     assert status["phase_5_library_merge_sha"] == "2c3e91ed3c36f23b82c76cfd70076807adc1f891"
     assert status["baseline_release"]["tag"] == "v0.6.0"
     assert status["baseline_release"]["immutable"] is True
-    assert status["sensor_count"] == status["implemented_adapter_count"] == 7
-    assert status["companion_tool_count"] == 1
-    assert status["public_capability_count"] == 8
+    assert status["sensor_count"] == status["implemented_adapter_count"] == 9
+    assert status["companion_tool_count"] == 4
+    assert status["public_capability_count"] == 13
     assert status["languages"] == ["en", "zh-CN", "ja"]
     assert set(status["sensors"]) == set(document_map["sensors"])
-    assert set(status["companion_tools"]) == set(document_map["tools"]) == {"vector.compose-3d"}
+    assert set(status["companion_tools"]) == set(document_map["tools"]) == {"vector.compose-3d", "calibration.scale-1d", "signal.profile-features", "optics.fringe-wavelength"}
     assert status["companion_tools"]["vector.compose-3d"]["released"] is False
     assert status["public_document_delivery"] == {
         "repository_content_integrity": "pass",

@@ -30,6 +30,9 @@ EXPECTED_SENSOR_IDS = {
     "tracker.template",
     "tracker.spot-centroid",
 }
+BASELINE_SENSOR_IDS = set(EXPECTED_SENSOR_IDS)
+EXPECTED_SENSOR_IDS |= {"image.strip-profile", "vision.ruler-ticks"}
+EXPECTED_TOOL_IDS = {"vector.compose-3d", "calibration.scale-1d", "signal.profile-features", "optics.fringe-wavelength"}
 EXPECTED_COMPOSITIONS = {
     ("camera.capture", "tracker.color-marker"),
     ("camera.capture", "tracker.spot-centroid"),
@@ -53,6 +56,7 @@ EXPECTED_IMPLEMENTATION_STATUS = {
     "tracker.template": ("incubating", "adapter-present", "0.4.0"),
     "tracker.yolo": ("incubating", "adapter-present", "0.5.0"),
 }
+EXPECTED_IMPLEMENTATION_STATUS.update({sid: ("incubating", "adapter-present", "0.1.0") for sid in EXPECTED_SENSOR_IDS - BASELINE_SENSOR_IDS})
 SENSOR_PAGE_FILES = (
     "README.md",
     "SOURCE.md",
@@ -124,6 +128,11 @@ HOMEPAGE_CAPABILITY_LINKS = {
     },
 }
 
+for language, suffix in (("en", ""), ("zh_CN", ".zh-CN"), ("ja", ".ja")):
+    HOMEPAGE_CAPABILITY_LINKS[language] |= {
+        f"sensors/{sid}/README{suffix}.md" for sid in EXPECTED_SENSOR_IDS - BASELINE_SENSOR_IDS
+    } | {f"processing/{tid}/README{suffix}.md" for tid in EXPECTED_TOOL_IDS - {"vector.compose-3d"}}
+
 
 def load_json(path: Path) -> dict:
     with path.open(encoding="utf-8") as handle:
@@ -186,29 +195,23 @@ def check_manifests() -> list[str]:
 def check_tool_manifests() -> list[str]:
     errors: list[str] = []
     paths = sorted((ROOT / "processing").glob("*/tool.json"))
-    if len(paths) != 1:
-        return [f"processing: expected exactly one Companion Tool, found {len(paths)}"]
-    path = paths[0]
-    manifest = load_json(path)
-    if manifest.get("id") != path.parent.name or manifest.get("id") != "vector.compose-3d":
-        errors.append(f"{path.relative_to(ROOT)}: expected id vector.compose-3d matching directory")
-    expected = {
-        "type": "companion-processing-tool",
-        "status": "experimental",
-        "version": "0.1.0",
-        "language": "typescript",
-    }
-    for field, value in expected.items():
-        if manifest.get(field) != value:
-            errors.append(f"{path.relative_to(ROOT)}: {field} must be {value!r}")
-    for relative in ("README.md", "README.zh-CN.md", "README.ja.md", "SOURCE.md", "CHANGELOG.md", "benchmarks/README.md", "examples/README.md"):
-        if not (path.parent / relative).is_file():
-            errors.append(f"{path.parent.relative_to(ROOT)}: missing Tool Page file {relative}")
-    for source in manifest.get("source_references", []):
-        if not HEX40.fullmatch(str(source.get("commit", ""))):
-            errors.append(f"{path.relative_to(ROOT)}: source commit must be a full SHA")
-        if not str(source.get("repository", "")).startswith("https://github.com/"):
-            errors.append(f"{path.relative_to(ROOT)}: source repository must be a GitHub URL")
+    if {path.parent.name for path in paths} != EXPECTED_TOOL_IDS:
+        errors.append("processing: Companion Tool catalog mismatch")
+    for path in paths:
+        manifest = load_json(path)
+        if manifest.get("id") != path.parent.name:
+            errors.append(f"{path.relative_to(ROOT)}: id must match directory")
+        for field, value in {"type": "companion-processing-tool", "status": "experimental", "version": "0.1.0", "language": "typescript"}.items():
+            if manifest.get(field) != value:
+                errors.append(f"{path.relative_to(ROOT)}: {field} must be {value!r}")
+        for relative in ("README.md", "README.zh-CN.md", "README.ja.md", "SOURCE.md", "CHANGELOG.md", "benchmarks/README.md", "examples/README.md"):
+            if not (path.parent / relative).is_file():
+                errors.append(f"{path.parent.relative_to(ROOT)}: missing Tool Page file {relative}")
+        for source in manifest.get("source_references", []):
+            if not HEX40.fullmatch(str(source.get("commit", ""))):
+                errors.append(f"{path.relative_to(ROOT)}: source commit must be a full SHA")
+            if not str(source.get("repository", "")).startswith("https://github.com/"):
+                errors.append(f"{path.relative_to(ROOT)}: source repository must be a GitHub URL")
     return errors
 
 
@@ -236,16 +239,15 @@ def check_markdown_links() -> list[str]:
 def check_homepage_showcase() -> list[str]:
     errors: list[str] = []
     status = load_json(ROOT / "docs/project-status.json")
-    if status.get("sensor_count") != 7:
-        errors.append("docs/project-status.json: sensor_count must remain 7")
-    if status.get("companion_tool_count") != 1:
-        errors.append("docs/project-status.json: companion_tool_count must be 1")
-    if status.get("public_capability_count") != 8:
-        errors.append("docs/project-status.json: public_capability_count must be 8")
     sensor_manifests = list((ROOT / "sensors").glob("*/sensor.json"))
     tool_manifests = list((ROOT / "processing").glob("*/tool.json"))
-    if len(sensor_manifests) != 7 or len(tool_manifests) != 1:
-        errors.append("homepage inventory must resolve to exactly 7 Sensors and 1 Companion Tool")
+    if (status.get("sensor_count"), status.get("companion_tool_count"), status.get("public_capability_count")) != (len(sensor_manifests), len(tool_manifests), len(sensor_manifests) + len(tool_manifests)):
+        errors.append("docs/project-status.json: counts must match current manifests")
+    toolkit_image = ROOT / "docs/assets/fringelab-toolkit.png"
+    if not toolkit_image.is_file():
+        errors.append("missing verified FringeLab toolkit screenshot")
+    else:
+        errors.extend(validate_png(toolkit_image))
     showcase_path = ROOT / HOMEPAGE_SHOWCASE_IMAGE
     if not showcase_path.is_file():
         errors.append(f"missing homepage aggregate image {HOMEPAGE_SHOWCASE_IMAGE}")
@@ -267,9 +269,9 @@ def check_homepage_showcase() -> list[str]:
             for image, _target in LINKED_IMAGE.findall(detail_text)
             if image != "assets/capability-showcase.png"
         }
-        if detail_images != DETAILED_DEMO_IMAGES:
-            errors.append(f"{raw_path}: detailed demo image coverage must be exactly 8/8")
-    expected_pages = set(EXPECTED_SENSOR_IDS) | {"vector.compose-3d"}
+        if detail_images != DETAILED_DEMO_IMAGES | {"docs/assets/fringelab-toolkit.png"}:
+            errors.append(f"{raw_path}: detailed demo coverage must include eight baseline assets and FringeLab runtime")
+    expected_pages = set(EXPECTED_SENSOR_IDS) | EXPECTED_TOOL_IDS
     for language, path in HOMEPAGE_FILES.items():
         text = path.read_text(encoding="utf-8")
         try:
@@ -278,9 +280,10 @@ def check_homepage_showcase() -> list[str]:
             errors.append(f"{path.name}: missing capability-showcase/principles section boundary")
             continue
         linked_images = LINKED_IMAGE.findall(gallery)
-        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, HOMEPAGE_SHOWCASE_PAGES[language])]
+        suffix = {"en": "", "zh_CN": ".zh-CN", "ja": ".ja"}[language]
+        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, HOMEPAGE_SHOWCASE_PAGES[language]), ("docs/assets/fringelab-toolkit.png", f"docs/fringelab-toolkit{suffix}.md")]
         if linked_images != expected_linked_image:
-            errors.append(f"{path.name}: homepage must contain exactly one linked aggregate image")
+            errors.append(f"{path.name}: homepage must contain the baseline aggregate and the FringeLab runtime image")
         for image, target in linked_images:
             if not (ROOT / image).is_file():
                 errors.append(f"{path.name}: missing homepage image {image}")
@@ -302,6 +305,8 @@ def check_homepage_showcase() -> list[str]:
         for capability_id in expected_pages:
             if capability_id not in text:
                 errors.append(f"{path.name}: missing homepage capability {capability_id}")
+        if "13/13" not in gallery or "@physics-software-sensors/fringelab" not in gallery:
+            errors.append(f"{path.name}: missing current coverage and FringeLab component introduction")
         if "8/8" not in gallery:
             errors.append(f"{path.name}: missing 8/8 capability coverage statement")
         if "recorded detector replay" not in gallery.lower():
@@ -367,7 +372,7 @@ def check_evidence_registry() -> list[str]:
     if not isinstance(entries, list):
         return ["benchmarks/results/index.json: entries must be an array"]
     ids = {entry.get("sensor_id") for entry in entries if isinstance(entry, dict)}
-    if len(entries) != 7 or ids != EXPECTED_SENSOR_IDS:
+    if len(entries) != len(EXPECTED_SENSOR_IDS) or ids != EXPECTED_SENSOR_IDS:
         errors.append("benchmarks/results/index.json: exactly one entry per known sensor is required")
     for index, entry in enumerate(entries):
         if not isinstance(entry, dict):
@@ -419,7 +424,7 @@ def check_release_candidate() -> list[str]:
         item.get("sensor_id") for item in artifacts
         if isinstance(item, dict) and item.get("type") == "sensor-bundle"
     }
-    if bundle_ids != EXPECTED_SENSOR_IDS:
+    if bundle_ids != BASELINE_SENSOR_IDS:
         errors.append("release/release-manifest.json: exactly seven known sensor bundles are required")
     types = [item.get("type") for item in artifacts if isinstance(item, dict)]
     if types.count("python-wheel") != 1 or types.count("typescript-tgz") != 1:
@@ -498,7 +503,7 @@ def check_handoff() -> list[str]:
         errors.append(".agent-handoff/latest.json: working_tree_clean does not match git status")
     sensors = handoff.get("sensors", {})
     if not isinstance(sensors, dict) or set(sensors) != EXPECTED_SENSOR_IDS:
-        errors.append(".agent-handoff/latest.json: sensors must contain exactly the seven known IDs")
+        errors.append(".agent-handoff/latest.json: sensors must match the current catalog")
     pull_request = handoff.get("pull_request", {})
     if not isinstance(pull_request, dict):
         errors.append(".agent-handoff/latest.json: pull_request must be an object")
@@ -557,7 +562,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 7 trilingual Sensor Pages/manifests, 1 trilingual Companion Tool, 1 decoded homepage aggregate with 8/8 capability links, i18n parity, pilot demos, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 9 trilingual Sensor Pages/manifests, 4 trilingual Companion Tools, 2 verified homepage images covering 13/13 catalog capabilities, i18n parity, pilot demos, and local Markdown links")
     return 0
 
 

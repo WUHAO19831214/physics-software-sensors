@@ -2,30 +2,39 @@
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "MAINTENANCE",
-  "phase_name": "Multilingual Public Document Access Reliability",
-  "task_type": "PUBLIC_DOCUMENT_DELIVERY",
-  "status": "MAINTENANCE_READY",
+  "phase_name": "FringeLab reusable toolkit collection",
+  "task_type": "MAINTENANCE",
+  "status": "READY_FOR_REVIEW",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
-  "sensor_count": 7,
-  "companion_tool_count": 1,
-  "public_capability_count": 8,
-  "languages": ["en", "zh-CN", "ja"],
+  "sensor_count": 9,
+  "companion_tool_count": 4,
+  "public_capability_count": 13,
+  "languages": [
+    "en",
+    "zh-CN",
+    "ja"
+  ],
   "git": {
     "base_branch": "main",
-    "working_branch": "main",
-    "base_sha": "c95474a26738d1d68174958ba8bb575948e76d90",
-    "tested_sha": "c95474a26738d1d68174958ba8bb575948e76d90",
-    "published_head_sha": {"resolution": "branch-ref", "ref": "refs/heads/main"},
-    "handoff_commit_sha": {"resolution": "containing-commit"},
+    "working_branch": "codex/fringelab-toolkit",
+    "base_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
+    "tested_sha": "242e5120e290eddbd2e36b1d73857f1042fbf110",
+    "published_head_sha": {
+      "resolution": "branch-ref",
+      "ref": "refs/heads/codex/fringelab-toolkit"
+    },
+    "handoff_commit_sha": {
+      "resolution": "containing-commit"
+    },
     "working_tree_clean": true
   },
   "pull_request": {
-    "number": 10,
-    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/10",
+    "number": 12,
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/12",
     "draft": false,
-    "state": "MERGED",
-    "title": "Improve multilingual documentation access reliability"
+    "state": "OPEN",
+    "title": "Collect FringeLab reusable measurement toolkit"
   },
   "public_document_delivery": {
     "repository_content_integrity": "PASS",
@@ -35,24 +44,76 @@
     "pages_source": "main /docs",
     "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
     "build_status": "built",
-    "language_pages": {"en": "PASS", "zh_CN": "PASS", "ja": "PASS"},
+    "language_pages": {
+      "en": "PASS",
+      "zh_CN": "PASS",
+      "ja": "PASS"
+    },
     "language_switching": "6/6 PASS",
     "capability_showcase": "PASS"
   },
   "pages": {
-    "files": {"en": "docs/index.html", "zh_CN": "docs/zh-CN/index.html", "ja": "docs/ja/index.html"},
+    "files": {
+      "en": "docs/index.html",
+      "zh_CN": "docs/zh-CN/index.html",
+      "ja": "docs/ja/index.html"
+    },
     "language_routes": "6/6",
     "actions_workflow": false,
     "gh_pages_branch": false
   },
   "tests": {
-    "repository_validation": {"passed": true, "pending_clean_commit_rerun": false},
-    "i18n": {"passed": true, "public_document_sets": 10, "sensor_pages": 21, "tool_pages": 3, "terminology_entries": 54},
-    "python": {"passed": 100, "failed": 0},
-    "typescript": {"passed": 30, "failed": 0},
-    "public_document_delivery": {"readme_sources": "3/3", "pages_files": "3/3", "language_routes": "6/6", "passed": true},
-    "local_http": {"routes": "3/3", "status": 200},
-    "github_pages": {"routes": "3/3", "status": 200, "language_switching": "6/6 PASS", "capability_showcase": "PASS"}
+    "repository_validation": {
+      "passed": true,
+      "pending_clean_commit_rerun": false
+    },
+    "i18n": {
+      "passed": true,
+      "public_document_sets": 11,
+      "sensor_pages": 27,
+      "tool_pages": 12,
+      "terminology_entries": 54
+    },
+    "python": {
+      "passed": 94,
+      "failed": 0
+    },
+    "typescript": {
+      "passed": 30,
+      "failed": 0
+    },
+    "public_document_delivery": {
+      "readme_sources": "3/3",
+      "pages_files": "3/3",
+      "language_routes": "6/6",
+      "passed": true
+    },
+    "local_http": {
+      "routes": "3/3",
+      "status": 200
+    },
+    "github_pages": {
+      "routes": "3/3",
+      "status": 200,
+      "language_switching": "6/6 PASS",
+      "capability_showcase": "PASS"
+    },
+    "fringelab": {
+      "passed": 62,
+      "failed": 0,
+      "schema_events": "5/5",
+      "browser_flows": "7/7",
+      "source_equivalence": "18 fixed hashes and exact normalized outputs",
+      "clean_install": "PASS",
+      "bundle_example": "PASS: clean unzip and build",
+      "distribution_report": "benchmarks/results/fringelab-distribution.json"
+    },
+    "homepage_publication": {
+      "local_languages": "3/3",
+      "images": "2/2",
+      "catalog": "13/13",
+      "online": "pending merge and live verification"
+    }
   },
   "release": {
     "tag": "v0.6.0",
@@ -64,25 +125,90 @@
     "npm_registry_published": false
   },
   "sensors": {
-    "camera.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
-    "screen.capture": {"maturity": "experimental", "evidence": "E1", "implementation_version": "0.3.0"},
-    "ocr.number": {"maturity": "experimental", "evidence": "E3", "implementation_version": "0.2.0"},
-    "tracker.color-marker": {"maturity": "experimental", "evidence": "E2", "implementation_version": "0.2.0"},
-    "tracker.spot-centroid": {"maturity": "experimental", "evidence": "E5", "implementation_version": "0.4.0"},
-    "tracker.template": {"maturity": "experimental", "evidence": "E3", "implementation_version": "0.4.0"},
-    "tracker.yolo": {"maturity": "experimental", "evidence": "E2", "implementation_version": "0.5.0"}
+    "camera.capture": {
+      "maturity": "experimental",
+      "evidence": "E1",
+      "implementation_version": "0.3.0"
+    },
+    "screen.capture": {
+      "maturity": "experimental",
+      "evidence": "E1",
+      "implementation_version": "0.3.0"
+    },
+    "ocr.number": {
+      "maturity": "experimental",
+      "evidence": "E3",
+      "implementation_version": "0.2.0"
+    },
+    "tracker.color-marker": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "implementation_version": "0.2.0"
+    },
+    "tracker.spot-centroid": {
+      "maturity": "experimental",
+      "evidence": "E5",
+      "implementation_version": "0.4.0"
+    },
+    "tracker.template": {
+      "maturity": "experimental",
+      "evidence": "E3",
+      "implementation_version": "0.4.0"
+    },
+    "tracker.yolo": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "implementation_version": "0.5.0"
+    },
+    "image.strip-profile": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "implementation_version": "0.1.0"
+    },
+    "vision.ruler-ticks": {
+      "maturity": "experimental",
+      "evidence": "E2",
+      "implementation_version": "0.1.0"
+    }
   },
   "source_repositories": [
-    {"repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable", "commit": "85740d686c67452a057540edb564d713e01ccc51", "state": "unchanged"},
-    {"repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952", "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a", "state": "unchanged"},
-    {"repository": "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715", "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619", "state": "unchanged"},
-    {"repository": "WUHAO19831214/physics-experiment-bridge-mvp", "commit": "8bba87df6475cae1e595fc925551db8bea83fb68", "state": "unchanged"},
-    {"repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan", "commit": "cb073e89d6d87129287030f1df08bd540504eb39", "state": "unchanged"}
+    {
+      "repository": "WUHAO19831214/audio-visual-soundfield-tracker-stable",
+      "commit": "85740d686c67452a057540edb564d713e01ccc51",
+      "state": "unchanged"
+    },
+    {
+      "repository": "WUHAO19831214/spot-vibration-tracking-system-20260508-171952",
+      "commit": "7f0d91cc73afafaecc54acc46b2b9d69375d994a",
+      "state": "unchanged"
+    },
+    {
+      "repository": "WUHAO19831214/forced-vibration-af-analyzer-20260502-122715",
+      "commit": "c3f58175a09ff29cacdfb976a5055758c4eff619",
+      "state": "unchanged"
+    },
+    {
+      "repository": "WUHAO19831214/physics-experiment-bridge-mvp",
+      "commit": "8bba87df6475cae1e595fc925551db8bea83fb68",
+      "state": "unchanged"
+    },
+    {
+      "repository": "WUHAO19831214/ampere-force-visualizer-teacher-yanan",
+      "commit": "cb073e89d6d87129287030f1df08bd540504eb39",
+      "state": "unchanged"
+    },
+    {
+      "repository": "WUHAO19831214/webcam-laser-fringelab",
+      "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
+      "state": "unchanged"
+    }
   ],
   "blockers": [],
   "known_gaps": [
-    "external GitHub Web blob delivery is currently unavailable in the route probe",
-    "external GitHub Raw/CDN delivery can be temporarily rate-limited"
+    "E4 real camera and optical evidence not measured",
+    "Real-photo ruler period error distribution not measured",
+    "Browser OCR completed with zero usable anchors on default synthetic selected region",
+    "HEIC device-photo runtime not measured"
   ],
-  "next_action": "Continue maintenance; use the GitHub Pages reader for public multilingual documentation and retain Markdown sources for version-controlled review."
+  "next_action": "Publish PR #12 to main and verify the expanded Capability Showcase and GitHub Pages."
 }

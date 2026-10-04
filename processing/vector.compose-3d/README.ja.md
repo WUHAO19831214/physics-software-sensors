@@ -76,7 +76,7 @@ OCR 失敗は `{ source: 'missing' }` へ変換します。その場合は `inco
 <!-- section:status -->
 ## 状態と配布
 
-現在は `experimental`、version `0.1.0` で、未リリースの TypeScript source tree にのみ存在します。不変の `v0.6.0` Release には含まれず、`v0.7.0` も未公開です。Sensor 数は引き続き 7 です。
+現在は `experimental`、version `0.1.0` で、未リリースの TypeScript source tree にのみ存在します。不変の `v0.6.0` Release には含まれず、`v0.7.0` も未公開です。現在の Sensor 数は9、基準 Release の Sensor 数は7です。
 
 <!-- section:limitations -->
 ## 既知の制約

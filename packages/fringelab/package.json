@@ -1,0 +1,80 @@
+{
+  "name": "@physics-software-sensors/fringelab",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Reusable FringeLab optics sensing, ruler calibration and browser UI toolkit",
+  "sideEffects": [
+    "./src/react/styles.css"
+  ],
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./core/*": {
+      "types": "./dist/src/core/*.d.ts",
+      "import": "./dist/src/core/*.js"
+    },
+    "./sensors": {
+      "types": "./dist/src/sensors/index.d.ts",
+      "import": "./dist/src/sensors/index.js"
+    },
+    "./browser": {
+      "types": "./dist/src/browser/index.d.ts",
+      "import": "./dist/src/browser/index.js"
+    },
+    "./react": {
+      "types": "./dist/src/react/index.d.ts",
+      "import": "./dist/src/react/index.js"
+    },
+    "./styles.css": "./src/react/styles.css"
+  },
+  "files": [
+    "dist/src",
+    "src/react/styles.css",
+    "README.md",
+    "SOURCE.md",
+    "source-files.json",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "licenses"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js"
+  },
+  "peerDependencies": {
+    "@physics-software-sensors/core": "^0.3.0",
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "tesseract.js": "^6.0.1"
+  },
+  "optionalDependencies": {
+    "heic-to": "1.6.5"
+  },
+  "devDependencies": {
+    "@physics-software-sensors/core": "file:../typescript",
+    "typescript": "^5.9.3",
+    "@types/node": "^22.0.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

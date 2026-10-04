@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-05",
+  "environment": {
+    "node": "v24.13.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M2"
+  },
+  "kind": "local synthetic algorithm latency",
+  "strip_profile": {
+    "samples": 30,
+    "warmup": 5,
+    "median_ms": 5.478416999999979,
+    "p95_ms": 7.314584000000025,
+    "min_ms": 5.2926669999999945,
+    "max_ms": 8.953874999999982
+  },
+  "ruler_ticks": {
+    "samples": 30,
+    "warmup": 5,
+    "median_ms": 70.90620799999988,
+    "p95_ms": 74.0820829999999,
+    "min_ms": 68.42945899999995,
+    "max_ms": 79.00354199999992
+  },
+  "ruler_size": {
+    "width": 720,
+    "height": 280
+  },
+  "profile_size": {
+    "width": 960,
+    "height": 540
+  },
+  "real_photo_error": "not measured",
+  "hardware_precision": "not measured"
+}

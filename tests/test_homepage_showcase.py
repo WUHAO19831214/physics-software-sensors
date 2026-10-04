@@ -21,22 +21,23 @@ def load_validator():
     return module
 
 
-def test_homepage_showcase_has_seven_sensors_and_one_tool() -> None:
+def test_homepage_showcase_and_toolkit_cover_current_catalog() -> None:
     assert load_validator().check_homepage_showcase() == []
 
 
 def test_public_capability_counts_do_not_turn_tool_into_sensor() -> None:
     status = json.loads((ROOT / "docs/project-status.json").read_text(encoding="utf-8"))
-    assert status["sensor_count"] == 7
-    assert status["companion_tool_count"] == 1
-    assert status["public_capability_count"] == 8
+    assert status["sensor_count"] == 9
+    assert status["companion_tool_count"] == 4
+    assert status["public_capability_count"] == 13
     assert status["homepage_visual_coverage"] == {
-        "sensors": "7/7",
-        "companion_tools": "1/1",
-        "total": "8/8",
+        "sensors": "9/9",
+        "companion_tools": "4/4",
+        "total": "13/13",
         "aggregate_image": "docs/assets/capability-showcase.png",
-        "homepage_image_requests": 1,
-        "detailed_demo_assets": "8/8",
+        "homepage_image_requests": 2,
+        "detailed_demo_assets": "9 unique assets / 13 capabilities",
+        "toolkit_image": "docs/assets/fringelab-toolkit.png",
         "broken_demo_links": 0,
     }
 

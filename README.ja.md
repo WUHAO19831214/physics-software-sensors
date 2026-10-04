@@ -44,15 +44,15 @@ Processor Sensor → SensorEvent / スカラー測定値
 
 repository の 3 言語コンテンツ完全性：**PASS**。English、简体中文、日本語の Markdown はいずれも完全な source document として維持されています。地域によって GitHub の file view が一時的に失敗しても、repository のトップから次の概要を確認できます。
 
-- **English quick summary:** A reusable software sensing layer for physics experiments with 7 Software Sensors, 1 Companion Processing Tool and 8 public capabilities. It keeps direct image/screen/OCR/tracking observations separate from downstream physical quantities. Public `v0.6.0` contains seven Sensor Bundles, while `vector.compose-3d` is an unreleased experimental Tool. The trilingual documentation website is now served by GitHub Pages from `main /docs`.
-- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，包含 7 个软件传感器、1 个配套处理工具和 8 项公开能力。它明确区分图像、屏幕、OCR、追踪的直接观测与后续物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle，`vector.compose-3d` 仍是未发布的 experimental 工具。三语静态阅读页现在由 GitHub Pages 从 `main /docs` 提供。
+- **English quick summary:** A reusable software sensing layer for physics experiments with 9 Software Sensors, 4 Companion Processing Tools and 13 public capabilities. It keeps direct image/screen/OCR/tracking observations separate from downstream physical quantities. Public `v0.6.0` contains seven Sensor Bundles, while `vector.compose-3d` is an unreleased experimental Tool. The trilingual documentation website is now served by GitHub Pages from `main /docs`.
+- **简体中文快速说明：**这是面向物理实验的可复用软件传感器基础层，包含 9 个软件传感器、4 个配套处理工具和 13 项公开能力。它明确区分图像、屏幕、OCR、追踪的直接观测与后续物理量。公开 `v0.6.0` 包含 7 个 Sensor Bundle，`vector.compose-3d` 仍是未发布的 experimental 工具。三语静态阅读页现在由 GitHub Pages 从 `main /docs` 提供。
 
 <!-- section:project-status -->
 ## Project status
 
-**7 Software Sensor · 1 Companion Processing Tool · 再利用可能な公開 capability 全 8 項** · English / 简体中文 / 日本語
+**9 Software Sensor · 4 Companion Processing Tools · 再利用可能な公開 capability 全 13 項** · English / 简体中文 / 日本語
 
-7 個の adapter と本ツールはすべて experimental です。公開 `v0.6.0` Release には 7 個の Sensor Bundle が含まれ、本ツールは未リリースです。最初の E5 downstream reuse は完了していますが、すべての Sensor が validated であるとは主張しません。
+9 個の adapter と4個のツールはすべて experimental です。公開 `v0.6.0` Release には 7 個の Sensor Bundle が含まれ、本ツールは未リリースです。最初の E5 downstream reuse は完了していますが、すべての Sensor が validated であるとは主張しません。
 
 <!-- section:catalog -->
 ## センサーカタログ
@@ -66,6 +66,8 @@ repository の 3 言語コンテンツ完全性：**PASS**。English、简体中
 | [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.ja.md) | 光スポットの輝度加重重心 | Python | experimental | E5 | [example](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.ja.md) | ROI 初期化型の単一物体追跡 | Python | experimental | E3 | [example](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.ja.md) | 複数対象の検出・追跡 adapter | Python | experimental | E2 | [example](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`image.strip-profile`](sensors/image.strip-profile/README.ja.md) | 回転 ROI の断面プロファイルと飽和メタデータ | TypeScript | experimental | E2 | [demo](examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
+| [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.ja.md) | 実物定規の目盛り検出と未確認スケール候補 | TypeScript | experimental | E2 | [demo](examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
 
 詳細は[センサーカタログ](docs/sensor-catalog.ja.md)を参照してください。エビデンスレベルと成熟度は別の概念です。
 
@@ -75,6 +77,9 @@ repository の 3 言語コンテンツ完全性：**PASS**。English、简体中
 | Tool | 用途 | 言語 | 状態 | Example | 文書 |
 | --- | --- | --- | --- | --- | --- |
 | [`vector.compose-3d`](processing/vector.compose-3d/README.ja.md) | スカラー成分から3次元ベクトルを合成・再構成 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.ja.md) |
+| [`calibration.scale-1d`](processing/calibration.scale-1d/README.ja.md) | 人が確認する2点・区分多点1次元校正 | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/calibration.scale-1d/README.ja.md) |
+| [`signal.profile-features`](processing/signal.profile-features/README.ja.md) | 平滑化、背景減算、ピーク幅・周期解析 | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/signal.profile-features/README.ja.md) |
+| [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.ja.md) | 干渉・回折の波長逆算、回帰と不確かさ | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/optics.fringe-wavelength/README.ja.md) |
 
 詳細は [Companion Tool Catalog](docs/tool-catalog.ja.md)を参照してください。Companion Tool は拡張可能な測定処理 layer であり、Sensor 数には含めません。
 
@@ -88,6 +93,10 @@ python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classic
 npm install ./physics-software-sensors-core-0.3.0.tgz
 ```
 
+
+
+FringeLab から2つの Sensor、3つの処理 Tool、電卓・ROI・仮想定規 UI を追加しました。両バッチを独立した0.1.0パッケージに収録し、不変の v0.6.0 ダウンロードは従来の7 bundle を維持します。 [FringeLab toolkit](docs/fringelab-toolkit.ja.md) · [runnable demo](examples/web-fringelab-toolkit/README.md)
+
 <!-- section:download -->
 ## ダウンロード
 
@@ -96,13 +105,41 @@ Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release
 <!-- section:capability-showcase -->
 ## Capability Showcase
 
+**新規：FringeLab toolkit** — 電卓、ROI、手動・自動定規、校正、断面、OCR、カメラ、光学逆算。[ガイド](docs/fringelab-toolkit.ja.md)。
+
 [![Physics Software Sensors：7 個の Software Sensor と 1 個の Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.ja.md)
 
 standalone、synthetic、replay の代表的なデモを 1 枚にまとめています。エビデンスレベルは capability ごとに異なり、YOLO tile は **recorded detector replay** であって実 YOLO inference ではありません。画像は補助表示であり、配信できない場合も下記のテキストリンクから全項目へ移動できます。
 
 [Camera Capture](sensors/camera.capture/README.ja.md) · [Screen Capture](sensors/screen.capture/README.ja.md) · [Number OCR](sensors/ocr.number/README.ja.md) · [Color Marker](sensors/tracker.color-marker/README.ja.md) · [光スポット重心](sensors/tracker.spot-centroid/README.ja.md) · [Template / Single-object Tracker](sensors/tracker.template/README.ja.md) · [YOLO Tracker](sensors/tracker.yolo/README.ja.md) · [3次元ベクトル合成](processing/vector.compose-3d/README.ja.md)
 
-範囲：**7/7 Software Sensor + 1/1 Companion Processing Tool = 再利用可能な公開 capability 8/8 項**。8 枚の詳細 demo とエビデンス境界は、3 言語の [Capability Showcase](docs/capability-showcase.ja.md) に掲載しています。
+従来の画像の範囲：**7/7 Software Sensor + 1/1 Companion Processing Tool = 再利用可能な公開 capability 8/8 項**。8 枚の詳細 demo とエビデンス境界は、3 言語の [Capability Showcase](docs/capability-showcase.ja.md) に掲載しています。
+
+### FringeLab 光強度分布・光学測定ツールキット
+
+光強度分布実験から抽出した再利用コンポーネントを `@physics-software-sensors/fringelab` 0.1.0 に収録しました。両バッチを組み合わせても、将来のプロジェクトに個別導入しても利用できます。
+
+**第1バッチ：**電卓、ROI、仮想定規、手動校正、断面解析。
+
+**第2バッチ：**自動定規、目盛り OCR、ブラウザカメラ、光学逆算。
+
+| コンポーネント | 再利用する機能 | 入口 |
+| --- | --- | --- |
+| 浮動電卓 | 移動、複数インスタンス、四則・括弧・累乗・科学記数法 | [`UI`](packages/fringelab/README.md) |
+| ROI・仮想定規 | 元画像座標で移動・回転・サイズ変更、端点・目盛り・吸着 | [`UI`](packages/fringelab/README.md) |
+| 手動校正 | 既知の長さによる2点校正と編集可能な区分多点写像 | [`calibration.scale-1d`](processing/calibration.scale-1d/README.ja.md) |
+| 断面・信号解析 | 相対応答、チャンネル品質、平滑化、ピークと幅 | [`image.strip-profile`](sensors/image.strip-profile/README.ja.md) |
+| 自動定規 | 実物目盛り候補、手動・領域指定・コントラスト・吸着設定 | [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.ja.md) |
+| 定規 OCR・カメラ | cm 数値候補、ブラウザ取得・静止フレーム・カメラ設定 | [`browser`](packages/fringelab/README.md) |
+| 光学逆算 | 干渉・回折波長、回帰、不確かさとシミュレーション | [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.ja.md) |
+
+[![FringeLab 光強度分布・光学測定ツールキット — synthetic example](docs/assets/fringelab-toolkit.png)](docs/fringelab-toolkit.ja.md)
+
+[中国語ガイド](docs/fringelab-toolkit.zh-CN.md) · [API・導入](packages/fringelab/README.md) · [実行可能なサンプル](examples/web-fringelab-toolkit/README.md) · [信号特徴ツール](processing/signal.profile-features/README.ja.md) · [FringeLab guide](docs/fringelab-toolkit.ja.md)
+
+自動・OCR 候補は人の確認後に適用し、手動・多点モードも保持します。画像は650 nm 合成サンプルの実行結果です。DN は相対応答であり、実機測定精度を認証するものではありません。
+
+現在のカタログ：**9/9 Sensor + 4/4 処理 Tool = 13/13 capability**。電卓・オーバーレイ UI は追加の再利用コンポーネントで、Sensor 数には含めません。
 
 <!-- section:principles -->
 ## 基本原則

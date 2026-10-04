@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "id": "optics.fringe-wavelength",
+  "name": "Optical fringe wavelength inversion",
+  "type": "companion-processing-tool",
+  "status": "experimental",
+  "version": "0.1.0",
+  "language": "typescript",
+  "implementation": "packages/fringelab/src/core",
+  "inputs": [
+    "calibrated positions, confirmed orders and a/d/L/errors"
+  ],
+  "outputs": [
+    "wavelength, regression, method/quality and uncertainty"
+  ],
+  "source_references": [
+    {
+      "repository": "https://github.com/WUHAO19831214/webcam-laser-fringelab",
+      "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
+      "path": "lib/physics.ts",
+      "symbols": [
+        "fitDoubleSlitOrders",
+        "fitSingleSlitDarkFringes",
+        "doubleSlitSmallAngleUncertainty",
+        "singleSlitSmallAngleUncertainty",
+        "monteCarloWavelength"
+      ]
+    },
+    {
+      "repository": "https://github.com/WUHAO19831214/webcam-laser-fringelab",
+      "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
+      "path": "lib/analysis.ts",
+      "symbols": [
+        "analyseFrame"
+      ]
+    }
+  ],
+  "license_review": "owner-authorized-extraction-MIT"
+}

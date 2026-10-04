@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-05",
+  "url": "http://127.0.0.1:4173",
+  "backend": "agent-browser / headless Chrome",
+  "fixture": "synthetic sample, no physical camera",
+  "checks": [
+    {
+      "check": "production page and expected controls",
+      "status": "pass"
+    },
+    {
+      "check": "calculator arithmetic, independent IDs and Esc focus restoration",
+      "status": "pass"
+    },
+    {
+      "check": "manual ruler confirmation and synthetic optical inversion",
+      "status": "pass"
+    },
+    {
+      "check": "rotated ROI updates without stale computation",
+      "status": "pass"
+    },
+    {
+      "check": "multi-point manual calibration and editable drafts",
+      "status": "pass"
+    },
+    {
+      "check": "automatic ruler runs in a Worker and stays a candidate",
+      "status": "pass"
+    },
+    {
+      "check": "390px layout and floating calculator remain inside viewport",
+      "status": "pass"
+    }
+  ],
+  "consoleErrors": []
+}

@@ -25,3 +25,7 @@ Only meaningful source-to-processor paths are tested; this is intentionally not 
 | Screen → OCR | recorded synthetic RGBA frame plus real Tesseract.js | passed |
 
 The authoritative declarations are [`tests/composition/matrix.json`](../tests/composition/matrix.json); executable tests live beside it and in the TypeScript test package.
+
+## FringeLab collection — 2026-10-05
+
+FringeLab: `image.strip-profile` and `vision.ruler-ticks` E2 source-output golden; React manual/multi-point/Worker flows verified in headless Chrome; browser camera lifecycle uses an explicitly controlled backend. Physical camera, HEIC device photos and real-photo error distribution remain not measured. See [report](../benchmarks/results/fringelab-extraction-2026-10-05.md).

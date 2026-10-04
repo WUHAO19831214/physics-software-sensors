@@ -40,6 +40,11 @@ CAPABILITIES = {
     "tracker.template",
     "tracker.yolo",
     "vector.compose-3d",
+    "image.strip-profile",
+    "vision.ruler-ticks",
+    "calibration.scale-1d",
+    "signal.profile-features",
+    "optics.fringe-wavelength",
 }
 
 
@@ -55,8 +60,8 @@ def validate_public_docs(root: Path = ROOT) -> list[str]:
         status = json.loads(status_path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         return [f"docs/project-status.json: {exc}"]
-    if (status.get("sensor_count"), status.get("companion_tool_count"), status.get("public_capability_count")) != (7, 1, 8):
-        errors.append("project-status.json: expected 7 Sensors, 1 Companion Tool and 8 public capabilities")
+    if (status.get("sensor_count"), status.get("companion_tool_count"), status.get("public_capability_count")) != (len(list((root / "sensors").glob("*/sensor.json"))), len(list((root / "processing").glob("*/tool.json"))), len(CAPABILITIES)):
+        errors.append("project-status.json: counts must match current manifest inventory")
     if status.get("public_document_delivery") != {
         "repository_content_integrity": "pass",
         "github_blob_view": "external_error",
@@ -102,7 +107,7 @@ def validate_public_docs(root: Path = ROOT) -> list[str]:
             errors.append(f"{relative}: must use a Pages-relative showcase asset route")
         if "capability-showcase.png" not in html:
             errors.append(f"{relative}: missing capability showcase")
-        if not CAPABILITIES <= set(re.findall(r"(?:camera\.capture|screen\.capture|ocr\.number|tracker\.(?:color-marker|spot-centroid|template|yolo)|vector\.compose-3d)", html)):
+        if not all(capability in html for capability in CAPABILITIES):
             errors.append(f"{relative}: missing one or more public capabilities")
         meta = dict(META.findall(html))
         source = root / SOURCE_NAMES[language]
@@ -131,7 +136,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print("OK: public docs 3/3 README sources, 3/3 Pages files, 6/6 language routes, 7 Sensors + 1 Tool")
+    print("OK: public docs 3/3 README sources, 3/3 Pages files, 6/6 language routes, 9 Sensors + 4 Tools")
     return 0
 
 

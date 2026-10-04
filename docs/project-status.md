@@ -6,12 +6,12 @@ Machine-readable facts are in [`project-status.json`](project-status.json).
 | --- | --- |
 | Project mode | Long-term maintenance |
 | Baseline public Release | `v0.6.0` Experimental |
-| Sensors | 7 |
-| Companion Tools | 1 (`vector.compose-3d`, experimental, unreleased) |
-| Public capabilities | 8 total; 7/7 Sensor + 1/1 Tool; one aggregate homepage image with 8/8 text links |
+| Sensors | 9 |
+| Companion Tools | 4, experimental, unreleased |
+| Public capabilities | 13; two homepage images, original eight showcase and FringeLab component table |
 | Homepage stabilization | PR #9 merged at `ff0906835d7f81cbb01e756931ed455f4b5c43e6` |
 | Multilingual public docs | GitHub Pages enabled from `main /docs`: <https://wuhao19831214.github.io/physics-software-sensors/> |
-| Implemented adapters | 7, all `experimental` |
+| Implemented adapters | 9, all `experimental` |
 | Public languages | English / 简体中文 / 日本語 |
 | Distribution | Python wheel, TypeScript tgz, 7 Sensor Bundles on GitHub Release |
 | New Sensor workflow | Intake, proposal, scaffold and agent recipe ready |
@@ -22,3 +22,5 @@ Machine-readable facts are in [`project-status.json`](project-status.json).
 `tracker.spot-centroid` reached E5 before E4. This is allowed because evidence records exercised dimensions rather than forcing a linear maturity ladder. It remains `experimental`.
 
 Current work should enter through one of the maintenance tracks in [Maintenance Guide](maintenance.md). No Phase 6 is implied.
+
+FringeLab both extraction batches: [toolkit guide](fringelab-toolkit.md), [package](../packages/fringelab/README.md), [verified runnable example](../examples/web-fringelab-toolkit/README.md), [evidence report](../benchmarks/results/fringelab-extraction-2026-10-05.md). The source application and v0.6.0 artifacts stay unchanged. Browser camera and ruler OCR are additional toolkit backends, not duplicate catalog Sensor identities.

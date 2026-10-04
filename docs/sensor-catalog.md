@@ -16,6 +16,8 @@ Status describes the implementation in this repository, not the historical sourc
 | [`tracker.spot-centroid`](../sensors/tracker.spot-centroid/README.md) | Light-spot weighted centroid | Python | experimental | E5 | [run](../examples/spot-centroid/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](../sensors/tracker.template/README.md) | ROI-initialized single-object tracker | Python | experimental | E3 | [run](../examples/python-template-tracker/README.md) | [0.4.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](../sensors/tracker.yolo/README.md) | Multi-target detector/tracker adapter | Python | experimental | E2 | [run](../examples/python-yolo-tracker/README.md) | [0.5.0](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`image.strip-profile`](../sensors/image.strip-profile/README.md) | Rotated ROI strip profile with native RGBA channel and saturation metadata | TypeScript | experimental | E2 | [demo](../examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
+| [`vision.ruler-ticks`](../sensors/vision.ruler-ticks/README.md) | Automatic physical-ruler ticks and scale candidates | TypeScript | experimental | E2 | [demo](../examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
 
 <!-- section:status -->
 ## Status meaning
@@ -25,4 +27,4 @@ Status describes the implementation in this repository, not the historical sourc
 - `validated`: applicable real runtime/device, metrics and licensing gates have passed.
 - `stable`: validated public API plus downstream pinned reuse and rollback evidence.
 
-Evidence is not maturity. See [Evidence and Maturity](evidence-and-maturity.md). All seven Sensors remain experimental. Only `tracker.spot-centroid` has E5 downstream reuse evidence; it still has no E4 real optical/device evidence. Real YOLO inference remains not measured and no model weight is distributed.
+Evidence is not maturity. See [Evidence and Maturity](evidence-and-maturity.md). All nine Sensors remain experimental. Only `tracker.spot-centroid` has E5 downstream reuse evidence; it still has no E4 real optical/device evidence. Real YOLO inference remains not measured and no model weight is distributed.

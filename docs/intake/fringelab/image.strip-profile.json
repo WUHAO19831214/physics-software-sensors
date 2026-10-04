@@ -1,0 +1,27 @@
+{
+  "candidate_id": "image.strip-profile",
+  "artifact_type": "processor-sensor",
+  "decision": "ACCEPT",
+  "date": "2026-10-04",
+  "source": {
+    "repository": "https://github.com/WUHAO19831214/webcam-laser-fringelab",
+    "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
+    "paths": [
+      "lib/signal.ts"
+    ],
+    "symbols": [
+      "extractStripProfile"
+    ]
+  },
+  "reason": "Proven physics experiment use, separable deterministic RGBA algorithm, fixed-source golden comparison and owner-authorized extraction. Automatic ruler retained as an assistive candidate with manual/multi-point fallback.",
+  "license_review": "Source owner requested extraction into their MIT repository on 2026-10-04; author-owned code only, third-party terms preserved; source root license unchanged.",
+  "completion_criteria": [
+    "shared lifecycle and event contracts",
+    "fixed-source and failure regressions",
+    "EN/ZH-CN/JA documentation",
+    "standalone demo",
+    "benchmark record",
+    "clean install and bundle"
+  ],
+  "new_domain_rationale": "image domain: native image-response arrays are direct software observations, distinct from object tracking or OCR; calibration and optical interpretation are separate tools."
+}

@@ -44,15 +44,15 @@ Markdown sources: [English](README.md) | **简体中文** | [日本語](README.j
 
 仓库三语内容完整性：**PASS**。英文、简体中文、日文 Markdown 都是完整的来源文档。如果某些地区的 GitHub 文件查看页暂时失败，仍可从仓库首页获得以下简要说明：
 
-- **English quick summary:** A reusable software sensing layer for physics experiments with 7 Software Sensors, 1 Companion Processing Tool and 8 public capabilities. It separates direct image/screen/OCR/tracking observations from downstream physical quantities. The public `v0.6.0` contains seven Sensor Bundles; `vector.compose-3d` remains an unreleased experimental Tool. The trilingual documentation website is now served by GitHub Pages from `main /docs`.
-- **日本語クイックガイド：**物理実験向けの再利用可能なソフトウェアセンサー基盤であり、7 個の Software Sensor、1 個の Companion Processing Tool、合計 8 項目の公開 capability を提供します。画像・画面・OCR・追跡の直接観測と下流の物理量は区別されます。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の static reader は GitHub Pages の `main /docs` から公開されています。
+- **English quick summary:** A reusable software sensing layer for physics experiments with 9 Software Sensors, 4 Companion Processing Tools and 13 public capabilities. It separates direct image/screen/OCR/tracking observations from downstream physical quantities. The public `v0.6.0` contains seven Sensor Bundles; `vector.compose-3d` remains an unreleased experimental Tool. The trilingual documentation website is now served by GitHub Pages from `main /docs`.
+- **日本語クイックガイド：**物理実験向けの再利用可能なソフトウェアセンサー基盤であり、9 個の Software Sensor、4 個の Companion Processing Tool、合計 13 項目の公開 capability を提供します。画像・画面・OCR・追跡の直接観測と下流の物理量は区別されます。公開 `v0.6.0` には 7 個の Sensor Bundle が含まれ、`vector.compose-3d` は未リリースの experimental Tool です。3 言語の static reader は GitHub Pages の `main /docs` から公開されています。
 
 <!-- section:project-status -->
 ## 项目状态
 
-**7 个软件传感器 · 1 个配套处理工具 · 共 8 项可复用公开能力** · 英文 / 简体中文 / 日文
+**9 个软件传感器 · 4 个配套处理工具 · 共 13 项可复用公开能力** · 英文 / 简体中文 / 日文
 
-7 个 adapter 和该工具目前均为 experimental。公开 `v0.6.0` Release 包含 7 个 Sensor Bundle；工具尚未发布。首次 E5 下游复用已经完成，但不能把任何 Sensor 描述为已经全面 validated。
+9 个 adapter 和 4 个工具目前均为 experimental。公开 `v0.6.0` Release 包含 7 个 Sensor Bundle；工具尚未发布。首次 E5 下游复用已经完成，但不能把任何 Sensor 描述为已经全面 validated。
 
 <!-- section:catalog -->
 ## 传感器目录
@@ -66,6 +66,8 @@ Markdown sources: [English](README.md) | **简体中文** | [日本語](README.j
 | [`tracker.spot-centroid`](sensors/tracker.spot-centroid/README.zh-CN.md) | 光斑亮度加权重心 | Python | experimental | E5 | [示例](examples/spot-centroid/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.spot-centroid-0.4.0.zip) |
 | [`tracker.template`](sensors/tracker.template/README.zh-CN.md) | ROI 初始化的单目标追踪 | Python | experimental | E3 | [示例](examples/python-template-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.template-0.4.0.zip) |
 | [`tracker.yolo`](sensors/tracker.yolo/README.zh-CN.md) | 多目标检测/追踪 adapter | Python | experimental | E2 | [示例](examples/python-yolo-tracker/README.md) | [bundle](https://github.com/WUHAO19831214/physics-software-sensors/releases/download/v0.6.0/tracker.yolo-0.5.0.zip) |
+| [`image.strip-profile`](sensors/image.strip-profile/README.zh-CN.md) | 旋转 ROI 灰度/通道剖面及饱和质量记录 | TypeScript | experimental | E2 | [demo](examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
+| [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.zh-CN.md) | 实体尺刻线识别与待确认尺度候选 | TypeScript | experimental | E2 | [demo](examples/web-fringelab-toolkit/README.md) | unreleased 0.1.0 |
 
 完整信息见[传感器目录](docs/sensor-catalog.zh-CN.md)。证据等级表示实际跑过的路径；成熟度是另一项发布决策。
 
@@ -75,6 +77,9 @@ Markdown sources: [English](README.md) | **简体中文** | [日本語](README.j
 | Tool | 用途 | 语言 | 状态 | 示例 | 文档 |
 | --- | --- | --- | --- | --- | --- |
 | [`vector.compose-3d`](processing/vector.compose-3d/README.zh-CN.md) | 从标量分量进行三维矢量合成与重建 | TypeScript | experimental | [Web demo](examples/web-vector-compose-3d/README.md) | [Tool Page](processing/vector.compose-3d/README.zh-CN.md) |
+| [`calibration.scale-1d`](processing/calibration.scale-1d/README.zh-CN.md) | 人工确认的两点及分段多点一维标定 | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/calibration.scale-1d/README.zh-CN.md) |
+| [`signal.profile-features`](processing/signal.profile-features/README.zh-CN.md) | 平滑、背景扣除、峰谷、峰宽与周期分析 | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/signal.profile-features/README.zh-CN.md) |
+| [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.zh-CN.md) | 干涉/衍射波长反演、回归与不确定度 | TypeScript | experimental | [Web demo](examples/web-fringelab-toolkit/README.md) | [Tool Page](processing/optics.fringe-wavelength/README.zh-CN.md) |
 
 完整信息见[配套工具目录](docs/tool-catalog.zh-CN.md)。配套工具构成可扩展的测量处理层，不计入 Sensor 数量。
 
@@ -88,6 +93,10 @@ python -m pip install './physics_software_sensors-0.5.0-py3-none-any.whl[classic
 npm install ./physics-software-sensors-core-0.3.0.tgz
 ```
 
+
+
+FringeLab 新增两个 Sensor、三个处理工具以及计算器/ROI/虚拟尺 UI。两批组件均已收录为独立 0.1.0 工具包；已有 v0.6.0 下载仍保留原来的七个 bundle。 [FringeLab toolkit](docs/fringelab-toolkit.zh-CN.md) · [runnable demo](examples/web-fringelab-toolkit/README.md)
+
 <!-- section:download -->
 ## 下载
 
@@ -96,13 +105,41 @@ Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle
 <!-- section:capability-showcase -->
 ## 能力总览
 
+**新增：FringeLab 组件套件** — 计算器、ROI、人工/自动尺、标定、剖面、OCR、相机和光学反演。[组件使用指南](docs/fringelab-toolkit.zh-CN.md)。
+
 [![Physics Software Sensors：7 个软件传感器和 1 个配套处理工具](docs/assets/capability-showcase.png)](docs/capability-showcase.zh-CN.md)
 
 图中汇总了 standalone、synthetic 和 replay 演示，各能力的证据等级并不相同；YOLO tile 明确是 **recorded detector replay**，不是真实 YOLO inference。图片只是增强展示；即使图片服务不可用，下面的文字链接仍是可靠入口。
 
 [摄像头采集](sensors/camera.capture/README.zh-CN.md) · [屏幕采集](sensors/screen.capture/README.zh-CN.md) · [数字 OCR](sensors/ocr.number/README.zh-CN.md) · [颜色标记追踪](sensors/tracker.color-marker/README.zh-CN.md) · [光斑重心](sensors/tracker.spot-centroid/README.zh-CN.md) · [模板 / 单目标追踪](sensors/tracker.template/README.zh-CN.md) · [YOLO 追踪](sensors/tracker.yolo/README.zh-CN.md) · [三维矢量合成](processing/vector.compose-3d/README.zh-CN.md)
 
-覆盖：**7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力**。进入三语[能力展示详情页](docs/capability-showcase.zh-CN.md)可查看八张独立 demo 图及其证据边界。
+历史八项展示图覆盖：**7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力**。进入三语[能力展示详情页](docs/capability-showcase.zh-CN.md)可查看八张独立 demo 图及其证据边界。
+
+### FringeLab 光强分布与光学测量组件套件
+
+从光强分布实验中拆解的可复用组件，收录在 `@physics-software-sensors/fringelab` 0.1.0；可以组合使用，也可以单独引入以后其他项目。两批均已收录。
+
+**第一批：**计算器、ROI、虚拟尺、人工标定、剖面分析。
+
+**第二批：**自动尺、尺标 OCR、浏览器相机、光学反演。
+
+| 组件 | 可以复用的功能 | 使用入口 |
+| --- | --- | --- |
+| 浮窗计算器 | 拖动浮窗、多实例、四则/括号/乘方和科学计数 | [`UI`](packages/fringelab/README.md) |
+| ROI 与虚拟尺 | 原图坐标下移动、旋转、缩放选区；尺端点、刻度和吸附 | [`UI`](packages/fringelab/README.md) |
+| 人工标定 | 已知长度两点标定、可编辑多点读数和分段映射 | [`calibration.scale-1d`](processing/calibration.scale-1d/README.zh-CN.md) |
+| 剖面与信号分析 | 相对光强剖面、通道质量、平滑、峰谷和峰宽 | [`image.strip-profile`](sensors/image.strip-profile/README.zh-CN.md) |
+| 自动尺 | 实体刻线候选；保留人工/框选、对比色和吸附选项 | [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.zh-CN.md) |
+| 尺标 OCR 与相机 | 厘米数字候选；浏览器采集/冻结画面、检查相机设置 | [`browser`](packages/fringelab/README.md) |
+| 光学反演 | 干涉/衍射波长、回归、不确定度和模拟 | [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.zh-CN.md) |
+
+[![FringeLab 光强分布与光学测量组件套件 — synthetic example](docs/assets/fringelab-toolkit.png)](docs/fringelab-toolkit.zh-CN.md)
+
+[中文使用指南](docs/fringelab-toolkit.zh-CN.md) · [API 与安装](packages/fringelab/README.md) · [可运行示例](examples/web-fringelab-toolkit/README.md) · [剖面特征工具](processing/signal.profile-features/README.zh-CN.md) · [FringeLab guide](docs/fringelab-toolkit.zh-CN.md)
+
+自动识别与 OCR 结果经人工核对后应用，人工和多点模式完整保留。截图来自可运行的 650 nm 合成示例；DN 表示相对响应，尚未认证实机测量精度。
+
+当前目录覆盖：**9/9 个 Sensor + 4/4 个处理工具 = 13/13 项能力**。计算器和叠加 UI 是额外可复用组件，不计入 Sensor 数量。
 
 <!-- section:principles -->
 ## 核心原则
