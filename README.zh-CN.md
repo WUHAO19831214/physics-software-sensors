@@ -105,6 +105,8 @@ Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle
 <!-- section:capability-showcase -->
 ## 能力总览
 
+**新增：FringeLab 组件套件** — 计算器、ROI、人工/自动尺、标定、剖面、OCR、相机和光学反演。[组件使用指南](docs/fringelab-toolkit.zh-CN.md)。
+
 [![Physics Software Sensors：7 个软件传感器和 1 个配套处理工具](docs/assets/capability-showcase.png)](docs/capability-showcase.zh-CN.md)
 
 图中汇总了 standalone、synthetic 和 replay 演示，各能力的证据等级并不相同；YOLO tile 明确是 **recorded detector replay**，不是真实 YOLO inference。图片只是增强展示；即使图片服务不可用，下面的文字链接仍是可靠入口。
@@ -113,9 +115,31 @@ Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle
 
 历史八项展示图覆盖：**7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力**。进入三语[能力展示详情页](docs/capability-showcase.zh-CN.md)可查看八张独立 demo 图及其证据边界。
 
-FringeLab 新增两个 Sensor、三个处理工具以及计算器/ROI/虚拟尺 UI。两批组件均已收录为独立 0.1.0 工具包；已有 v0.6.0 下载仍保留原来的七个 bundle。
+### FringeLab 光强分布与光学测量组件套件
 
-[`image.strip-profile`](sensors/image.strip-profile/README.zh-CN.md) · [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.zh-CN.md) · [`calibration.scale-1d`](processing/calibration.scale-1d/README.zh-CN.md) · [`signal.profile-features`](processing/signal.profile-features/README.zh-CN.md) · [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.zh-CN.md) · [FringeLab toolkit](docs/fringelab-toolkit.zh-CN.md)
+从光强分布实验中拆解的可复用组件，收录在 `@physics-software-sensors/fringelab` 0.1.0；可以组合使用，也可以单独引入以后其他项目。两批均已收录。
+
+**第一批：**计算器、ROI、虚拟尺、人工标定、剖面分析。
+
+**第二批：**自动尺、尺标 OCR、浏览器相机、光学反演。
+
+| 组件 | 可以复用的功能 | 使用入口 |
+| --- | --- | --- |
+| 浮窗计算器 | 拖动浮窗、多实例、四则/括号/乘方和科学计数 | [`UI`](packages/fringelab/README.md) |
+| ROI 与虚拟尺 | 原图坐标下移动、旋转、缩放选区；尺端点、刻度和吸附 | [`UI`](packages/fringelab/README.md) |
+| 人工标定 | 已知长度两点标定、可编辑多点读数和分段映射 | [`calibration.scale-1d`](processing/calibration.scale-1d/README.zh-CN.md) |
+| 剖面与信号分析 | 相对光强剖面、通道质量、平滑、峰谷和峰宽 | [`image.strip-profile`](sensors/image.strip-profile/README.zh-CN.md) |
+| 自动尺 | 实体刻线候选；保留人工/框选、对比色和吸附选项 | [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.zh-CN.md) |
+| 尺标 OCR 与相机 | 厘米数字候选；浏览器采集/冻结画面、检查相机设置 | [`browser`](packages/fringelab/README.md) |
+| 光学反演 | 干涉/衍射波长、回归、不确定度和模拟 | [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.zh-CN.md) |
+
+[![FringeLab 光强分布与光学测量组件套件 — synthetic example](docs/assets/fringelab-toolkit.png)](docs/fringelab-toolkit.zh-CN.md)
+
+[中文使用指南](docs/fringelab-toolkit.zh-CN.md) · [API 与安装](packages/fringelab/README.md) · [可运行示例](examples/web-fringelab-toolkit/README.md) · [剖面特征工具](processing/signal.profile-features/README.zh-CN.md) · [FringeLab guide](docs/fringelab-toolkit.zh-CN.md)
+
+自动识别与 OCR 结果经人工核对后应用，人工和多点模式完整保留。截图来自可运行的 650 nm 合成示例；DN 表示相对响应，尚未认证实机测量精度。
+
+当前目录覆盖：**9/9 个 Sensor + 4/4 个处理工具 = 13/13 项能力**。计算器和叠加 UI 是额外可复用组件，不计入 Sensor 数量。
 
 <!-- section:principles -->
 ## 核心原则

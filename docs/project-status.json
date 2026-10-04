@@ -28,13 +28,14 @@
   "companion_tool_count": 4,
   "public_capability_count": 13,
   "homepage_visual_coverage": {
-    "sensors": "7/7",
-    "companion_tools": "1/1",
-    "total": "8/8",
+    "sensors": "9/9",
+    "companion_tools": "4/4",
+    "total": "13/13",
     "aggregate_image": "docs/assets/capability-showcase.png",
-    "homepage_image_requests": 1,
-    "detailed_demo_assets": "8/8",
-    "broken_demo_links": 0
+    "homepage_image_requests": 2,
+    "detailed_demo_assets": "9 unique assets / 13 capabilities",
+    "broken_demo_links": 0,
+    "toolkit_image": "docs/assets/fringelab-toolkit.png"
   },
   "implemented_adapter_count": 9,
   "languages": [
@@ -155,7 +156,7 @@
     "cross-platform runtime coverage",
     "historical source license resolution"
   ],
-  "homepage_visual_coverage_scope": "Original eight capabilities; FringeLab additions have a separate runnable toolkit and shared verified screenshot.",
+  "homepage_visual_coverage_scope": "Original eight capabilities in the aggregate plus five FringeLab catalog additions in a verified toolkit screenshot, with explicit UI/browser components and links.",
   "fringelab_toolkit": {
     "version": "0.1.0",
     "source_sha": "37a8b3996791790a22980b0d562996a65a3a65ef",

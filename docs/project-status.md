@@ -8,7 +8,7 @@ Machine-readable facts are in [`project-status.json`](project-status.json).
 | Baseline public Release | `v0.6.0` Experimental |
 | Sensors | 9 |
 | Companion Tools | 4, experimental, unreleased |
-| Public capabilities | 13; original eight showcase plus five FringeLab catalog entries |
+| Public capabilities | 13; two homepage images, original eight showcase and FringeLab component table |
 | Homepage stabilization | PR #9 merged at `ff0906835d7f81cbb01e756931ed455f4b5c43e6` |
 | Multilingual public docs | GitHub Pages enabled from `main /docs`: <https://wuhao19831214.github.io/physics-software-sensors/> |
 | Implemented adapters | 9, all `experimental` |

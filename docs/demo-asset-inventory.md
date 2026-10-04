@@ -65,9 +65,13 @@ Scan scope: `sensors/*/assets/`, `processing/*/assets/`, and `examples/`; extens
 - Reused existing reviewed Sensor assets: **7**.
 - Newly generated Tool runtime asset: **1** (`vector.compose-3d/assets/overview.png`).
 - Aggregate homepage asset: **1** (`docs/assets/capability-showcase.png`), generated offline from the 8 reviewed sources by `tools/build_capability_showcase.py`.
-- Root README image requests: **1** instead of 8; detailed trilingual pages retain all 8 individual images.
-- Public capability visual and text-link coverage: **8/8**.
+- Root README image requests: **2**, the original aggregate plus a verified FringeLab toolkit screenshot; detailed trilingual pages retain all 8 original images and the new shared screenshot.
+- Public capability visual and text-link coverage: **13/13** (9 Sensors, 4 processing Tools). FringeLab UI/browser helpers have separate component links.
 - Third-party/source-project images copied: **0**.
 - Homepage YOLO evidence: recorded detector replay only.
 
 Per-asset generation commands, hashes and scientific boundaries remain in each capability's `assets/README.md`.
+
+## FringeLab runtime asset
+
+`docs/assets/fringelab-toolkit.png`: verified production browser screenshot of the synthetic 650 nm fixture, showing ROI/ruler, response profile and optical inversion. Shared by the two new Sensors and three processing Tools; reused on the homepage and all three detail pages. Calculator, OCR and camera functionality are described in the component table; this screenshot does not claim physical-camera or OCR-accuracy evidence.

@@ -105,6 +105,8 @@ Release には Python wheel、TypeScript tgz、7 個の Sensor Bundle、`release
 <!-- section:capability-showcase -->
 ## Capability Showcase
 
+**新規：FringeLab toolkit** — 電卓、ROI、手動・自動定規、校正、断面、OCR、カメラ、光学逆算。[ガイド](docs/fringelab-toolkit.ja.md)。
+
 [![Physics Software Sensors：7 個の Software Sensor と 1 個の Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.ja.md)
 
 standalone、synthetic、replay の代表的なデモを 1 枚にまとめています。エビデンスレベルは capability ごとに異なり、YOLO tile は **recorded detector replay** であって実 YOLO inference ではありません。画像は補助表示であり、配信できない場合も下記のテキストリンクから全項目へ移動できます。
@@ -113,9 +115,31 @@ standalone、synthetic、replay の代表的なデモを 1 枚にまとめてい
 
 従来の画像の範囲：**7/7 Software Sensor + 1/1 Companion Processing Tool = 再利用可能な公開 capability 8/8 項**。8 枚の詳細 demo とエビデンス境界は、3 言語の [Capability Showcase](docs/capability-showcase.ja.md) に掲載しています。
 
-FringeLab から2つの Sensor、3つの処理 Tool、電卓・ROI・仮想定規 UI を追加しました。両バッチを独立した0.1.0パッケージに収録し、不変の v0.6.0 ダウンロードは従来の7 bundle を維持します。
+### FringeLab 光強度分布・光学測定ツールキット
 
-[`image.strip-profile`](sensors/image.strip-profile/README.ja.md) · [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.ja.md) · [`calibration.scale-1d`](processing/calibration.scale-1d/README.ja.md) · [`signal.profile-features`](processing/signal.profile-features/README.ja.md) · [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.ja.md) · [FringeLab toolkit](docs/fringelab-toolkit.ja.md)
+光強度分布実験から抽出した再利用コンポーネントを `@physics-software-sensors/fringelab` 0.1.0 に収録しました。両バッチを組み合わせても、将来のプロジェクトに個別導入しても利用できます。
+
+**第1バッチ：**電卓、ROI、仮想定規、手動校正、断面解析。
+
+**第2バッチ：**自動定規、目盛り OCR、ブラウザカメラ、光学逆算。
+
+| コンポーネント | 再利用する機能 | 入口 |
+| --- | --- | --- |
+| 浮動電卓 | 移動、複数インスタンス、四則・括弧・累乗・科学記数法 | [`UI`](packages/fringelab/README.md) |
+| ROI・仮想定規 | 元画像座標で移動・回転・サイズ変更、端点・目盛り・吸着 | [`UI`](packages/fringelab/README.md) |
+| 手動校正 | 既知の長さによる2点校正と編集可能な区分多点写像 | [`calibration.scale-1d`](processing/calibration.scale-1d/README.ja.md) |
+| 断面・信号解析 | 相対応答、チャンネル品質、平滑化、ピークと幅 | [`image.strip-profile`](sensors/image.strip-profile/README.ja.md) |
+| 自動定規 | 実物目盛り候補、手動・領域指定・コントラスト・吸着設定 | [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.ja.md) |
+| 定規 OCR・カメラ | cm 数値候補、ブラウザ取得・静止フレーム・カメラ設定 | [`browser`](packages/fringelab/README.md) |
+| 光学逆算 | 干渉・回折波長、回帰、不確かさとシミュレーション | [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.ja.md) |
+
+[![FringeLab 光強度分布・光学測定ツールキット — synthetic example](docs/assets/fringelab-toolkit.png)](docs/fringelab-toolkit.ja.md)
+
+[中国語ガイド](docs/fringelab-toolkit.zh-CN.md) · [API・導入](packages/fringelab/README.md) · [実行可能なサンプル](examples/web-fringelab-toolkit/README.md) · [信号特徴ツール](processing/signal.profile-features/README.ja.md) · [FringeLab guide](docs/fringelab-toolkit.ja.md)
+
+自動・OCR 候補は人の確認後に適用し、手動・多点モードも保持します。画像は650 nm 合成サンプルの実行結果です。DN は相対応答であり、実機測定精度を認証するものではありません。
+
+現在のカタログ：**9/9 Sensor + 4/4 処理 Tool = 13/13 capability**。電卓・オーバーレイ UI は追加の再利用コンポーネントで、Sensor 数には含めません。
 
 <!-- section:principles -->
 ## 基本原則

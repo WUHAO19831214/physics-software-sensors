@@ -5,7 +5,7 @@
 <!-- section:overview -->
 ## 概览
 
-仓库首页只加载一张聚合预览图，以减少独立的 GitHub Raw/CDN 请求。用户主动进入本页后，仍可查看八项能力各自的详细演示。
+当前展示覆盖 9 个 Sensor 和 4 个处理工具。原有八项演示保留聚合预览，新增 FringeLab 运行截图和组件说明表，可直接找到两批工具的复用入口。
 
 [![Physics Software Sensors 能力总览](assets/capability-showcase.png)](../README.zh-CN.md)
 
@@ -64,6 +64,32 @@
 [![录制 OCR 分量合成为三维合矢量](../processing/vector.compose-3d/assets/overview.png)](../processing/vector.compose-3d/README.zh-CN.md)
 
 把可追溯的 x/y/z 标量分量合成为合矢量及与渲染器无关的模型。它派生已有观测，不会冒充新的 Sensor 直接观测。参阅[独立 Web 示例](../examples/web-vector-compose-3d/README.md)。
+
+### FringeLab 光强分布与光学测量组件套件
+
+从光强分布实验中拆解的可复用组件，收录在 `@physics-software-sensors/fringelab` 0.1.0；可以组合使用，也可以单独引入以后其他项目。两批均已收录。
+
+**第一批：**计算器、ROI、虚拟尺、人工标定、剖面分析。
+
+**第二批：**自动尺、尺标 OCR、浏览器相机、光学反演。
+
+| 组件 | 可以复用的功能 | 使用入口 |
+| --- | --- | --- |
+| 浮窗计算器 | 拖动浮窗、多实例、四则/括号/乘方和科学计数 | [`UI`](../packages/fringelab/README.md) |
+| ROI 与虚拟尺 | 原图坐标下移动、旋转、缩放选区；尺端点、刻度和吸附 | [`UI`](../packages/fringelab/README.md) |
+| 人工标定 | 已知长度两点标定、可编辑多点读数和分段映射 | [`calibration.scale-1d`](../processing/calibration.scale-1d/README.zh-CN.md) |
+| 剖面与信号分析 | 相对光强剖面、通道质量、平滑、峰谷和峰宽 | [`image.strip-profile`](../sensors/image.strip-profile/README.zh-CN.md) |
+| 自动尺 | 实体刻线候选；保留人工/框选、对比色和吸附选项 | [`vision.ruler-ticks`](../sensors/vision.ruler-ticks/README.zh-CN.md) |
+| 尺标 OCR 与相机 | 厘米数字候选；浏览器采集/冻结画面、检查相机设置 | [`browser`](../packages/fringelab/README.md) |
+| 光学反演 | 干涉/衍射波长、回归、不确定度和模拟 | [`optics.fringe-wavelength`](../processing/optics.fringe-wavelength/README.zh-CN.md) |
+
+[![FringeLab 光强分布与光学测量组件套件 — synthetic example](assets/fringelab-toolkit.png)](fringelab-toolkit.zh-CN.md)
+
+[中文使用指南](fringelab-toolkit.zh-CN.md) · [API 与安装](../packages/fringelab/README.md) · [可运行示例](../examples/web-fringelab-toolkit/README.md) · [剖面特征工具](../processing/signal.profile-features/README.zh-CN.md) · [FringeLab guide](fringelab-toolkit.zh-CN.md)
+
+自动识别与 OCR 结果经人工核对后应用，人工和多点模式完整保留。截图来自可运行的 650 nm 合成示例；DN 表示相对响应，尚未认证实机测量精度。
+
+当前目录覆盖：**9/9 个 Sensor + 4/4 个处理工具 = 13/13 项能力**。计算器和叠加 UI 是额外可复用组件，不计入 Sensor 数量。
 
 <!-- section:evidence -->
 ## 证据边界

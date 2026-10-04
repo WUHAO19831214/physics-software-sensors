@@ -107,6 +107,12 @@
       "clean_install": "PASS",
       "bundle_example": "PASS: clean unzip and build",
       "distribution_report": "benchmarks/results/fringelab-distribution.json"
+    },
+    "homepage_publication": {
+      "local_languages": "3/3",
+      "images": "2/2",
+      "catalog": "13/13",
+      "online": "pending merge and live verification"
     }
   },
   "release": {
@@ -204,5 +210,5 @@
     "Browser OCR completed with zero usable anchors on default synthetic selected region",
     "HEIC device-photo runtime not measured"
   ],
-  "next_action": "Review collection PR and reuse local toolkit tgz; preserve manual calibration and keep automatic/OCR candidates unconfirmed until owner checks."
+  "next_action": "Publish PR #12 to main and verify the expanded Capability Showcase and GitHub Pages."
 }

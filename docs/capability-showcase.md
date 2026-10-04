@@ -5,7 +5,7 @@
 <!-- section:overview -->
 ## Overview
 
-The repository homepage loads one aggregate preview to reduce independent GitHub Raw/CDN requests. This detail page keeps the eight reviewed demonstrations available when a reader intentionally opens the gallery.
+The current gallery covers 9 Sensors and 4 processing Tools. The original eight demonstrations share one aggregate preview; FringeLab adds a second verified runtime screenshot and a component table below.
 
 [![Physics Software Sensors capability showcase](assets/capability-showcase.png)](../README.md)
 
@@ -64,6 +64,32 @@ Demonstrates detections and track IDs through a **recorded detector replay**. Th
 [![Recorded OCR components composed into a 3D resultant vector](../processing/vector.compose-3d/assets/overview.png)](../processing/vector.compose-3d/README.md)
 
 Composes traceable scalar x/y/z components into a resultant vector and renderer-neutral model. It derives from existing observations and is not a new direct Sensor observation. See the [standalone web example](../examples/web-vector-compose-3d/README.md).
+
+### FringeLab image and optics toolkit
+
+Reusable components extracted from the light-distribution experiment, available together or independently in `@physics-software-sensors/fringelab` 0.1.0. Both batches are collected.
+
+**Batch 1:** calculator, ROI, virtual ruler, manual calibration and profile analysis.
+
+**Batch 2:** automatic ruler, ruler-number OCR, browser camera and optical inversion.
+
+| Component | Reusable behavior | Entry point |
+| --- | --- | --- |
+| Floating calculator | Movable panel, independent instances, arithmetic and scientific notation | [`UI`](../packages/fringelab/README.md) |
+| ROI and virtual ruler | Rotate/move/resize a native-pixel ROI; ruler endpoints, ticks and snapping | [`UI`](../packages/fringelab/README.md) |
+| Manual calibration | Confirm a known interval or editable multi-point readings | [`calibration.scale-1d`](../processing/calibration.scale-1d/README.md) |
+| Profile and signal analysis | Relative image response, channel quality, smoothing, peaks and widths | [`image.strip-profile`](../sensors/image.strip-profile/README.md) |
+| Automatic ruler | Locate physical ticks; retain manual/region modes, contrast and snapping options | [`vision.ruler-ticks`](../sensors/vision.ruler-ticks/README.md) |
+| Ruler OCR and camera | Draft centimetre readings; capture/freeze camera frames and inspect settings | [`browser`](../packages/fringelab/README.md) |
+| Optical inversion | Interference/diffraction wavelength, regression, uncertainty and simulation | [`optics.fringe-wavelength`](../processing/optics.fringe-wavelength/README.md) |
+
+[![FringeLab image and optics toolkit — synthetic example](assets/fringelab-toolkit.png)](fringelab-toolkit.md)
+
+[Chinese guide](fringelab-toolkit.zh-CN.md) · [API and install](../packages/fringelab/README.md) · [runnable example](../examples/web-fringelab-toolkit/README.md) · [profile features](../processing/signal.profile-features/README.md) · [FringeLab guide](fringelab-toolkit.md)
+
+Automatic/OCR readings remain drafts until confirmed; manual and multi-point modes are fully retained. The screenshot is a working synthetic 650 nm example. DN is relative response, and real-device precision is not established.
+
+Current catalog: **9/9 Sensors + 4/4 processing Tools = 13/13 capabilities**. Calculator and overlay UI are additional reusable components, outside Sensor counts.
 
 <!-- section:evidence -->
 ## Evidence boundary

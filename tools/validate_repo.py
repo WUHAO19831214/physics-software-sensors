@@ -269,8 +269,8 @@ def check_homepage_showcase() -> list[str]:
             for image, _target in LINKED_IMAGE.findall(detail_text)
             if image != "assets/capability-showcase.png"
         }
-        if detail_images != DETAILED_DEMO_IMAGES:
-            errors.append(f"{raw_path}: detailed demo image coverage must be exactly 8/8")
+        if detail_images != DETAILED_DEMO_IMAGES | {"docs/assets/fringelab-toolkit.png"}:
+            errors.append(f"{raw_path}: detailed demo coverage must include eight baseline assets and FringeLab runtime")
     expected_pages = set(EXPECTED_SENSOR_IDS) | EXPECTED_TOOL_IDS
     for language, path in HOMEPAGE_FILES.items():
         text = path.read_text(encoding="utf-8")
@@ -280,9 +280,10 @@ def check_homepage_showcase() -> list[str]:
             errors.append(f"{path.name}: missing capability-showcase/principles section boundary")
             continue
         linked_images = LINKED_IMAGE.findall(gallery)
-        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, HOMEPAGE_SHOWCASE_PAGES[language])]
+        suffix = {"en": "", "zh_CN": ".zh-CN", "ja": ".ja"}[language]
+        expected_linked_image = [(HOMEPAGE_SHOWCASE_IMAGE, HOMEPAGE_SHOWCASE_PAGES[language]), ("docs/assets/fringelab-toolkit.png", f"docs/fringelab-toolkit{suffix}.md")]
         if linked_images != expected_linked_image:
-            errors.append(f"{path.name}: homepage must contain exactly one linked aggregate image")
+            errors.append(f"{path.name}: homepage must contain the baseline aggregate and the FringeLab runtime image")
         for image, target in linked_images:
             if not (ROOT / image).is_file():
                 errors.append(f"{path.name}: missing homepage image {image}")
@@ -304,6 +305,8 @@ def check_homepage_showcase() -> list[str]:
         for capability_id in expected_pages:
             if capability_id not in text:
                 errors.append(f"{path.name}: missing homepage capability {capability_id}")
+        if "13/13" not in gallery or "@physics-software-sensors/fringelab" not in gallery:
+            errors.append(f"{path.name}: missing current coverage and FringeLab component introduction")
         if "8/8" not in gallery:
             errors.append(f"{path.name}: missing 8/8 capability coverage statement")
         if "recorded detector replay" not in gallery.lower():
@@ -559,7 +562,7 @@ def main() -> int:
         for path in ROOT.rglob("*.json")
         if not skip_generated(path)
     )
-    print(f"OK: validated {json_count} JSON files, 9 trilingual Sensor Pages/manifests, 4 trilingual Companion Tools, 1 decoded homepage aggregate with baseline 8/8 plus 5 FringeLab capability links, i18n parity, pilot demos, and local Markdown links")
+    print(f"OK: validated {json_count} JSON files, 9 trilingual Sensor Pages/manifests, 4 trilingual Companion Tools, 2 verified homepage images covering 13/13 catalog capabilities, i18n parity, pilot demos, and local Markdown links")
     return 0
 
 

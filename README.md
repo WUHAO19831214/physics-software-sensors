@@ -105,6 +105,8 @@ The Release contains one Python wheel, one TypeScript tgz, seven Sensor Bundles,
 <!-- section:capability-showcase -->
 ## Capability Showcase
 
+**New: FringeLab toolkit** — calculator, ROI, manual/automatic rulers, calibration, profiles, OCR, camera and optics. [Component guide](docs/fringelab-toolkit.md).
+
 [![Physics Software Sensors: 7 Software Sensors and 1 Companion Processing Tool](docs/assets/capability-showcase.png)](docs/capability-showcase.md)
 
 Representative standalone, synthetic and replay demonstrations. Evidence level varies by capability; the YOLO tile is **recorded detector replay**, not real YOLO inference. The image is an enhancement, while the text links below remain the canonical navigation when image delivery is unavailable.
@@ -113,9 +115,31 @@ Representative standalone, synthetic and replay demonstrations. Evidence level v
 
 Baseline image coverage: **7/7 Software Sensors + 1/1 Companion Processing Tool = 8/8 reusable public capabilities**. Open the trilingual [Capability Showcase](docs/capability-showcase.md) for all eight detailed demo images and evidence boundaries.
 
-FringeLab adds two Sensors, three processing Tools and reusable calculator/ROI/ruler UI. Both extraction batches are complete in a separate 0.1.0 package; the immutable v0.6.0 download still contains the original seven bundles.
+### FringeLab image and optics toolkit
 
-[`image.strip-profile`](sensors/image.strip-profile/README.md) · [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.md) · [`calibration.scale-1d`](processing/calibration.scale-1d/README.md) · [`signal.profile-features`](processing/signal.profile-features/README.md) · [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.md) · [FringeLab toolkit](docs/fringelab-toolkit.md)
+Reusable components extracted from the light-distribution experiment, available together or independently in `@physics-software-sensors/fringelab` 0.1.0. Both batches are collected.
+
+**Batch 1:** calculator, ROI, virtual ruler, manual calibration and profile analysis.
+
+**Batch 2:** automatic ruler, ruler-number OCR, browser camera and optical inversion.
+
+| Component | Reusable behavior | Entry point |
+| --- | --- | --- |
+| Floating calculator | Movable panel, independent instances, arithmetic and scientific notation | [`UI`](packages/fringelab/README.md) |
+| ROI and virtual ruler | Rotate/move/resize a native-pixel ROI; ruler endpoints, ticks and snapping | [`UI`](packages/fringelab/README.md) |
+| Manual calibration | Confirm a known interval or editable multi-point readings | [`calibration.scale-1d`](processing/calibration.scale-1d/README.md) |
+| Profile and signal analysis | Relative image response, channel quality, smoothing, peaks and widths | [`image.strip-profile`](sensors/image.strip-profile/README.md) |
+| Automatic ruler | Locate physical ticks; retain manual/region modes, contrast and snapping options | [`vision.ruler-ticks`](sensors/vision.ruler-ticks/README.md) |
+| Ruler OCR and camera | Draft centimetre readings; capture/freeze camera frames and inspect settings | [`browser`](packages/fringelab/README.md) |
+| Optical inversion | Interference/diffraction wavelength, regression, uncertainty and simulation | [`optics.fringe-wavelength`](processing/optics.fringe-wavelength/README.md) |
+
+[![FringeLab image and optics toolkit — synthetic example](docs/assets/fringelab-toolkit.png)](docs/fringelab-toolkit.md)
+
+[Chinese guide](docs/fringelab-toolkit.zh-CN.md) · [API and install](packages/fringelab/README.md) · [runnable example](examples/web-fringelab-toolkit/README.md) · [profile features](processing/signal.profile-features/README.md) · [FringeLab guide](docs/fringelab-toolkit.md)
+
+Automatic/OCR readings remain drafts until confirmed; manual and multi-point modes are fully retained. The screenshot is a working synthetic 650 nm example. DN is relative response, and real-device precision is not established.
+
+Current catalog: **9/9 Sensors + 4/4 processing Tools = 13/13 capabilities**. Calculator and overlay UI are additional reusable components, outside Sensor counts.
 
 <!-- section:principles -->
 ## Core principles

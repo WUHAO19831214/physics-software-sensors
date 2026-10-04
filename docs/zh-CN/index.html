@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-readme-sha256" content="2d0442bf02ce699faee858c0a969d63bd95f5f46082e09bb1c2fa71411038757">
-  <meta name="project-status-sha256" content="0b64b5178892b04d0c8c5299a7ab0a1db698df828825f30929f913cab699c46f">
+  <meta name="source-readme-sha256" content="8dd3bbf36ef3681c862c734c45ed4c2d840f27292cf17df53176ff3ea4ed1ad1">
+  <meta name="project-status-sha256" content="708418393dc0060abf673fbe8a78702df2ca70da2549e3a4b6504f3150a80a7e">
   <title>物理实验软件传感器库</title>
   <link rel="stylesheet" href="../site.css">
 </head>
@@ -214,12 +214,65 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 <p>Release 包含一个 Python wheel、一个 TypeScript tgz、七个 Sensor Bundle、<code>release-manifest.json</code> 和 <code>SHA256SUMS</code>。Sensor Bundle 是便于阅读的文档/示例包，不复制公共 core。参阅<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/downloading-sensors.zh-CN.md">下载传感器</a>和<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/installation.zh-CN.md">安装</a>。</p>
 <!-- section:capability-showcase -->
 <h2>能力总览</h2>
+<p><strong>新增：FringeLab 组件套件</strong> — 计算器、ROI、人工/自动尺、标定、剖面、OCR、相机和光学反演。<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md">组件使用指南</a>。</p>
 <p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.zh-CN.md"><img alt="Physics Software Sensors：7 个软件传感器和 1 个配套处理工具" src="../assets/capability-showcase.png" /></a></p>
 <p>图中汇总了 standalone、synthetic 和 replay 演示，各能力的证据等级并不相同；YOLO tile 明确是 <strong>recorded detector replay</strong>，不是真实 YOLO inference。图片只是增强展示；即使图片服务不可用，下面的文字链接仍是可靠入口。</p>
 <p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/camera.capture/README.zh-CN.md">摄像头采集</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/screen.capture/README.zh-CN.md">屏幕采集</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/ocr.number/README.zh-CN.md">数字 OCR</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.color-marker/README.zh-CN.md">颜色标记追踪</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.spot-centroid/README.zh-CN.md">光斑重心</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.template/README.zh-CN.md">模板 / 单目标追踪</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/tracker.yolo/README.zh-CN.md">YOLO 追踪</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/vector.compose-3d/README.zh-CN.md">三维矢量合成</a></p>
 <p>历史八项展示图覆盖：<strong>7/7 个软件传感器 + 1/1 个配套处理工具 = 8/8 项可复用公开能力</strong>。进入三语<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/capability-showcase.zh-CN.md">能力展示详情页</a>可查看八张独立 demo 图及其证据边界。</p>
-<p>FringeLab 新增两个 Sensor、三个处理工具以及计算器/ROI/虚拟尺 UI。两批组件均已收录为独立 0.1.0 工具包；已有 v0.6.0 下载仍保留原来的七个 bundle。</p>
-<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/image.strip-profile/README.zh-CN.md"><code>image.strip-profile</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/vision.ruler-ticks/README.zh-CN.md"><code>vision.ruler-ticks</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/calibration.scale-1d/README.zh-CN.md"><code>calibration.scale-1d</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/signal.profile-features/README.zh-CN.md"><code>signal.profile-features</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/optics.fringe-wavelength/README.zh-CN.md"><code>optics.fringe-wavelength</code></a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md">FringeLab toolkit</a></p>
+<h3>FringeLab 光强分布与光学测量组件套件</h3>
+<p>从光强分布实验中拆解的可复用组件，收录在 <code>@physics-software-sensors/fringelab</code> 0.1.0；可以组合使用，也可以单独引入以后其他项目。两批均已收录。</p>
+<p><strong>第一批：</strong>计算器、ROI、虚拟尺、人工标定、剖面分析。</p>
+<p><strong>第二批：</strong>自动尺、尺标 OCR、浏览器相机、光学反演。</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>可以复用的功能</th>
+<th>使用入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>浮窗计算器</td>
+<td>拖动浮窗、多实例、四则/括号/乘方和科学计数</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/packages/fringelab/README.md"><code>UI</code></a></td>
+</tr>
+<tr>
+<td>ROI 与虚拟尺</td>
+<td>原图坐标下移动、旋转、缩放选区；尺端点、刻度和吸附</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/packages/fringelab/README.md"><code>UI</code></a></td>
+</tr>
+<tr>
+<td>人工标定</td>
+<td>已知长度两点标定、可编辑多点读数和分段映射</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/calibration.scale-1d/README.zh-CN.md"><code>calibration.scale-1d</code></a></td>
+</tr>
+<tr>
+<td>剖面与信号分析</td>
+<td>相对光强剖面、通道质量、平滑、峰谷和峰宽</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/image.strip-profile/README.zh-CN.md"><code>image.strip-profile</code></a></td>
+</tr>
+<tr>
+<td>自动尺</td>
+<td>实体刻线候选；保留人工/框选、对比色和吸附选项</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/sensors/vision.ruler-ticks/README.zh-CN.md"><code>vision.ruler-ticks</code></a></td>
+</tr>
+<tr>
+<td>尺标 OCR 与相机</td>
+<td>厘米数字候选；浏览器采集/冻结画面、检查相机设置</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/packages/fringelab/README.md"><code>browser</code></a></td>
+</tr>
+<tr>
+<td>光学反演</td>
+<td>干涉/衍射波长、回归、不确定度和模拟</td>
+<td><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/optics.fringe-wavelength/README.zh-CN.md"><code>optics.fringe-wavelength</code></a></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md"><img alt="FringeLab 光强分布与光学测量组件套件 — synthetic example" src="../assets/fringelab-toolkit.png" /></a></p>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md">中文使用指南</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/packages/fringelab/README.md">API 与安装</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">可运行示例</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/signal.profile-features/README.zh-CN.md">剖面特征工具</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md">FringeLab guide</a></p>
+<p>自动识别与 OCR 结果经人工核对后应用，人工和多点模式完整保留。截图来自可运行的 650 nm 合成示例；DN 表示相对响应，尚未认证实机测量精度。</p>
+<p>当前目录覆盖：<strong>9/9 个 Sensor + 4/4 个处理工具 = 13/13 项能力</strong>。计算器和叠加 UI 是额外可复用组件，不计入 Sensor 数量。</p>
 <!-- section:principles -->
 <h2>核心原则</h2>
 <ol>
