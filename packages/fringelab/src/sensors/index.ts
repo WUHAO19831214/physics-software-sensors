@@ -1,8 +1,8 @@
 import type { ConfigResult, HealthSnapshot, JsonObject, RuntimeFramePacket, SensorContext, SensorDescriptor } from '@physics-software-sensors/core';
 import { extractStripProfile, type ExtractStripProfileOptions } from '../core/signal.js';
-import { detectPhysicalRuler, type RulerRegion } from '../core/ruler-detection.js';
+import { detectPhysicalRuler } from '../core/ruler-detection.js';
 
-type SensorOptions = ExtractStripProfileOptions & { region?: RulerRegion };
+type SensorOptions = ExtractStripProfileOptions & Partial<Omit<Parameters<typeof detectPhysicalRuler>[1], 'sourceType'>>;
 abstract class FrameProcessor {
   private state: HealthSnapshot['state'] = 'created';
   private processedCount = 0;
@@ -18,6 +18,8 @@ abstract class FrameProcessor {
   describe(): SensorDescriptor { return { sensorId: this.sensorId, version: '0.1.0', category: 'processor', inputKinds: ['frame-packet.image-frame', 'frame-packet.camera-frame', 'frame-packet.screen-frame'], outputKinds: ['sensor-event.measurement'], capabilities: ['rgba-pixel-input', 'source-frame-provenance'], configSchemaVersion: '1.0.0', evidenceLevel: 'source-tested' }; }
   configure(config: JsonObject): ConfigResult {
     if (this.state === 'running') return { accepted: false, effectiveConfig: {}, warnings: ['Stop before reconfiguring'] };
+    const allowed = this.sensorId === 'image.strip-profile' ? ['channel', 'roi', 'fringeOrientation', 'saturationThreshold', 'maxAutoSaturationRate', 'minAutoContrast'] : ['region', 'contrastMode', 'tickSnapEnabled', 'numberSnapEnabled', 'manualOriginMm'];
+    if (Object.keys(config).some(key => !allowed.includes(key))) return { accepted: false, effectiveConfig: {}, warnings: ['Unsupported configuration field'] };
     const channel = config.channel;
     if (channel != null && !['r', 'g', 'b', 'luminance', 'auto'].includes(String(channel))) return { accepted: false, effectiveConfig: {}, warnings: ['Invalid channel'] };
     const validObject = (value: unknown, fields: string[]) => value != null && typeof value === 'object' && fields.every(key => typeof (value as Record<string, unknown>)[key] === 'number' && Number.isFinite((value as Record<string, number>)[key]));
@@ -25,6 +27,9 @@ abstract class FrameProcessor {
     if (config.roi != null && (!validObject(config.roi, ['centerX', 'centerY', 'width', 'height']) || Number((config.roi as JsonObject).width) <= 0 || Number((config.roi as JsonObject).height) <= 0 || !Number.isFinite(Number((config.roi as JsonObject).angleDeg ?? 0)))) return { accepted: false, effectiveConfig: {}, warnings: ['Finite ROI with positive size required'] };
     if (config.region != null && (!validObject(config.region, ['x', 'y', 'width', 'height']) || Number((config.region as JsonObject).width) <= 0 || Number((config.region as JsonObject).height) <= 0)) return { accepted: false, effectiveConfig: {}, warnings: ['Finite ruler region with positive size required'] };
     for (const key of ['saturationThreshold', 'maxAutoSaturationRate', 'minAutoContrast']) if (config[key] != null && (typeof config[key] !== 'number' || !Number.isFinite(config[key]) || Number(config[key]) < 0)) return { accepted: false, effectiveConfig: {}, warnings: [`Invalid ${key}`] };
+    if (config.contrastMode != null && !['auto', 'light-on-dark', 'dark-on-light', 'cyan', 'magenta'].includes(String(config.contrastMode))) return { accepted: false, effectiveConfig: {}, warnings: ['Invalid ruler contrast mode'] };
+    for (const key of ['tickSnapEnabled', 'numberSnapEnabled']) if (config[key] != null && typeof config[key] !== 'boolean') return { accepted: false, effectiveConfig: {}, warnings: [`Invalid ${key}`] };
+    if (config.manualOriginMm != null && (typeof config.manualOriginMm !== 'number' || !Number.isFinite(config.manualOriginMm))) return { accepted: false, effectiveConfig: {}, warnings: ['Finite manual ruler origin required'] };
     this.options = structuredClone(config) as SensorOptions; this.state = 'configured';
     return { accepted: true, effectiveConfig: structuredClone(config), warnings: [] };
   }
@@ -81,7 +86,8 @@ export class StripProfileSensor extends FrameProcessor {
 export class RulerTicksSensor extends FrameProcessor {
   readonly sensorId = 'vision.ruler-ticks';
   protected observe(frame: RuntimeFramePacket) {
-    const r = detectPhysicalRuler(frame.pixels!, { sourceType: frame.media.kind === 'camera-frame' ? 'camera' : 'image', ...(this.options.region ? { region: this.options.region } : {}) });
+    const { region, contrastMode, tickSnapEnabled, numberSnapEnabled, manualOriginMm } = this.options;
+    const r = detectPhysicalRuler(frame.pixels!, { sourceType: frame.media.kind === 'camera-frame' ? 'camera' : 'image', region, contrastMode, tickSnapEnabled, numberSnapEnabled, manualOriginMm });
     if (!r) return { status: 'lost' as const, measurements: [], payload: { candidate: null }, flags: ['ruler-not-found'] };
     return { status: 'degraded' as const, measurements: [{ name: 'tick_count', value: r.ticks.length, value_type: 'integer', unit: 'tick', role: 'raw' }], payload: { candidate: r, confirmed: false, scale_assumption: 'minor-tick-1-mm', calibration_applied: false }, flags: ['candidate-unconfirmed', ...(r.perspectiveWarning ? ['perspective-variation'] : [])], confidence: r.fit.confidence };
   }

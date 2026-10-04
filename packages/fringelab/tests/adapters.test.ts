@@ -31,9 +31,9 @@ test('processor adapters satisfy shared lifecycle and preserve frame timing; err
 test('no-sample profile is lost and automatic ruler remains an unconfirmed candidate', async () => {
   const sensor = new StripProfileSensor(); sensor.configure({ roi: { centerX: -500, centerY: -500, width: 12, height: 6 } }); await sensor.start({ runId: 'test' });
   for await (const event of sensor.process(frame())) { events.push(event); assert.equal(event.status, 'lost'); assert.deepEqual(event.measurements, []); }
-  const ruler = new RulerTicksSensor(); await ruler.start({ runId: 'test' });
+  const ruler = new RulerTicksSensor(); assert.equal(ruler.configure({ contrastMode: 'invisible' }).accepted, false); assert.equal(ruler.configure({ mmPerPixel: .1 }).accepted, false); ruler.configure({ contrastMode: 'magenta', tickSnapEnabled: false, numberSnapEnabled: false, manualOriginMm: 10 }); await ruler.start({ runId: 'test' });
   const scene = syntheticRuler({ body: [235,235,230], ink: [18,18,18] });
-  for await (const event of ruler.process({ ...frame(scene.width, scene.height), pixels: { ...scene, data: new Uint8ClampedArray(Array.from(scene.data)) } })) { events.push(event); assert.equal(event.status, 'degraded'); assert.equal((event.payload as any).calibration_applied, false); }
+  for await (const event of ruler.process({ ...frame(scene.width, scene.height), pixels: { ...scene, data: new Uint8ClampedArray(Array.from(scene.data)) } })) { events.push(event); assert.equal(event.status, 'degraded'); assert.equal((event.payload as any).calibration_applied, false); assert.equal((event.payload as any).candidate.contrastMode, 'magenta'); assert.equal((event.payload as any).candidate.tickSnapEnabled, false); assert.equal((event.payload as any).candidate.manualOriginMm, 10); }
   for await (const event of ruler.process(frame())) { events.push(event); assert.equal(event.status, 'lost'); }
 });
 test('confirmed calibration detects extrapolation and all source changes invalidate manual and multi-point state', () => {

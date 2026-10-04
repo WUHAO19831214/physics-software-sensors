@@ -40,7 +40,7 @@ for await (const event of sensor.process(frame)) console.log(event);
 await sensor.stop();
 ```
 
-Consumes shared RuntimeFramePacket with original RGBA pixels. Parent-frame time is preserved; emitted time is separate. Zero coverage/not-found is lost; errors contain no measurements. Ruler detections are always unconfirmed candidates, never applied scale.
+Consumes shared RuntimeFramePacket with original RGBA pixels. Parent-frame time is preserved; emitted time is separate. Zero coverage/not-found is lost; errors contain no measurements. Ruler detections are always unconfirmed candidates, never applied scale. Ruler configuration preserves `region`, `contrastMode` (auto/light-on-dark/dark-on-light/cyan/magenta), `tickSnapEnabled`, `numberSnapEnabled` and `manualOriginMm`.
 
 ## Browser and React
 

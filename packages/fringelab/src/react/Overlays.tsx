@@ -41,7 +41,7 @@ export function RulerOverlay({ ruler, size, onChange, detection = null, interact
     let next = d.kind === 'body' ? moveRuler(d.initial, p.x - d.start.x, p.y - d.start.y, size) : resizeRulerEndpoint(d.initial, d.kind, p, event.shiftKey ? 15 : undefined);
     const matrix = (event.currentTarget as SVGSVGElement).getScreenCTM();
     const displayScale = matrix ? Math.hypot(matrix.a, matrix.b) : 1;
-    if (detection) next = snapRulerToDetection(next, detection, { tickSnapEnabled: true, numberSnapEnabled: true, altKey: event.altKey, displayScale }).ruler;
+    if (detection) next = snapRulerToDetection(next, detection, { tickSnapEnabled: detection.tickSnapEnabled, numberSnapEnabled: detection.numberSnapEnabled, altKey: event.altKey, displayScale }).ruler;
     onChange(next);
   };
   const release = () => { drag.current = null; };
