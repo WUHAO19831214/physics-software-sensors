@@ -30,10 +30,10 @@
     "working_tree_clean": true
   },
   "pull_request": {
-    "number": null,
-    "url": null,
+    "number": 13,
+    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/13",
     "draft": true,
-    "state": "NOT_CREATED",
+    "state": "OPEN",
     "title": "Review GasLab domain and Core support intake"
   },
   "pages": {
@@ -205,8 +205,8 @@
   "publication_state": "Draft branch; new GasLab/Core prose not yet on main or live Pages",
   "historical_fringe_tests": {
     "repository_validation": {
-      "passed": false,
-      "pending_clean_commit_rerun": true
+      "passed": true,
+      "pending_clean_commit_rerun": false
     },
     "i18n": {
       "passed": true,
@@ -220,11 +220,7 @@
       "failed": 0
     },
     "typescript": {
-      "passed": 48,
-      "failed": 0
-    },
-    "gaslab": {
-      "passed": 24,
+      "passed": 30,
       "failed": 0
     },
     "public_document_delivery": {

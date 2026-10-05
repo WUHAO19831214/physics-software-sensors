@@ -1,6 +1,6 @@
 # GasLab and Core support review handoff
 
-Status: READY_FOR_REVIEW. Working branch: `codex/gaslab-intake`, based on the original remote `feat/gaslab-core` transfer (which includes `feat/core-ocr-fit-stabilizer`). Both original branches and commits are preserved. Main and live Pages are unchanged.
+Status: READY_FOR_REVIEW. Draft [PR #13](https://github.com/WUHAO19831214/physics-software-sensors/pull/13). Working branch: `codex/gaslab-intake`, based on the original remote `feat/gaslab-core` transfer (which includes `feat/core-ocr-fit-stabilizer`). Both original branches and commits are preserved. Main and live Pages are unchanged.
 
 ACCEPT: experimental Core support APIs (unreleased 0.3.1) and headless gas teaching-model domain package (unreleased 0.1.0). Sensor/Companion Tool promotion is deferred; counts remain 9 + 4 = 13. Immutable v0.6.0 and third-party/source boundaries are preserved.
 

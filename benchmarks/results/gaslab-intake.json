@@ -117,7 +117,7 @@
     "main": "unchanged",
     "npm_registry": false,
     "release_assets": "immutable v0.6.0 unchanged",
-    "draft_pr": "pending"
+    "draft_pr": "https://github.com/WUHAO19831214/physics-software-sensors/pull/13"
   },
   "validation": {
     "repository": "pass (69 JSON, catalog, i18n and Markdown links)",
