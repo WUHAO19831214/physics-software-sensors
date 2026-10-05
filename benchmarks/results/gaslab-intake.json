@@ -120,9 +120,10 @@
     "draft_pr": "pending"
   },
   "validation": {
-    "repository": "pass (69 JSON, catalog, i18n and Markdown links); final clean commit rerun pending",
+    "repository": "pass (69 JSON, catalog, i18n and Markdown links)",
     "trilingual_docs": "pass (3 README sources, 3 generated Pages files, 12 public document sets)",
     "headless_example": "pass",
     "python": "94 passed"
-  }
+  },
+  "tested_implementation_sha": "86db6d13f1f9525a69073d45df558e47eb3968ab"
 }

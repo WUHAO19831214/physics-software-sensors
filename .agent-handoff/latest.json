@@ -19,7 +19,7 @@
     "base_branch": "main",
     "working_branch": "codex/gaslab-intake",
     "base_sha": "e39e3e9f955b33ce24b8a888382d568a1aacffe7",
-    "tested_sha": "5fbade46aa6a819e56c5cb360c87ab0bf9ca7eb5",
+    "tested_sha": "86db6d13f1f9525a69073d45df558e47eb3968ab",
     "published_head_sha": {
       "resolution": "branch-ref",
       "ref": "refs/heads/codex/gaslab-intake"
@@ -27,7 +27,7 @@
     "handoff_commit_sha": {
       "resolution": "containing-commit"
     },
-    "working_tree_clean": false
+    "working_tree_clean": true
   },
   "pull_request": {
     "number": null,
@@ -68,8 +68,8 @@
       "build": true
     },
     "repository_validation": {
-      "passed": false,
-      "pending_clean_commit_rerun": true
+      "passed": true,
+      "pending_clean_commit_rerun": false
     }
   },
   "release": {
