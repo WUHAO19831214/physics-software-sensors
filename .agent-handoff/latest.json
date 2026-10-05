@@ -17,12 +17,12 @@
   ],
   "git": {
     "base_branch": "main",
-    "working_branch": "main",
+    "working_branch": "feat/core-ocr-fit-stabilizer",
     "base_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
     "tested_sha": "7ac09a3d4e1361bbb5a521bb044761fd62435df4",
     "published_head_sha": {
       "resolution": "branch-ref",
-      "ref": "refs/heads/main"
+      "ref": "refs/heads/feat/core-ocr-fit-stabilizer"
     },
     "handoff_commit_sha": {
       "resolution": "containing-commit"

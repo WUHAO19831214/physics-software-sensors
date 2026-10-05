@@ -9,6 +9,29 @@ export interface NumberPreprocessOptions {
   threshold?: number;
   invert?: boolean;
   removeNoise?: boolean;
+  padding?: number;
+  autoScale?: boolean;
+}
+
+/** Resolves an optimal integer scale factor to bring small text up to target pixel height (default 120px). */
+export function resolveOptimalScale(height: number, targetHeight = 120): number {
+  if (!Number.isFinite(height) || height <= 0) return 4;
+  const ideal = Math.round(targetHeight / height);
+  return Math.max(1, Math.min(6, ideal));
+}
+
+export function addRgbaPadding(input: RgbaImage, padding: number, fillVal = 255): RgbaImage {
+  if (!Number.isInteger(padding) || padding <= 0) return input;
+  const width = input.width + padding * 2;
+  const height = input.height + padding * 2;
+  const data = new Uint8ClampedArray(width * height * 4);
+  data.fill(fillVal);
+  for (let y = 0; y < input.height; y += 1) {
+    const srcRow = y * input.width * 4;
+    const dstRow = ((y + padding) * width + padding) * 4;
+    data.set(input.data.subarray(srcRow, srcRow + input.width * 4), dstRow);
+  }
+  return { width, height, data };
 }
 
 function resizeNearest(image: RgbaImage, scale: number): RgbaImage {
@@ -59,9 +82,12 @@ export function preprocessForNumberRecognition(
   options: NumberPreprocessOptions = {},
 ): RgbaImage {
   validateRgbaImage(input);
-  const scale = options.scale ?? 4;
+  const padded = options.padding ? addRgbaPadding(input, options.padding) : input;
+  const scale = options.autoScale
+    ? resolveOptimalScale(padded.height)
+    : (options.scale ?? 4);
   const threshold = options.threshold ?? 150;
-  const processed = resizeNearest(input, scale);
+  const processed = resizeNearest(padded, scale);
   for (let index = 0; index < processed.data.length; index += 4) {
     const red = processed.data[index] ?? 0;
     const green = processed.data[index + 1] ?? 0;
