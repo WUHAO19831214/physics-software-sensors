@@ -1,0 +1,50 @@
+{
+  "name": "@physics-software-sensors/gaslab",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Reusable gas kinetics, Maxwell-Boltzmann velocity sampling, boundary collisions and thermodynamic simulation driver",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./core": {
+      "types": "./dist/src/core/index.d.ts",
+      "import": "./dist/src/core/index.js"
+    },
+    "./physics": {
+      "types": "./dist/src/physics/index.d.ts",
+      "import": "./dist/src/physics/index.js"
+    },
+    "./simulation": {
+      "types": "./dist/src/simulation/index.d.ts",
+      "import": "./dist/src/simulation/index.js"
+    },
+    "./driver": {
+      "types": "./dist/src/driver/index.d.ts",
+      "import": "./dist/src/driver/index.js"
+    }
+  },
+  "files": [
+    "dist/src",
+    "README*.md",
+    "LICENSE",
+    "SOURCE.md",
+    "source-files.json"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^22.0.0"
+  }
+}

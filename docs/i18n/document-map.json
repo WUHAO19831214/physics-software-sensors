@@ -136,6 +136,19 @@
         "verification",
         "provenance"
       ]
+    },
+    "gaslab_intake": {
+      "en": "docs/gaslab-intake.md",
+      "zh_CN": "docs/gaslab-intake.zh-CN.md",
+      "ja": "docs/gaslab-intake.ja.md",
+      "sections": [
+        "decision",
+        "provenance",
+        "review",
+        "validation",
+        "consumer",
+        "rollback"
+      ]
     }
   },
   "sensors": {

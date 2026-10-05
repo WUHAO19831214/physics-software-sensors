@@ -1,0 +1,35 @@
+{
+  "repository": "WUHAO19831214/charles-law-isochoric-lab",
+  "commit": "b62d7fbefd412e2696096b3bce8fc0af3c5f8c3c",
+  "relationship": "adaptation and new destination model; not byte-identical extraction",
+  "files": [
+    {
+      "path": "src/simulation/maxwellBoltzmann.ts",
+      "sha256": "14cba935a921403c6fb31c752a908479d0e12179e550a2044a144967d4637317"
+    },
+    {
+      "path": "src/simulation/molecularSystem.ts",
+      "sha256": "7ac8e2c90405e8b1e86d5da2fb906978fdaa7dacceacbbc8d2bb4d7d59b17f5c"
+    },
+    {
+      "path": "src/simulation/claudeModel/gasModel.ts",
+      "sha256": "d2eace94c4aca8b6898ad41d6e630304cd78c03802ac717b1c0691d6c4c36eb1"
+    },
+    {
+      "path": "src/simulation/claudeModel/maxwellBoltzmann.ts",
+      "sha256": "c6583964e8cfdde07dfb6b9f06f72e7bdd29fee65931de7dd1962e1ad4c90a13"
+    },
+    {
+      "path": "src/sensors/ocrRecognizer.ts",
+      "sha256": "00758f56d3e1ab89baae85a1f832ea4bb840924010388264fc621604712a7f20"
+    },
+    {
+      "path": "src/utils/mathFitting.ts",
+      "sha256": "f86b281bd5780af45c69f91753ac59434124d1c946d1a1dc6c7b64d4717f6bda"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "30990f50cb633b3711e0e6a15dbc10fa22f7962ef553b2f26c56854d98d79d2e"
+    }
+  ]
+}

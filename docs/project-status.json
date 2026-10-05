@@ -167,5 +167,20 @@
     "distribution": "local tgz and two Sensor Bundles, unreleased",
     "browser_camera_backend": "camera.capture 0.3.1 in toolkit; baseline Python 0.3.0 unchanged",
     "hardware_validation": "not measured"
+  },
+  "experimental_support_packages": {
+    "core": {
+      "source_version": "0.3.1",
+      "released": false,
+      "review_branch": "codex/gaslab-intake",
+      "catalog_count_delta": 0
+    },
+    "gaslab": {
+      "version": "0.1.0",
+      "kind": "headless-teaching-model",
+      "released": false,
+      "catalog_count_delta": 0,
+      "review_record": "docs/gaslab-intake.md"
+    }
   }
 }

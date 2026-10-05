@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-10-05",
+  "review_branch": "codex/gaslab-intake",
+  "base_sha": "e39e3e9f955b33ce24b8a888382d568a1aacffe7",
+  "transfer_commits": [
+    "6262fd87a032f2c665a476653f226496688b85f9",
+    "5fbade46aa6a819e56c5cb360c87ab0bf9ca7eb5"
+  ],
+  "decision": {
+    "core_support": "ACCEPT experimental support APIs",
+    "gaslab": "ACCEPT experimental domain teaching model",
+    "sensor_or_companion_catalog_promotion": "DEFER formal measurement-processing intake",
+    "catalog_count_delta": 0
+  },
+  "original_baseline_tests": {
+    "core": 41,
+    "gaslab": 17
+  },
+  "reviewed_tests": {
+    "core_offline": 50,
+    "gaslab": 24,
+    "python": 94,
+    "failed": 0
+  },
+  "source_comparison": {
+    "sourceCommit": "b62d7fbefd412e2696096b3bce8fc0af3c5f8c3c",
+    "sourcePath": "src/simulation/maxwellBoltzmann.ts",
+    "comparisons": 921,
+    "tolerance": 1e-12,
+    "calibration": {
+      "referenceTemperatureK": 300,
+      "referenceRmsSpeed": 2.7712812921102037
+    },
+    "status": "pass"
+  },
+  "packaged_artifacts": [
+    {
+      "filename": "physics-software-sensors-core-0.3.1.tgz",
+      "bytes": 25558,
+      "sha256": "516f60554b492341c3e87b67ee5b6d958f0026b51c284a8386b3a561c413b4e2"
+    },
+    {
+      "filename": "physics-software-sensors-gaslab-0.1.0.tgz",
+      "bytes": 19031,
+      "sha256": "eeae6b24f8b56dde13a284a77867334e59775c6e609d4f5b2e6ac3617241f7af"
+    }
+  ],
+  "clean_install": {
+    "gaslab_alone": "pass",
+    "runtime_dependencies": 0,
+    "peer_dependencies": 0,
+    "exports_checked": [
+      ".",
+      "./core",
+      "./physics",
+      "./simulation",
+      "./driver"
+    ],
+    "NodeNext_types_without_DOM": "pass"
+  },
+  "consumer": {
+    "repository": "WUHAO19831214/charles-law-isochoric-lab",
+    "historical_source_sha": "b62d7fbefd412e2696096b3bce8fc0af3c5f8c3c",
+    "adaptation_status": "local-uncommitted",
+    "original_checkout_test_groups": 7,
+    "original_checkout_build": "pass with pre-existing bundler warnings",
+    "updated_tarball_temporary_copy_test_groups": 7,
+    "updated_tarball_temporary_copy_build": "pass with util/stream/zlib browser-external and bundle-size warnings",
+    "tested_source_files": [
+      {
+        "path": "package.json",
+        "sha256": "f28b56f701320802c7e2dc9a1d314330f9e10133c2af8b9c1c4e3f8747bb07a1"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "c699de26f9f2d61fb81cf1c5789fc8ae3ef51281ec720980b6b04170bcdadd7e"
+      },
+      {
+        "path": "scripts/verifyPhysics.mjs",
+        "sha256": "d7c9d371c1493356be1dfe405fd995facda89ef0be4b88631f7f8057824923ad"
+      },
+      {
+        "path": "src/simulation/maxwellBoltzmann.ts",
+        "sha256": "d4ac6554f395623cd9772a55fc6052d6ceab3d94561d8d9c57e32b9689ac89ff"
+      },
+      {
+        "path": "src/simulation/claudeModel/gasModel.ts",
+        "sha256": "2323cfe9b73223b0df8f787206a085839fca853d7d394bc3e17b365fdbfcda85"
+      },
+      {
+        "path": "src/sensors/ocrRecognizer.ts",
+        "sha256": "aac2545aa34197f330de755b4638a1209e819469c1883256b390a54e5cd4ffe5"
+      },
+      {
+        "path": "src/utils/mathFitting.ts",
+        "sha256": "0563081edc42991a1195344e69da9ea844f2dcc0e0abe2491002c84fc9379ea6"
+      },
+      {
+        "path": "src/App.tsx",
+        "sha256": "9fd570094f91cdace0a310a4f24995981e1a655bdde43f02ed111f458e072f5d"
+      }
+    ],
+    "actual_reuse": "Core support and Maxwell sampling/scaling; full engine/replay UI stays application-owned",
+    "evidence_promotion": false
+  },
+  "physical_scope": {
+    "model": "noninteracting particles with static wall reflections",
+    "capsule": "straight cylinder plus one lower hemisphere and flat top",
+    "display_pressure": "simulation units; not Pa",
+    "si_pressure": "requires m/kg/s/K; mass-derived speeds",
+    "collision_timing": "adaptive substep and clamp approximation; lost overshoot",
+    "hardware_accuracy": "not measured"
+  },
+  "publication": {
+    "new_packages": "local tgz only",
+    "main": "unchanged",
+    "npm_registry": false,
+    "release_assets": "immutable v0.6.0 unchanged",
+    "draft_pr": "https://github.com/WUHAO19831214/physics-software-sensors/pull/13"
+  },
+  "validation": {
+    "repository": "pass (69 JSON, catalog, i18n and Markdown links)",
+    "trilingual_docs": "pass (3 README sources, 3 generated Pages files, 12 public document sets)",
+    "headless_example": "pass",
+    "python": "94 passed"
+  },
+  "tested_implementation_sha": "86db6d13f1f9525a69073d45df558e47eb3968ab"
+}

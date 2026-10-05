@@ -91,6 +91,10 @@
 
 当前目录覆盖：**9/9 个 Sensor + 4/4 个处理工具 = 13/13 项能力**。计算器和叠加 UI 是额外可复用组件，不计入 Sensor 数量。
 
+### 实验性热学模型与 Core 支持
+
+[GasLab 0.1.0](../packages/gaslab/README.zh-CN.md) 提供无界面气体教学模型；未发布 Core 0.3.1 增加物理量候选解析、拟合/外推、读数稳定与可选 OCR 预处理。[审查及证据](gaslab-intake.zh-CN.md) · [无界面回放示例](../examples/headless-gaslab/README.md)。模型和支持包与上述 **13 项 Sensor/Companion Tool 能力**分开，不意味着新增直接观测、npm 发布或 v0.6.0 下载。
+
 <!-- section:evidence -->
 ## 证据边界
 
