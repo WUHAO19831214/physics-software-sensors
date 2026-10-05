@@ -33,6 +33,7 @@ export class ReadingStabilizer<T = number> {
   private lastValidValue: T | null = null;
   private lastValidTimestamp: number | null = null;
   private currentConfidence = 0;
+  private lastUpdateTimestamp: number | null = null;
   private status: StabilizerStatus = 'uninitialized';
 
   constructor(options: StabilizerOptions = {}) {
@@ -42,6 +43,12 @@ export class ReadingStabilizer<T = number> {
       minHoldingConfidence: options.minHoldingConfidence ?? 0.2,
       maxAllowedSpikeRatio: options.maxAllowedSpikeRatio ?? Infinity,
     };
+    if (!Number.isFinite(this.options.maxHoldingDurationMs) || this.options.maxHoldingDurationMs < 0
+      || !Number.isFinite(this.options.confidenceDecayRate) || this.options.confidenceDecayRate < 0 || this.options.confidenceDecayRate > 1
+      || !Number.isFinite(this.options.minHoldingConfidence) || this.options.minHoldingConfidence < 0 || this.options.minHoldingConfidence > 1
+      || this.options.maxAllowedSpikeRatio < 0 || Number.isNaN(this.options.maxAllowedSpikeRatio)) {
+      throw new RangeError('Invalid stabilizer options');
+    }
   }
 
   public update(input: {
@@ -51,8 +58,15 @@ export class ReadingStabilizer<T = number> {
     isValid?: boolean;
   }): StabilizedSample<T> {
     const now = input.timestamp ?? Date.now();
+    if (!Number.isFinite(now)) throw new RangeError('timestamp must be finite milliseconds');
     const flags: string[] = [];
-    const hasValue = input.value !== null && input.value !== undefined;
+    if (this.lastUpdateTimestamp !== null && now < this.lastUpdateTimestamp) {
+      return { ...this.getCurrent(), flags: ['out-of-order'] };
+    }
+    this.lastUpdateTimestamp = now;
+    const hasValue = input.value !== null && input.value !== undefined
+      && (typeof input.value !== 'number' || Number.isFinite(input.value))
+      && (input.confidence === undefined || Number.isFinite(input.confidence));
     const isValid = input.isValid !== undefined ? input.isValid : hasValue;
 
     if (isValid && hasValue) {
@@ -63,7 +77,9 @@ export class ReadingStabilizer<T = number> {
         typeof this.lastValidValue === 'number' &&
         Number.isFinite(this.options.maxAllowedSpikeRatio) &&
         this.options.maxAllowedSpikeRatio > 0 &&
-        this.lastValidValue !== 0
+        this.lastValidValue !== 0 &&
+        this.lastValidTimestamp !== null &&
+        now - this.lastValidTimestamp <= this.options.maxHoldingDurationMs
       ) {
         const deltaRatio = Math.abs(input.value - this.lastValidValue) / Math.abs(this.lastValidValue);
         if (deltaRatio > this.options.maxAllowedSpikeRatio) {
@@ -100,10 +116,10 @@ export class ReadingStabilizer<T = number> {
         flags.push('timeout-stale');
       } else {
         this.status = 'holding';
-        this.currentConfidence = Math.max(
+        this.currentConfidence = Math.min(this.currentConfidence, Math.max(
           this.options.minHoldingConfidence,
           this.currentConfidence * this.options.confidenceDecayRate,
-        );
+        ));
         flags.push('value-holding');
       }
 
@@ -133,6 +149,7 @@ export class ReadingStabilizer<T = number> {
     this.lastValidTimestamp = null;
     this.currentConfidence = 0;
     this.status = 'uninitialized';
+    this.lastUpdateTimestamp = null;
   }
 
   public getCurrent(): StabilizedSample<T> {

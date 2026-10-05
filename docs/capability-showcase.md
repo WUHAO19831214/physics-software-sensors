@@ -91,6 +91,10 @@ Automatic/OCR readings remain drafts until confirmed; manual and multi-point mod
 
 Current catalog: **9/9 Sensors + 4/4 processing Tools = 13/13 capabilities**. Calculator and overlay UI are additional reusable components, outside Sensor counts.
 
+### Experimental thermal model and Core support
+
+[GasLab 0.1.0](../packages/gaslab/README.md) adds a headless gas teaching model; unreleased Core 0.3.1 adds quantity candidates, fitting/extrapolation, reading stabilization and opt-in OCR preprocessing. [Review and evidence](gaslab-intake.md) · [runnable headless replay](../examples/headless-gaslab/README.md). Model/support packages are separate from the **13 Sensor/Companion Tool capabilities** above. No new observation, npm publication or v0.6.0 download is implied.
+
 <!-- section:evidence -->
 ## Evidence boundary
 

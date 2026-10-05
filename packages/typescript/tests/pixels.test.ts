@@ -47,3 +47,14 @@ test('invalid RGBA buffer length is rejected', () => {
     /data length/,
   );
 });
+
+test('adaptive OCR padding preserves source pixels and opaque border alpha', async () => {
+  const { addRgbaPadding, resolveOptimalScale } = await import('../src/index.js');
+  const input = { width: 1, height: 1, data: new Uint8ClampedArray([25, 50, 75, 255]) };
+  const padded = addRgbaPadding(input, 1, 0);
+  assert.deepEqual([...padded.data.slice(16, 20)], [25, 50, 75, 255]);
+  assert.deepEqual([...padded.data.slice(0, 4)], [0, 0, 0, 255]);
+  assert.equal(resolveOptimalScale(30), 4);
+  assert.equal(resolveOptimalScale(60), 2);
+  assert.throws(() => resolveOptimalScale(60, NaN), RangeError);
+});

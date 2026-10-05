@@ -77,3 +77,49 @@ test('Engine reset re-establishes initial state', () => {
   assert.equal(snap.timestamp, 0);
   assert.equal(snap.statistics.collisionCountTotal, 0);
 });
+
+test('step consumes the requested duration, zero does not advance, snapshots are independent', () => {
+  const engine = new GasSimulationEngine({ particleCount: 10, particleMass: 1,
+    container: { type: 'box', width: 2, height: 2, depth: 2 }, initialTemperatureK: 300, randomSeed: 42 });
+  const initial = engine.getSnapshot();
+  const frozen = JSON.stringify(initial);
+  assert.equal(engine.step(0).timestamp, 0);
+  assert.equal(engine.step(1).timestamp, 1);
+  assert.equal(JSON.stringify(initial), frozen);
+  initial.particles[0]!.position.x = 1e10;
+  assert.ok(Math.abs(engine.getSnapshot().particles[0]!.position.x) < 1);
+  assert.throws(() => engine.step(NaN), RangeError);
+  assert.throws(() => engine.step(-1), RangeError);
+});
+
+test('seeded reset reproduces the same particle state and protects configuration', () => {
+  const config = { particleCount: 10, particleMass: 1, container: { type: 'cylinder' as const, radius: 1, height: 3 }, initialTemperatureK: 300, randomSeed: 7 };
+  const engine = new GasSimulationEngine(config);
+  const initial = engine.getSnapshot();
+  config.container.radius = 1000;
+  assert.equal(engine.config.container.type === 'cylinder' && engine.config.container.radius, 1);
+  engine.step(1);
+  engine.reset();
+  assert.deepEqual(engine.getSnapshot(), initial);
+});
+
+test('SI mode derives nitrogen speeds from mass and labels pressure; display is distinct', () => {
+  const config = { particleCount: 1000, particleMass: 4.65e-26, particleRadius: 0,
+    container: { type: 'box' as const, width: 1, height: 1, depth: 1 }, initialTemperatureK: 300, randomSeed: 32 };
+  const si = new GasSimulationEngine({ ...config, unitSystem: 'si' });
+  assert.equal(si.getSnapshot().statistics.microscopicImpulsePressureUnit, 'Pa');
+  assert.ok(Math.abs(si.getSnapshot().statistics.rmsSpeed / 516.9 - 1) < 0.04);
+  assert.equal(new GasSimulationEngine(config).getSnapshot().statistics.microscopicImpulsePressureUnit, 'simulation');
+  assert.throws(() => new GasSimulationEngine({ ...config, initialTemperatureK: -1 }), RangeError);
+});
+
+test('SI box wall pressure has the expected ideal-gas order of magnitude', () => {
+  const engine = new GasSimulationEngine({ particleCount: 200, particleMass: 4.65e-26, particleRadius: 0,
+    container: { type: 'box', width: 1, height: 1, depth: 1 }, initialTemperatureK: 300,
+    randomSeed: 42, unitSystem: 'si', frequencyWindowSeconds: 0.1 });
+  for (let i = 0; i < 30; i++) engine.step(0.01);
+  const expected = 200 * 1.380649e-23 * 300; // N kB T / V, V=1 m^3
+  const measured = engine.getSnapshot().statistics.microscopicImpulsePressure;
+  // Finite sample + projected collision timing; coarse synthetic sanity, not metrology.
+  assert.ok(Math.abs(measured / expected - 1) < 0.15);
+});

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-readme-sha256" content="8dd3bbf36ef3681c862c734c45ed4c2d840f27292cf17df53176ff3ea4ed1ad1">
-  <meta name="project-status-sha256" content="708418393dc0060abf673fbe8a78702df2ca70da2549e3a4b6504f3150a80a7e">
+  <meta name="source-readme-sha256" content="ac6a3e0f793d6e8a994fbd18ecc1e03114059364ff980aef805ff14d5df2b4f5">
+  <meta name="project-status-sha256" content="c4b1528a63635ddc9fadf11f56fcddfb6c16d6e23b6da5a83babd8785a999817">
   <title>物理实验软件传感器库</title>
   <link rel="stylesheet" href="../site.css">
 </head>
@@ -273,6 +273,8 @@ npm install ./physics-software-sensors-core-0.3.0.tgz
 <p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md">中文使用指南</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/packages/fringelab/README.md">API 与安装</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/web-fringelab-toolkit/README.md">可运行示例</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/processing/signal.profile-features/README.zh-CN.md">剖面特征工具</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/fringelab-toolkit.zh-CN.md">FringeLab guide</a></p>
 <p>自动识别与 OCR 结果经人工核对后应用，人工和多点模式完整保留。截图来自可运行的 650 nm 合成示例；DN 表示相对响应，尚未认证实机测量精度。</p>
 <p>当前目录覆盖：<strong>9/9 个 Sensor + 4/4 个处理工具 = 13/13 项能力</strong>。计算器和叠加 UI 是额外可复用组件，不计入 Sensor 数量。</p>
+<h3>实验性热学模型与 Core 支持</h3>
+<p><a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/packages/gaslab/README.zh-CN.md">GasLab 0.1.0</a> 提供无界面气体教学模型；未发布 Core 0.3.1 增加物理量候选解析、拟合/外推、读数稳定与可选 OCR 预处理。<a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/docs/gaslab-intake.zh-CN.md">审查及证据</a> · <a href="https://github.com/WUHAO19831214/physics-software-sensors/blob/main/examples/headless-gaslab/README.md">无界面回放示例</a>。模型和支持包与上述 <strong>13 项 Sensor/Companion Tool 能力</strong>分开，不意味着新增直接观测、npm 发布或 v0.6.0 下载。</p>
 <!-- section:principles -->
 <h2>核心原则</h2>
 <ol>

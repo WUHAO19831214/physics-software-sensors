@@ -102,3 +102,24 @@ test('Simulation reproducibility with identical PRNG seeds', () => {
     }
   }
 });
+
+test('replay starts at its recorded epoch, copies input, and synchronizes elapsed simulation time', () => {
+  const config = { particleCount: 2, particleMass: 1, container: { type: 'box' as const, width: 2, height: 2, depth: 2 }, initialTemperatureK: 300, randomSeed: 1 };
+  const engine = new GasSimulationEngine(config);
+  const driver = new GasSimulationDriver(engine, 'replay');
+  const data = [{ timestamp: 100, temperatureK: 300 }, { timestamp: 101, temperatureK: 600 }];
+  driver.loadReplayData(data);
+  data[0]!.temperatureK = 999;
+  const s = driver.tick(1.1);
+  assert.ok(Math.abs(s.timestamp - 1.1) < 1e-12);
+  assert.equal(s.temperatureK, 600);
+  const reference = new GasSimulationEngine(config);
+  reference.step(1);
+  reference.setTemperature(600);
+  reference.step(0.1);
+  assert.ok(Math.abs(s.particles[0]!.position.x - reference.getSnapshot().particles[0]!.position.x) < 1e-10);
+  driver.setReplayPaused(true);
+  assert.equal(driver.tick(1).timestamp, s.timestamp);
+  assert.throws(() => driver.loadReplayData([{ timestamp: 2, temperatureK: 300 }, { timestamp: 1, temperatureK: 300 }]), RangeError);
+  assert.throws(() => driver.seekReplayIndex(NaN), RangeError);
+});

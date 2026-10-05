@@ -21,8 +21,10 @@ export function calculateRmsSpeed(
   temperatureK: number,
   calibration: SpeedCalibration = DISPLAY_CALIBRATION
 ): number {
-  const safeT = Math.max(0.1, temperatureK);
-  return calibration.referenceRmsSpeed * Math.sqrt(safeT / calibration.referenceTemperatureK);
+  validateTemperature(temperatureK);
+  validateTemperature(calibration.referenceTemperatureK);
+  if (!Number.isFinite(calibration.referenceRmsSpeed) || calibration.referenceRmsSpeed <= 0) throw new RangeError('Reference RMS speed must be finite and positive');
+  return calibration.referenceRmsSpeed * Math.sqrt(temperatureK / calibration.referenceTemperatureK);
 }
 
 /**
@@ -57,6 +59,7 @@ export function maxwellBoltzmannSpeedPdf(
   temperatureK: number,
   calibration: SpeedCalibration = DISPLAY_CALIBRATION
 ): number {
+  if (!Number.isFinite(speed)) throw new RangeError('Speed must be finite');
   if (speed < 0) return 0;
   const vRms = calculateRmsSpeed(temperatureK, calibration);
   const sigma = vRms / Math.sqrt(3);
@@ -88,7 +91,11 @@ export function sampleMaxwellVelocity(
  * k = sqrt(T2 / T1)
  */
 export function calculateTemperatureScaling(fromTempK: number, toTempK: number): number {
-  const safeFrom = Math.max(0.1, fromTempK);
-  const safeTo = Math.max(0.1, toTempK);
-  return Math.sqrt(safeTo / safeFrom);
+  validateTemperature(fromTempK);
+  validateTemperature(toTempK);
+  return Math.sqrt(toTempK / fromTempK);
+}
+
+export function validateTemperature(temperatureK: number): void {
+  if (!Number.isFinite(temperatureK) || temperatureK <= 0) throw new RangeError('Temperature must be finite and positive kelvin');
 }

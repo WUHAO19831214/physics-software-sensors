@@ -16,10 +16,9 @@ export function createSeededRandom(seed = 123456789): () => number {
  * Box-Muller transform to sample from standard normal distribution N(0, 1).
  */
 export function sampleStandardNormal(rng: () => number = Math.random): number {
-  let u1 = rng();
-  while (u1 <= 1e-15) {
-    u1 = rng();
-  }
+  const first = rng();
   const u2 = rng();
+  if (![first, u2].every(u => Number.isFinite(u) && u >= 0 && u < 1)) throw new RangeError('RNG must return finite values in [0, 1)');
+  const u1 = Math.max(Number.EPSILON, first);
   return Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
 }

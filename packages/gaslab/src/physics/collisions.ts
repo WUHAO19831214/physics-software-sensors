@@ -21,7 +21,11 @@ export function resolveWallCollision(
   inwardNormal: Vector3D,
   mass: number
 ): WallCollisionResponse {
-  const vn = dotVector3D(velocity, inwardNormal);
+  if (![velocity.x, velocity.y, velocity.z, inwardNormal.x, inwardNormal.y, inwardNormal.z, mass].every(Number.isFinite) || mass <= 0) throw new RangeError('Collision inputs must be finite with positive mass');
+  const norm = Math.sqrt(lengthSqVector3D(inwardNormal));
+  if (norm === 0) throw new RangeError('Wall normal must be nonzero');
+  const n = { x: inwardNormal.x / norm, y: inwardNormal.y / norm, z: inwardNormal.z / norm };
+  const vn = dotVector3D(velocity, n);
   if (vn >= 0) {
     // Particle is already moving away from the wall
     return {
@@ -32,9 +36,9 @@ export function resolveWallCollision(
 
   // Reflect: v' = v - 2 * vn * n
   const newVelocity: Vector3D = {
-    x: velocity.x - 2 * vn * inwardNormal.x,
-    y: velocity.y - 2 * vn * inwardNormal.y,
-    z: velocity.z - 2 * vn * inwardNormal.z,
+    x: velocity.x - 2 * vn * n.x,
+    y: velocity.y - 2 * vn * n.y,
+    z: velocity.z - 2 * vn * n.z,
   };
 
   const impulse = 2 * mass * Math.abs(vn);

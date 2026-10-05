@@ -141,6 +141,10 @@ standalone、synthetic、replay の代表的なデモを 1 枚にまとめてい
 
 現在のカタログ：**9/9 Sensor + 4/4 処理 Tool = 13/13 capability**。電卓・オーバーレイ UI は追加の再利用コンポーネントで、Sensor 数には含めません。
 
+### 実験的熱モデルと Core サポート
+
+[GasLab 0.1.0](packages/gaslab/README.ja.md) はヘッドレス気体教育モデルです。未公開 Core 0.3.1 は量候補解析、回帰/外挿、読値安定化、任意 OCR 前処理を追加します。[レビューと証拠](docs/gaslab-intake.ja.md) · [実行例](examples/headless-gaslab/README.md)。モデル/サポートパッケージは上記 **13 Sensor/Companion Tool capability** と別扱いです。直接観測追加、npm 公開、v0.6.0 収録を意味しません。
+
 <!-- section:principles -->
 ## 基本原則
 

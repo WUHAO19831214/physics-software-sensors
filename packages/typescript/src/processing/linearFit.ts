@@ -17,7 +17,7 @@ export interface LinearFitResult {
   rSquared: number;
   /** Constrained-through-origin slope (k0 in y = k0 * x). */
   originSlope: number;
-  /** Coefficient of determination R^2 for origin-constrained fit. */
+  /** Centered R^2 for origin-constrained fit; may be negative for a poor fit. */
   originRSquared: number;
   /** Whether the fit is mathematically well-defined. */
   valid: boolean;
@@ -75,10 +75,10 @@ export function calculateLinearFit(points: readonly Point2D[]): LinearFitResult 
     ssYY += dy * dy;
   }
 
-  if (ssXX <= 1e-12) {
+  if (ssXX <= 1e-12 || ![ssXX, ssXY, ssYY, sumX2, sumXY, meanX, meanY].every(Number.isFinite)) {
     return {
       slope: 0,
-      intercept: meanY,
+      intercept: Number.isFinite(meanY) ? meanY : 0,
       rSquared: 0,
       originSlope: 0,
       originRSquared: 0,
@@ -108,7 +108,7 @@ export function calculateLinearFit(points: readonly Point2D[]): LinearFitResult 
     ssOriginRes += diff * diff;
   }
   const originRSquared =
-    ssYY > 1e-12 ? Math.max(0, Math.min(1, 1 - ssOriginRes / ssYY)) : 1;
+    ssYY > 1e-12 ? 1 - ssOriginRes / ssYY : (ssOriginRes <= 1e-12 ? 1 : 0);
 
   return {
     slope,
@@ -127,10 +127,11 @@ export function calculateLinearFit(points: readonly Point2D[]): LinearFitResult 
  * in p = k*t + p0, setting targetY = 0 yields t0 = -p0 / k ≈ -273.15 ℃.
  */
 export function extrapolateX(fit: LinearFitResult, targetY = 0): number | null {
-  if (!fit.valid || Math.abs(fit.slope) <= 1e-12) {
+  if (!fit.valid || !Number.isFinite(targetY) || !Number.isFinite(fit.slope) || !Number.isFinite(fit.intercept) || Math.abs(fit.slope) <= 1e-12) {
     return null;
   }
-  return (targetY - fit.intercept) / fit.slope;
+  const x = (targetY - fit.intercept) / fit.slope;
+  return Number.isFinite(x) ? x : null;
 }
 
 /**
@@ -138,8 +139,11 @@ export function extrapolateX(fit: LinearFitResult, targetY = 0): number | null {
  */
 export function calculateNiceStep(range: number, targetTicks = 6): number {
   if (!Number.isFinite(range) || range <= 0) return 10;
-  const rawStep = range / Math.max(1, targetTicks);
+  const ticks = Number.isFinite(targetTicks) ? Math.max(1, targetTicks) : 6;
+  const rawStep = range / ticks;
+  if (rawStep === 0) return range;
   const magnitude = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  if (magnitude === 0) return range;
   const residual = rawStep / magnitude;
 
   let niceStep = magnitude;

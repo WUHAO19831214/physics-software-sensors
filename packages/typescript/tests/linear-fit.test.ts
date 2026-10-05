@@ -77,3 +77,17 @@ test('calculateNiceStep: calculates clean scale increments', () => {
   assert.equal(calculateNiceStep(350, 7), 50);
   assert.equal(calculateNiceStep(1.2, 6), 0.2);
 });
+
+test('origin fit must not claim perfect R squared on a constant nonzero series', () => {
+  const fit = calculateLinearFit([{ x: 1, y: 5 }, { x: 2, y: 5 }, { x: 3, y: 5 }]);
+  assert.equal(fit.rSquared, 1);
+  assert.equal(fit.originRSquared, 0);
+  const poor = calculateLinearFit([{ x: 1, y: 5 }, { x: 2, y: 5.1 }, { x: 3, y: 5.2 }]);
+  assert.ok(poor.originRSquared < 0);
+  assert.equal(extrapolateX(fit, NaN), null);
+  assert.ok(Number.isFinite(calculateNiceStep(20, NaN)));
+});
+
+test('finite coordinates with overflow cannot produce a valid NaN fit', () => {
+  assert.equal(calculateLinearFit([{ x: 1e308, y: 1e308 }, { x: -1e308, y: 0 }]).valid, false);
+});

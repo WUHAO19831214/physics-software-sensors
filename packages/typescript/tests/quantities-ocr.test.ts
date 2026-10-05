@@ -51,3 +51,39 @@ test('quantities OCR: rejects out-of-range false alarms', () => {
   const res = extractQuantities('Residual: 12.0 kPa', specs);
   assert.equal(res.quantities.pressure, undefined);
 });
+
+test('quantity candidates preserve negative signs, source units and converted units', () => {
+  const cold = extractQuantities('温度: −20 ℃', [GAS_LAB_QUANTITY_SPECS.temperature]);
+  assert.equal(cold.quantities.temperature?.value, -20);
+  assert.equal(cold.quantities.temperature?.unit, '℃');
+  const pressure = extractQuantities('101325 PA', [GAS_LAB_QUANTITY_SPECS.pressure]);
+  assert.equal(pressure.quantities.pressure?.value, 101.33);
+  assert.equal(pressure.quantities.pressure?.unit, 'kPa');
+  assert.equal(pressure.quantities.pressure?.sourceUnit, 'PA');
+});
+
+test('mixed instrument text never promotes another quantity, noise or rejected units', () => {
+  const specs = Object.values(GAS_LAB_QUANTITY_SPECS);
+  assert.equal(extractQuantities('293.8 K', specs).quantities.pressure, undefined);
+  assert.equal(extractQuantities('S188 serial number', specs).quantities.pressure, undefined);
+  assert.equal(extractQuantities('温度: 900 K', specs).quantities.temperature, undefined);
+  assert.equal(extractQuantities('压强: 101325 unknownUnit', specs).quantities.pressure, undefined);
+  assert.equal(extractQuantities('temperature missing; pressure 101.3 kPa', specs).quantities.temperature, undefined);
+});
+
+test('unitless numeric ROI requires explicit opt in and claims spans, not numeric values', () => {
+  assert.deepEqual(extractQuantities('100 100', Object.values(GAS_LAB_QUANTITY_SPECS)).quantities, {});
+  const result = extractQuantities('100 100', [
+    { ...GAS_LAB_QUANTITY_SPECS.pressure, allowUnitless: true },
+    { ...GAS_LAB_QUANTITY_SPECS.temperature, allowUnitless: true },
+  ]);
+  assert.equal(result.quantities.pressure?.value, 100);
+  assert.equal(result.quantities.temperature?.value, 100);
+  assert.equal(result.quantities.temperature?.unit, null);
+});
+
+test('absolute Kelvin bounds do not admit negative Celsius-like values', () => {
+  assert.equal(extractQuantities('-20 K', [GAS_LAB_QUANTITY_SPECS.temperature]).quantities.temperature, undefined);
+  assert.equal(extractQuantities('温度: -20', [GAS_LAB_QUANTITY_SPECS.temperature]).quantities.temperature, undefined);
+  assert.equal(extractQuantities('-20 ℃', [GAS_LAB_QUANTITY_SPECS.temperature]).quantities.temperature?.value, -20);
+});

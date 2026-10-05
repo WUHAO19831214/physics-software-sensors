@@ -61,3 +61,21 @@ test('readingStabilizer: rejects anomalous sudden spikes', () => {
   assert.equal(spiked.value, 100.0); // Held previous valid value
   assert.ok(spiked.flags.includes('spike-rejected'));
 });
+
+test('nonfinite values cannot become valid measurements', () => {
+  const stabilizer = new ReadingStabilizer();
+  assert.equal(stabilizer.update({ value: NaN, timestamp: 1 }).status, 'uninitialized');
+  stabilizer.update({ value: 100, confidence: 0.1, timestamp: 2 });
+  const held = stabilizer.update({ value: Infinity, timestamp: 3 });
+  assert.equal(held.value, 100);
+  assert.equal(held.status, 'holding');
+  assert.ok(held.confidence <= 0.1);
+  assert.throws(() => stabilizer.update({ value: 2, timestamp: NaN }), RangeError);
+});
+
+test('out-of-order updates do not replace readings and a stale stream can recover', () => {
+  const stabilizer = new ReadingStabilizer({ maxHoldingDurationMs: 100, maxAllowedSpikeRatio: 0.2 });
+  stabilizer.update({ value: 100, timestamp: 1000 });
+  assert.equal(stabilizer.update({ value: 120, timestamp: 900 }).value, 100);
+  assert.equal(stabilizer.update({ value: 300, timestamp: 1200 }).status, 'valid');
+});

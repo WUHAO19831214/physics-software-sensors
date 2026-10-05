@@ -3,6 +3,7 @@ import { createVector3D } from './vector3d.js';
 
 export interface CollisionResult {
   collided: boolean;
+  normals?: Vector3D[]; // Independent face contacts at corners/rims.
   normal: Vector3D; // inward-pointing unit normal of the container boundary
   clampedPosition: Vector3D;
 }
@@ -11,6 +12,7 @@ export interface CollisionResult {
  * Calculates total internal surface area of the container.
  */
 export function calculateContainerArea(container: ContainerGeometry): number {
+  validateContainer(container);
   switch (container.type) {
     case 'box':
       return 2 * (container.width * container.height + container.width * container.depth + container.height * container.depth);
@@ -37,6 +39,8 @@ export function checkContainerBoundary(
   particleRadius: number,
   container: ContainerGeometry
 ): CollisionResult {
+  validateContainer(container, particleRadius);
+  if (![pos.x, pos.y, pos.z].every(Number.isFinite)) throw new RangeError('Position must be finite');
   switch (container.type) {
     case 'box': {
       const halfW = container.width / 2 - particleRadius;
@@ -90,6 +94,11 @@ export function checkContainerBoundary(
       return {
         collided: true,
         normal: createVector3D(nx / len, ny / len, nz / len),
+        normals: [
+          ...(nx ? [createVector3D(nx, 0, 0)] : []),
+          ...(ny ? [createVector3D(0, ny, 0)] : []),
+          ...(nz ? [createVector3D(0, 0, nz)] : []),
+        ],
         clampedPosition: createVector3D(cx, cy, cz),
       };
     }
@@ -135,15 +144,19 @@ export function checkContainerBoundary(
       return {
         collided: true,
         normal: createVector3D(nx / len, ny / len, nz / len),
+        normals: [
+          ...(nx || nz ? [createVector3D(nx, 0, nz)] : []),
+          ...(ny ? [createVector3D(0, ny, 0)] : []),
+        ],
         clampedPosition: createVector3D(cx, cy, cz),
       };
     }
 
     case 'capsule': {
-      // Cylinder section from y = 0 to y = cylinderHeight - radius, with bottom hemisphere at y <= 0
+      // Straight cylinder centered at y=0, a hemisphere below -cylinderHeight/2, flat top.
       const rLimit = Math.max(0.001, container.radius - particleRadius);
       const topLimit = Math.max(0.001, container.cylinderHeight / 2 - particleRadius);
-      const bottomLimit = -container.cylinderHeight / 2 + container.radius;
+      const bottomLimit = -container.cylinderHeight / 2;
 
       let cx = pos.x;
       let cy = pos.y;
@@ -193,6 +206,12 @@ export function checkContainerBoundary(
       return {
         collided: true,
         normal: createVector3D(nx / len, ny / len, nz / len),
+        normals: pos.y < bottomLimit
+          ? [createVector3D(nx / len, ny / len, nz / len)]
+          : [
+            ...(nx || nz ? [createVector3D(nx, 0, nz)] : []),
+            ...(ny ? [createVector3D(0, ny, 0)] : []),
+          ],
         clampedPosition: createVector3D(cx, cy, cz),
       };
     }
@@ -207,6 +226,7 @@ export function samplePositionInsideContainer(
   rng: () => number = Math.random,
   particleRadius = 0.05
 ): Vector3D {
+  validateContainer(container, particleRadius);
   switch (container.type) {
     case 'box': {
       const halfW = Math.max(0.01, container.width / 2 - particleRadius);
@@ -230,15 +250,32 @@ export function samplePositionInsideContainer(
       };
     }
     case 'capsule': {
-      const rLimit = Math.max(0.01, container.radius - particleRadius);
-      const halfH = Math.max(0.01, container.cylinderHeight / 2 - particleRadius);
-      const theta = rng() * 2 * Math.PI;
-      const r = Math.sqrt(rng()) * rLimit;
-      return {
-        x: r * Math.cos(theta),
-        y: (rng() * 2 - 1) * halfH,
-        z: r * Math.sin(theta),
-      };
+      const rLimit = container.radius - particleRadius;
+      const bottom = -container.cylinderHeight / 2 - rLimit;
+      const top = container.cylinderHeight / 2 - particleRadius;
+      // Uniform rejection sampling within the cylinder enclosing the accessible volume.
+      for (let attempt = 0; attempt < 10000; attempt++) {
+        const theta = rng() * 2 * Math.PI;
+        const r = Math.sqrt(rng()) * rLimit;
+        const pos = { x: r * Math.cos(theta), y: bottom + rng() * (top - bottom), z: r * Math.sin(theta) };
+        if (!checkContainerBoundary(pos, particleRadius, container).collided) return pos;
+      }
+      throw new RangeError('RNG failed to sample a position inside the capsule');
     }
   }
+}
+
+export function validateContainer(container: ContainerGeometry, particleRadius = 0): void {
+  if (!Number.isFinite(particleRadius) || particleRadius < 0) throw new RangeError('Particle radius must be finite and nonnegative');
+  const dimensions = container.type === 'box'
+    ? [container.width, container.height, container.depth]
+    : container.type === 'cylinder' ? [container.radius, container.height]
+    : container.type === 'capsule' ? [container.radius, container.cylinderHeight] : [];
+  if (!dimensions.length || !dimensions.every(x => Number.isFinite(x) && x > 0)) throw new RangeError('Container dimensions must be finite and positive');
+  const fits = container.type === 'box'
+    ? Math.min(container.width, container.height, container.depth) / 2 > particleRadius
+    : container.type === 'cylinder'
+      ? Math.min(container.radius, container.height / 2) > particleRadius
+      : container.radius > particleRadius && container.cylinderHeight > particleRadius;
+  if (!fits) throw new RangeError('Particle radius must fit inside the container');
 }

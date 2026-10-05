@@ -17,10 +17,12 @@ export class MicroscopicStatisticsAccumulator {
   constructor(
     container: ContainerGeometry,
     windowDurationSeconds = 0.5,
-    referenceTemperatureK = 300
+    referenceTemperatureK = 300,
+    private readonly unitSystem: 'si' | 'display' = 'display'
   ) {
     this.containerArea = calculateContainerArea(container);
-    this.windowDuration = Math.max(0.05, windowDurationSeconds);
+    if (!Number.isFinite(windowDurationSeconds) || windowDurationSeconds <= 0) throw new RangeError('Statistics window must be finite and positive');
+    this.windowDuration = windowDurationSeconds;
     this.referenceTemperatureK = referenceTemperatureK;
   }
 
@@ -86,6 +88,7 @@ export class MicroscopicStatisticsAccumulator {
       meanSpeed,
       rmsSpeed,
       microscopicImpulsePressure,
+      microscopicImpulsePressureUnit: this.unitSystem === 'si' ? 'Pa' : 'simulation',
       pedagogicalPressureRatio,
     };
 

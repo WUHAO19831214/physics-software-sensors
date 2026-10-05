@@ -2,9 +2,9 @@
   "schema_version": "1.1.0",
   "repository": "WUHAO19831214/physics-software-sensors",
   "phase": "MAINTENANCE",
-  "phase_name": "FringeLab reusable toolkit collection",
+  "phase_name": "GasLab domain and Core support intake review",
   "task_type": "MAINTENANCE",
-  "status": "MAINTENANCE_READY",
+  "status": "READY_FOR_REVIEW",
   "project_state": "maintenance",
   "baseline_release": "v0.6.0",
   "sensor_count": 9,
@@ -17,41 +17,24 @@
   ],
   "git": {
     "base_branch": "main",
-    "working_branch": "feat/gaslab-core",
-    "base_sha": "36d263f53d9ebcec4fc4d66b081ece5d77ba2f20",
-    "tested_sha": "6262fd87a032f2c665a476653f226496688b85f9",
+    "working_branch": "codex/gaslab-intake",
+    "base_sha": "e39e3e9f955b33ce24b8a888382d568a1aacffe7",
+    "tested_sha": "5fbade46aa6a819e56c5cb360c87ab0bf9ca7eb5",
     "published_head_sha": {
       "resolution": "branch-ref",
-      "ref": "refs/heads/feat/gaslab-core"
+      "ref": "refs/heads/codex/gaslab-intake"
     },
     "handoff_commit_sha": {
       "resolution": "containing-commit"
     },
-    "working_tree_clean": true
+    "working_tree_clean": false
   },
   "pull_request": {
-    "number": 12,
-    "url": "https://github.com/WUHAO19831214/physics-software-sensors/pull/12",
-    "draft": false,
-    "state": "MERGED",
-    "title": "Collect FringeLab reusable measurement toolkit",
-    "merge_sha": "7ac09a3d4e1361bbb5a521bb044761fd62435df4"
-  },
-  "public_document_delivery": {
-    "repository_content_integrity": "PASS",
-    "github_blob_view": "EXTERNAL_ERROR",
-    "github_raw": "RATE_LIMITED",
-    "github_pages": "ENABLED",
-    "pages_source": "main /docs",
-    "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
-    "build_status": "built",
-    "language_pages": {
-      "en": "PASS",
-      "zh_CN": "PASS",
-      "ja": "PASS"
-    },
-    "language_switching": "6/6 PASS",
-    "capability_showcase": "PASS"
+    "number": null,
+    "url": null,
+    "draft": true,
+    "state": "NOT_CREATED",
+    "title": "Review GasLab domain and Core support intake"
   },
   "pages": {
     "files": {
@@ -64,61 +47,29 @@
     "gh_pages_branch": false
   },
   "tests": {
-    "repository_validation": {
-      "passed": true,
-      "pending_clean_commit_rerun": false
+    "typescript": {
+      "passed": 50,
+      "failed": 0
     },
-    "i18n": {
-      "passed": true,
-      "public_document_sets": 11,
-      "sensor_pages": 27,
-      "tool_pages": 12,
-      "terminology_entries": 54
+    "gaslab": {
+      "passed": 24,
+      "failed": 0
     },
     "python": {
       "passed": 94,
       "failed": 0
     },
-    "typescript": {
-      "passed": 41,
+    "source_comparison": {
+      "passed": 921,
       "failed": 0
     },
-    "gaslab": {
-      "passed": 17,
-      "failed": 0
+    "consumer": {
+      "test_groups": 7,
+      "build": true
     },
-    "public_document_delivery": {
-      "readme_sources": "3/3",
-      "pages_files": "3/3",
-      "language_routes": "6/6",
-      "passed": true
-    },
-    "local_http": {
-      "routes": "3/3",
-      "status": 200
-    },
-    "github_pages": {
-      "routes": "3/3",
-      "status": 200,
-      "language_switching": "6/6 PASS",
-      "capability_showcase": "PASS"
-    },
-    "fringelab": {
-      "passed": 62,
-      "failed": 0,
-      "schema_events": "5/5",
-      "browser_flows": "7/7",
-      "source_equivalence": "18 fixed hashes and exact normalized outputs",
-      "clean_install": "PASS",
-      "bundle_example": "PASS: clean unzip and build",
-      "distribution_report": "benchmarks/results/fringelab-distribution.json"
-    },
-    "homepage_publication": {
-      "local_languages": "3/3",
-      "images": "2/2",
-      "catalog": "13/13",
-      "online": "PASS: 3/3 languages, latest README hashes, 2/2 images, GitHub default-branch component heading",
-      "report": "benchmarks/results/fringelab-publication.json"
+    "repository_validation": {
+      "passed": false,
+      "pending_clean_commit_rerun": true
     }
   },
   "release": {
@@ -207,6 +158,11 @@
       "repository": "WUHAO19831214/webcam-laser-fringelab",
       "commit": "37a8b3996791790a22980b0d562996a65a3a65ef",
       "state": "unchanged"
+    },
+    {
+      "repository": "WUHAO19831214/charles-law-isochoric-lab",
+      "commit": "b62d7fbefd412e2696096b3bce8fc0af3c5f8c3c",
+      "state": "historical baseline; local app adaptation uncommitted"
     }
   ],
   "blockers": [],
@@ -214,7 +170,95 @@
     "E4 real camera and optical evidence not measured",
     "Real-photo ruler period error distribution not measured",
     "Browser OCR completed with zero usable anchors on default synthetic selected region",
-    "HEIC device-photo runtime not measured"
+    "HEIC device-photo runtime not measured",
+    "Gas wall collision timing uses projection approximation",
+    "Downstream full engine/driver adoption not completed",
+    "Downstream adaptation uncommitted",
+    "Separate draft PR #11 navigation not included"
   ],
-  "next_action": "Collection and public showcase are published on main; reuse the toolkit package or standalone example. Add real-device datasets as a future validation task."
+  "next_action": "Review the combined GasLab/Core intake PR. Merge/publication not performed. Commit and pin downstream adaptation separately before claiming remotely merged integration.",
+  "handoff_review_scope": {
+    "gaslab": "experimental-domain-package",
+    "catalog_count_delta": 0,
+    "downstream": "local-uncommitted",
+    "original_transfer_commits": [
+      "6262fd87a032f2c665a476653f226496688b85f9",
+      "5fbade46aa6a819e56c5cb360c87ab0bf9ca7eb5"
+    ]
+  },
+  "historical_fringe_publication": {
+    "repository_content_integrity": "PASS",
+    "github_blob_view": "EXTERNAL_ERROR",
+    "github_raw": "RATE_LIMITED",
+    "github_pages": "ENABLED",
+    "pages_source": "main /docs",
+    "pages_url": "https://wuhao19831214.github.io/physics-software-sensors/",
+    "build_status": "built",
+    "language_pages": {
+      "en": "PASS",
+      "zh_CN": "PASS",
+      "ja": "PASS"
+    },
+    "language_switching": "6/6 PASS",
+    "capability_showcase": "PASS"
+  },
+  "publication_state": "Draft branch; new GasLab/Core prose not yet on main or live Pages",
+  "historical_fringe_tests": {
+    "repository_validation": {
+      "passed": false,
+      "pending_clean_commit_rerun": true
+    },
+    "i18n": {
+      "passed": true,
+      "public_document_sets": 11,
+      "sensor_pages": 27,
+      "tool_pages": 12,
+      "terminology_entries": 54
+    },
+    "python": {
+      "passed": 94,
+      "failed": 0
+    },
+    "typescript": {
+      "passed": 48,
+      "failed": 0
+    },
+    "gaslab": {
+      "passed": 24,
+      "failed": 0
+    },
+    "public_document_delivery": {
+      "readme_sources": "3/3",
+      "pages_files": "3/3",
+      "language_routes": "6/6",
+      "passed": true
+    },
+    "local_http": {
+      "routes": "3/3",
+      "status": 200
+    },
+    "github_pages": {
+      "routes": "3/3",
+      "status": 200,
+      "language_switching": "6/6 PASS",
+      "capability_showcase": "PASS"
+    },
+    "fringelab": {
+      "passed": 62,
+      "failed": 0,
+      "schema_events": "5/5",
+      "browser_flows": "7/7",
+      "source_equivalence": "18 fixed hashes and exact normalized outputs",
+      "clean_install": "PASS",
+      "bundle_example": "PASS: clean unzip and build",
+      "distribution_report": "benchmarks/results/fringelab-distribution.json"
+    },
+    "homepage_publication": {
+      "local_languages": "3/3",
+      "images": "2/2",
+      "catalog": "13/13",
+      "online": "PASS: 3/3 languages, latest README hashes, 2/2 images, GitHub default-branch component heading",
+      "report": "benchmarks/results/fringelab-publication.json"
+    }
+  }
 }

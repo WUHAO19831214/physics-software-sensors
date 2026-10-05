@@ -30,21 +30,20 @@
   },
   "files": [
     "dist/src",
-    "README.md",
-    "LICENSE"
+    "README*.md",
+    "LICENSE",
+    "SOURCE.md",
+    "source-files.json"
   ],
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test dist/tests/*.test.js"
-  },
-  "peerDependencies": {
-    "@physics-software-sensors/core": "^0.3.0"
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "prepack": "npm run build"
   },
   "devDependencies": {
-    "@physics-software-sensors/core": "file:../typescript",
     "typescript": "^5.9.3",
     "@types/node": "^22.0.0"
   }

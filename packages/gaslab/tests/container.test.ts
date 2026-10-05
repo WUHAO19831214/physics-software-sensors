@@ -59,3 +59,25 @@ test('Position sampling strictly inside container bounds', () => {
     assert.ok(Math.abs(pos.y) <= 2.4 + 1e-6, `Sampled y ${pos.y} exceeds limit 2.4`);
   }
 });
+
+test('capsule initialization is uniformly sampled inside the declared hemisphere and cylinder', () => {
+  const capsule = { type: 'capsule' as const, radius: 1, cylinderHeight: 3 };
+  const rng = createSeededRandom(42);
+  let hemisphereCount = 0;
+  for (let i = 0; i < 4000; i++) {
+    const p = samplePositionInsideContainer(capsule, rng, 0);
+    assert.equal(checkContainerBoundary(p, 0, capsule).collided, false);
+    if (p.y < -1.5) hemisphereCount++;
+  }
+  assert.ok(Math.abs(hemisphereCount / 4000 - 2 / 11) < 0.025);
+  assert.ok(Math.abs(calculateContainerArea(capsule) - 9 * Math.PI) < 1e-12);
+  assert.throws(() => samplePositionInsideContainer({ type: 'box', width: 1, height: 1, depth: 1 }, rng, 1), RangeError);
+});
+
+test('corner contacts reflect each crossed face instead of a fictitious diagonal wall', async () => {
+  const { resolveWallCollision } = await import('../src/physics/collisions.js');
+  const contact = checkContainerBoundary({ x: 2, y: 2, z: 0 }, 0, { type: 'box', width: 2, height: 2, depth: 2 });
+  let velocity = { x: 3, y: 1, z: 2 };
+  for (const normal of contact.normals!) velocity = resolveWallCollision(velocity, normal, 1).newVelocity;
+  assert.deepEqual(velocity, { x: -3, y: -1, z: 2 });
+});

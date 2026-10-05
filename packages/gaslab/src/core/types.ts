@@ -28,6 +28,7 @@ export interface CylinderContainer {
 export interface CapsuleContainer {
   type: 'capsule';
   radius: number;
+  /** Length of the straight cylindrical section; one lower hemisphere and a flat top. */
   cylinderHeight: number;
 }
 
@@ -44,7 +45,9 @@ export interface GasStatistics {
   collisionFrequencyHz: number;
   meanSpeed: number;
   rmsSpeed: number;
+  /** Area-averaged wall impulse per area per second, in the declared unit system. */
   microscopicImpulsePressure: number;
+  microscopicImpulsePressureUnit: 'Pa' | 'simulation';
   pedagogicalPressureRatio: number;
   stateEquationPressure?: number;
 }
@@ -67,6 +70,8 @@ export interface GasSimulationConfig {
   speedCalibration?: SpeedCalibration;
   randomSeed?: number;
   frequencyWindowSeconds?: number;
+  /** SI requires metres, kg, seconds and a mass-derived speed calibration. Default: display. */
+  unitSystem?: 'si' | 'display';
 }
 
 export type SimulationMode = 'live' | 'replay' | 'manual';

@@ -1,24 +1,24 @@
-/**
- * Physical quantities extractor with unit anchoring and range constraints.
- * Extracted and generalized from Charles's Law and DISLab classroom sensor bridges.
- */
-
-import { normalizeOcrText } from './number.js';
-
+/** Structured OCR candidates. Parsing alone does not establish measurement accuracy. */
 export interface QuantitySpec {
   name: string;
   units: readonly string[];
+  /** Range in the returned unit, after any configured conversion. */
   range: [number, number];
   keywords?: readonly string[];
-  /** Convert matched value from secondary unit to primary unit (e.g. Pa -> kPa: 0.001) */
   unitConversions?: Record<string, number>;
   primaryUnit?: string;
+  /** Additional bounds for a returned unit (e.g. nonnegative absolute temperature). */
+  unitRanges?: Record<string, [number, number]>;
+  /** Opt in only for a dedicated, unitless ROI. Disabled for mixed instrument text. */
+  allowUnitless?: boolean;
 }
 
 export interface ExtractedQuantityValue {
   name: string;
   value: number;
+  /** Unit of value; sourceUnit preserves the spelling/unit before conversion. */
   unit: string | null;
+  sourceUnit: string | null;
   rawTextMatch: string;
 }
 
@@ -28,135 +28,95 @@ export interface QuantityExtractionResult {
   cleanText: string;
 }
 
-/** Pre-configured specifications for common thermal gas sensors (pressure & temperature). */
 export const GAS_LAB_QUANTITY_SPECS: Record<'pressure' | 'temperature', QuantitySpec> = {
   pressure: {
-    name: 'pressure',
-    units: ['kPa', 'kpa', 'KPa', 'Pa', 'pa'],
-    range: [50, 300],
-    keywords: ['压强', '强', 'P', 'p'],
-    unitConversions: {
-      Pa: 0.001,
-      pa: 0.001,
-    },
-    primaryUnit: 'kPa',
+    name: 'pressure', units: ['kPa', 'Pa'], range: [50, 300],
+    keywords: ['压强', '压力', 'P'], unitConversions: { Pa: 0.001 }, primaryUnit: 'kPa',
   },
   temperature: {
-    name: 'temperature',
-    units: ['K', 'k', '℃', '°C', 'C'],
-    range: [-50, 500],
-    keywords: ['温度', '度', 'T', 't'],
-    primaryUnit: 'K',
+    name: 'temperature', units: ['K', '℃', '°C', 'C'], range: [-50, 500],
+    keywords: ['温度', 'T'], primaryUnit: 'K', unitRanges: { K: [0, 500] },
   },
 };
 
-/**
- * Normalizes text while preserving unit labels (unlike single-number normalization
- * which strips alphabets).
- */
 export function normalizeQuantityText(text: string): string {
   return text
-    .replace(/[Oo](?=\d|\s*k?pa|\s*[k℃°c])/gi, '0')
+    .replace(/(?<=\d)[Oo](?=\d|[.,\s]|$)/g, '0')
+    .replace(/[Oo](?=\d)/g, '0')
     .replace(/[Il|](?=\d)/g, '1')
     .replace(/[，,]/g, '.')
-    .replace(/：/g, ':');
+    .replace(/：/g, ':')
+    .replace(/[−–]/g, '-');
 }
 
-/**
- * Extracts multiple structured physical quantities with explicit units from OCR text.
- * Strictly respects word boundaries and physical value intervals to reject stray alphanumeric noise.
- */
-export function extractQuantities(
-  text: string,
-  specs: readonly QuantitySpec[],
-): QuantityExtractionResult {
+const escapeRegex = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// The left boundary precedes the sign, so -20 never becomes +20.
+const NUMBER = '(?<![A-Za-z0-9_.+\\-])([+\\-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+\\-]?\\d+)?)';
+
+export function extractQuantities(text: string, specs: readonly QuantitySpec[]): QuantityExtractionResult {
   const clean = normalizeQuantityText(text);
   const quantities: Record<string, ExtractedQuantityValue> = {};
+  const claimed: Array<[number, number]> = [];
+  const available = (start: number, end: number): boolean =>
+    !claimed.some(([a, b]) => start < b && end > a);
 
+  const store = (spec: QuantitySpec, m: RegExpMatchArray, rawUnit: string | null, assumedUnit: string | null = null): boolean => {
+    const start = m.index ?? 0;
+    if (!available(start, start + m[0].length)) return false;
+    let value = Number(m[1]);
+    let unit = rawUnit ?? assumedUnit;
+    if (rawUnit) {
+      const canonical = spec.units.find(u => u.toLowerCase() === rawUnit.toLowerCase());
+      if (!canonical) return false;
+      unit = canonical;
+      const conversion = Object.entries(spec.unitConversions ?? {})
+        .find(([u]) => u.toLowerCase() === rawUnit.toLowerCase());
+      if (conversion) {
+        if (!spec.primaryUnit || !Number.isFinite(conversion[1])) return false;
+        value *= conversion[1];
+        unit = spec.primaryUnit;
+      }
+    }
+    const unitRange = unit ? spec.unitRanges?.[unit] : undefined;
+    if (!Number.isFinite(value) || value < spec.range[0] || value > spec.range[1]
+      || (unitRange && (value < unitRange[0] || value > unitRange[1]))) return false;
+    quantities[spec.name] = {
+      name: spec.name, value: Number(value.toFixed(2)), unit,
+      sourceUnit: rawUnit, rawTextMatch: m[0],
+    };
+    claimed.push([start, start + m[0].length]);
+    return true;
+  };
+
+  // Explicit units take precedence across every spec, independent of spec order.
   for (const spec of specs) {
-    let matched: ExtractedQuantityValue | null = null;
-
-    // 1. Unit anchoring: look for numbers immediately followed by defined units
-    const unitPattern = spec.units
-      .map((u) => u.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
-      .join('|');
-    const unitRegex = new RegExp(
-      `\\b([+-]?(?:\\d+\\.\\d+|\\d+))\\s*(${unitPattern})(?![A-Za-z0-9])`,
-      'gi',
-    );
-
-    for (const m of clean.matchAll(unitRegex)) {
-      if (!m[1]) continue;
-      let rawVal = parseFloat(m[1]);
-      const matchedUnit = m[2] ?? null;
-      if (Number.isFinite(rawVal)) {
-        if (matchedUnit && spec.unitConversions && spec.unitConversions[matchedUnit] !== undefined) {
-          rawVal = rawVal * spec.unitConversions[matchedUnit];
-        }
-        if (rawVal >= spec.range[0] && rawVal <= spec.range[1]) {
-          matched = {
-            name: spec.name,
-            value: Number(rawVal.toFixed(2)),
-            unit: matchedUnit,
-            rawTextMatch: m[0],
-          };
-          break;
-        }
-      }
-    }
-
-    // 2. Keyword anchoring (e.g. "压强: 101.3")
-    if (!matched && spec.keywords && spec.keywords.length > 0) {
-      const kwPattern = spec.keywords
-        .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
-        .join('|');
-      const kwRegex = new RegExp(
-        `(?:${kwPattern})[:\\s]*\\b([+-]?(?:\\d+\\.\\d+|\\d+))\\b`,
-        'i',
-      );
-      const kwMatch = clean.match(kwRegex);
-      if (kwMatch && kwMatch[1]) {
-        const rawVal = parseFloat(kwMatch[1]);
-        if (Number.isFinite(rawVal) && rawVal >= spec.range[0] && rawVal <= spec.range[1]) {
-          matched = {
-            name: spec.name,
-            value: Number(rawVal.toFixed(2)),
-            unit: spec.primaryUnit ?? null,
-            rawTextMatch: kwMatch[0],
-          };
-        }
-      }
-    }
-
-    // 3. Standalone float fallback within bounds (excluding already claimed values)
-    if (!matched) {
-      const standaloneMatches = clean.matchAll(/\b[+-]?(?:\d+\.\d+|\d+)\b/g);
-      for (const sm of standaloneMatches) {
-        const val = parseFloat(sm[0]);
-        if (Number.isFinite(val) && val >= spec.range[0] && val <= spec.range[1]) {
-          // Verify not already used by another quantity
-          const alreadyUsed = Object.values(quantities).some((q) => q.value === val);
-          if (!alreadyUsed) {
-            matched = {
-              name: spec.name,
-              value: Number(val.toFixed(2)),
-              unit: null,
-              rawTextMatch: sm[0],
-            };
-            break;
-          }
-        }
-      }
-    }
-
-    if (matched) {
-      quantities[spec.name] = matched;
+    if (!spec.units.length) continue;
+    const units = [...spec.units].sort((a, b) => b.length - a.length).map(escapeRegex).join('|');
+    const regex = new RegExp(`${NUMBER}\\s*(${units})(?![A-Za-z0-9_])`, 'gi');
+    for (const m of clean.matchAll(regex)) {
+      if (store(spec, m, m[2] ?? null)) break;
     }
   }
 
-  return {
-    quantities,
-    rawText: text,
-    cleanText: clean,
-  };
+  for (const spec of specs) {
+    if (quantities[spec.name] || !spec.keywords?.length) continue;
+    const keywords = spec.keywords.map(escapeRegex).join('|');
+    const regex = new RegExp(`(?<![A-Za-z0-9_])(?:${keywords})[:\\s]*${NUMBER}(?![A-Za-z0-9_.])`, 'gi');
+    for (const m of clean.matchAll(regex)) {
+      // Never reinterpret an explicitly labelled, rejected value as a unitless one.
+      if (/^\s*[A-Za-z%°℃]/.test(clean.slice((m.index ?? 0) + m[0].length))) continue;
+      if (store(spec, m, null, spec.primaryUnit ?? null)) break;
+    }
+  }
+
+  // Fallback is restricted to a dedicated numeric ROI with no labels/noise.
+  if (/^[\s\d.eE+\-;:]+$/.test(clean)) {
+    for (const spec of specs) {
+      if (quantities[spec.name] || !spec.allowUnitless) continue;
+      for (const m of clean.matchAll(new RegExp(`${NUMBER}(?![A-Za-z0-9_.])`, 'g'))) {
+        if (store(spec, m, null)) break;
+      }
+    }
+  }
+  return { quantities, rawText: text, cleanText: clean };
 }

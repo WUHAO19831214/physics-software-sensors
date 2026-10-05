@@ -5,11 +5,13 @@ import type {
   SpeedCalibration,
 } from '../core/types.js';
 import { createSeededRandom } from '../core/prng.js';
-import { checkContainerBoundary, samplePositionInsideContainer } from '../core/container.js';
+import { checkContainerBoundary, samplePositionInsideContainer, validateContainer } from '../core/container.js';
 import {
   DISPLAY_CALIBRATION,
   sampleMaxwellVelocity,
   calculateTemperatureScaling,
+  calculateRmsSpeed,
+  validateTemperature,
 } from '../physics/maxwellBoltzmann.js';
 import { resolveWallCollision } from '../physics/collisions.js';
 import { MicroscopicStatisticsAccumulator } from './statistics.js';
@@ -31,18 +33,29 @@ export class GasSimulationEngine implements IGasSimulationEngine {
   private simTimeSeconds = 0;
   private stepIndex = 0;
   private readonly calibration: SpeedCalibration;
-  private readonly rng: () => number;
+  private rng: () => number;
   private readonly statistics: MicroscopicStatisticsAccumulator;
 
   constructor(config: GasSimulationConfig) {
-    this.config = { ...config };
+    validateContainer(config.container, config.particleRadius ?? 0.05);
+    validateTemperature(config.initialTemperatureK);
+    if (!Number.isInteger(config.particleCount) || config.particleCount < 0 || !Number.isFinite(config.particleMass) || config.particleMass <= 0) throw new RangeError('Particle count must be a nonnegative integer and mass positive');
+    this.config = Object.freeze({ ...config, container: Object.freeze({ ...config.container }),
+      ...(config.speedCalibration ? { speedCalibration: Object.freeze({ ...config.speedCalibration }) } : {}) });
     this.currentTemperatureK = config.initialTemperatureK;
-    this.calibration = config.speedCalibration ?? DISPLAY_CALIBRATION;
+    if (config.unitSystem === 'si' && config.speedCalibration) throw new RangeError('SI mode derives speeds from particleMass; omit display calibration');
+    this.calibration = config.unitSystem === 'si'
+      ? { referenceTemperatureK: config.initialTemperatureK, referenceRmsSpeed: Math.sqrt(3 * 1.380649e-23 * config.initialTemperatureK / config.particleMass) }
+      : this.config.speedCalibration ?? DISPLAY_CALIBRATION;
+    // Validate calibration even when no particles are requested.
+    calculateRmsSpeed(config.initialTemperatureK, this.calibration);
+    if (config.randomSeed !== undefined && !Number.isSafeInteger(config.randomSeed)) throw new RangeError('Random seed must be a safe integer');
     this.rng = config.randomSeed !== undefined ? createSeededRandom(config.randomSeed) : Math.random;
     this.statistics = new MicroscopicStatisticsAccumulator(
       config.container,
       config.frequencyWindowSeconds ?? 0.5,
-      this.calibration.referenceTemperatureK
+      this.calibration.referenceTemperatureK,
+      config.unitSystem ?? 'display'
     );
 
     this.initializeParticles();
@@ -71,7 +84,8 @@ export class GasSimulationEngine implements IGasSimulationEngine {
   }
 
   public setTemperature(newTempK: number): void {
-    const targetTempK = Math.max(0.1, newTempK);
+    validateTemperature(newTempK);
+    const targetTempK = newTempK;
     if (Math.abs(targetTempK - this.currentTemperatureK) < 1e-4) {
       return;
     }
@@ -87,16 +101,23 @@ export class GasSimulationEngine implements IGasSimulationEngine {
    * If dt is large, performs sub-stepping to prevent tunneling.
    */
   public step(dtSeconds: number): GasSimulationSnapshot {
-    const safeDt = Math.max(0.0001, Math.min(0.1, dtSeconds));
-    const maxSubStep = 0.01;
-    const subSteps = Math.ceil(safeDt / maxSubStep);
-    const subDt = safeDt / subSteps;
-
+    if (!Number.isFinite(dtSeconds) || dtSeconds < 0) throw new RangeError('Step duration must be finite and nonnegative seconds');
+    if (dtSeconds === 0) return this.getSnapshot();
+    const c = this.config.container;
+    const radius = this.config.particleRadius ?? 0.05;
+    const minSpan = c.type === 'box' ? Math.min(c.width, c.height, c.depth) - 2 * radius
+      : c.type === 'cylinder' ? Math.min(2 * c.radius, c.height) - 2 * radius
+      : Math.min(2 * c.radius - 2 * radius, c.cylinderHeight - radius);
+    const maxSpeed = this.particles.reduce((v, p) => Math.max(v, Math.hypot(p.velocity.x, p.velocity.y, p.velocity.z)), 0);
+    const subSteps = Math.max(1, Math.ceil(dtSeconds / 0.01), Math.ceil(dtSeconds * maxSpeed / (minSpan * 0.1)));
+    if (!Number.isFinite(subSteps) || subSteps > 1000000) throw new RangeError('Step exceeds substep budget; use smaller durations');
+    const subDt = dtSeconds / subSteps;
+    const startTime = this.simTimeSeconds;
     for (let s = 0; s < subSteps; s++) {
+      this.simTimeSeconds = startTime + (s + 1) * subDt;
       this.advanceSubStep(subDt);
     }
-
-    this.simTimeSeconds += safeDt;
+    this.simTimeSeconds = startTime + dtSeconds;
     this.stepIndex++;
 
     return this.getSnapshot();
@@ -116,13 +137,12 @@ export class GasSimulationEngine implements IGasSimulationEngine {
       const col = checkContainerBoundary(p.position, p.radius, container);
       if (col.collided) {
         // Specular bounce
-        const response = resolveWallCollision(p.velocity, col.normal, p.mass);
-        p.velocity = response.newVelocity;
-        p.position = col.clampedPosition;
-
-        if (response.impulse > 0) {
-          this.statistics.recordCollision(currentTime, response.impulse);
+        for (const normal of col.normals ?? [col.normal]) {
+          const response = resolveWallCollision(p.velocity, normal, p.mass);
+          p.velocity = response.newVelocity;
+          if (response.impulse > 0) this.statistics.recordCollision(currentTime, response.impulse);
         }
+        p.position = col.clampedPosition;
       }
     }
   }
@@ -139,12 +159,14 @@ export class GasSimulationEngine implements IGasSimulationEngine {
       stepIndex: this.stepIndex,
       temperatureK: this.currentTemperatureK,
       particleCount: this.particles.length,
-      particles: this.particles,
+      particles: this.particles.map(p => ({ ...p, position: { ...p.position }, velocity: { ...p.velocity } })),
       statistics: stats,
     };
   }
 
   public reset(initialTemperatureK?: number): void {
+    validateTemperature(initialTemperatureK ?? this.config.initialTemperatureK);
+    this.rng = this.config.randomSeed !== undefined ? createSeededRandom(this.config.randomSeed) : Math.random;
     this.simTimeSeconds = 0;
     this.stepIndex = 0;
     if (initialTemperatureK !== undefined) {

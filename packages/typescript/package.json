@@ -1,11 +1,13 @@
 {
   "name": "@physics-software-sensors/core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "description": "Experimental TypeScript adapters and contracts for physics software sensors",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -15,7 +17,11 @@
       "import": "./dist/src/index.js"
     }
   },
-  "files": ["dist/src", "README.md"],
+  "files": [
+    "dist/src",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/tests/*.test.js",
